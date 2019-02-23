@@ -18,18 +18,14 @@
         <?php Session::forget('error');?>
     @endif
 
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" name="cmd" value="_xclick">
-    <input type="hidden" name="business" value="accounts@freelanceswitch.com">
-    <input type="hidden" name="item_name" value="Donation">
-    <input type="hidden" name="item_number" value="1">
-    <input type="hidden" name="amount" value="99.00">
-    <input type="hidden" name="no_shipping" value="0">
-    <input type="hidden" name="no_note" value="1">
-    <input type="hidden" name="currency_code" value="USD">
-    <input type="hidden" name="lc" value="AU">
-    <input type="hidden" name="bn" value="PP-BuyNowBF">
-    <input type="image" src="https://www.paypal.com/en_AU/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
-    <img alt="" border="0" src="https://www.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1">
-</form>
+    <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form" 
+        action="/payment/paypal/pay">
+        {{ csrf_field() }}
+        <h2 class="w3-text-blue">Payment Form</h2>
+        <p>Demo PayPal form - Integrating paypal in laravel</p>
+        <p>      
+        <label class="w3-text-blue"><b>Enter Amount</b></label>
+        <input class="w3-input w3-border" name="amount" type="number"></p>      
+        <button type="submit" class="w3-btn w3-blue">Pay with PayPal</button></p>
+    </form>
 @endsection

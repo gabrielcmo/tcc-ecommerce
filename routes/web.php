@@ -13,12 +13,14 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/payment', function(){
+Route::get('/payment/paypal', function(){
     return view('payment');
-});
+})->name('paypal_payment');
+
+Route::post('payment/paypal/pay', 'PayPalController@Pay');
