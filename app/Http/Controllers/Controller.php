@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ecommerce\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
