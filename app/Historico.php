@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Historico extends Model
 {
-    private $table = 'historicos';
+    protected $table = 'historicos';
 }

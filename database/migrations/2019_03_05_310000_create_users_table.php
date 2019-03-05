@@ -22,15 +22,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             
-            $table->integer('id_carrinho')->unsigned();
-            $table->integer('id_endereco')->unsigned();
-            $table->integer('id_historico')->unsigned();
+            $table->integer('id_endereco')->unsigned()->nullable();
+            $table->integer('id_historico')->unsigned()->nullable();
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('id_carrinho')->references('id')
-                ->on('carrinhos')->onDelete('cascade')->onUpdate('cascade');
-                
             $table->foreign('id_endereco')->references('id')
                 ->on('enderecos')->onDelete('cascade')->onUpdate('cascade');
 

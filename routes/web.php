@@ -11,16 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', [
+    'uses' => 'ProdutosController@index',
+    'as' => 'index'
+]);
 
-Route::get('/payment/paypal', function(){
-    return view('payment');
-})->name('paypal_payment');
+Route::group(['prefix' => 'user'], function(){
+    Route::get('profile', function(){
+        return view('user.profile');
+    })->name('profile');
 
-Route::post('payment/paypal/pay', 'PayPalController@Pay');
+    Route::get('cart', function(){
+        return view('user.cart');
+    })->name('cart');
+});
