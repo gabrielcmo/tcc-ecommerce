@@ -11,19 +11,8 @@
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/', [
-    'uses' => 'ProdutosController@index',
-    'as' => 'index'
-]);
-
-Route::group(['prefix' => 'user'], function(){
-    Route::get('profile', function(){
-        return view('user.profile');
-    })->name('profile');
-
-    Route::get('cart', function(){
-        return view('user.cart');
-    })->name('cart');
-});
+Route::get('/', function (){
+    return view('index');
+})->name('index');
