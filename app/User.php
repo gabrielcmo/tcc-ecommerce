@@ -1,6 +1,6 @@
 <?php
 
-namespace ecommerce;
+namespace Doomus;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

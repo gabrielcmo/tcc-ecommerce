@@ -1,9 +1,9 @@
 <?php
 
-namespace ecommerce\Http\Controllers\Auth;
+namespace Doomus\Http\Controllers\Auth;
 
-use ecommerce\User;
-use ecommerce\Http\Controllers\Controller;
+use Doomus\User;
+use Doomus\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \ecommerce\User
+     * @return \Doomus\User
      */
     protected function create(array $data)
     {

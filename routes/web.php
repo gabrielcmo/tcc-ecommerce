@@ -16,3 +16,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', function (){
     return view('index');
 })->name('index');
+
+Route::get('/about/us/', function (){
+    return view('about_us');
+})->name('about_us');

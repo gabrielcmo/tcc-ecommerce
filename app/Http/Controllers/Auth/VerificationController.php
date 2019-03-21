@@ -1,8 +1,8 @@
 <?php
 
-namespace ecommerce\Http\Controllers\Auth;
+namespace Doomus\Http\Controllers\Auth;
 
-use ecommerce\Http\Controllers\Controller;
+use Doomus\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller

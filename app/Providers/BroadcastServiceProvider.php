@@ -1,6 +1,6 @@
 <?php
 
-namespace ecommerce\Providers;
+namespace Doomus\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

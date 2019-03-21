@@ -28,17 +28,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    ecommerce\Http\Kernel::class
+    Doomus\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    ecommerce\Console\Kernel::class
+    Doomus\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    ecommerce\Exceptions\Handler::class
+    Doomus\Exceptions\Handler::class
 );
 
 /*

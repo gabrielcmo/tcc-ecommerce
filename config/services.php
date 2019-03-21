@@ -31,7 +31,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => ecommerce\User::class,
+        'model' => Doomus\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
         'webhook' => [

@@ -1,6 +1,6 @@
 <?php
 
-namespace ecommerce\Http\Middleware;
+namespace Doomus\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ecommerce\Providers;
+namespace Doomus\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'ecommerce\Model' => 'ecommerce\Policies\ModelPolicy',
+        'Doomus\Model' => 'Doomus\Policies\ModelPolicy',
     ];
 
     /**

@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        ecommerce\Providers\AppServiceProvider::class,
-        ecommerce\Providers\AuthServiceProvider::class,
-        // ecommerce\Providers\BroadcastServiceProvider::class,
-        ecommerce\Providers\EventServiceProvider::class,
-        ecommerce\Providers\RouteServiceProvider::class,
+        Doomus\Providers\AppServiceProvider::class,
+        Doomus\Providers\AuthServiceProvider::class,
+        // Doomus\Providers\BroadcastServiceProvider::class,
+        Doomus\Providers\EventServiceProvider::class,
+        Doomus\Providers\RouteServiceProvider::class,
 
     ],
 
