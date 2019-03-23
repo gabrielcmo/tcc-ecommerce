@@ -11,12 +11,12 @@
 |
 */
 
-Auth::routes(['verify' => true]);
+Route::get('/', 'IndexController@index')->name('index');
 
-Route::get('/', function (){
-    return view('index');
-})->name('index');
-
-Route::get('/about/us/', function (){
-    return view('about_us');
-})->name('about_us');
+Route::resource('Product', 'ProductController');
+Route::resource('Category', 'CategoryController');
+Route::resource('User', 'UserController');
+Route::resource('Historic', 'HistoricController');
+Route::resource('Order', 'OrderController');
+Route::resource('Cart', 'CartController');
+Route::resource('Cart_Product', 'CartProductController');
