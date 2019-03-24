@@ -14,7 +14,7 @@ class HistoricController extends Controller
      */
     public function index()
     {
-        return Historic::all()->get();
+        return Historic::all();
     }
 
     /**
@@ -53,7 +53,7 @@ class HistoricController extends Controller
      */
     public function show(Historic $historic)
     {
-        return Historic::find($request->id);
+        return Historic::find($historic->id);
     }
 
     /**
