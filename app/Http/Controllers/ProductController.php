@@ -12,9 +12,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public static function index()
     {
-        //
+        return Product::all()->get();
     }
 
     /**
@@ -35,7 +35,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->value = $request->value;
+        $product->qtd_in_stock = $request->qtd_in_stock;
+        $product->id_category = $request->id_category;
+        $product->save();
+        return;
     }
 
     /**
@@ -46,7 +53,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return Product::find($product->id);
     }
 
     /**
@@ -57,7 +64,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return Product::find($product->id);  
     }
 
     /**
@@ -69,7 +76,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product = Product::find($product->id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->value = $request->value;
+        $product->qtd_in_stock = $request->qtd_in_stock;
+        $product->id_category = $request->id_category;
+        $product->save();
+        return;
     }
 
     /**
@@ -80,6 +94,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $p = Product::find($product->id);
+        $p->delete();
+        return;
     }
 }

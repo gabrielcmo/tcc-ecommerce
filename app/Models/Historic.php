@@ -1,6 +1,6 @@
 <?php
 
-namespace Doomus;
+namespace Doomus\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

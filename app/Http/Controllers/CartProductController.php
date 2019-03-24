@@ -7,25 +7,7 @@ use Illuminate\Http\Request;
 
 class CartProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public const default_quantity = 1; 
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +17,10 @@ class CartProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cart_product = new Cart_Product();
+        $cart_product->qtd = default_quantity;
+        $cart_product->id_product = $request->id_product;
+        $cart_product->id_cart = $request->id_cart;
     }
 
     /**
@@ -44,20 +29,9 @@ class CartProductController extends Controller
      * @param  \Doomus\Cart_Product  $cart_Product
      * @return \Illuminate\Http\Response
      */
-    public function show(Cart_Product $cart_Product)
+    public function show(Cart $id_cart)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Doomus\Cart_Product  $cart_Product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cart_Product $cart_Product)
-    {
-        //
+        return Cart_Product::where('id_cart', $id_cart)->get();
     }
 
     /**
@@ -69,7 +43,12 @@ class CartProductController extends Controller
      */
     public function update(Request $request, Cart_Product $cart_Product)
     {
-        //
+        $c_p = Cart_Product::find($cart_Product->id);
+        $c_p->qtd = $request->qtd;
+        $c_p->id_product = $request->id_product;
+        $c_p->id_cart = $request->id_cart;
+        $c_p->save();
+        return;
     }
 
     /**
@@ -80,6 +59,8 @@ class CartProductController extends Controller
      */
     public function destroy(Cart_Product $cart_Product)
     {
-        //
+        $c_p = Cart_Product::find($cart_Product->id);
+        $c_p->delete();
+        return;
     }
 }

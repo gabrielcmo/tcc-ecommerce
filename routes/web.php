@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'IndexController@index')->name('index');
+Route::get('/', 'IndexController@view')->name('index');
 
 Route::resource('Product', 'ProductController');
 Route::resource('Category', 'CategoryController');

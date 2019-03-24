@@ -14,17 +14,7 @@ class HistoricController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Historic::all()->get();
     }
 
     /**
@@ -35,7 +25,24 @@ class HistoricController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id_p = $request->id_product;
+        $status = $request->status;
+
+        if(is_array($id_p) && is_array($status)) {
+            $h = [];
+            for ($i=0; $i < count($id_p); $i++) { 
+                $h[$i] = new Historic();
+                $h[$i]->id_product = $id_p[$i];
+                $h[$i]->status = $status[$i];
+                $h[$i]->save();
+            }
+        }else {
+            $historic =  new Historic();
+            $historic->id_product = $id_p;
+            $historic->status = $status;
+            $historic->save();
+        }
+        return;
     }
 
     /**
@@ -46,30 +53,7 @@ class HistoricController extends Controller
      */
     public function show(Historic $historic)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Doomus\Historic  $historic
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Historic $historic)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Doomus\Historic  $historic
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Historic $historic)
-    {
-        //
+        return Historic::find($request->id);
     }
 
     /**
@@ -80,6 +64,8 @@ class HistoricController extends Controller
      */
     public function destroy(Historic $historic)
     {
-        //
+        $hist = Historic::find($historic->id);
+        $hist->delete();
+        return;
     }
 }
