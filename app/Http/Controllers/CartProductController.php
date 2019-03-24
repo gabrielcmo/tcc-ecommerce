@@ -21,6 +21,9 @@ class CartProductController extends Controller
         $cart_product->qtd = default_quantity;
         $cart_product->id_product = $request->id_product;
         $cart_product->id_cart = $request->id_cart;
+
+        Session::flash('message', 'Adicionado ao carrinho');
+        return redirect::to('/');
     }
 
     /**

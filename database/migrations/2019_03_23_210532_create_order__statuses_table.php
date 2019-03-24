@@ -13,8 +13,9 @@ class CreateOrderStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('order__statuses', function (Blueprint $table) {
+        Schema::create('order_statuses', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateOrderStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order__statuses');
+        Schema::dropIfExists('order_statuses');
     }
 }

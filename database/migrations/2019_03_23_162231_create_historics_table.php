@@ -15,6 +15,8 @@ class CreateHistoricsTable extends Migration
     {
         Schema::create('historics', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_product')->unsigned();
+            $table->integer('id_status')->unsigned();
             $table->timestamps();
         });
     }

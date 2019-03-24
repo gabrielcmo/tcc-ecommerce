@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public static function index()
     {
-        return Product::all()->get();
+        return Product::all();
     }
 
     /**

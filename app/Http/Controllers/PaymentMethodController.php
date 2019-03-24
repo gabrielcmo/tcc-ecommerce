@@ -2,31 +2,11 @@
 
 namespace Doomus\Http\Controllers;
 
-use Doomus\Payment_Method;
+use Doomus\Models\Payment_Method;
 use Illuminate\Http\Request;
 
 class PaymentMethodController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +15,10 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $c = new Payment_Method();
+        $c->type = $request->type;
+        $c->save();
+        return;
     }
 
     /**
@@ -46,30 +29,7 @@ class PaymentMethodController extends Controller
      */
     public function show(Payment_Method $payment_Method)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Doomus\Payment_Method  $payment_Method
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Payment_Method $payment_Method)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Doomus\Payment_Method  $payment_Method
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Payment_Method $payment_Method)
-    {
-        //
+        return Payment_Method::find($payment_Method);
     }
 
     /**
