@@ -24,11 +24,11 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function store(/* null - have only id increments */)
+    public static function store(/* null - have only id increments */)
     {
         $cart = new Cart();
         $cart->save();
-        return;
+        return $cart;
     }
 
     /**

@@ -2,12 +2,9 @@
 
 namespace Doomus\Http\Controllers\Auth;
 
-use Doomus\User;
+use Doomus\Models\User;
 use Doomus\Http\Controllers\Controller;
 use Doomus\Http\Controllers\CartController;
-use Doomus\Http\Controllers\HistoricController;
-use Doomus\Http\Models\Cart;
-use Doomus\Http\Models\Historic;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,15 +64,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        CartController::store();
-        HistoricController::store();
+        $cart = CartController::store();
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'id_cart' => Cart::all()->orderBy('id_cart', 'DESC')->first()->id_cart,
-            'id_historic' => Historic::all()->orderBy('id_historic', 'DESC')->first()->id_historic,
+            'id_cart' => $cart->id,
+            'id_historic' => null,
         ]);
     }
 }

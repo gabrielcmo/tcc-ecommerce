@@ -20,29 +20,27 @@ class HistoricController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  $id_p
+     * @param  $status
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store($id_p, $id_status)
     {
-        $id_p = $request->id_product;
-        $status = $request->status;
-
         if(is_array($id_p) && is_array($status)) {
             $h = [];
             for ($i=0; $i < count($id_p); $i++) { 
                 $h[$i] = new Historic();
                 $h[$i]->id_product = $id_p[$i];
-                $h[$i]->status = $status[$i];
+                $h[$i]->id_status = $id_status[$i];
                 $h[$i]->save();
             }
         }else {
             $historic =  new Historic();
             $historic->id_product = $id_p;
-            $historic->status = $status;
+            $historic->id_status = $id_status;
             $historic->save();
         }
-        return;
+        return $historic->id;
     }
 
     /**

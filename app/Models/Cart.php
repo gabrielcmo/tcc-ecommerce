@@ -8,5 +8,5 @@ class Cart extends Model
 {
     protected $table = 'carts';
 
-    // Fillable NULL
+    protected $fillable = ['id'];
 }

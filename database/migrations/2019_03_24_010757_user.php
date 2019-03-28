@@ -18,9 +18,11 @@ class User extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->datetime('email_verified_at');
+            $table->timestamp('email_verified_at')->nullable();
             $table->integer('id_cart')->unsigned();
-            $table->integer('id_historic')->unsigned();
+            $table->foreign('id_cart')->references('id')->on('carts');
+            $table->integer('id_historic')->unsigned()->nullable();
+            $table->foreign('id_historic')->references('id')->on('historics');
             $table->rememberToken();
             $table->timestamps();
         });

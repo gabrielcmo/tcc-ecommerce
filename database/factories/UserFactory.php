@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Str;
+use Doomus\Http\Controllers\HistoricController as Historic;
+use Doomus\Http\Controllers\CartController as Cart;
 use Faker\Generator as Faker;
 
 /*
@@ -19,9 +21,9 @@ $factory->define(Doomus\Models\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'id_historic' => $faker->numberBetween(0, 50),
-        'id_cart' => $faker->numberBetween(0, 50),
+        'password' => '$2b$10$Aqnu5vnh29apN8ggrMxDg.pXLWUibxEFzccSDJlL7zOt9fcqWdDiu', // secret
+        'id_historic' => Historic::store($faker->numberBetween(0, 25), $faker->numberBetween(0, 3)),
+        'id_cart' => Cart::store(),
         'remember_token' => Str::random(10),
     ];
 });

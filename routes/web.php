@@ -17,10 +17,21 @@ use Doomus\Models\Cart_Products;
 */
 
 // Rotas do sist. de autentificação
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Rotas que não precisam de login
 Route::get('/', 'IndexController@view')->name('index');
+Route::get('/mail/send', function () {
+    try{
+        Mail::send('mails.index', ['receiver' => Auth::user()->name], function ($m) {
+            $m->from('doomus.atendimento@gmail.com');
+            $m->subject('Testando API Laravel');
+            $m->to('gabrieloliveira9669@gmail.com');
+        });
+    }catch(Exception $e){
+        echo $e;
+    }
+});
 
 // Rotas que precisam de login
 Route::group(['middleware' => ['auth']], function () {
