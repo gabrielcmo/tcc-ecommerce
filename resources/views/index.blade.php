@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-    <h2 class="poppins">index page</h2><br><br>
+    <h2 class="poppins">index page test</h2><br><br>
 @endsection
 
 @section('categories')
