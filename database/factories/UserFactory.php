@@ -21,7 +21,7 @@ $factory->define(Doomus\Models\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2b$10$Aqnu5vnh29apN8ggrMxDg.pXLWUibxEFzccSDJlL7zOt9fcqWdDiu', // secret
+        'password' => '$2y$12$UO0MK48VUtYWX/r/l.jqf.9BNUVhCr9ie9BiIG7vrasnlGUH8IU2O', // secret
         'id_historic' => Historic::store($faker->numberBetween(0, 25), $faker->numberBetween(0, 3)),
         'id_cart' => Cart::store(),
         'remember_token' => Str::random(10),
