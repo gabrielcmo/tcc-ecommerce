@@ -8,9 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 
     <!-- Fonts -->
 
@@ -20,7 +22,9 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ route('index') }}">{{ config('app.name') }}</a>
+        <a class="navbar-brand" href="{{ route('index') }}">
+            <img src="images/favicon.png" width="25px" height="25px" alt="Logo">&nbsp;&nbsp;{{ config('app.name') }}
+        </a>
     </nav>
 
     <main class="px-3 py-4">
@@ -35,5 +39,13 @@
             </div>
         </div>
     </main>
+    <script>
+        $(".card").hover(function () {
+            $(this).find('.card-hover').fadeIn(100);
+        },
+        function () {
+            $(this).find('.card-hover').fadeOut(100);
+        });
+    </script>
 </body>
 </html>

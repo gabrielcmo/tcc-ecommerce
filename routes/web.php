@@ -32,6 +32,8 @@ Route::get('/mail/send', function () {
         echo $e;
     }
 });
+// Para mostrar apenas os produtos de uma categoria
+Route::get('produtos/{id}', 'ProductController@productOfCategory');
 
 // Rotas que precisam de login
 Route::group(['middleware' => ['auth']], function () {
