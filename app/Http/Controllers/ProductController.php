@@ -3,6 +3,7 @@
 namespace Doomus\Http\Controllers;
 
 use Doomus\Models\Product;
+use Doomus\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,6 +16,13 @@ class ProductController extends Controller
     public static function index()
     {
         return Product::all();
+    }
+
+    public function productOfCategory($id){
+        $products = Product::where('id_category', $id)->get();
+        $categories = Category::all();
+        return view('index')->with('products', $products)
+            ->with('categories', $categories);
     }
 
     /**
