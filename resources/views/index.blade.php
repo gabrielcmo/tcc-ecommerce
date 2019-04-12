@@ -1,60 +1,154 @@
-@extends('layouts.index')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        <img class="d-block w-100" src="{{ asset('images/carousel-1.jpg') }}" alt="Carrosel de imagens">
-        <div class="carousel-caption d-none d-md-block">
-            <h5 style="color: black;font-size: 2em;">O melhor para sua casa é aqui</h5>
-            <p style="color: black;font-size: 1.5em;">Oferecemos os mais variados produtos para deixar seu lar muito mais aconchegante!</p>
-        </div>
-    </div>
-    <div class="carousel-item">
-        <img class="d-block w-100" src="{{ asset('images/carousel-2.jpg') }}" alt="Carrosel de imagens">
-        <div class="carousel-caption d-none d-md-block">
-            <h5 style="color: black;font-size: 2em;">Produtos para sua cozinha</h5>
-            <p style="color: black;font-size: 1.5em;">Os mais variados produtos para preparar sua comida</p>
-        </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Anterior</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Próximo</span>
-  </a>
-</div><br>
-@endsection
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Em breve...!</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .view {
+      height: 100%;
+    }
 
-@section('categories')
-    <h3 class="poppins">Categorias</h3>
-    <div class="card">
-      @foreach ($categories as $category)
-          <a href="/produtos/{{$category->id}}">{{ $category->name }}</a>
-      @endforeach
-    </div>
-@endsection
+    @media (max-width: 559px) {
 
-@section('products')
-    <h3 class="poppins">Produtos</h3>
-    <div class="row">
-      @foreach ($products as $product)
-      <div class="card">
-        <div class="card-hover">
-          <div class="card-text py-5 text-center">
-            <h5>{{$product->name}}</h5>
-            {{$product->description}} <br>
-            {{$product->value}} reais <br>
-            <span>Em estoque: <em>{{$product->qtd_in_stock}}</em></span>
-          </div>
-        </div>
-        <div class="card-image">
-            <img src="images/{{$product->image}}" />
-        </div>
+      html,
+      body,
+      header,
+      .view {
+        height: 1000px;
+      }
+    }
+
+    @media (min-width: 560px) and (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 700px;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 600px;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #1C2331 !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  
+  <!-- Full Page Intro -->
+  <div class="view">
+
+    <video class="video-intro" poster="https://mdbootstrap.com/img/Photos/Others/background.jpg" playsinline autoplay
+      muted loop>
+      <source src="https://mdbootstrap.com/img/video/Lines-min.mp4" type="video/mp4">
+    </video>
+
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+      <!-- Content -->
+      <div class="text-center white-text mx-5 wow fadeIn">
+
+        <h1 class="display-4 mb-4">
+          <strong>Em Breve!</strong>
+        </h1>
+
+        <!-- Time Counter -->
+        <p id="time-counter" class="my-4"></p>
+
+
+        <h4 class="mb-4">
+          <strong>Nós estamos trabalhando para finalizar o desenvolvimento deste web site!</strong>
+        </h4>
+
       </div>
-      @endforeach
+      <!-- Content -->
+
     </div>
-@endsection
+    <!-- Mask & flexbox options-->
+
+  </div>
+  <!-- Full Page Intro -->
+
+    
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- Time Counter -->
+  <script type="text/javascript">
+    // Set the date we're counting down to
+    var countDownDate = new Date();
+    countDownDate.setDate(countDownDate.getDate() + 120);
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+      // Get todays date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now an the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="demo"
+      document.getElementById("time-counter").innerHTML = days + "d " + hours + "h " +
+        minutes + "m " + seconds + "s ";
+
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("time-counter").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+
+  </script>
+</body>
+
+</html>
