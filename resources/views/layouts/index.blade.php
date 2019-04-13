@@ -14,7 +14,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
             <!-- Navbar brand -->
-            <span class="navbar-brand">Categories:</span>
+            <span class="navbar-brand">Categorias:</span>
 
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
@@ -27,11 +27,19 @@
 
             <!-- Links -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">All
+                @if(isset($_GET['all']))
+                  <li class="nav-item">
+                      <a class="nav-link" href="../">All
+                      </a>
+                  </li>
+                @else
+                  <li class="nav-item active">
+                      <a class="nav-link" href="#">All
                         <span class="sr-only">(current)</span>
-                    </a>
-                </li>
+                      </a>
+                  </li>
+                @endif
+                
                 @yield('categories')
             </ul>
             <!-- Links -->
@@ -70,12 +78,6 @@
             <a class="page-link" href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
-            </a>
-          </li>
-
-          <li class="page-item active">
-            <a class="page-link" href="#">1
-              <span class="sr-only">(current)</span>
             </a>
           </li>
 

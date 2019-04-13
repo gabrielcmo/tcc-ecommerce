@@ -4,6 +4,7 @@ namespace Doomus\Http\Controllers;
 
 use Doomus\Models\Product;
 use Doomus\Models\Category;
+use Doomus\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,13 +16,48 @@ class ProductController extends Controller
      */
     public static function index()
     {
-        return Product::all();
+        $products = Product::all();
+        
+        self::countProductsPost($products);
+
+        return view('index')->with('products', $products)->with('categories', CategoryController::index());
     }
 
+    public static function countProductsPost($products){
+        $total_products = count($products);
+
+        $_POST["total_products"] = $total_products;
+    }
+
+    // Paginação dos produtos
+    public function pagination($id){
+        $all_products = Product::all();
+
+        self::countProductsPost($all_products);
+
+        foreach($all_products as $one_product){
+            if($one_product->id > $_GET['id_last_product']){
+                $products[] = $one_product;
+            }
+        }
+
+        $categories = Category::all();
+
+        return view('index')->with('products', $products)->with('categories', $categories);
+    }
+    
+    /**
+     * Exibe produtos de uma categoria específica.
+     *
+     */
     public function productOfCategory($id){
         $products = Product::where('id_category', $id)->get();
+
         $categories = Category::all();
-        return view('indexProdutos')->with('products', $products)
+
+        self::countProductsPost($products);
+
+        return view('index')->with('products', $products)
             ->with('categories', $categories);
     }
 

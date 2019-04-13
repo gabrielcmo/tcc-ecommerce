@@ -17,7 +17,7 @@
   <!--First slide-->
   <div class="carousel-item active">
     <div class="view" style="background-repeat: no-repeat; background-size: cover;">
-      <img src="img/carousel/carousel-1.jpg" alt="">
+      <img src="{{ asset('img/carousel/carousel-1.jpg') }}" alt="">
 
       <!-- Mask & flexbox options-->
       <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -36,7 +36,7 @@
             <strong>Com uma imensa variedade de escolha, você pode se sentir a vontade para comprar o que quiser, pelo melhor preço!</strong>
           </p>
 
-          <a target="_blank" href="products/3" class="btn btn-outline-white btn-lg">Ver decorações
+          <a target="_blank" href="../products/3" class="btn btn-outline-white btn-lg">Ver decorações
             <i class="fas fa-graduation-cap ml-2"></i>
           </a>
         </div>
@@ -52,7 +52,7 @@
   <!--Second slide-->
   <div class="carousel-item">
     <div class="view" style="background-repeat: no-repeat; background-size: cover;">
-      <img src="img/carousel/carousel-2.jpg" alt="">
+      <img src="{{ asset('img/carousel/carousel-2.jpg') }}" alt="">
 
       <!-- Mask & flexbox options-->
       <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -71,7 +71,7 @@
             <strong>Não perca tempo, tome banho e se seque com a toalhas mais macias e mais baratas do mercado</strong>
           </p>
 
-          <a target="_blank" href="products/5" class="btn btn-outline-white btn-lg">Ver toalhas
+          <a target="_blank" href="../products/5" class="btn btn-outline-white btn-lg">Ver toalhas
             <i class="fas fa-graduation-cap ml-2"></i>
           </a>
         </div>
@@ -103,21 +103,30 @@
 
 @section('categories')
     @foreach($categories as $category)
-        <li class="nav-item">
-            <a class="nav-link" href="products/{{ $category->id }}">{{ $category->name }}</a>
-        </li>
+      <?php $id_category = isset($_GET['category_id']) ? $_GET['category_id'] : null; ?>
+        @if($category->id == $id_category)
+          <li class="nav-item active">
+              <a class="nav-link" href="#">{{ $category->name }}
+                <span class="sr-only">(current)</span>
+              </a>
+          </li>
+        @else
+          <li class="nav-item">
+              <a class="nav-link" href="../products/{{ $category->id }}?all=false&category_id={{$category->id}}">{{ $category->name }}</a>
+          </li>
+        @endif
     @endforeach
 @endsection
 
 @section('products')
   <?php $qtd = 0;
+
   foreach($products as $product){
     if($qtd == 20){
-      $id_product = $product->id; 
       break;
     }
-      
-  $qtd++; ?>
+    $qtd++; ?>
+
     <!--Grid column-->
     <div class="col-lg-3 col-md-6 mb-4 d-flex align-content-around flex-wrap">
 
@@ -126,7 +135,7 @@
 
       <!--Card image-->
       <div class="view overlay" style="height:300px;">
-          <img src="img/products/placeholder-1.jpg" class="card-img-top" alt="">
+          <img src="{{ asset('img/products/placeholder-1.jpg') }}" class="card-img-top" alt="">
           <a>
           <div class="mask rgba-white-slight"></div>
           </a>
@@ -160,11 +169,33 @@
 @endsection
 
 @section('pagination')
-  <?php $number_pg = 2;?>
-  @for($i = 0; $i <= 5; $i++)
-    <li class="page-item">
-      <a class="page-link" href="{{redirect('$number_pg?id_last_product=$id_last_product')}}">{{$number_pg}}</a>
-    </li>
+  <?php
+  $number_pg = 1;
+  $numero_de_paginacoes = ceil($_POST["total_products"]/21);
+  $number_pg_get = isset($_GET['number_pg']) ? $_GET['number_pg'] : null;
+  ?>
+  @for($i = 1; $i <= $numero_de_paginacoes; $i++)
+    @if($number_pg == 1 && $number_pg_get == null)
+      <li class="page-item active">
+        <a class="page-link" href="#">{{$number_pg}}</a>
+      </li>
+    @elseif($number_pg == 1)
+      <li class="page-item">
+        <a class="page-link" href="../">{{$number_pg}}</a>
+      </li>
+    @else
+        @if($number_pg == $number_pg_get)
+          <li class="page-item active">
+            <a class="page-link" href="#">{{$number_pg}}
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        @else
+          <li class="page-item">
+            <a class="page-link" href="../{{ $number_pg }}?id_last_product={{ (($number_pg-1)*20) }}&number_pg={{$number_pg}}">{{$number_pg}}</a>
+          </li>
+        @endif
+    @endif
     <?php $number_pg++; ?>
   @endfor
 @endsection
