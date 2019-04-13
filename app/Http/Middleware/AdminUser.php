@@ -18,7 +18,7 @@ class AdminUser
     {
         if(Auth::user()->type_user !== 1)
         {
-            return redirect('/')->withErrors(['message' => 'Acesso negado']);
+            return back()->withErrors(['message' => 'Acesso negado']);
         }
 
         return $next($request);

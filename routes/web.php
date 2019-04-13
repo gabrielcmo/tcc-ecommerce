@@ -16,43 +16,62 @@ use Doomus\Models\Cart_Products;
 |
 */
 
-// Rotas do sist. de autentificação
+// Rotas de sistema de autentificação (verificar email ativado)
 Auth::routes(['verify' => true]);
 
-// Rotas que não precisam de login
-Route::get('/', 'IndexController@view')->name('index');
-Route::get('/mail/send', function () {
-    try{
-        Mail::send('mails.index', ['receiver' => Auth::user()->name], function ($m) {
-            $m->from('doomus.atendimento@gmail.com');
-            $m->subject('Testando API Laravel');
-            $m->to('gabrieloliveira9669@gmail.com');
-        });
-    }catch(Exception $e){
-        echo $e;
-    }
-});
-// Para mostrar apenas os produtos de uma categoria
-Route::get('produtos/{id}', 'ProductController@productOfCategory');
+// Rotas que não precisam de login..
+Route::group([], function () {
+    // Landing Page
+    Route::get('/', 'IndexController@view')->name('index');
 
-// Rotas que precisam de login
+    // Rota para envio de email
+    Route::get('/mail/send', function () {
+        try{
+            Mail::send('mails.index', ['receiver' => Auth::user()->name], function ($m) {
+                $m->from('doomus.atendimento@gmail.com');
+                $m->subject('Testando API Laravel');
+                $m->to('gabrieloliveira9669@gmail.com');
+            });
+        }catch(Exception $e){
+            echo $e;
+        }
+    });
+
+    // Para ver todos o produtos
+    Route::get('produtos', 'IndexController@viewProducts');
+
+    // Para mostrar apenas os produtos de uma determinada categoria
+    Route::get('produtos/{id}', 'ProductController@productOfCategory');
+});
+
+// Rotas que precisam de autentificação
 Route::group(['middleware' => ['auth']], function () {
+
+    // Perfil do usuário
     Route::get('/user/profile', function (){
         return view('user.profile')->with('user', Auth::user());
     })->name('user.profile');
+
+    // Histórico de compras
     Route::get('/user/historic', function () {
         return view('user.profile')->with('historic', Historic::find(Auth::user()->id_historic));
     });
+
+    // Pedidos pendentes
     Route::get('/user/orders', function () {
         return view('user.profile')->with('orders', Order::where('id_user', Auth::user()->id));
     });
+
+    // Carrinho
     Route::get('/user/cart', function () {
         return view('user.profile')->with('cart', Cart_Products::where('id_user', Auth::user()->id));
     });
 });
 
-// Rotas do usuário administrador
+// Rotas do administrador
 Route::group(['middleware' => ['auth', 'admin.user']], function (){
+    // Resources são estruturas de rotas prontas que se comunicam
+    // com os métodos do controller (criar, editar, ..)
     Route::resource('product', 'ProductController');
     Route::resource('category', 'CategoryController');
     Route::resource('historic', 'HistoricController');

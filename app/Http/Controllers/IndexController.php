@@ -8,7 +8,11 @@ use Doomus\Http\Controllers\CategoryController as Category;
 
 class IndexController extends Controller
 {
-    function view(){
+    public function view(){
         return view('index')->with('products', Product::index())->with('categories', Category::index());
+    }
+
+    public function viewProducts(){
+        return view('indexProdutos')->with('products', Product::index())->with('categories', Category::index());
     }
 }

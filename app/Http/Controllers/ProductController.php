@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function productOfCategory($id){
         $products = Product::where('id_category', $id)->get();
         $categories = Category::all();
-        return view('index')->with('products', $products)
+        return view('indexProdutos')->with('products', $products)
             ->with('categories', $categories);
     }
 

@@ -1,154 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.index')
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Em breve...!</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
-  <style type="text/css">
-    html,
-    body,
-    header,
-    .view {
-      height: 100%;
-    }
+@section('carousel')
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
 
-    @media (max-width: 559px) {
+<!--Indicators-->
+<ol class="carousel-indicators">
+  <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+  <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+</ol>
+<!--/.Indicators-->
 
-      html,
-      body,
-      header,
-      .view {
-        height: 1000px;
-      }
-    }
+<!--Slides-->
+<div class="carousel-inner" role="listbox">
 
-    @media (min-width: 560px) and (max-width: 740px) {
+  <!--First slide-->
+  <div class="carousel-item active">
+    <div class="view" style="background-repeat: no-repeat; background-size: cover;">
+      <img src="img/carousel/carousel-1.jpg" alt="">
 
-      html,
-      body,
-      header,
-      .view {
-        height: 700px;
-      }
-    }
+      <!-- Mask & flexbox options-->
+      <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
 
-    @media (min-width: 800px) and (max-width: 850px) {
+        <!-- Content -->
+        <div class="text-center white-text mx-5 wow fadeIn">
+          <h1 class="mb-4">
+            <strong>Os melhores produtos para decorar sua casa</strong>
+          </h1>
 
-      html,
-      body,
-      header,
-      .view {
-        height: 600px;
-      }
-    }
+          <p>
+            <strong>Preço bom e satisfação 100%</strong>
+          </p>
 
-    @media (min-width: 800px) and (max-width: 850px) {
-      .navbar:not(.top-nav-collapse) {
-        background: #1C2331 !important;
-      }
-    }
+          <p class="mb-4 d-none d-md-block">
+            <strong>Com uma imensa variedade de escolha, você pode se sentir a vontade para comprar o que quiser, pelo melhor preço!</strong>
+          </p>
 
-  </style>
-</head>
-
-<body>
-  
-  <!-- Full Page Intro -->
-  <div class="view">
-
-    <video class="video-intro" poster="https://mdbootstrap.com/img/Photos/Others/background.jpg" playsinline autoplay
-      muted loop>
-      <source src="https://mdbootstrap.com/img/video/Lines-min.mp4" type="video/mp4">
-    </video>
-
-    <!-- Mask & flexbox options-->
-    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-
-      <!-- Content -->
-      <div class="text-center white-text mx-5 wow fadeIn">
-
-        <h1 class="display-4 mb-4">
-          <strong>Em Breve!</strong>
-        </h1>
-
-        <!-- Time Counter -->
-        <p id="time-counter" class="my-4"></p>
-
-
-        <h4 class="mb-4">
-          <strong>Nós estamos trabalhando para finalizar o desenvolvimento deste web site!</strong>
-        </h4>
+          <a target="_blank" href="products/3" class="btn btn-outline-white btn-lg">Ver decorações
+            <i class="fas fa-graduation-cap ml-2"></i>
+          </a>
+        </div>
+        <!-- Content -->
 
       </div>
-      <!-- Content -->
+      <!-- Mask & flexbox options-->
 
     </div>
-    <!-- Mask & flexbox options-->
-
   </div>
-  <!-- Full Page Intro -->
+  <!--/First slide-->
 
-    
+  <!--Second slide-->
+  <div class="carousel-item">
+    <div class="view" style="background-repeat: no-repeat; background-size: cover;">
+      <img src="img/carousel/carousel-2.jpg" alt="">
 
-  <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
-  <!-- Initializations -->
-  <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
+      <!-- Mask & flexbox options-->
+      <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
 
-  </script>
+        <!-- Content -->
+        <div class="text-center white-text mx-5 wow fadeIn">
+          <h1 class="mb-4">
+            <strong>Toalhas</strong>
+          </h1>
 
-  <!-- Time Counter -->
-  <script type="text/javascript">
-    // Set the date we're counting down to
-    var countDownDate = new Date(2019,10,12);
-    countDownDate.setDate(countDownDate.getDate());
+          <p>
+            <strong>Leve o que quiser, a hora é agora!</strong>
+          </p>
 
-    // Update the count down every 1 second
-    var x = setInterval(function () {
+          <p class="mb-4 d-none d-md-block">
+            <strong>Não perca tempo, tome banho e se seque com a toalhas mais macias e mais baratas do mercado</strong>
+          </p>
 
-      // Get todays date and time
-      var now = new Date().getTime();
+          <a target="_blank" href="products/5" class="btn btn-outline-white btn-lg">Ver toalhas
+            <i class="fas fa-graduation-cap ml-2"></i>
+          </a>
+        </div>
+        <!-- Content -->
 
-      // Find the distance between now an the count down date
-      var distance = countDownDate - now;
+      </div>
+      <!-- Mask & flexbox options-->
 
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    </div>
+  </div>
+  <!--/Second slide-->
+</div>
+<!--/.Slides-->
 
-      // Display the result in the element with id="demo"
-      document.getElementById("time-counter").innerHTML = days + "d " + hours + "h " +
-        minutes + "m " + seconds + "s ";
+<!--Controls-->
+<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="sr-only">Next</span>
+</a>
+<!--/.Controls-->
 
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("time-counter").innerHTML = "EXPIRED";
-      }
-    }, 1000);
+</div>
+<!--/.Carousel Wrapper-->
+@endsection
 
-  </script>
-</body>
+@section('categories')
+    @foreach($categories as $category)
+        <li class="nav-item">
+            <a class="nav-link" href="products/{{ $category->id }}">{{ $category->name }}</a>
+        </li>
+    @endforeach
+@endsection
 
-</html>
+@section('products')
+  <?php $qtd = 0;
+  foreach($products as $product){
+    if($qtd == 20){
+      $id_product = $product->id; 
+      break;
+    }
+      
+  $qtd++; ?>
+    <!--Grid column-->
+    <div class="col-lg-3 col-md-6 mb-4 d-flex align-content-around flex-wrap">
+
+      <!--Card-->
+      <div class="card">
+
+      <!--Card image-->
+      <div class="view overlay" style="height:300px;">
+          <img src="img/products/placeholder-1.jpg" class="card-img-top" alt="">
+          <a>
+          <div class="mask rgba-white-slight"></div>
+          </a>
+      </div>
+      <!--Card image-->
+
+      <!--Card content-->
+      <div class="card-body text-center" style="height:400px;">
+          <!--Category & Title-->
+          <a href="" class="grey-text">
+          <h5>{{ $product->name }}</h5>
+          </a>
+          <h5>
+          <strong>
+              <a href="" class="dark-grey-text">R${{$product->value}}</a>
+          </strong>
+          </h5>
+
+          <h4 class="font-weight-bold blue-text">
+          <strong>{{$product->description}}</strong>
+          </h4>
+
+      </div>
+      <!--Card content-->
+
+      </div>
+      <!--Card-->
+    </div>
+    <!--Grid column-->
+  <?php } ?>
+@endsection
+
+@section('pagination')
+  <?php $number_pg = 2;?>
+  @for($i = 0; $i <= 5; $i++)
+    <li class="page-item">
+      <a class="page-link" href="{{redirect('$number_pg?id_last_product=$id_last_product')}}">{{$number_pg}}</a>
+    </li>
+    <?php $number_pg++; ?>
+  @endfor
+@endsection
