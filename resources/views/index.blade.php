@@ -112,7 +112,7 @@
           </li>
         @else
           <li class="nav-item">
-              <a class="nav-link" href="../products/{{ $category->id }}?all=false&category_id={{$category->id}}">{{ $category->name }}</a>
+              <a class="nav-link" href="../category/{{ $category->id }}?all=false&category_id={{$category->id}}">{{ $category->name }}</a>
           </li>
         @endif
     @endforeach

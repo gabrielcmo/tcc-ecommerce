@@ -44,7 +44,7 @@ Route::get('/{id}', 'ProductController@pagination');
 Route::get('product/{id}', 'ProductController@viewProducts');
 
 // Para mostrar apenas os produtos de uma determinada categoria
-Route::get('products/{id}', 'ProductController@productOfCategory');
+Route::get('category/{id}', 'ProductController@productOfCategory');
 
 // Rotas que precisam de autentificação
 Route::group(['middleware' => ['auth']], function () {
