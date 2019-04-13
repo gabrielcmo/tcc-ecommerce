@@ -20,29 +20,31 @@ use Doomus\Models\Cart_Products;
 Auth::routes(['verify' => true]);
 
 // Rotas que não precisam de login..
-Route::group([], function () {
-    // Landing Page
-    Route::get('/', 'IndexController@view')->name('index');
 
-    // Rota para envio de email
-    Route::get('/mail/send', function () {
-        try{
-            Mail::send('mails.index', ['receiver' => Auth::user()->name], function ($m) {
-                $m->from('doomus.atendimento@gmail.com');
-                $m->subject('Testando API Laravel');
-                $m->to('gabrieloliveira9669@gmail.com');
-            });
-        }catch(Exception $e){
-            echo $e;
-        }
-    });
+// Landing Page
+Route::get('/', 'ProductController@index')->name('index');
 
-    // Para ver todos o produtos
-    Route::get('produtos', 'IndexController@viewProducts');
-
-    // Para mostrar apenas os produtos de uma determinada categoria
-    Route::get('produtos/{id}', 'ProductController@productOfCategory');
+// Rota para envio de email
+Route::get('/mail/send', function () {
+    try{
+        Mail::send('mails.index', ['receiver' => Auth::user()->name], function ($m) {
+            $m->from('doomus.atendimento@gmail.com');
+            $m->subject('Testando API Laravel');
+            $m->to('gabrieloliveira9669@gmail.com');
+        });
+    }catch(Exception $e){
+        echo $e;
+    }
 });
+
+// Paginação de produtos
+Route::get('/{id}', 'ProductController@pagination');
+
+// Para ver um produto
+Route::get('product/{id}', 'ProductController@viewProducts');
+
+// Para mostrar apenas os produtos de uma determinada categoria
+Route::get('category/{id}', 'ProductController@productOfCategory');
 
 // Rotas que precisam de autentificação
 Route::group(['middleware' => ['auth']], function () {
