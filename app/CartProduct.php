@@ -13,4 +13,8 @@ class CartProduct extends Model
     public function product(){
         return $this->hasMany('Doomus\Product');
     }
+
+    public function order(){
+        return $this->belongsTo('Doomus\Order');
+    }
 }

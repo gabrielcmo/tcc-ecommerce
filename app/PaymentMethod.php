@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentMethod extends Model
 {
-    public function product(){
-        return $this->belongsTo('Doomus\Product');
+    public function order(){
+        return $this->belongsTo('Doomus\Order');
     }
 }
