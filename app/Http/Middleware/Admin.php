@@ -5,7 +5,7 @@ namespace Doomus\Http\Middleware;
 use Closure;
 use Auth;
 
-class AdminUser
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,10 @@ class AdminUser
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->type_user !== 1)
+        if(Auth::user()->role_id !== 1)
         {
-            return back()->withErrors(['message' => 'Acesso negado']);
+            Session::flash('message', 'Access denied');
+            return back();
         }
 
         return $next($request);

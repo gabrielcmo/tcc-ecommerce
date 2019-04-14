@@ -19,3 +19,9 @@ use Doomus\Models\Cart_Products;
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'IndexController@index');
+
+Route::group(['middleware' => ['admin']], function () {
+
+});
