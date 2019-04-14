@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Doomus\Models\Order_Status::class, function (Faker $faker) {
+$factory->define(Doomus\OrderStatus::class, function (Faker $faker) {
     return [
         //
     ];

@@ -2,7 +2,7 @@
 
 namespace Doomus\Http\Controllers;
 
-use Doomus\Models\Order;
+use Doomus\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +14,17 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Order::all()->get();
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -25,15 +35,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = new Order();
-        $qtd_total = count(Cart_Product::find($request->id_cart_product));
-        $order->qtd_total = $qtd_total;
-        $order->value_total = $request->value_total;
-        $order->id_cart_product = $request->id_cart_product;
-        $order->id_payment_method = $request->id_payment_method;
-        $order->id_user = $request->id_user;
-        $order->save();
-        return;
+        //
     }
 
     /**
@@ -44,7 +46,30 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return Order::find($order->id);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Doomus\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Order $order)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Doomus\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Order $order)
+    {
+        //
     }
 
     /**
@@ -55,8 +80,6 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        $o = Order::find($order->id);
-        $o->delete();
-        return;
+        //
     }
 }

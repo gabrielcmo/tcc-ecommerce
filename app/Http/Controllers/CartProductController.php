@@ -2,12 +2,30 @@
 
 namespace Doomus\Http\Controllers;
 
-use Doomus\Models\Cart_Product;
+use Doomus\CartProduct;
 use Illuminate\Http\Request;
 
 class CartProductController extends Controller
 {
-    public const default_quantity = 1; 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -17,53 +35,51 @@ class CartProductController extends Controller
      */
     public function store(Request $request)
     {
-        $cart_product = new Cart_Product();
-        $cart_product->qtd = default_quantity;
-        $cart_product->id_product = $request->id_product;
-        $cart_product->id_cart = $request->id_cart;
-
-        Session::flash('message', 'Adicionado ao carrinho');
-        return redirect::to('/');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \Doomus\Cart_Product  $cart_Product
+     * @param  \Doomus\CartProduct  $cartProduct
      * @return \Illuminate\Http\Response
      */
-    public function show(Cart $id_cart)
+    public function show(CartProduct $cartProduct)
     {
-        return Cart_Product::where('id_cart', $id_cart)->get();
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Doomus\CartProduct  $cartProduct
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(CartProduct $cartProduct)
+    {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Doomus\Cart_Product  $cart_Product
+     * @param  \Doomus\CartProduct  $cartProduct
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart_Product $cart_Product)
+    public function update(Request $request, CartProduct $cartProduct)
     {
-        $c_p = Cart_Product::find($cart_Product->id);
-        $c_p->qtd = $request->qtd;
-        $c_p->id_product = $request->id_product;
-        $c_p->id_cart = $request->id_cart;
-        $c_p->save();
-        return;
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Doomus\Cart_Product  $cart_Product
+     * @param  \Doomus\CartProduct  $cartProduct
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart_Product $cart_Product)
+    public function destroy(CartProduct $cartProduct)
     {
-        $c_p = Cart_Product::find($cart_Product->id);
-        $c_p->delete();
-        return;
+        //
     }
 }

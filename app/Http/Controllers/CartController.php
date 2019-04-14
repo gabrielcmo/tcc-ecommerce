@@ -2,8 +2,7 @@
 
 namespace Doomus\Http\Controllers;
 
-use Doomus\Models\Cart;
-use Doomus\Http\Controllers\CartProductController as CartProducts;
+use Doomus\Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -19,27 +18,68 @@ class CartController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public static function store(/* null - have only id increments */)
+    public function create()
     {
-        $cart = new Cart();
-        $cart->save();
-        return $cart;
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * 
+     * @param  \Doomus\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Cart $cart)
     {
-        return CartProducts::show(Auth::user()->id_cart);
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Doomus\Cart  $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Cart $cart)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Doomus\Cart  $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Cart $cart)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Doomus\Cart  $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Cart $cart)
+    {
+        //
+    }
 }

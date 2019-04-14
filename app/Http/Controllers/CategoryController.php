@@ -2,7 +2,7 @@
 
 namespace Doomus\Http\Controllers;
 
-use Doomus\Models\Category;
+use Doomus\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,9 +12,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public static function index()
+    public function index()
     {
-        return Category::all();
+        //
     }
 
     /**
@@ -35,10 +35,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->name;
-        $category->save();
-        return;
+        //
     }
 
     /**
@@ -49,7 +46,30 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return Product::where('id_category', $category->id)->get();
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Doomus\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Category $category)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Doomus\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Category $category)
+    {
+        //
     }
 
     /**
@@ -60,8 +80,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $c = Category::find($category->id);
-        $c->delete();
-        return;
+        //
     }
 }

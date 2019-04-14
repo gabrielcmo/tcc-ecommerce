@@ -2,9 +2,7 @@
 
 namespace Doomus\Http\Controllers;
 
-use Doomus\Models\Product;
-use Doomus\Models\Category;
-use Doomus\Http\Controllers\CategoryController;
+use Doomus\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,51 +12,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public static function index()
+    public function index()
     {
-        $products = Product::all();
-        
-        self::countProductsPost($products);
-
-        return view('index')->with('products', $products)->with('categories', CategoryController::index());
-    }
-
-    public static function countProductsPost($products){
-        $total_products = count($products);
-
-        $_POST["total_products"] = $total_products;
-    }
-
-    // Paginação dos produtos
-    public function pagination($id){
-        $all_products = Product::all();
-
-        self::countProductsPost($all_products);
-
-        foreach($all_products as $one_product){
-            if($one_product->id > $_GET['id_last_product']){
-                $products[] = $one_product;
-            }
-        }
-
-        $categories = Category::all();
-
-        return view('index')->with('products', $products)->with('categories', $categories);
-    }
-    
-    /**
-     * Exibe produtos de uma categoria específica.
-     *
-     */
-    public function productOfCategory($id){
-        $products = Product::where('id_category', $id)->get();
-
-        $categories = Category::all();
-
-        self::countProductsPost($products);
-
-        return view('index')->with('products', $products)
-            ->with('categories', $categories);
+        //
     }
 
     /**
@@ -79,14 +35,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->value = $request->value;
-        $product->qtd_in_stock = $request->qtd_in_stock;
-        $product->id_category = $request->id_category;
-        $product->save();
-        return;
+        //
     }
 
     /**
@@ -97,7 +46,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return Product::find($product->id);
+        //
     }
 
     /**
@@ -108,7 +57,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return Product::find($product->id);  
+        //
     }
 
     /**
@@ -120,14 +69,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product = Product::find($product->id);
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->value = $request->value;
-        $product->qtd_in_stock = $request->qtd_in_stock;
-        $product->id_category = $request->id_category;
-        $product->save();
-        return;
+        //
     }
 
     /**
@@ -138,8 +80,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $p = Product::find($product->id);
-        $p->delete();
-        return;
+        //
     }
 }

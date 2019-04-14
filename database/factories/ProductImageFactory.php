@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Doomus\PaymentMethod::class, function (Faker $faker) {
+$factory->define(Doomus\ProductImage::class, function (Faker $faker) {
     return [
         //
     ];

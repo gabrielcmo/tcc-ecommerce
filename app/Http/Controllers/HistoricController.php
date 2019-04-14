@@ -2,7 +2,7 @@
 
 namespace Doomus\Http\Controllers;
 
-use Doomus\Models\Historic;
+use Doomus\Historic;
 use Illuminate\Http\Request;
 
 class HistoricController extends Controller
@@ -14,33 +14,28 @@ class HistoricController extends Controller
      */
     public function index()
     {
-        return Historic::all();
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  $id_p
-     * @param  $status
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function store($id_p, $id_status)
+    public function store(Request $request)
     {
-        if(is_array($id_p) && is_array($status)) {
-            $h = [];
-            for ($i=0; $i < count($id_p); $i++) { 
-                $h[$i] = new Historic();
-                $h[$i]->id_product = $id_p[$i];
-                $h[$i]->id_status = $id_status[$i];
-                $h[$i]->save();
-            }
-        }else {
-            $historic =  new Historic();
-            $historic->id_product = $id_p;
-            $historic->id_status = $id_status;
-            $historic->save();
-        }
-        return $historic->id;
+        //
     }
 
     /**
@@ -51,7 +46,30 @@ class HistoricController extends Controller
      */
     public function show(Historic $historic)
     {
-        return Historic::find($historic->id);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \Doomus\Historic  $historic
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Historic $historic)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Doomus\Historic  $historic
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Historic $historic)
+    {
+        //
     }
 
     /**
@@ -62,8 +80,6 @@ class HistoricController extends Controller
      */
     public function destroy(Historic $historic)
     {
-        $hist = Historic::find($historic->id);
-        $hist->delete();
-        return;
+        //
     }
 }
