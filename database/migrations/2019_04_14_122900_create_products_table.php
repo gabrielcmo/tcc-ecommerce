@@ -35,7 +35,7 @@ class CreateProductsTable extends Migration
             $table->foreign('cart_id')->references('id')->on('carts')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('payment_method_id')->references('id')->on('payment_method')
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
