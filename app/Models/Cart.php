@@ -9,4 +9,8 @@ class Cart extends Model
     protected $table = 'carts';
 
     protected $fillable = ['id'];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }

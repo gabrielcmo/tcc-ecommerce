@@ -182,7 +182,7 @@
 
 @section('content')
   <div class="container-flex">
-    
+  
   </div>
 @endsection
 

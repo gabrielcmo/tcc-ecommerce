@@ -9,4 +9,12 @@ class Cart_Product extends Model
     protected $table = 'cart_products';
 
     protected $fillable = ['qtd', 'id_product', 'id_cart'];
+
+    public function product(){
+        return $this->belongsTo('App\Models\Product');
+    }
+
+    public function cart(){
+        return $this->belongsTo('App\Models\Cart');
+    }
 }

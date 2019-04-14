@@ -15,4 +15,8 @@ class Payment_Method extends Model
     * Valor 1 = PagSeguro
     */
     public static $PAYMENT_METHOD = [0, 1];
+
+    public function order(){
+        return $this->belongsTo('App\Models\Order');
+    }
 }

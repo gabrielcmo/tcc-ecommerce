@@ -16,4 +16,8 @@ class Historic extends Model
     * Valor 2 = Recusado
     */
     public static $STATUS_HISTORIC = [0, 1, 2];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }

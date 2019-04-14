@@ -17,8 +17,16 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'id_cart', 'id_historic'
+        'name', 'email', 'password'
     ];
+
+    public function cart(){
+        return $this->hasOne('App\Models\Cart');
+    }
+
+    public function historic(){
+        return $this->hasOne('App\Models\Historic');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

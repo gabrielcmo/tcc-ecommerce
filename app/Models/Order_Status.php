@@ -16,4 +16,8 @@ class Order_Status extends Model
     * Valor 2 = Recusado
     */
     public static $STATUS_ORDER = [0, 1, 2];
+
+    public function order(){
+        return $this->belongsTo('App\Models\Order');
+    }
 }
