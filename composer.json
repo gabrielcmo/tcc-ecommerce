@@ -39,7 +39,6 @@
             "Doomus\\": "app/"
         },
         "classmap": [
-            "database/seeds",
             "database/factories"
         ]
     },
