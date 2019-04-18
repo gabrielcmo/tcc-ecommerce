@@ -25,14 +25,11 @@ Route::get('/', 'IndexController@index');
 /*
  * Prefixo para rotas do administrador
  * */
-Route::prefix('admin', function () {
-    /*
-     * Middleware para restringir acesso
-     * */
-    Route::group(['middleware' => ['admin']], function () {
 
+
+Route::prefix('admin')->group(function (){
+    Route::group(['middleware' => ['admin']], function (){
         Route::resource('produto', 'ProductController');
-
         Route::resource('categoria', 'CategoryController');
     });
 });
