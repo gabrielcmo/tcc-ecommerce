@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProductImage extends Model
 {
     public function product(){
-        return $this->belongsTo('Doomus\Product');
+        return $this->hasOne('Doomus\Product');
     }
 }

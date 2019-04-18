@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     public function status(){
-        return $this->hasOne('Doomus\OrderStatus');
+        return $this->belongsTo('Doomus\OrderStatus');
     }
 
     public function cart(){
-        return $this->hasOne('Doomus\Cart');
+        return $this->belongsTo('Doomus\Cart');
     }
 
     public function user(){
-        return $this->hasOne('Doomus\User');
+        return $this->belongsTo('Doomus\User');
     }
 
     public function payment_method(){
-        return $this->hasOne('Doomus\PaymentMethod');
+        return $this->belongsTo('Doomus\PaymentMethod');
     }
 }

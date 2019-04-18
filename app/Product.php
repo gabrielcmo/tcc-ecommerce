@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     public function image(){
-        return $this->hasMany('Doomus\ProductImage');
+        return $this->belongsTo('Doomus\ProductImage');
     }
 
     public function cart(){
-        return $this->belongsToMany('Doomus\Cart')->using('Doomus\CartProduct');
+        return $this->hasMany('Doomus\Cart')->using('Doomus\CartProduct');
     }
 
     public function category(){
-        return $this->hasOne('Doomus\Category');
+        return $this->belongsTo('Doomus\Category');
     }
 }

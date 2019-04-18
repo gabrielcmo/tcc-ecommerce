@@ -3,25 +3,27 @@
 namespace Doomus;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
     
     public function cart(){
-        return $this->hasOne('Doomus\Cart');
+        return $this->belongsTo('Doomus\Cart');
     }
 
     public function role(){
-        return $this->hasOne('Doomus\Role');
+        return $this->belongsTo('Doomus\Role');
     }
 
-    public function historics(){
-        return $this->belongsTo('Doomus\Historic');
+    public function historic(){
+        return $this->hasMany('Doomus\Historic');
     }
 
-    public function orders(){
-        return $this->belongsTo('Doomus\Order');
+    public function order(){
+        return $this->hasMany('Doomus\Order');
     }
 
     /**

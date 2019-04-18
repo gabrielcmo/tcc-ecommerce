@@ -11,9 +11,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 10)->create()->each(function ($user) {
-            $user->cart()->save(factory(App\Cart::class)->make());
-            $user->role()->save(factory(App\Role::class)->make());
-        });
+        //
     }
 }

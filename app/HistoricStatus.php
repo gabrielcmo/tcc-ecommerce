@@ -11,6 +11,6 @@ class HistoricStatus extends Model
     public static $STATUS_CANCELLED = 2;
 
     public function historic(){
-        return $this->belongsTo('Doomus\Historic');
+        return $this->hasOne('Doomus\Historic');
     }
 }

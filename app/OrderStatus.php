@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class OrderStatus extends Model
 {
     public function order(){
-        return $this->belongsTo('Doomus\Order');
+        return $this->hasOne('Doomus\Order');
     }
 }
