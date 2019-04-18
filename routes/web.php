@@ -22,8 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'IndexController@index');
 
-Route::resource('produto', 'ProductController');
-
 /*
  * Prefixo para rotas do administrador
  * */
