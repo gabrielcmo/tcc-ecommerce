@@ -17,7 +17,9 @@
         "paypal/rest-api-sdk-php": "^1.14"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "v2.6.2",
         "beyondcode/laravel-dump-server": "^1.0",
+        "doctrine/dbal": "^2.9",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
