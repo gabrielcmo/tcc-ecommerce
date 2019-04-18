@@ -11,7 +11,7 @@ class Order extends Model
     }
 
     public function cart(){
-        return $this->hasOne('Doomus\CartProduct');
+        return $this->hasOne('Doomus\Cart');
     }
 
     public function user(){

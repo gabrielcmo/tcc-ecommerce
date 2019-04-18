@@ -4,6 +4,7 @@ namespace Doomus\Http\Controllers;
 
 use Doomus\CartProduct;
 use Illuminate\Http\Request;
+use Session;
 
 class CartProductController extends Controller
 {
@@ -35,7 +36,14 @@ class CartProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cart_product = new CartProduct();
+        $cart_product->cart_id = $request->cart_id;
+        $cart_product->product_id = $request->product_id;
+        $cart_product->save();
+
+        Session::flash('status', 'Adicionado ao carrinho');
+
+        return back();
     }
 
     /**
@@ -80,6 +88,11 @@ class CartProductController extends Controller
      */
     public function destroy(CartProduct $cartProduct)
     {
-        //
+        $cart_product = CartProduct::find($cartProduct->id);
+        $cart_product->destroy();
+
+        Session::flash('status', 'Removido do carrinho');
+
+        return back();
     }
 }

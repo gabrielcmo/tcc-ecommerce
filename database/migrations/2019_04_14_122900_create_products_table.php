@@ -32,7 +32,7 @@ class CreateProductsTable extends Migration
             $table->foreign('image_id')->references('id')->on('product_images')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('cart_id')->references('id')->on('carts')
+            $table->foreign('cart_id')->references('id')->on('cart')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')

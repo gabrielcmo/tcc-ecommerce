@@ -16,11 +16,11 @@ class User extends Authenticatable
         return $this->hasOne('Doomus\Role');
     }
 
-    public function historic(){
-        return $this->hasOne('Doomus\Historic');
+    public function historics(){
+        return $this->belongsTo('Doomus\Historic');
     }
 
-    public function order(){
+    public function orders(){
         return $this->belongsTo('Doomus\Order');
     }
 

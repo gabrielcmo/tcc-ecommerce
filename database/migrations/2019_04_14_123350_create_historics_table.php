@@ -17,10 +17,14 @@ class CreateHistoricsTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->integer('status_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('status_id')->references('id')->on('historic_statuses')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
