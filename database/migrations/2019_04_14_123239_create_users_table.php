@@ -22,14 +22,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('cart_id')->unsigned();
             $table->integer('role_id')->unsigned();
-            $table->integer('historic_id')->unsigned();
-            $table->foreign('cart_id')->references('id')->on('carts')
+            $table->integer('historic_id')->unsigned()->nullable();
+            $table->foreign('cart_id')->references('id')->on('cart')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreign('historic_id')->references('id')->on('historics')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->rememberToken();

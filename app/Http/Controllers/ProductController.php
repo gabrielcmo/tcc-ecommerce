@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return view('admin.product.index')->with('products', Product::all());
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.product.index')->with('ptoduct', Product::find($product->id));
     }
 
     /**
@@ -57,7 +57,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.product.edit');
     }
 
     /**
@@ -69,7 +69,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product_new = Product::find($product->id);
+        $product_new->name = $request->name;
+
+        Session::flash('status', "Produto atualizado");
+
+        return back();
     }
 
     /**
@@ -80,6 +85,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product_new = Product::find($product->id);
+        $product_new->destroy();
+
+        Session::flash('status', "Produto deletado com sucesso");
+
+        return back();
     }
 }

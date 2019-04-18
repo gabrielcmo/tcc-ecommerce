@@ -8,6 +8,7 @@ use Doomus\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Doomus\Role;
 
 class RegisterController extends Controller
 {
@@ -65,13 +66,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $cart = CartController::store();
+        $role_id = Role::$ROLE_CLIENT;
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'id_cart' => $cart->id,
-            'id_historic' => null,
+            'cart_id' => $cart->id,
+            'role_id' => $role_id,
         ]);
     }
 }
