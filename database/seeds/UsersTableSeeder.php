@@ -11,6 +11,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Doomus\User::class, 50)->create()->each(function ($user) {
+            $user->cart()->save(factory(Doomus\Cart::class)->make());
+            $user->role()->save(factory(Doomus\Role::class)->make());
+        });
     }
 }

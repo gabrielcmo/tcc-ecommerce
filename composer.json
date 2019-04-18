@@ -41,7 +41,8 @@
             "Doomus\\": "app/"
         },
         "classmap": [
-            "database/factories"
+            "database/factories",
+            "database"
         ]
     },
     "autoload-dev": {

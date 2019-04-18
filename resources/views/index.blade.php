@@ -182,13 +182,7 @@
 
 @section('content')
   <div class="container-flex">
-    @foreach(Doomus\User::all() as $user)
-      <img src="{{$user->image}}" height="150px" width="150px"><br>
-      {{$user->name}}<br>
-      {{$user->cart}}<br>
-      {{$user->role}}<br>
-      {{$user->historic}}<br>
-    @endforeach
+
   </div>
 @endsection
 

@@ -24,15 +24,11 @@ class CreateProductsTable extends Migration
             $table->double('height', 4, 1);
             $table->integer('category_id')->unsigned();
             $table->integer('image_id')->unsigned();
-            $table->integer('cart_id')->unsigned();
             $table->integer('payment_method_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('image_id')->references('id')->on('product_images')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreign('cart_id')->references('id')->on('cart')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')
