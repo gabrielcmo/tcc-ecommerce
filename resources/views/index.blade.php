@@ -188,6 +188,7 @@
       </div>
     @endif
 
+    {{ debug($products, $categories, $cart_products) }}
   </div>
 @endsection
 

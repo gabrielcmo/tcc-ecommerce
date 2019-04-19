@@ -57,7 +57,8 @@
             <li class="nav-item">
               <a class="nav-link waves-effect">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                <span class="clearfix d-none d-sm-inline-block"> Cart </span>&nbsp;
+                <span style="color:red">{{ $cart_products->count() }}</span>
               </a>
             </li>   
             <li class="nav-item dropdown">
@@ -65,8 +66,8 @@
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user"></i></a>
               <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                <a class="dropdown-item" href="#">Logar</a>
-                <a class="dropdown-item" href="#">Registrar</a>
+                <a class="dropdown-item" href="{{ route('login') }}">Entrar</a>
+                <a class="dropdown-item" href="{{ route('register') }}">Registrar</a>
               </div>
             </li>        
           </ul>

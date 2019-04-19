@@ -13,6 +13,6 @@ class Historic extends Model
     }
 
     public function status(){
-        return $this->belongsTo('Doomus\HistoricStatus');
+        $this->belongsTo('Doomus\HistoricStatus');
     }
 }

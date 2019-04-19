@@ -11,7 +11,7 @@ class Cart extends Model
     }
 
     public function products(){
-        return $this->hasMany('Doomus\Product')->using('Doomus\CartProduct');
+        return $this->belongsToMany('Doomus\Product', 'cart_products')->using('Doomus\CartProduct');
     }
 
     public function order(){

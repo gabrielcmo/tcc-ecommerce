@@ -22,8 +22,8 @@ class User extends Authenticatable
         return $this->hasMany('Doomus\Historic');
     }
 
-    public function order(){
-        return $this->hasMany('Doomus\Order');
+    public function orders(){
+         return $this->hasMany('Doomus\Order');
     }
 
     /**

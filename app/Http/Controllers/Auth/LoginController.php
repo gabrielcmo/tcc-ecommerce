@@ -4,6 +4,8 @@ namespace Doomus\Http\Controllers\Auth;
 
 use Doomus\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {

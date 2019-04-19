@@ -2,8 +2,11 @@
 
 namespace Doomus\Http\Controllers;
 
+use DebugBar\DebugBar;
 use Doomus\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Debug\Debug;
 
 class UserController extends Controller
 {
@@ -38,15 +41,71 @@ class UserController extends Controller
         //
     }
 
+    /*
+     * Functions to ger properties
+     * */
+    public static function getUser(){
+        return Auth::guard()->user();
+    }
+
+    public static function getOrders(){
+        return Auth::guard()->user()->orders;
+    }
+
+    public static function getHistoric(){
+        return Auth::guard()->user()->historic;
+    }
+
+    public static function getCart(){
+        return Auth::guard()->user()->cart;
+    }
+
+    public static function getCartProducts(){
+        return Auth::guard()->user()->cart->products;
+    }
+
     /**
      * Display the specified resource.
      *
-     * @param  \Doomus\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function showProfile()
     {
-        //
+        $user = self::getUser();
+        return view('user.profile')->with('user', $user);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showOrders()
+    {
+        $orders = self::getOrders();
+        return view('user.order')->with('orders', $orders);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showHistoric()
+    {
+        $historic = self::getHistoric();
+        return view('user.historic')->with('historic', $historic);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showCart()
+    {
+        $cart = self::getCart();
+        return view('user.cart')->with('cart', $cart);
     }
 
     /**

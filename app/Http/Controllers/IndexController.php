@@ -5,6 +5,7 @@ namespace Doomus\Http\Controllers;
 use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Category;
+use Doomus\Http\Controllers\UserController;
 
 class IndexController extends Controller
 {
@@ -27,9 +28,11 @@ class IndexController extends Controller
     {
         $products = Product::all();
         $categories = Category::all();
+        $cart_products = UserController::getCartProducts();
 
         return view('index')
             ->with('products', $products)
-            ->with('categories', $categories);
+            ->with('categories', $categories)
+            ->with('cart_products', $cart_products);
     }
 }

@@ -10,6 +10,6 @@ class Role extends Model
     public static $ROLE_CLIENT = 1;
 
     public function user(){
-        return $this->hasOne('Doomus\User');
+        $this->hasOne('Doomus\User');
     }
 }

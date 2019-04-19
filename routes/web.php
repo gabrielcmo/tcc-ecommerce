@@ -22,6 +22,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'IndexController@index');
 
+Route::group(['prefix' => 'user', 'middleware' => ['auth']], function (){
+    Route::get('/perfil', 'UserController@show');
+    Route::get('/pedidos', 'UserController@showOrders');
+    Route::get('/historico', 'UserController@showHistoric');
+    Route::get('/carrinho', 'UserController@showCart');
+});
+
 /*
  * Prefixo para rotas do administrador
  * */
