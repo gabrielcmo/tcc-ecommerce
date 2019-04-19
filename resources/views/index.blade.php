@@ -182,6 +182,11 @@
 
 @section('content')
   <div class="container-flex">
+    @if (session('status'))
+      <div class="alert alert-danger" role="alert">
+        {{ session('status') }}
+      </div>
+    @endif
 
   </div>
 @endsection

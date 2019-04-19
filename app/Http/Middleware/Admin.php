@@ -3,7 +3,8 @@
 namespace Doomus\Http\Middleware;
 
 use Closure;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Admin
 {
@@ -16,10 +17,12 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->role_id !== 1)
+        $user = Auth::user();
+
+        if(empty($user) || $user['role_id'] !== 1)
         {
-            Session::flash('message', 'Access denied');
-            return back();
+            Session::flash('status', 'Acesso negado');
+            return redirect('/');
         }
 
         return $next($request);

@@ -1,9 +1,9 @@
 <?php
 
-use Doomus\Models\User;
-use Doomus\Models\Historic;
-use Doomus\Models\Order;
-use Doomus\Models\Cart_Products;
+use Doomus\User;
+use Doomus\Historic;
+use Doomus\Order;
+use Doomus\CartProduct;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +25,7 @@ Route::get('/', 'IndexController@index');
 /*
  * Prefixo para rotas do administrador
  * */
-
-
-Route::prefix('admin')->group(function (){
-    Route::group(['middleware' => ['admin']], function (){
-        Route::resource('produto', 'ProductController');
-        Route::resource('categoria', 'CategoryController');
-    });
+Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
+    Route::resource('produto', 'ProductController');
+    Route::resource('categoria', 'CategoryController');
 });

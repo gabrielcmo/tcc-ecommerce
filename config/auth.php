@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Doomus\Models\User::class,
+            'model' => Doomus\User::class,
         ],
 
         // 'users' => [

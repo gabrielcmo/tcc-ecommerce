@@ -18,7 +18,7 @@ class CreateCartProductsTable extends Migration
             $table->integer('qtd');
             $table->integer('cart_id')->unsigned();
             $table->integer('product_id')->unsigned();
-            $table->foreign('cart_id')->references('id')->on('cart')
+            $table->foreign('cart_id')->references('id')->on('carts')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('product_id')->references('id')->on('products')
