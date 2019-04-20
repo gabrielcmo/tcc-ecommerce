@@ -8,7 +8,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet" >
   <!-- Material Design Bootstrap -->
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
@@ -59,7 +59,9 @@
                 <i class="fas fa-shopping-cart"></i>
                 <span class="clearfix d-none d-sm-inline-block"> Cart </span>&nbsp;
                 @auth
-                  <span style="color:red">{{ count($cart_products) }}</span>
+                  @if(Request::segment(1) == null)
+                    <span style="color:red">{{ count($cart_products) }}</span>
+                  @endif
                 @endauth
               </a>
             </li>   

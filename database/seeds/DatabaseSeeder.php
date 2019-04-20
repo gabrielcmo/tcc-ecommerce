@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Doomus\Cart;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,8 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('carts')->insert(['session' => Str::random(10)]);
-        DB::table('carts')->insert(['session' => Str::random(10)]);
+        $cart1 = new Cart();
+        $cart2 = new Cart();
+        $cart3 = new Cart();
+        $cart4 = new Cart();
+        $cart5 = new Cart();
+        $cart1->save();
+        $cart2->save();
+        $cart3->save();
+        $cart4->save();
+        $cart5->save();
 
         DB::table('roles')->insert([
             'name' => 'client',

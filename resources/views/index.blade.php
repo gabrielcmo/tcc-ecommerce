@@ -195,6 +195,13 @@
         <a href="/user/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a> <br>
       @endforeach
 
+      <?php
+      Cart::add('293ad', 'Product 123', 1, 9.99);
+      Cart::add('293aasad', 'Product 133', 1, 9.99);
+      Cart::add('293aaasad', 'Product 144ww', 1, 9.99);
+      Cart::add('293a2323d', 'Product 1ww', 1, 9.99);
+      ?>
+
     {{ debug($products, $categories, $cart_products) }}
   </div>
 @endsection

@@ -22,25 +22,13 @@ class CartController extends Controller
         return view('admin.cart.index')->with('cart', $carts);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public static function setCart()
     {
         $cart = new Cart();
         $cart->save();
 
-        $user_id = $request->user_id;
-
-        $user = User::find($user_id);
-        $user->cart_id = $cart->id;
-
-        Session::flash('status', 'Carrinho criado com sucesso');
-
-        return back();
+        return $cart->id;
     }
 
     /**
