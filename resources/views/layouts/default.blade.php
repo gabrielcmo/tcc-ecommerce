@@ -23,7 +23,7 @@
       <div class="container">
   
         <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="#" target="_blank">
+        <a class="navbar-brand waves-effect" href="{{ route('landing') }}">
           <strong class="blue-text">Doomus</strong>
         </a>
   
@@ -55,10 +55,12 @@
           <!-- Right -->
           <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item">
-              <a class="nav-link waves-effect">
+              <a class="nav-link waves-effect" href="{{ route('user.cart') }}">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="clearfix d-none d-sm-inline-block"> Cart </span>&nbsp;
-                <span style="color:red">{{ $cart_products->count() }}</span>
+                @auth
+                  <span style="color:red">{{ count($cart_products) }}</span>
+                @endauth
               </a>
             </li>   
             <li class="nav-item dropdown">

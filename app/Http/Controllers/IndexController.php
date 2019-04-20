@@ -2,10 +2,11 @@
 
 namespace Doomus\Http\Controllers;
 
+use Doomus\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Category;
-use Doomus\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -28,7 +29,12 @@ class IndexController extends Controller
     {
         $products = Product::all();
         $categories = Category::all();
-        $cart_products = UserController::getCartProducts();
+        if(Auth::user())
+        {
+            $cart_products = UserController::getCartProducts();
+        }else{
+            $cart_products = null;
+        }
 
         return view('index')
             ->with('products', $products)

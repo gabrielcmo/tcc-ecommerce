@@ -20,13 +20,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('landing');
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth']], function (){
     Route::get('/perfil', 'UserController@show');
     Route::get('/pedidos', 'UserController@showOrders');
     Route::get('/historico', 'UserController@showHistoric');
-    Route::get('/carrinho', 'UserController@showCart');
+    Route::get('/carrinho', 'UserController@showCart')->name('user.cart');
+    Route::get('/carrinho/{product_id}/add', 'UserController@addToCart');
+    Route::get('/carrinho/delete', 'CartController@destroy')->name('cart.clear');
 });
 
 /*

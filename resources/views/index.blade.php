@@ -188,6 +188,13 @@
       </div>
     @endif
 
+      @foreach($products as $product)
+        {{ $product->id }} <br>
+        {{ $product->name }} <br>
+        {{ $product->details }} <br>
+        <a href="/user/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a> <br>
+      @endforeach
+
     {{ debug($products, $categories, $cart_products) }}
   </div>
 @endsection

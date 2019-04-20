@@ -4,8 +4,9 @@ namespace Doomus\Http\Controllers;
 
 use Doomus\Cart;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Doomus\CartProduct;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -50,9 +51,7 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-         $cart_of_user = $cart->id;
-
-         return view('admin.cart.show')->with('cart', $cart_of_user);
+         //
     }
 
     /**
@@ -84,19 +83,14 @@ class CartController extends Controller
      * @param  \Doomus\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy()
     {
-        $cart_id = $cart->id;
+        if(Auth::guard()->user()->cart->products !== null){
+            Auth::guard()->user()->cart->products()->detach();
+        }
 
-        $cart_of_user = Cart::find($cart_id);
-        $cart_product = CartProduct::where('cart_id', $cart_id)->get();
+        Session::flash('status', 'Carrinho limpo');
 
-        $cart_product->destroy();
-        $cart_of_user->destroy();
-
-
-        Session::flash('status', 'Carrinho destruído com sucesso');
-
-        return back();
+        return redirect('/');
     }
 }

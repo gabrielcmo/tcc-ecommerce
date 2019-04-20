@@ -11,7 +11,7 @@ class Product extends Model
     }
 
     public function cart(){
-        return $this->belongsToMany('Doomus\Cart', 'cart_products')->using('Doomus\CartProduct');
+        return $this->belongsToMany('Doomus\Cart', 'cart_products');
     }
 
     public function category(){

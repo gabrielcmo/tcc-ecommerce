@@ -7,9 +7,41 @@ use Doomus\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Debug\Debug;
+use Doomus\Product;
+use Doomus\Http\Controllers\CartController;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+    /**
+     * Add to cart
+     *
+     * @param Product $product_id
+     * @return \Illuminate\Http\Response
+     */
+    public function addToCart($product_id)
+    {
+        $user = self::getUser();
+
+        $products = $user->cart->products;
+
+        define('product_id', $product_id);
+
+        $product_in_cart_already = $products->first(function ($product){
+            return $product->id == product_id;
+        });
+
+        if($product_in_cart_already){
+            // Quantidade?
+        }else{
+            $user->cart->products()->attach($product_id);
+        }
+
+        Session::flash('status', 'Produto adicionado ao carrinho');
+
+        return back();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,26 +74,31 @@ class UserController extends Controller
     }
 
     /*
-     * Functions to ger properties
+     * Functions to get properties
      * */
-    public static function getUser(){
+    public static function getUser()
+    {
         return Auth::guard()->user();
     }
 
-    public static function getOrders(){
+    public static function getOrders()
+    {
         return Auth::guard()->user()->orders;
     }
 
-    public static function getHistoric(){
+    public static function getHistoric()
+    {
         return Auth::guard()->user()->historic;
     }
 
-    public static function getCart(){
+    public static function getCart()
+    {
         return Auth::guard()->user()->cart;
     }
 
-    public static function getCartProducts(){
-        return Auth::guard()->user()->cart->products;
+    public static function getCartProducts()
+    {
+        return  Auth::guard()->user()->cart->products;
     }
 
     /**
@@ -104,7 +141,7 @@ class UserController extends Controller
      */
     public function showCart()
     {
-        $cart = self::getCart();
+        $cart = self::getCartProducts();
         return view('user.cart')->with('cart', $cart);
     }
 
