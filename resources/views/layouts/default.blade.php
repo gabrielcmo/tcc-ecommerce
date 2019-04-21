@@ -55,15 +55,14 @@
           <!-- Right -->
           <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item">
-              <a class="nav-link waves-effect" href="{{ route('user.cart') }}">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="clearfix d-none d-sm-inline-block"> Cart </span>&nbsp;
-                @auth
-                  @if(Request::segment(1) == null)
-                    <span style="color:red">{{ count($cart_products) }}</span>
-                  @endif
-                @endauth
-              </a>
+              <div class="text-center">
+                <b-button variant="primary">
+                  Profile
+                  <b-badge variant="light">9 <span class="sr-only">unread messages</span></b-badge>
+                </b-button>
+              </div>
+
+
             </li>   
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
