@@ -199,15 +199,8 @@
             </div>
           </div> &nbsp;&nbsp;&nbsp;
         @endforeach
-      <div/>
+      </div>
     </div>
-
-      <?php
-      Cart::add('293ad', 'Product 123', 1, 9.99);
-      Cart::add('293aasad', 'Product 133', 1, 9.99);
-      Cart::add('293aaasad', 'Product 144ww', 1, 9.99);
-      Cart::add('293a2323d', 'Product 1ww', 1, 9.99);
-      ?>
 
     {{ debug($products, $categories, $cart_products) }}
   </div>
