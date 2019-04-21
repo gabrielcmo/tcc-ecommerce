@@ -7,11 +7,11 @@
 @endsection
 
 @section('other-contents')
-    <a href="{{ route('cart.clear') }}">Limpar carrinho</a> <br/>
+
 @endsection
 
 @section('content')
+    <a href="{{ route('cart.clear') }}">Limpar carrinho</a> <br/>
 
     {{ debug($cart)  }}
-
 @endsection

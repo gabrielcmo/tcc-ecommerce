@@ -188,12 +188,19 @@
       </div>
     @endif
 
-      @foreach($products as $product)
-        {{ $product->id }} <br>
-        {{ $product->name }} <br>
-        {{ $product->details }} <br>
-        <a href="/user/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a> <br>
-      @endforeach
+    <div class="container">
+      <div class="row">
+        @foreach($products as $product)
+          <div class="col-md-3 card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ $product->name }}</h5>
+              <p class="card-text">{{ $product->details }}</p>
+              <a class="btn btn-brown" href="/user/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a> <br>
+            </div>
+          </div> &nbsp;&nbsp;&nbsp;
+        @endforeach
+      <div/>
+    </div>
 
       <?php
       Cart::add('293ad', 'Product 123', 1, 9.99);
