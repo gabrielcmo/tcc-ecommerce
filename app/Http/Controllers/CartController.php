@@ -2,7 +2,7 @@
 
 namespace Doomus\Http\Controllers;
 
-use Doomus\Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Doomus\CartProduct;
@@ -73,9 +73,7 @@ class CartController extends Controller
      */
     public function destroy()
     {
-        if(Auth::guard()->user()->cart->products !== null){
-            Auth::guard()->user()->cart->products()->detach();
-        }
+        Cart::destroy();
 
         Session::flash('status', 'Carrinho limpo');
 

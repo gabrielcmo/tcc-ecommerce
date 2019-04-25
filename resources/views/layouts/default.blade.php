@@ -40,14 +40,14 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <div class="dropdown show" id="menu-products">
-                <a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Nossos produtos
+                <a class="btn btn-blue dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Nossos departamentos
                 </a>
 
                 <div class="dropdown-menu text-center" id="menu" aria-labelledby="dropdownMenuLink">
-                  <a class="btn btn-secondary dropdown-toggle dropdown-item" href="#">Cozinha</a>
-                  <a class="btn btn-secondary dropdown-toggle dropdown-item" href="#">Banheiro</a>
-                  <a class="btn btn-secondary dropdown-toggle dropdown-item" href="#">Sala</a>
+                  <a class="dropdown-item" href="#">Cozinha</a>
+                  <a class="dropdown-item" href="#">Banheiro</a>
+                  <a class="dropdown-item" href="#">Sala</a>
                 </div>
               </div>
             </li>
@@ -70,40 +70,20 @@
                 <i class="fas fa-shopping-cart"></i>
                 <span class="clearfix d-none d-sm-inline-block"> Cart </span>&nbsp;
                 @auth
-                  @if(Request::segment(1) == null)
-                    <span class="badge badge-light">{{ count($cart_products) }}</span>
-                  @endif
+                  <span class="badge badge-light">{{ Cart::count() }}</span>
                 @endauth
               </a>
 
-            </li>   
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user"></i></a>
               <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                  <form class="px-4 py-3">
-                    <div class="form-group">
-                      <label for="exampleDropdownFormEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleDropdownFormPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                      <label class="form-check-label" for="dropdownCheck">
-                        Remember me
-                      </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                  </form>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">New around here? Sign up</a>
-                  <a class="dropdown-item" href="#">Forgot password?</a>
+                  <a class="dropdown-item" href="{{ route('login')  }}">Login</a>
+                  <a class="dropdown-item" href="{{ route('register')  }}">Registro</a>
               </div>
-            </li>        
+            </li>
           </ul>
         </div>
       </div>

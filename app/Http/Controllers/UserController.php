@@ -10,6 +10,7 @@ use Symfony\Component\Debug\Debug;
 use Doomus\Product;
 use Doomus\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class UserController extends Controller
 {
@@ -21,21 +22,13 @@ class UserController extends Controller
      */
     public function addToCart($product_id)
     {
-        $user = self::getUser();
+        $product = Product::find($product_id);
 
-        $products = $user->cart->products;
+        $name = $product->name;
+        $qtd = 1;
+        $price = 1.99;
 
-        define('product_id', $product_id);
-
-        $product_in_cart_already = $products->first(function ($product){
-            return $product->id == product_id;
-        });
-
-        if($product_in_cart_already){
-            // Quantidade?
-        }else{
-            $user->cart->products()->attach($product_id);
-        }
+        Cart::add($product_id, $name, $qtd, $price);
 
         Session::flash('status', 'Produto adicionado ao carrinho');
 
@@ -140,8 +133,7 @@ class UserController extends Controller
      */
     public function showCart()
     {
-        $cart = self::getCartProducts();
-        return view('user.cart')->with('cart', $cart);
+        return view('user.cart');
     }
 
     /**

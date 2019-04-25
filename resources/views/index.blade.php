@@ -183,26 +183,28 @@
 @section('content')
   <div class="container-flex">
     @if (session('status'))
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-success" role="alert">
         {{ session('status') }}
       </div>
     @endif
 
     <div class="container">
+      <br/>
       <div class="row">
         @foreach($products as $product)
           <div class="col-md-3 card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title">{{ $product->name }}</h5>
-              <p class="card-text">{{ $product->details }}</p>
+              <h5 class="card-title"> <strong>Nome:</strong> {{ $product->name }}</h5> <br/>
+              <p class="card-text"> <strong>Descrição:</strong> {{ $product->details }}</p> <br/>
               <a class="btn btn-brown" href="/user/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a> <br>
             </div>
-          </div> &nbsp;&nbsp;&nbsp;
+          </div>
+          <div class="m-2"></div>
         @endforeach
       </div>
     </div>
 
-    {{ debug($products, $categories, $cart_products) }}
+    {{ debug($products, $categories) }}
   </div>
 @endsection
 

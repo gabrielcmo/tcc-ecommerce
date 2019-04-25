@@ -13,5 +13,9 @@
 @section('content')
     <a href="{{ route('cart.clear') }}">Limpar carrinho</a> <br/>
 
-    {{ debug($cart)  }}
+    @foreach(Cart::content() as $row)
+        {{ "Você possui $row->qty de quantidade do produto $row->name, de valor $row->price" }} <br/>
+    @endforeach
+
+    {{ debug(Cart::content())  }}
 @endsection

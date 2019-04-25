@@ -29,16 +29,9 @@ class IndexController extends Controller
     {
         $products = Product::all();
         $categories = Category::all();
-        if(Auth::user())
-        {
-            $cart_products = UserController::getCartProducts();
-        }else{
-            $cart_products = null;
-        }
 
         return view('index')
             ->with('products', $products)
-            ->with('categories', $categories)
-            ->with('cart_products', $cart_products);
+            ->with('categories', $categories);
     }
 }
