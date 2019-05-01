@@ -22,17 +22,46 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'IndexController@index')->name('landing');
 
-Route::group(['prefix' => 'user', 'middleware' => ['auth']], function (){
-    Route::get('/perfil', 'UserController@show');
+Route::group(['middleware' => ['auth']], function (){
+    /*
+     * Views
+     * */
+    Route::get('/perfil', 'UserController@showProfile');
     Route::get('/pedidos', 'UserController@showOrders');
     Route::get('/historico', 'UserController@showHistoric');
-    Route::get('/carrinho', 'UserController@showCart')->name('user.cart');
-    Route::get('/carrinho/{product_id}/add', 'UserController@addToCart');
-    Route::get('/carrinho/delete', 'CartController@destroy')->name('cart.clear');
+
+    /*
+     * Check information to make a order
+     * */
+    Route::get('/checkout',  function () {
+        return view('user.checkout');
+    });
+
+    /*
+     * Order create
+     * */
+    Route::get('/pedido/{cart_id}', 'OrderController@create');
+    Route::get('/pedido/cancel', 'OrderController@cancel');
+    Route::get('/pedido/rastrear', 'OrderController@track');
+
+    /*
+     * Support page
+     * */
+    Route::get('/suporte', function () {
+        return;
+    });
 });
 
 /*
- * Prefixo para rotas do administrador
+ * Cart routes
+ * */
+Route::get('/carrinho/{product_id}/add', 'UserController@addToCart');
+Route::get('/carrinho/delete', 'CartController@destroy')->name('cart.clear');
+
+Route::get('/carrinho', 'UserController@showCart')->name('user.cart');
+
+/*
+ * Admin routes
  * */
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::resource('produto', 'ProductController');

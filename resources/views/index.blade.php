@@ -196,7 +196,7 @@
             <div class="card-body">
               <h5 class="card-title"> <strong>Nome:</strong> {{ $product->name }}</h5> <br/>
               <p class="card-text"> <strong>Descrição:</strong> {{ $product->details }}</p> <br/>
-              <a class="btn btn-brown" href="/user/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a> <br>
+              <a class="btn btn-brown" href="carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a> <br>
             </div>
           </div>
           <div class="m-2"></div>

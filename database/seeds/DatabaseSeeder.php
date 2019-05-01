@@ -34,8 +34,8 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'image' => 'user-placeholder.jpg',
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
+            'name' => 'Gabriel',
+            'email' => 'gabriel'.'@doomus.com',
             'password' => bcrypt('secret'),
             'cart_id' => 1,
             'role_id' => 2,
@@ -43,8 +43,8 @@ class DatabaseSeeder extends Seeder
         
         DB::table('users')->insert([
             'image' => 'user-placeholder.jpg',
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
+            'name' => 'Geovanne',
+            'email' => 'geovanne'.'@doomus.com',
             'password' => bcrypt('secret'),
             'cart_id' => 2,
             'role_id' => 1,
@@ -90,10 +90,10 @@ class DatabaseSeeder extends Seeder
             'name' => Str::random(10),
             'details' => Str::random(10),
             'description' => Str::random(10),
-            'qtd_last' => 3,
-            'weight' => 2000.0,
-            'width' => 100.0,
-            'height' => 200.0,
+            'qtd_last' => 1,
+            'weight' => 2250.0,
+            'width' => 130.0,
+            'height' => 20.0,
             'category_id' => 2,
             'payment_method_id' => 1,
         ]);

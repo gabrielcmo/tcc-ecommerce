@@ -68,22 +68,43 @@
             <li class="nav-item">
               <a class="nav-link waves-effect btn" href="{{ route('user.cart') }}">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="clearfix d-none d-sm-inline-block"> Cart </span>&nbsp;
-                @auth
-                  <span class="badge badge-light">{{ Cart::count() }}</span>
-                @endauth
+                <span class="clearfix d-none d-sm-inline-block"> Carrinho </span>&nbsp;
+                <?php $cart_count = Cart::count(); ?>
+                @if($cart_count > 0)
+                  <span class="badge badge-light">{{ $cart_count }}</span>
+                @endif
               </a>
 
             </li>
+            @guest
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"></i></a>
+                <i class="fas fa-user"></i> </a>
               <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
                   <a class="dropdown-item" href="{{ route('login')  }}">Login</a>
                   <a class="dropdown-item" href="{{ route('register')  }}">Registro</a>
               </div>
             </li>
+            @else
+            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                  <i class="fas fa-user"></i>{{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+            </li>
+            @endguest
           </ul>
         </div>
       </div>
