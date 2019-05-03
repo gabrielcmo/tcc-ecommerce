@@ -40,16 +40,14 @@ Route::group(['middleware' => ['auth']], function (){
     /*
      * Order create
      * */
-    Route::get('/pedido/{cart_id}', 'OrderController@create');
+    Route::post('/pedido', 'OrderController@create');
     Route::get('/pedido/cancel', 'OrderController@cancel');
     Route::get('/pedido/rastrear', 'OrderController@track');
 
     /*
      * Support page
      * */
-    Route::get('/suporte', function () {
-        return;
-    });
+    Route::get('/suporte', 'SuporteController@index')->name('suporte');
 });
 
 /*

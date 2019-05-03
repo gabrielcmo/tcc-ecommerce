@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('cart_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('status_id')->unsigned();
+            $table->integer('payment_method_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
@@ -29,6 +30,9 @@ class CreateOrdersTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('status_id')->references('id')->on('order_statuses')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();

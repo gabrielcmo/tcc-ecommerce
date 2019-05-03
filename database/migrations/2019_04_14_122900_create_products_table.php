@@ -23,11 +23,7 @@ class CreateProductsTable extends Migration
             $table->double('width', 4, 1);
             $table->double('height', 4, 1);
             $table->integer('category_id')->unsigned();
-            $table->integer('payment_method_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreign('payment_method_id')->references('id')->on('payment_methods')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
