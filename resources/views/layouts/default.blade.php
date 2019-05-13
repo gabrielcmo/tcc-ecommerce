@@ -39,18 +39,10 @@
           <!-- Left -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <div class="dropdown show" id="menu-products">
-                <a class="btn btn-blue dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link waves-effect" role="button" aria-haspopup="true" aria-expanded="false">
                   Nossos departamentos
                 </a>
-
-                <div class="dropdown-menu text-center" id="menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="#">Cozinha</a>
-                  <a class="dropdown-item" href="#">Banheiro</a>
-                  <a class="dropdown-item" href="#">Sala</a>
-                </div>
-              </div>
-            </li>
+              </li>
 
             <li class="nav-item">
               <a class="nav-link waves-effect" href="#" target="_blank">About MDB</a>

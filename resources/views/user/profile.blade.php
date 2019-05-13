@@ -1,3 +1,7 @@
-<h1>Perfil</h1>
+@extends('layouts.app')
 
-{{ debug($user)  }}
+@section('title', 'Perfil')
+
+@section('content')
+    {{ debug($user)  }}
+@endsection

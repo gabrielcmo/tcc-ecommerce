@@ -1,3 +1,7 @@
-<h1>Pedidos</h1>
+@extends('layouts.app')
 
-{{ debug($orders)  }}
+@section('title', 'Pedidos')
+
+@section('content')
+    {{ debug($orders)  }}
+@endsection

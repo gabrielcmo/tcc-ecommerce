@@ -1,3 +1,7 @@
-<h1>Historico</h1>
+@extends('layouts.app')
 
-{{ debug($historic)  }}
+@section('title', 'Historico')
+
+@section('content')
+    {{ debug($historic)  }}
+@endsection
