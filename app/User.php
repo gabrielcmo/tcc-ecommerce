@@ -10,6 +10,10 @@ class User extends Authenticatable
 {
     use Notifiable;
     
+    /**
+     * The Relationship
+     *
+     */
     public function cart(){
         return $this->belongsTo('Doomus\Cart');
     }

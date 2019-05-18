@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    /**
+     * The Relationship
+     *
+     */
     public function status(){
         return $this->belongsTo('Doomus\OrderStatus');
     }

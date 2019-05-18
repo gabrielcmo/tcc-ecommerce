@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
+    /**
+     * The Relationship
+     *
+     */
     public function user(){
         return $this->hasOne('Doomus\User');
     }

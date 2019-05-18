@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    /**
+     * The Relationship
+     *
+     */
     public function image(){
         return $this->belongsTo('Doomus\ProductImage');
     }
