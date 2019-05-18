@@ -4,184 +4,49 @@
 
 @section('stylesheets')
   <link rel="stylesheet" href="css/styleHome.css">
-  <style type="text/css">
-    html,
-    body,
-    header,
-    .carousel {
-      height: 60vh;
-    }
-
-    @media (max-width: 740px) {
-
-      html,
-      body,
-      header,
-      .carousel {
-        height: 100vh;
-      }
-    }
-
-    @media (min-width: 800px) and (max-width: 850px) {
-
-      html,
-      body,
-      header,
-      .carousel {
-        height: 100vh;
-      }
-    }
-
-  </style>
 @endsection
 
 @section('other-contents')
-  <!--Carousel Wrapper-->
-  <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
-
-      <!--Indicators-->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-        <li data-target="#carousel-example-1z" data-slide-to="2"></li>
-      </ol>
-      <!--/.Indicators-->
-  
-      <!--Slides-->
-      <div class="carousel-inner" role="listbox">
-  
-        <!--First slide-->
-        <div class="carousel-item active">
-          <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-  
-            <!-- Mask & flexbox options-->
-            <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-  
-              <!-- Content -->
-              <div class="text-center white-text mx-5 wow fadeIn">
-                <h1 class="mb-4">
-                  <strong>Learn Bootstrap 4 with MDB</strong>
-                </h1>
-  
-                <p>
-                  <strong>Best & free guide of responsive web design</strong>
-                </p>
-  
-                <p class="mb-4 d-none d-md-block">
-                  <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                    written versions
-                    available. Create your own, stunning website.</strong>
-                </p>
-  
-                <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-                  free tutorial
-                  <i class="fas fa-graduation-cap ml-2"></i>
-                </a>
-              </div>
-              <!-- Content -->
-  
-            </div>
-            <!-- Mask & flexbox options-->
-  
-          </div>
-        </div>
-        <!--/First slide-->
-  
-        <!--Second slide-->
-        <div class="carousel-item">
-          <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-  
-            <!-- Mask & flexbox options-->
-            <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-  
-              <!-- Content -->
-              <div class="text-center white-text mx-5 wow fadeIn">
-                <h1 class="mb-4">
-                  <strong>Learn Bootstrap 4 with MDB</strong>
-                </h1>
-  
-                <p>
-                  <strong>Best & free guide of responsive web design</strong>
-                </p>
-  
-                <p class="mb-4 d-none d-md-block">
-                  <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                    written versions
-                    available. Create your own, stunning website.</strong>
-                </p>
-  
-                <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-                  free tutorial
-                  <i class="fas fa-graduation-cap ml-2"></i>
-                </a>
-              </div>
-              <!-- Content -->
-  
-            </div>
-            <!-- Mask & flexbox options-->
-  
-          </div>
-        </div>
-        <!--/Second slide-->
-  
-        <!--Third slide-->
-        <div class="carousel-item">
-          <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg'); background-repeat: no-repeat; background-size: cover;">
-  
-            <!-- Mask & flexbox options-->
-            <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-  
-              <!-- Content -->
-              <div class="text-center white-text mx-5 wow fadeIn">
-                <h1 class="mb-4">
-                  <strong>Learn Bootstrap 4 with MDB</strong>
-                </h1>
-  
-                <p>
-                  <strong>Best & free guide of responsive web design</strong>
-                </p>
-  
-                <p class="mb-4 d-none d-md-block">
-                  <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                    written versions
-                    available. Create your own, stunning website.</strong>
-                </p>
-  
-                <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-                  free tutorial
-                  <i class="fas fa-graduation-cap ml-2"></i>
-                </a>
-              </div>
-              <!-- Content -->
-  
-            </div>
-            <!-- Mask & flexbox options-->
-  
-          </div>
-        </div>
-        <!--/Third slide-->
-  
-      </div>
-      <!--/.Slides-->
-  
-      <!--Controls-->
-      <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-      <!--/.Controls-->
-  
+<div class="container">
+<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="http://lojasnazari.com.br/img/site/431/t/570051.jpg" alt="First slide">
     </div>
-    <!--/.Carousel Wrapper-->
-  
+    <div class="carousel-item">
+      <img class="d-block w-100" src="http://lojasnazari.com.br/img/site/431/t/570038.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="http://lojasnazari.com.br/img/site/431/t/570047.jpg" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+<br>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Fluid jumbotron</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
+
 @endsection
 
 @section('content')
-    {{ debug($products, $categories) }}
+    {{ debug($products, $categories, $user) }}
 @endsection
 
 @section('scripts')
