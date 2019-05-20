@@ -20,80 +20,51 @@ class UserController extends Controller
      * @param Product $product_id
      * @return \Illuminate\Http\Response
      */
-    public function addToCart($product_id)
+    public function addToCart(Product $product_id)
     {
         $product = Product::find($product_id);
 
         $name = $product->name;
         $qtd = 1;
-        $price = 1.99;
+        $price = $product->price;
 
-        Cart::add($product_id, $name, $qtd, $price);
+        Cart::add($product_id, $name, $qtd, $price)->associate('Product');
 
         Session::flash('status', 'Produto adicionado ao carrinho');
 
         return back();
     }
-
+    
     /**
-     * Display a listing of the resource.
+     * Remove from cart
      *
+     * @param Product $product_id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function removeFromCart(Product $product_id)
     {
-        //
-    }
+        Cart::remove($product_id);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        Session::flash('status', 'Produto removido do carrinho');
+
+        return back();
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Change quantity
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Product $product_id
+     * @param Product $qty
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function changeQuantity(Product $product_id, $qty)
     {
-        //
+        Cart::update($product_id, $qty);
+
+        return back();
     }
 
-    /*
-     * Functions to get properties
-     * */
-    public static function getUser()
-    {
-        return Auth::guard()->user();
-    }
-
-    public static function getOrders()
-    {
-        return Auth::guard()->user()->orders;
-    }
-
-    public static function getHistoric()
-    {
-        return Auth::guard()->user()->historic;
-    }
-
-    public static function getCart()
-    {
-        return Auth::guard()->user()->cart;
-    }
-
-    public static function getCartProducts()
-    {
-        return  Auth::guard()->user()->cart->products;
-    }
-
+    
     /**
      * Display the specified resource.
      *
@@ -103,7 +74,28 @@ class UserController extends Controller
         $user = self::getUser();
         return view('user.profile')->with('user', $user);
     }
+    
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Doomus\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = self::getUser();
 
+        $user->image = $request->image;
+        $user->name = $request->name;
+        $user->name = $request->email;
+        $user->name = $request->password;
+        $user->save();
+
+        return back();
+    }
+
+    
     /**
      * Display the specified resource.
      *
@@ -133,40 +125,30 @@ class UserController extends Controller
      */
     public function showCart()
     {
-        return view('user.cart');
+        $cart = self::getCart();
+        return view('user.cart')->with('cart', $cart);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Doomus\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
+    /*
+     * Functions to get properties
+     * */
+    public static function getUser()
     {
-        //
+        return Auth::guard()->user();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Doomus\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
+    public static function getOrders()
     {
-        //
+        return Auth::guard()->user()->orders;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Doomus\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+    public static function getHistoric()
     {
-        //
+        return Auth::guard()->user()->historic;
+    }
+
+    public static function getCart()
+    {
+        return Cart::content();
     }
 }

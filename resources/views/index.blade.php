@@ -46,7 +46,7 @@
 @endsection
 
 @section('content')
-    {{ debug($products, $categories, $user) }}
+    {{ debug($products, $categories) }}
 @endsection
 
 @section('scripts')
