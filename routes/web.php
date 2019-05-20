@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'IndexController@index')->name('landing');
 
-Route::post('find', 'ProductController@search');
+Route::get('/find', 'ProductController@find');
 
 Route::group(['middleware' => ['auth']], function (){
     /*

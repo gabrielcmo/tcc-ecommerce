@@ -48,9 +48,7 @@
               </li>
             </ul>
             <form class="typeahead" role="search">
-              <div class="form-group">
-                <input type="search" name="q" class="form-control search-input" placeholder="Search" autocomplete="off">
-              </div>
+              <input type="search" name="q" class="form-control bg-light search-input" placeholder="Search" autocomplete="off">
             </form>
 
 
@@ -155,18 +153,20 @@
                 source: engine.ttAdapter(),
 
                 // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
-                name: 'usersList',
+                name: 'productsList',
 
                 // the key from the array we want to display (name,id,email,etc...)
                 templates: {
                     empty: [
-                        '<div class="list-group search-results-dropdown"><div class="list-group-item">Nothing found.</div></div>'
+                        '<div class="list-group list-group-flush search-results-dropdown"><div class="list-group-item bg-light">Nada encontrado.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></div>'
                     ],
                     header: [
-                        '<div class="list-group search-results-dropdown">'
+                        '<div class="list-group list-group-flush search-results-dropdown">'
                     ],
                     suggestion: function (data) {
-                        return '<a href="' + data.profile.username + '" class="list-group-item">' + data.name + ' - @' + data.profile.username + '</a>'
+                        return '<a href="/produto/' +  data.id +'" class="btn bg-light list-group-item">'
+                         + data.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + 
+                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>";
               }
                 }
             });
