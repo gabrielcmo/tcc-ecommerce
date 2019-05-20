@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
+    * Search for products method
+    * @param Request $search
+    */
+    public function find(Request $search)
+    {
+        return Product::search($search->get('q'))->get();  
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

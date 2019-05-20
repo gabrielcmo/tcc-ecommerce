@@ -15,6 +15,10 @@
     <link href="css/style.min.css" rel="stylesheet">
 
     @yield('stylesheets')
+
+    <script>
+        
+    </script>
     
     <title>@yield('title')</title>
 </head>
@@ -24,7 +28,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="{{ redirect('/') }}">Doomus</a>
+          <a class="navbar-brand" href="{{ route('landing') }}">Doomus</a>
 
           <div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -34,7 +38,7 @@
           <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-list"></i> Categorias</a>
@@ -43,9 +47,12 @@
                 <a class="nav-link" href="#"><i class="fas fa-newspaper"></i> Sobre</a>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="typeahead" role="search">
+              <div class="form-group">
+                <input type="search" name="q" class="form-control search-input" placeholder="Search" autocomplete="off">
+              </div>
             </form>
+
 
             <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -55,7 +62,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="nav-item">
-                <a class="nav-link" href=""><i class="fas fa-shopping-cart"></i>
+                <a class="nav-link" href="{{ route('user.cart') }}"><i class="fas fa-shopping-cart"></i>
                   @if(Cart::count() > 0)
                       <span class="badge badge-light">{{ Cart::count() }}</span>
                   @endif
@@ -79,6 +86,7 @@
                   </a>
 
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -117,11 +125,53 @@
       <!-- JQuery -->
       <script type="text/javascript" src="js/jquery.min.js"></script>
 
-      <!-- Bootstrap tooltips -->
-      <script type="text/javascript" src="js/popper.min.js"></script>
+      <!-- Angular -->
+      <script type="text/javascript" src="js/angular.min.js"></script>
 
       <!-- Bootstrap core JavaScript -->
       <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      
+      <!-- Typeahead.js Bundle -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+    
+      <!-- Typeahead Initialization -->
+      <script>
+        jQuery(document).ready(function($) {
+            // Set the Options for "Bloodhound" suggestion engine
+            var engine = new Bloodhound({
+                remote: {
+                    url: '/find?q=%QUERY%',
+                    wildcard: '%QUERY%'
+                },
+                datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace
+            });
+
+            $(".search-input").typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                source: engine.ttAdapter(),
+
+                // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
+                name: 'usersList',
+
+                // the key from the array we want to display (name,id,email,etc...)
+                templates: {
+                    empty: [
+                        '<div class="list-group search-results-dropdown"><div class="list-group-item">Nothing found.</div></div>'
+                    ],
+                    header: [
+                        '<div class="list-group search-results-dropdown">'
+                    ],
+                    suggestion: function (data) {
+                        return '<a href="' + data.profile.username + '" class="list-group-item">' + data.name + ' - @' + data.profile.username + '</a>'
+              }
+                }
+            });
+        });
+      </script>
 
       @yield('scripts')
     

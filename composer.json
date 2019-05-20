@@ -15,10 +15,10 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
-        "paypal/rest-api-sdk-php": "^1.14"
+        "paypal/rest-api-sdk-php": "^1.14",
+        "nicolaslopezj/searchable": "1.*"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^3.2",
         "beyondcode/laravel-dump-server": "^1.0",
         "doctrine/dbal": "^2.9",
         "filp/whoops": "^2.0",
@@ -65,9 +65,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan ide-helper:generate",
-            "php artisan ide-helper:meta"
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate"
         ]
     }
 }

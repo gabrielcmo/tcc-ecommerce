@@ -22,11 +22,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'IndexController@index')->name('landing');
 
+Route::post('find', 'ProductController@search');
+
 Route::group(['middleware' => ['auth']], function (){
     /*
      * Views
      * */
-    Route::get('/perfil', 'UserController@showProfile');
+    Route::get('/perfil', 'UserController@showProfile')->name('perfil');
     Route::get('/pedidos', 'UserController@showOrders');
     Route::get('/historico', 'UserController@showHistoric');
 
