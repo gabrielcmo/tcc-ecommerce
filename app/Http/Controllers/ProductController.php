@@ -17,6 +17,14 @@ class ProductController extends Controller
     }
 
     /**
+     * Show product method
+     * @param Product $id
+     */
+    public function showProduct($id)
+    {
+        return view('product')->with('product', Product::find($id));
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -24,6 +24,8 @@ Route::get('/', 'IndexController@index')->name('landing');
 
 Route::get('/find', 'ProductController@find');
 
+Route::get('/produto/{id}', 'ProductController@showProduct');
+
 Route::group(['middleware' => ['auth']], function (){
     /*
      * Views
