@@ -9,14 +9,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" >
 
     @yield('stylesheets')
 
-    <script>
-        
-    </script>
-    
     <title>@yield('title')</title>
 </head>
 <body>
@@ -35,7 +31,7 @@
           <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-list"></i> Categorias</a>
