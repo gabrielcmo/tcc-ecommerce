@@ -185,12 +185,17 @@
 
           <!-- Out of Stock -->
           <div class="form-group product-stock product-out-stock row hidden">
-            <label class="col-sm-3 col-md-3 form-control-label">Disponibilidade:</label>
-            <div class="col-sm-8 col-md-9">
-              <span class="product-form-price">Esgotado</span>
-              <p>Infelizmente este produto está esgotado. Contate-nos para solitar um para você.</p>
-              <a href="/contact" class="btn btn-secondary btn-sm" title="Contact Us">Contate-nos</a>
-              <a href="javascript:history.back()" class="btn btn-link btn-sm" title="&larr; Ou continue comprando">&larr; Ou continue comprando</a>
+            <div class="col-sm-8 col-md-9 mx-auto">
+              @if($product->qtd_last == 0)
+                <span class="bg-danger btn product-form-price">Esgotado</span>
+                <p>Infelizmente este produto está esgotado. Contate-nos para solitar um para você.</p>
+                <a href="/contact" class="btn btn-secondary btn-sm" title="Contact Us">Contate-nos</a>
+                <a href="javascript:history.back()" class="btn btn-link btn-sm" title="&larr; Ou continue comprando">&larr; Ou continue comprando</a>
+              @elseif($product->qtd_last < 5)
+              <span class="bg-danger btn product-form-price">Restam apenas {{ $product->qtd_last }}</span>
+              @else
+              <span class="bg-success btn product-form-price">Disponível</span>
+              @endif
             </div>
           </div>
 
