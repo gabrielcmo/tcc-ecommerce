@@ -3,5 +3,5 @@
 @section('title', 'Perfil')
 
 @section('content')
-    {{ debug($user)  }}
+    <!-- {{ debug($user)  }} -->
 @endsection

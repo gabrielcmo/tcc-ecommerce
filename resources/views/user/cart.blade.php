@@ -17,7 +17,7 @@
     <br>
     Valor total: R${{ Cart::total() }}
 
-    {{ debug($cart) }}
+    <!-- {{ debug($cart) }} -->
 @endsection
 
 @section('scripts')

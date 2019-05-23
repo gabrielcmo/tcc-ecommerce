@@ -258,5 +258,5 @@ $(document).ready(function(){
 
     <script src="//cdn.jsdelivr.net/bootstrap.filestyle/1.1.0/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="https://assets.jumpseller.com/store/bootstrap/themes/186291/main.js?1556737893"></script>
-    {{ debug($product) }}
+    <!-- {{ debug($product) }} -->
 @endsection
