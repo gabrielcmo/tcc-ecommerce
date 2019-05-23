@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->double('weight', 5, 1);
             $table->double('width', 4, 1);
             $table->double('height', 4, 1);
+            $table->float('price');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')
                 ->onDelete('cascade')

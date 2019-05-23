@@ -38,7 +38,7 @@ class Product extends Model
      *
      */
     public function image(){
-        return $this->belongsTo('Doomus\ProductImage');
+        return $this->hasMany('Doomus\ProductImage');
     }
 
     public function cart(){

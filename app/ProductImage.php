@@ -11,6 +11,6 @@ class ProductImage extends Model
      *
      */
     public function product(){
-        return $this->hasOne('Doomus\Product');
+        return $this->belongsTo('Doomus\Product');
     }
 }

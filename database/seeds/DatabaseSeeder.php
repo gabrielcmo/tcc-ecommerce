@@ -68,6 +68,7 @@ class DatabaseSeeder extends Seeder
             'weight' => 20.3,
             'width' => 50.0,
             'height' => 20.0,
+            'price' => 4.99,
             'category_id' => 3,
         ]);
         
@@ -79,6 +80,7 @@ class DatabaseSeeder extends Seeder
             'weight' => 466.2,
             'width' => 200.0,
             'height' => 150.0,
+            'price' => 79.99,
             'category_id' => 1,
         ]);
         
@@ -90,6 +92,7 @@ class DatabaseSeeder extends Seeder
             'weight' => 250.0,
             'width' => 45.0,
             'height' => 25.0,
+            'price' => 39.98,
             'category_id' => 1,
         ]);
         
@@ -101,18 +104,28 @@ class DatabaseSeeder extends Seeder
             'weight' => 125.0,
             'width' => 20.0,
             'height' => 2.0,
+            'price' => 19.99,
             'category_id' => 2,
         ]);
-        
-        DB::table('products')->insert([
-            'name' => Str::random(10),
-            'details' => Str::random(10),
-            'description' => Str::random(10),
-            'qtd_last' => 3,
-            'weight' => 2000.0,
-            'width' => 100.0,
-            'height' => 200.0,
-            'category_id' => 2,
+
+        DB::table('product_images')->insert([
+            'filename' => 'placeholder-2.jpg',
+            'product_id' => 1,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'placeholder-1.jpg',
+            'product_id' => 2,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'placeholder-3.jpg',
+            'product_id' => 3,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'placeholder-4.jpg',
+            'product_id' => 4,
         ]);
 
         DB::table('historic_statuses')->insert([

@@ -17,10 +17,10 @@ class UserController extends Controller
     /**
      * Add to cart
      *
-     * @param Product $product_id
+     * @param $product_id
      * @return \Illuminate\Http\Response
      */
-    public function addToCart(Product $product_id)
+    public function addToCart($product_id)
     {
         $product = Product::find($product_id);
 
