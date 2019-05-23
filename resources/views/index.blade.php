@@ -8,7 +8,7 @@
 
 @section('other-contents')
   @if(Session::has('status'))
-    <span class="alert alert-info">{{ Session::get('status') }}</span>
+    <p class="alert alert-info"><span>{{ Session::get('status') }}</span></p>
   @endif
 
   <!-- Page Content -->
