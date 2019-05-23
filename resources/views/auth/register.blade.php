@@ -63,13 +63,16 @@
 
                         <div class="form-group row">
                             <div class="col-md-6 mx-auto">
-                                {!! NoCaptcha::display() !!}
-                            </div>
-                                @if ($errors->has('g-recaptcha-response'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
-                                @endif
+                                {!! NoCaptcha::display() !!}        
+                            </div>                   
+                        </div>
+
+                        <div class="row mx-auto col-md-6 mb-3">
+                            @if ($errors->has('g-recaptcha-response'))
+                                <span class="help-block">
+                                    <strong class="text-danger">{{ $errors->first('g-recaptcha-response') }}</strong>
+                                </span>
+                            @endif
                         </div>
                         
                         <div class="form-group row mb-0">
