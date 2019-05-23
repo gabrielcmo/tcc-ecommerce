@@ -176,7 +176,7 @@
             <label for="Quantity" class="col-sm-3 col-md-3 form-control-label">Quantity:</label>
             <div class="col-sm-8 col-md-9">
              
-              <input type="number" class="qty form-control" id="input-qty" name="qty" min='1' maxlength="5" value="1" >
+              <input type="number" class="qty form-control" ng-name="qty" id="input-qty" name="qty" min='1' maxlength="5" value="1" >
             </div>
           </div>
 
@@ -215,6 +215,15 @@
               
             </div>
           </div>
+          
+          <div class="form-group row">
+            <div class="col-sm-9 col-md-9">
+
+              <button href="#" class="btn btn-dark" ng-click="addToCart()">Adicionar ao carrinho</button>  
+              
+            </div>
+          </div>
+      
       <script type="text/javascript">
         $('#product-sharing a').click(function(){
           return !window.open(this.href, 'Share', 'width=640,height=300');

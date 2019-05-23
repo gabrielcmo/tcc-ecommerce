@@ -15,10 +15,9 @@
     @endforeach
 
     <br>
+    Subtotal: R${{ Cart::subtotal() }}
+    <br>
     Valor total: R${{ Cart::total() }}
 
     <!-- {{ debug($cart) }} -->
-@endsection
-
-@section('scripts')
 @endsection
