@@ -157,9 +157,7 @@
                         '<div class="list-group list-group-flush search-results-dropdown">'
                     ],
                     suggestion: function (data) {
-                        return '<a href="/produto/' +  data.id +'" class="btn bg-light list-group-item">'
-                         + data.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + 
-                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>";
+                        return '<a href="/produto/' + data.id +'" class="list-group-item">' + data.name + "</a>";
               }
                 }
             });

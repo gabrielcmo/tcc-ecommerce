@@ -7,8 +7,8 @@
 @endsection
 
 @section('other-contents')
-  @if(Session::has('message'))
-    <p class="alert alert-info">{{ Session::get('message') }}</p>
+  @if(Session::has('status'))
+    <p class="alert alert-info">{{ Session::get('status') }}</p>
   @endif
   <div class="container">
     <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
