@@ -14,6 +14,9 @@
         {{ $item->price }} <br><br>
     @endforeach
 
+    <br>
+    Valor total: R${{ Cart::total() }}
+
     {{ debug($cart) }}
 @endsection
 

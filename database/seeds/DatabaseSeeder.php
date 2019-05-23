@@ -86,8 +86,8 @@ class DatabaseSeeder extends Seeder
         
         DB::table('products')->insert([
             'name' => 'Travesseiro',
-            'details' => Str::random(10),
-            'description' => Str::random(10),
+            'details' => 'Macio',
+            'description' => 'Grande e maravilhoso',
             'qtd_last' => 1,
             'weight' => 250.0,
             'width' => 45.0,
@@ -98,8 +98,8 @@ class DatabaseSeeder extends Seeder
         
         DB::table('products')->insert([
             'name' => 'Colher de silicone',
-            'details' => Str::random(10),
-            'description' => Str::random(10),
+            'details' => 'Grande e magnífica',
+            'description' => 'Colher ótima',
             'qtd_last' => 37,
             'weight' => 125.0,
             'width' => 20.0,

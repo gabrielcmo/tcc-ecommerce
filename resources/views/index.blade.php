@@ -7,9 +7,22 @@
 @endsection
 
 @section('other-contents')
-  @if(Session::has('message'))
-    <p class="alert alert-info">{{ Session::get('message') }}</p>
+  @if(Session::has('status'))
+    <p class="alert alert-info"><span>{{ Session::get('status') }}</span></p>
   @endif
+
+  <!-- Page Content -->
+    
+  <section class="container">
+      <div class="row">
+        <section class="col-12 d-none d-md-block">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" class="trsn" title="Go back to Home">Home</a></li>
+          </ol>
+        </section>
+      </div>
+    </section>
+
   <div class="container">
     <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">

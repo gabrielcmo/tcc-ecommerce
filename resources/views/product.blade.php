@@ -194,101 +194,22 @@
             </div>
           </div>
 
-          <!-- Not Available -->
-          <div class="form-group product-stock product-unavailable row hidden">
-            <label class="col-sm-3 col-md-3 form-control-label">Availability:</label>
-            <div class="col-sm-8 col-md-9">
-              <span class="product-form-price">Not Available</span>
-              <p>This product is currently unavailable. You may send us an inquiry about it.</p>
-              <a href="/contact" class="btn btn-secondary btn-sm" title="Contact Us">Contate-nos</a>
-              <a href="javascript:history.back()" class="btn btn-link btn-sm" title="&larr; Ou continue comprando">&larr; Ou continue comprando</a>
-            </div>
-          </div>
-
-          <div class="form-group product-stock product-available row visible">
-            <label class="col-sm-3 col-md-3 form-control-label"></label>
-            <div class="col-sm-8 col-sm-offset-3 col-md-9 col-md-offset-3">
-
-              
-              <input type="submit" class="adc btn btn-primary" value="Add to Shopping Cart" />
-              
-
-
-              <a href="javascript:history.back()" class="btn btn-link btn-sm" title="Continue comprando">&larr; Continue comprando</a>
-            </div>
-          </div>
-
-
           <div class="form-group row">
-            <label class="col-sm-3 col-md-3 form-control-label">Description:</label>
+            <label class="col-sm-3 col-md-3 form-control-label">Descrição:</label>
             <div class="col-sm-8 col-md-9 description">
-              <p>The DualShock®4 Wireless Controller for PlayStation®4 defines the next generation of play, combining revolutionary new features with intuitive, precision controls. Improved analog sticks and trigger buttons allow for unparalleled accuracy with every move while innovative new technologies such as the multi-touch, clickable touch pad, integrated light bar, and internal speaker offer exciting new ways to experience and interact with your games. And with the addition of the Share button, celebrate and upload your greatest gaming moments on PlayStation®4 with the touch of a button.&nbsp;</p>
+              <p>{{ $product->description }}</p>
             </div>
           </div>
 
           
           <div class="form-group row">
-            <label class="col-sm-3 col-md-3 form-control-label">Details:</label>
+            <label class="col-sm-3 col-md-3 form-control-label">Detalhes:</label>
             <div class="col-sm-9 col-md-9">
               
-              <p>Marca: Sony</p>
+              <p>{{ $product->details }}</p>
               
             </div>
           </div>
-          
-
-          
-
-
-        <div id="product-sharing" class="row">
-          <label class="col-sm-3 col-md-3 ">Share:</label>
-          <ul class="list-inline social-networks col-sm-9 col-md-9">
-            
-            <li class="list-inline-item">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https://bootstrap.jumpseller.com/ps4" class="has-tip tip-top radius button tiny button-facebook trsn" title="Share on Facebook" target="_blank" data-tooltip>
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li>
-            
-
-            
-            <li class="list-inline-item">
-              <a href="https://twitter.com/share?url=https://bootstrap.jumpseller.com/ps4&text=Check this product DualShock Controller for PlayStation 4" class="has-tip tip-top radius button tiny button-twitter trsn" title="Share on Twitter" target="_blank" data-tooltip>
-                <i class="fab fa-twitter"></i>
-              </a>
-            </li>
-            
-
-            
-            <li class="list-inline-item">
-              <a href="https://pinterest.com/pin/create/bookmarklet/?media=https://images.jumpseller.com/store/bootstrap/224303/Screenshot_2.jpg?1439530709&url=https://bootstrap.jumpseller.com/ps4&is_video=false&description=DualShock Controller for PlayStation 4: The DualShock®4 Wireless Controller for PlayStation®4 defines the next generation of play, combining revolutionary new features with intuitive, precision controls. Improved analog sticks and trigger buttons allow for unparalleled accuracy with every move while innovative new technologies such as the multi-touch, clickable touch pad, integrated light bar, and internal speaker offer exciting new ways to experience and interact with your games. And with the addition of the Share button, celebrate and upload your greatest gaming moments on PlayStation®4 with the touch of a button.&nbsp;" class="has-tip tip-top radius button tiny button-pinterest trsn" title="Share on Pinterest" target="_blank" data-tooltip>
-                <i class="fab fa-pinterest"></i>
-              </a>
-            </li>
-            
-
-            
-            <li class="list-inline-item">
-              <a class="has-tip tip-top radius button tiny button-tumblr trsn" title="Share on Tumblr" href="http://tumblr.com/widgets/share/tool?canonicalUrl=https://bootstrap.jumpseller.com/ps4">
-                <i class="fab fa-tumblr"></i>
-              </a>
-            </li>
-            <script id="tumblr-js" async src="https://assets.tumblr.com/share-button.js"></script>
-            
-
-            
-            <li class="list-inline-item">
-              <a id="whatsapp" class="has-tip tip-top radius button tiny button-whats trsn" href="https://api.whatsapp.com/send?text=Check this product DualShock Controller for PlayStation 4 | https://bootstrap.jumpseller.com/ps4">
-                <i class="fab fa-whatsapp"></i>
-              </a>
-            </li>
-            
-
-          </ul>
-      </div>
-
-
-      </form>
       <script type="text/javascript">
         $('#product-sharing a').click(function(){
           return !window.open(this.href, 'Share', 'width=640,height=300');
