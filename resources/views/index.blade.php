@@ -52,7 +52,7 @@
 @endsection
 
 @section('content')
-    {{ debug($products, $categories) }}
+    {{-- {{ debug($products, $categories) }} --}}
 @endsection
 
 @section('scripts')
