@@ -27,11 +27,12 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $categories = Category::all();
+        echo "Oi";
+        // $products = Product::all();
+        // $categories = Category::all();
 
-        return view('index')
-            ->with('products', $products)
-            ->with('categories', $categories);
+        // return view('index')
+        //     ->with('products', $products)
+        //     ->with('categories', $categories);
     }
 }
