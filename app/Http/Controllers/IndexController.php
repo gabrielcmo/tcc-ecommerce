@@ -27,8 +27,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $categories = Category::all();
+         $products = Product::all();
+         $categories = Category::all();
 
         return view('index')
             ->with('products', $products)
