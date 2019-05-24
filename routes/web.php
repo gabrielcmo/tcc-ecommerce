@@ -69,3 +69,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::resource('produto', 'ProductController');
     Route::resource('categoria', 'CategoryController');
 });
+
+/*
+* Social login routes
+**/
+Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
