@@ -6,6 +6,7 @@ use Doomus\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 use Socialite;
 
 class LoginController extends Controller
@@ -41,7 +42,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Redirect the user to the GitHub authentication page.
+     * Redirect the user to the provider authentication page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -51,7 +52,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Obtain the user information from GitHub.
+     * Obtain the user information from provider.
      *
      * @return \Illuminate\Http\Response
      */
@@ -59,22 +60,22 @@ class LoginController extends Controller
     {
         $providerUser = Socialite::driver($provider)->user();
 
-        $user = User::where('provider_id', $providerUser->getId())->first();
+    //     $user = User::where('provider_id', $providerUser->getId())->first();
 
-        if (!$user) {
-            // add user to database
-            $user = User::create([
-                'email' => $providerUser->getEmail(),
-                'name' => $providerUser->getName(),
-                'provider_id' => $providerUser->getId(),
-                'provider_name' => $provider
-            ]);
-        } else {
-            // login the user
+    //     if (!$user) {
+    //         // add user to database
+    //         $user = User::create([
+    //             'email' => $providerUser->getEmail(),
+    //             'name' => $providerUser->getName(),
+    //             'provider_id' => $providerUser->getId(),
+    //             'provider_name' => $provider
+    //         ]);
+    //     } else {
+    //         // login the user
 
-            Auth::login($user, true);
-        }
+    //         Auth::login($user, true);
+    //     }
 
-        return redirect()->route('landing');
-    }
+    //     return redirect()->route('landing');
+    // }
 }
