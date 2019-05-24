@@ -80,7 +80,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-                                <a href="{{ url('/auth/google') }}" class="btn btn-primary"><i class="fa fa-google"></i> Google</a>
+                                <a href="{{ url('/auth/google') }}" class="btn btn-primary"><i class="fab fa-google"></i> Google</a>
 
                             </div>
                         </div>
