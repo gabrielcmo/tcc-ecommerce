@@ -59,7 +59,6 @@ class LoginController extends Controller
     {
         $providerUser = Socialite::driver($provider)->user();
 
-        dd($providerUser);
         // $user = User::where('provider_id', $providerUser->getId())->first();
 
         // if (!$user) {
@@ -76,6 +75,6 @@ class LoginController extends Controller
         //     Auth::login($user, true);
         // }
 
-        return redirect('index');
+        return dd($providerUser);
     }
 }
