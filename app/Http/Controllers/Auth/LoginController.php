@@ -75,6 +75,6 @@ class LoginController extends Controller
             Auth::login($user, true);
         }
 
-        return redirect('landing');
+        return redirect()->route('landing');
     }
 }
