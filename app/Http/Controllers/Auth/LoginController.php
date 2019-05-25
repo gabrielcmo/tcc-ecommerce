@@ -59,7 +59,7 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $providerUser = Socialite::driver($provider)->user();
-
+        dd($providerUser);
     //     $user = User::where('provider_id', $providerUser->getId())->first();
 
     //     if (!$user) {
@@ -77,5 +77,5 @@ class LoginController extends Controller
     //     }
 
     //     return redirect()->route('landing');
-    // }
+    }
 }

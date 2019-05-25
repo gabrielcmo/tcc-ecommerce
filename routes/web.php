@@ -74,4 +74,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
 * Social login routes
 **/
 Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
-Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('callback_google');
+Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
