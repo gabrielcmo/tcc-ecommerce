@@ -60,22 +60,22 @@ class LoginController extends Controller
     {
         $providerUser = Socialite::driver($provider)->user();
 
-    //     $user = User::where('provider_id', $providerUser->getId())->first();
+        $user = User::where('provider_id', $providerUser->getId())->first();
 
-    //     if (!$user) {
-    //         // add user to database
-    //         $user = User::create([
-    //             'email' => $providerUser->getEmail(),
-    //             'name' => $providerUser->getName(),
-    //             'provider_id' => $providerUser->getId(),
-    //             'provider_name' => $provider
-    //         ]);
-    //     } else {
-    //         // login the user
+        if ($user) {
+            // login the user
 
-    //         Auth::login($user, true);
-    //     }
+            Auth::login($user, true);
+        } else {
+            // add user to database
+            $user = User::create([
+                'email' => $providerUser->getEmail(),
+                'name' => $providerUser->getName(),
+                'provider_id' => $providerUser->getId(),
+                'provider_name' => $provider
+            ]);
+        }
 
-    //     return redirect()->route('landing');
-    // }
+        return redirect()->route('landing');
+    }
 }
