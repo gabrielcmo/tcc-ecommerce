@@ -2,11 +2,9 @@
 
 namespace Doomus\Http\Controllers;
 
-use DebugBar\DebugBar;
 use Doomus\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\Debug\Debug;
 use Doomus\Product;
 use Doomus\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Session;
@@ -60,6 +58,14 @@ class UserController extends Controller
     public function changeQuantity(Product $product_id, $qty)
     {
         Cart::update($product_id, $qty);
+
+        return back();
+    }
+
+    public function clearCart(){
+        Cart::destroy();
+
+        Session::flash('status', 'Carrinho limpo');
 
         return back();
     }
