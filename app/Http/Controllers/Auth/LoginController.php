@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Doomus\User;
 use Doomus\Http\Controllers\CartController;
 use Socialite;
+use Doomus\Role;
 class LoginController extends Controller
 {
     /*
@@ -63,6 +64,7 @@ class LoginController extends Controller
                 'name' => $providerUser->getName(),
                 'provider_id' => $providerUser->getId(),
                 'cart_id' => CartController::setCart(),
+                'role_id' => Role::$ROLE_CLIENT,
                 'provider_name' => $provider
             ]);
         } else {
@@ -71,6 +73,6 @@ class LoginController extends Controller
             Auth::login($user, true);
         }
 
-        return redirect()->route('landing');
+        return redirect("/");
     }
 }
