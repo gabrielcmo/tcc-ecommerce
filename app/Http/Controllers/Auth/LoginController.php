@@ -53,11 +53,11 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $providerUser = Socialite::driver($provider)->user();
-        // dd($providerUser);
+        
         $user = User::where('provider_id', $providerUser->getId())->first();
 
         if (!$user) {
-            // add user to database
+            // add user to database and login
             $user = User::create([
                 'email' => $providerUser->getEmail(),
                 'image' => 'user-placeholder.jpg',
@@ -65,14 +65,17 @@ class LoginController extends Controller
                 'provider_id' => $providerUser->getId(),
                 'cart_id' => CartController::setCart(),
                 'role_id' => Role::$ROLE_CLIENT,
-                'provider_name' => $provider
+                'provider' => $provider
             ]);
+
+            Auth::login($user, true);
         } else {
             // login the user
-
             Auth::login($user, true);
         }
 
         return redirect("/");
     }
+
+
 }
