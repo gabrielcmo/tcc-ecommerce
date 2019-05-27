@@ -1,7 +1,5 @@
 <?php
-
 namespace Doomus\Http\Controllers\Auth;
-
 use Doomus\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Session;
@@ -9,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Doomus\User;
 use Doomus\Http\Controllers\CartController;
 use Socialite;
-
 class LoginController extends Controller
 {
     /*
@@ -22,16 +19,13 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
     protected $redirectTo = '/';
-
     /**
      * Create a new controller instance.
      *
@@ -41,7 +35,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
     /**
      * Redirect the user to the provider authentication page.
      *
@@ -51,7 +44,6 @@ class LoginController extends Controller
     {
         return Socialite::driver($provider)->redirect();
     }
-
     /**
      * Obtain the user information from provider.
      *

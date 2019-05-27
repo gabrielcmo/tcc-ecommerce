@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth']], function (){
  * Cart routes
  * */
 Route::get('/carrinho/{product_id}/add', 'UserController@addToCart');
-Route::get('/carrinho/delete', 'CartController@destroy')->name('cart.clear');
+Route::get('/carrinho/delete', 'UserController@clearCart')->name('cart.clear');
 
 Route::get('/carrinho', 'UserController@showCart')->name('user.cart');
 
