@@ -6,7 +6,8 @@ use Doomus\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use Doomus\User;
+use Doomus\Http\Controllers\CartController;
 use Socialite;
 
 class LoginController extends Controller
@@ -59,23 +60,25 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $providerUser = Socialite::driver($provider)->user();
-        dd($providerUser);
-    //     $user = User::where('provider_id', $providerUser->getId())->first();
+        // dd($providerUser);
+        $user = User::where('provider_id', $providerUser->getId())->first();
 
-    //     if (!$user) {
-    //         // add user to database
-    //         $user = User::create([
-    //             'email' => $providerUser->getEmail(),
-    //             'name' => $providerUser->getName(),
-    //             'provider_id' => $providerUser->getId(),
-    //             'provider_name' => $provider
-    //         ]);
-    //     } else {
-    //         // login the user
+        if (!$user) {
+            // add user to database
+            $user = User::create([
+                'email' => $providerUser->getEmail(),
+                'image' => 'user-placeholder.jpg',
+                'name' => $providerUser->getName(),
+                'provider_id' => $providerUser->getId(),
+                'cart_id' => CartController::setCart(),
+                'provider_name' => $provider
+            ]);
+        } else {
+            // login the user
 
-    //         Auth::login($user, true);
-    //     }
+            Auth::login($user, true);
+        }
 
-    //     return redirect()->route('landing');
+        return redirect()->route('landing');
     }
 }
