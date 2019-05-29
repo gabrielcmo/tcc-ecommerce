@@ -126,48 +126,6 @@
       <!-- Bootstrap core JavaScript -->
       <script type="text/javascript" src="js/bootstrap.min.js"></script>
       
-      <!-- Typeahead.js Bundle -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-    
-      <!-- Typeahead Initialization -->
-      <script>
-        jQuery(document).ready(function($) {
-            // Set the Options for "Bloodhound" suggestion engine
-            var engine = new Bloodhound({
-                remote: {
-                    url: '/find?q=%QUERY%',
-                    wildcard: '%QUERY%'
-                },
-                datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace
-            });
-
-            $(".search-input").typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                source: engine.ttAdapter(),
-
-                // This will be appended to "tt-dataset-" to form the class name of the suggestion menu.
-                name: 'productsList',
-
-                // the key from the array we want to display (name,id,email,etc...)
-                templates: {
-                    empty: [
-                        '<div class="list-group list-group-flush search-results-dropdown"><div class="list-group-item bg-light">Nada encontrado.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></div>'
-                    ],
-                    header: [
-                        '<div class="list-group list-group-flush search-results-dropdown">'
-                    ],
-                    suggestion: function (data) {
-                        return '<a href="/produto/' + data.id +'" class="list-group-item">' + data.name + "</a>";
-              }
-                }
-            });
-        });
-      </script>
-
       @yield('scripts')
     
     <!-- SCRIPTS -->
