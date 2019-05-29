@@ -14,10 +14,8 @@
         {{ $item->price }} <br><br>
     @endforeach
 
-    <br>
-    Subtotal: R${{ Cart::subtotal() }}
-    <br>
-    Valor total: R${{ Cart::total() }}
+    Subtotal: R${{ Cart::subtotal() }} <br>
+    Valor total: R${{ Cart::total() }} <br><br>
 
-    <!-- {{ debug($cart) }} -->
+    <a class="btn btn-success" href="/checkout">Fazer pedido</a>    
 @endsection

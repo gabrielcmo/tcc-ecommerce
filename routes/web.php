@@ -31,15 +31,17 @@ Route::group(['middleware' => ['auth']], function (){
      * Views
      * */
     Route::get('/perfil', 'UserController@showProfile')->name('perfil');
+    Route::post('/perfil/update', 'UserController@profileUpdate');
     Route::get('/pedidos', 'UserController@showOrders');
     Route::get('/historico', 'UserController@showHistoric');
 
     /*
      * Check information to make a order
      * */
-    Route::get('/checkout',  function () {
-        return view('user.checkout');
-    });
+    Route::get('/checkout', 'OrderController@checkView');
+    Route::post('/checkout/post', 'OrderController@checkoutData');
+
+    Route::get('/obrigado', 'OrderController@showThanksView');
 
     /*
      * Order create
