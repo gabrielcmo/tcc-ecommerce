@@ -4,11 +4,12 @@
 
 @section('content')
 <form method="POST" action="/perfil/update" enctype="multipart/form-data">
+    @csrf
     <div class="container">
         <div class="row">
                 <div class="form-group col-md-12">
-                    @if(empty($user->image))
-                        <img src="{{ asset('/img/$user->image') }}" class="rounded mx-auto d-block" alt="Foto de perfil">
+                    @if(!empty($user->image))
+                        <img src="avatar/{{ $user->image }}" class="rounded mx-auto d-block" alt="Foto de perfil">
                     @endif
                     <div class="form-group">
                         <input type="file" class="form-control" name="image">

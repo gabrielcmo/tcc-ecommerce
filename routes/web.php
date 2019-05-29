@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function (){
      * Views
      * */
     Route::get('/perfil', 'UserController@showProfile')->name('perfil');
-    Route::post('/perfil/update', 'UserController@profileUpdate');
+    Route::post('/perfil/update', 'UserController@updateProfile');
     Route::get('/pedidos', 'UserController@showOrders');
     Route::get('/historico', 'UserController@showHistoric');
 

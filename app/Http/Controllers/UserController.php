@@ -9,6 +9,7 @@ use Doomus\Product;
 use Doomus\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Hash;
 
 class UserController extends Controller
 {
@@ -85,17 +86,20 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Doomus\User  $user
      * @return \Illuminate\Http\Response
      */
     public function updateProfile(Request $request)
     {
         $user = self::getUser();
 
-        $user->image = $request->image;
+        $filename = time().'.'.request()->image->getClientOriginalExtension();
+
+        request()->image->move(public_path('avatar'), $filename);
+
+        $user->image = $filename;
         $user->name = $request->name;
-        $user->name = $request->email;
-        $user->name = $request->password;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
         $user->save();
 
         return back();
