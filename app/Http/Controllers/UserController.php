@@ -94,7 +94,7 @@ class UserController extends Controller
 
         $filename = time().'.'.request()->image->getClientOriginalExtension();
 
-        request()->image->move(public_path('avatar'), $filename);
+        request()->image->move(public_path('img/avatars'), $filename);
 
         $user->image = $filename;
         $user->name = $request->name;
