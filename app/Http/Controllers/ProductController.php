@@ -13,7 +13,32 @@ class ProductController extends Controller
     */
     public function find(Request $search)
     {
-        return Product::search($search->get('q'))->get();  
+        if($search->ajax()){
+            $query = $search->get('query');
+            if($query !== ''){
+                $data = Product::where('name', 'like', '%'.$query.'%')
+                    ->orWhere('id', 'like', '%'.$query.'%')
+                    ->orderBy('id', 'DESCS')
+                    ->get();
+
+                $total_qtd = $data->count();
+            }
+
+            if($total_qtd > 0){
+                foreach($data as $product){
+                    $output = "<a href="."/produto/$product->id"." class='dropdown-item'> {{$product->name}} &nbsp;&nbsp; {{$product->category}} </a>";
+                }
+            }else{
+                $output = '<p>Nada encontrado</p>';
+            }
+
+            $data = [
+                'ul_data' => $output,
+                'ul_total' => $total_qtd
+            ];
+
+            echo json_encode($data);
+        } 
     }
 
     /**

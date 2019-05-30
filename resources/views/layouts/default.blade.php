@@ -40,9 +40,11 @@
                 <a class="nav-link" href="#"><i class="fas fa-newspaper"></i> Sobre</a>
               </li>
             </ul>
-            <form>
-              <input type="search" name="q" class="form-control bg-light" placeholder="Pesquise aqui.." autocomplete="off">
-            </form>
+              <input type="text" id="search" name="search" class="form-control" placeholder="Pesquise aqui.." autocomplete="off"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown-menu" aria-labelledby="search" id="record">
+              <span id="total_records"></span>
+            </div>
             <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -102,10 +104,8 @@
     <!-- Main layout -->
     <main>
 
-    <div id="app">
-      {{message}}
-    </div>
 
+    
       @yield('content')
 
     </main>
@@ -124,6 +124,32 @@
 
       <!-- Bootstrap core JavaScript -->
       <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+       <!-- AJAX  -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+      <script>
+        $(document).ready(function(){
+          function fetch_data(query = ''){
+            $.ajax({
+              url: "{{ route('search') }}",
+              method: 'GET',
+              data: {query:query},
+              dataType: 'json',
+              success:function(data){
+                $('#record').html(data.ul_data);
+                $('#total_records').text(data.ul_total);
+              }
+            });
+          }
+
+          $(document).on('keyup', '#search', function(){
+            var query = $(this).val();
+
+            fetch_data(query);
+          });
+        });
+      </script>
       
       @yield('scripts')
     

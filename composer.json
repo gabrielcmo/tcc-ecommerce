@@ -17,11 +17,9 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
-        "nicolaslopezj/searchable": "1.*",
         "paypal/rest-api-sdk-php": "^1.14"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.2",
         "beyondcode/laravel-dump-server": "^1.0",
         "doctrine/dbal": "^2.9",
         "filp/whoops": "^2.0",

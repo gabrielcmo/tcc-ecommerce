@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::get('/', 'IndexController@index')->name('landing');
 
-Route::get('/find', 'ProductController@find');
+Route::get('/find', 'ProductController@find')->name('search');
 
 Route::get('/produto/{id}', 'ProductController@showProduct');
 
