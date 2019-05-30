@@ -41,7 +41,7 @@
               </li>
             </ul>
             <form>
-              <input type="search" name="q" class="form-control bg-light search-input" placeholder="Search" autocomplete="off">
+              <input type="search" name="q" class="form-control bg-light" placeholder="Pesquise aqui.." autocomplete="off">
             </form>
             <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -101,6 +101,10 @@
 
     <!-- Main layout -->
     <main>
+
+    <div id="app">
+      {{message}}
+    </div>
 
       @yield('content')
 
