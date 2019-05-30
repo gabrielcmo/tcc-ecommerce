@@ -15,7 +15,7 @@
 
     <title>@yield('title')</title>
 </head>
-<body>
+<body ng-app="search">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
         <!-- Navbar content -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
           <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
+                <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-list"></i> Categorias</a>
@@ -40,11 +40,9 @@
                 <a class="nav-link" href="#"><i class="fas fa-newspaper"></i> Sobre</a>
               </li>
             </ul>
-            <form class="typeahead" role="search">
+            <form>
               <input type="search" name="q" class="form-control bg-light search-input" placeholder="Search" autocomplete="off">
             </form>
-
-
             <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -118,13 +116,10 @@
     <!-- SCRIPTS -->
 
       <!-- JQuery -->
-      <script type="text/javascript" src="js/jquery.min.js"></script>
-
-      <!-- Angular -->
-      <script type="text/javascript" src="js/angular.min.js"></script>
+      <script type="text/javascript" src="/js/jquery.min.js"></script>
 
       <!-- Bootstrap core JavaScript -->
-      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/js/bootstrap.min.js"></script>
       
       @yield('scripts')
     
