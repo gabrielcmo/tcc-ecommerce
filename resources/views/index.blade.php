@@ -7,10 +7,6 @@
 @endsection
 
 @section('other-contents')
-  @if(Session::has('status'))
-    <p class="alert alert-info"><span>{{ Session::get('status') }}</span></p>
-  @endif
-
   <!-- Page Content -->
     
   <section class="container">

@@ -16,7 +16,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar shadow rounded navbar-expand-lg navbar-light" style="background-color: #f3f2f1;">
       <a class="navbar-brand" href="{{ route('landing') }}"><img src="{{ asset('/img/doomus.png') }}" width="130px" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,6 +26,9 @@
           <input class="form-control mr-sm-2 col-lg-12" id="search" type="search" placeholder="Pesquise por produtos, temos muitos!" aria-label="Search">
         </form>
         <div class="dropdown-menu" aria-labelledby="search" id="result">
+          <div class="dropdown-menu col-md-4" id="result">
+          <h6>sugestoes:</h6>
+          </div>
         </div>
         <ul class="navbar-nav">
           @auth
@@ -72,7 +75,15 @@
       </a>
     </nav>
     <br>
-    
+    @if(Session::has('status'))
+      <div class="alert alert-info alert-dismissible fade show container" role="alert">
+        <strong>{{ Session::get('status') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+
     @yield('other-contents')
 
     <!-- Main layout -->
