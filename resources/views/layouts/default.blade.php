@@ -26,9 +26,6 @@
           <input class="form-control mr-sm-2 col-lg-12" id="search" type="search" placeholder="Pesquise por produtos, temos muitos!" aria-label="Search">
         </form>
         <div class="dropdown-menu" aria-labelledby="search" id="result">
-          <div class="dropdown-menu col-md-4" id="result">
-          <h6>sugestoes:</h6>
-          </div>
         </div>
         <ul class="navbar-nav">
           @auth
@@ -126,7 +123,7 @@
 
           $('#search').keyup(function(){
             var query = $(this).val();
-
+            
             fetch_data(query);
           });
         });
