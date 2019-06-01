@@ -15,90 +15,64 @@
 
     <title>@yield('title')</title>
 </head>
-<body ng-app="search">
+<body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <!-- Navbar content -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a class="navbar-brand" href="{{ route('landing') }}"><img src="{{ asset('/img/doomus.png') }}" width="130px" alt=""></a>
-
-          <div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </div>
-
-          <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-list"></i> Categorias</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-newspaper"></i> Sobre</a>
-              </li>
-            </ul>
-              <input type="text" id="search" name="search" class="form-control" placeholder="Pesquise aqui.." autocomplete="off"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="dropdown-menu" aria-labelledby="search" id="record">
-              <span id="total_records"></span>
-            </div>
-            <div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.cart') }}"><i class="fas fa-shopping-cart"></i>
-                  @if(Cart::count() > 0)
-                      <span class="badge badge-light">{{ Cart::count() }}</span>
-                  @endif
+      <a class="navbar-brand" href="{{ route('landing') }}"><img src="{{ asset('/img/doomus.png') }}" width="130px" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <form class="form-inline my-2 my-lg-0 mx-5 w-75">
+          <input class="form-control mr-sm-2 col-lg-12" id="search" type="search" placeholder="Pesquise por produtos, temos muitos!" aria-label="Search">
+        </form>
+        <div class="dropdown-menu" aria-labelledby="search" id="result">
+        </div>
+        <ul class="navbar-nav">
+          @auth
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mx-4 mr-2" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i> {{ Auth::user()->name }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
+                <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+                    {{ __('Sair') }}
                 </a>
-              </li>
 
-              @guest
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-user"></i> </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ route('login')  }}">Login</a>
-                    <a class="dropdown-item" href="{{ route('register')  }}">Registro</a>
-                </div>
-              </li>
-              @else
-              <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <i class="fas fa-user"></i>&nbsp; {{ Auth::user()->name }} <span class="caret"></span>
-                  </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+              </div>
+            </li>
+          @endauth
+          @guest
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mx-4 mr-2" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i> olá, entre com sua conta ou cadastre-se
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+              <a class="dropdown-item" href="{{ route('register') }}">
+                  {{ __('Registrar') }}
+              </a>
 
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </div>
-              </li>
-              @endguest
-          </ul>
-
-            <div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
             </div>
-
-          </div>
-    </nav><br>
-
+          </li>
+          @endguest
+        </ul>
+      </div>
+      <a class="btn btn-info mx-2 mr-2" href="{{ route('user.cart') }}"><i class="fas fa-shopping-cart"></i>
+        @if(Cart::count() > 0)
+          <span class="badge badge-light">{{ Cart::count() }}</span>
+        @endif
+      </a>
+    </nav>
+    <br>
+    
     @yield('other-contents')
 
     <!-- Main layout -->
@@ -125,9 +99,6 @@
       <!-- Bootstrap core JavaScript -->
       <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
-       <!-- AJAX  -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
       <script>
         $(document).ready(function(){
           function fetch_data(query = ''){
@@ -135,15 +106,14 @@
               url: "{{ route('search') }}",
               method: 'GET',
               data: {query:query},
-              dataType: 'json',
-              success:function(data){
-                $('#record').html(data.ul_data);
-                $('#total_records').text(data.ul_total);
+              success:function(result){
+                $('#result').fadeIn();
+                $('#result').html(result);
               }
             });
           }
 
-          $(document).on('keyup', '#search', function(){
+          $('#search').keyup(function(){
             var query = $(this).val();
 
             fetch_data(query);

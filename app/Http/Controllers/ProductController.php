@@ -18,26 +18,22 @@ class ProductController extends Controller
             if($query !== ''){
                 $data = Product::where('name', 'like', '%'.$query.'%')
                     ->orWhere('id', 'like', '%'.$query.'%')
-                    ->orderBy('id', 'DESCS')
+                    ->orderBy('id', 'DESC')
                     ->get();
 
                 $total_qtd = $data->count();
             }
 
             if($total_qtd > 0){
-                foreach($data as $product){
-                    $output = "<a href="."/produto/$product->id"." class='dropdown-item'> {{$product->name}} &nbsp;&nbsp; {{$product->category}} </a>";
+                $output = '';
+                foreach($data as $row){
+                    $output .= "<a href="."/produto/$row->id"." class='dropdown-item'>$row->name</a>";
                 }
             }else{
-                $output = '<p>Nada encontrado</p>';
+                $output = '<a class="dropdown-item">Nada encontrado</a>';
             }
 
-            $data = [
-                'ul_data' => $output,
-                'ul_total' => $total_qtd
-            ];
-
-            echo json_encode($data);
+            return response($output);
         } 
     }
 
