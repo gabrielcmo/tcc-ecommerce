@@ -19,12 +19,28 @@ class UserController extends Controller
      * @param $product_id
      * @return \Illuminate\Http\Response
      */
-    public function addToCart($product_id)
+    public function addToCart(Request $request, $product_id = null)
     {
+        if($product_id !== null){
+            $product = Product::find($product_id);
+
+            $name = $product->name;
+            $qtd = 1;
+            $price = $product->price;
+
+            Cart::add($product_id, $name, $qtd, $price)->associate('Product');
+
+            Session::flash('status', 'Produto adicionado ao carrinho');
+
+            return back();    
+        }
+
+        $product_id = $request->get('product_id');
+        $qtd = $request->get('qty');
+
         $product = Product::find($product_id);
 
         $name = $product->name;
-        $qtd = 1;
         $price = $product->price;
 
         Cart::add($product_id, $name, $qtd, $price)->associate('Product');

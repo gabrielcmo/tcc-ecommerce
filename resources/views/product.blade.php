@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+  <form action="{{ route('cart.add') }}" method="get">
   <section class="container">
     <div class="row">
       <section class="col-12 d-none d-md-block">
@@ -70,12 +71,14 @@
             <p>{{ $product->details }}</p>
           </div>
         </div>
+        <input type="hidden" name="product_id" value="{{$product->id}}">
         <div class="form-group row">
           <div class="col-sm-9 col-md-9">
-            <a href="/carrinho/{{$product->id}}/add" class="btn btn-dark">Adicionar ao carrinho</a>  
+            <button type="submit" class="btn btn-dark">Adicionar ao carrinho</button>  
           </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
 @endsection
