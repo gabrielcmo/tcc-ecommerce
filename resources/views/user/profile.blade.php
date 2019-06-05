@@ -9,7 +9,7 @@
         <div class="row">
                 <div class="form-group col-md-12">
                     @if($user->image !== null)
-                        <img src="/img/avatars/{{$user->image}}" class="rounded mx-auto d-block" alt="Foto de perfil">
+                        <img src="/img/avatars/{{$user->image}}" class="rounded float-left" width="200px" height="200px" class="rounded mx-auto d-block" alt="Foto de perfil">
                     @endif
                     <div class="form-group">
                         <input type="file" class="form-control" name="image">

@@ -21,8 +21,13 @@ class UserController extends Controller
      */
     public function addToCart(Request $request, $product_id = null)
     {
+        $product = $product_id !== null ? Product::find($product_id) : Product::find($request->get('product_id'));
+
+        $request->validate([
+            'qty' => "required|max:$product->qtd_last"
+        ]);
+
         if($product_id !== null){
-            $product = Product::find($product_id);
 
             $name = $product->name;
             $qtd = 1;
@@ -37,8 +42,6 @@ class UserController extends Controller
 
         $product_id = $request->get('product_id');
         $qtd = $request->get('qty');
-
-        $product = Product::find($product_id);
 
         $name = $product->name;
         $price = $product->price;
