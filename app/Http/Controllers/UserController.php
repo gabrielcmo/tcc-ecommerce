@@ -10,6 +10,7 @@ use Doomus\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Hash;
+use Doomus\Http\Requests\AddToCart;
 
 class UserController extends Controller
 {
@@ -19,13 +20,16 @@ class UserController extends Controller
      * @param $product_id
      * @return \Illuminate\Http\Response
      */
-    public function addToCart(Request $request, $product_id = null)
+    public function addToCart(AddToCart $request, $product_id = null)
     {
         $product = $product_id !== null ? Product::find($product_id) : Product::find($request->get('product_id'));
 
-        $request->validate([
-            'qty' => "required|max:$product->qtd_last"
-        ]);
+        if($request->get('qty') !== null && $request->get('qty') > $product->qtd_last){
+            Session::flash('status', "Desculpe, nós só temos mais $product->qtd_last restante desse produto no estoque..
+                Adicione até esse valor!");
+            Session::flash('status-type', 'danger');
+            return back();
+        }
 
         if($product_id !== null){
 
@@ -40,13 +44,12 @@ class UserController extends Controller
             return back();    
         }
 
-        $product_id = $request->get('product_id');
         $qtd = $request->get('qty');
 
         $name = $product->name;
         $price = $product->price;
 
-        Cart::add($product_id, $name, $qtd, $price)->associate('Product');
+        Cart::add($request->get('product_id'), $name, $qtd, $price)->associate('Product');
 
         Session::flash('status', 'Produto adicionado ao carrinho');
 

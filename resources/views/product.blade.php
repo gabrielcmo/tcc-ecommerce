@@ -42,8 +42,13 @@
         <div class="form-group row">
           <label for="Quantity" class="col-sm-3 col-md-3 form-control-label">Quantidade:</label>
           <div class="col-sm-8 col-md-9">
-            <input type="number" class="qty form-control" ng-name="qty" id="input-qty" name="qty" min='1' maxlength="3" value="1" >
+            <input type="number" class="form-control{{ $errors->has('qty') ? ' is-invalid' : '' }}" name="qty" min='1' max="100" value="1" >
           </div>
+          @if ($errors->has('qty'))
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $errors->first('qty') }}</strong>
+            </span>
+          @endif
         </div>
         <div class="form-group product-stock product-out-stock row hidden">
           <div class="col-sm-8 col-md-9 mx-auto">
