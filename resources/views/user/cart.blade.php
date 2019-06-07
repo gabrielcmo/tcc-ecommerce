@@ -52,7 +52,7 @@
             </tbody>
         </table>
     </div><br>
-    <a class="btn btn-success" href="/checkout">Fazer pedido</a>
+    <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
     </div>
 </div>
 @endsection
