@@ -19,9 +19,9 @@ class Admin
     {
         $user = Auth::user();
 
-        if(empty($user) || $user['role_id'] !== 1)
-        {
+        if(empty($user) || $user['role_id'] !== 1){
             Session::flash('status', 'Acesso negado');
+            Session::flash('status-type', 'danger');
             return redirect('/');
         }
 

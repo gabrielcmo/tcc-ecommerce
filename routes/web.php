@@ -1,10 +1,5 @@
 <?php
 
-use Doomus\User;
-use Doomus\Historic;
-use Doomus\Order;
-use Doomus\CartProduct;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,8 +62,9 @@ Route::get('/carrinho', 'UserController@showCart')->name('user.cart');
  * Admin routes
  * */
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
-    Route::resource('produto', 'ProductController');
-    Route::resource('categoria', 'CategoryController');
+    Route::get('/', 'AdminController@index')->name('admin.index');
+    Route::get('/products', 'AdminController@products')->name('admin.products');
+    Route::get('/orders', 'AdminController@orders')->name('admin.orders');
 });
 
 /*
