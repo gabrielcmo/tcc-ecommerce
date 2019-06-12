@@ -5,27 +5,19 @@ namespace Doomus\Http\Controllers;
 use Doomus\Historic;
 use Illuminate\Http\Request;
 use Session;
+use Doomus\Http\Controllers\UserController as User;
 
 class HistoricController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+     /**
+     * Display the specified resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $historic = User::getHistoric();
+        return view('user.historic')->with('historic', $historic);
     }
 
     /**
@@ -45,42 +37,6 @@ class HistoricController extends Controller
         $historic->save();
 
         return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Doomus\Historic  $historic
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Historic $historic)
-    {
-        $historic_of_user = $historic->id;
-
-        return view('admin.historic.show')->with('historic', $historic_of_user);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Doomus\Historic  $historic
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Historic $historic)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Doomus\Historic  $historic
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Historic $historic)
-    {
-        //
     }
 
     /**

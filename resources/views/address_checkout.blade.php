@@ -12,7 +12,7 @@
             <div class="col-md-6">
                 <h4>Dados de entrega</h4>
                 <br>
-                <form action="/checkout/post" method="post">
+                <form action="/checkout/address/data" method="post">
                     @csrf
                     <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name" placeholder="Nome completo">
                     @if ($errors->has('name'))

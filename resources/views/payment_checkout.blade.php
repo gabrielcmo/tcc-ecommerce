@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>Formas de pagamento</h3><br>
-                <a href="/obrigado" class="btn btn-success">Pagar com PayPal</a><br><br>
+                <a href="/sucesso" class="btn btn-success">Pagar com PayPal</a><br><br>
                 <h6>Cartão de crédito</h6><br>
                 <h6>Boleto bancário</h6>
                 <a href="#">Gerar boleto</a>

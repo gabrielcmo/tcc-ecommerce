@@ -11,42 +11,48 @@
 |
 */
 
+/* 
+* Rotas da autentificação
+*/
 Auth::routes();
 
+/* 
+* Rota da página inicial 
+*/
 Route::get('/', 'IndexController@index')->name('landing');
 
-Route::get('/find', 'ProductController@find')->name('search');
+Route::get('/find', 'SearchController@find')->name('search');
 
-Route::get('/produto/{id}', 'ProductController@showProduct');
+Route::get('/produto/{id}', 'ProductController@show');
 
 Route::group(['middleware' => ['auth']], function (){
     /*
-     * Views
+     * User views
      * */
     Route::get('/perfil', 'UserController@showProfile')->name('perfil');
     Route::post('/perfil/update', 'UserController@updateProfile');
-    Route::get('/pedidos', 'UserController@showOrders');
-    Route::get('/historico', 'UserController@showHistoric');
+    Route::get('/pedidos', 'OrderController@show');
+    Route::get('/historico', 'HistoricController@show');
 
     /*
-     * Check information to make a order
+     * Checkout
      * */
-    Route::get('/checkout', 'OrderController@checkView');
-    Route::post('/checkout/post', 'OrderController@checkoutData');
-
-    Route::get('/obrigado', 'OrderController@showThanksView');
+    Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');
+    Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
+    Route::post('/checkout/address/data', 'CheckoutController@addressData');
+    Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
+    Route::get('/sucesso', 'CheckoutController@success');
 
     /*
-     * Order create
+     * Order
      * */
-    Route::post('/pedido', 'OrderController@create');
     Route::get('/pedido/cancel', 'OrderController@cancel');
     Route::get('/pedido/rastrear', 'OrderController@track');
 
     /*
      * Support page
      * */
-    Route::get('/suporte', 'SuporteController@index')->name('suporte');
+    Route::get('/suporte', 'SuporteController@show')->name('suporte');
 });
 
 /*
