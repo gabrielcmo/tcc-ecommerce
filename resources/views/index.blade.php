@@ -17,9 +17,7 @@
           </ol>
         </section>
       </div>
-    </section>
 
-  <div class="container">
     <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
@@ -53,11 +51,11 @@
       @endforeach
     <br>
     <div class="jumbotron jumbotron-fluid">
-      <div class="container">
         <h1 class="display-4">Fluid jumbotron</h1>
         <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
       </div>
-  </div>
+    </div>
+  </section>
 @endsection
 
 @section('content')
