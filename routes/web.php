@@ -71,6 +71,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::get('/', 'AdminController@index')->name('admin.index');
     Route::get('/products', 'AdminController@products')->name('admin.products');
     Route::get('/orders', 'AdminController@orders')->name('admin.orders');
+    Route::get('/product/{product_id}/destroy', 'ProductController@destroy');
+    Route::get('/product/{product_id}/edit', 'ProductController@formEdit');
+    Route::post('/product/edit/data', 'ProductController@store')->name('admin.product.store');
+    Route::post('/product/create', 'ProductController@create')->name('admin.createProduct');
 });
 
 /*

@@ -13,16 +13,51 @@
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" >
 </head>
 <body>
-    <nav class="navbar navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="">Doomus - Painel de controle</a>
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.index') }}">Home</a>
-            <a class="nav-link" href="{{ route('admin.products') }}">Produtos</a>
-            <a class="nav-link" href="{{ route('admin.orders') }}">Pedidos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-link">
+                    <a class="nav-link" href="{{ route('admin.index') }}">Home</a>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-link" href="{{ route('admin.products') }}">Produtos</a>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-link" href="{{ route('admin.orders') }}">Pedidos</a>
+                </li>
+            </ul>
         </div>
     </nav>
+    <br>
+
+    @if(Session::has('status'))
+      @if(Session::has('status-type'))
+        <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
+          <strong>{{ Session::get('status') }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @else
+        <div class="alert alert-info alert-dismissible fade show container" role="alert">
+          <strong>{{ Session::get('status') }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
+    @endif
+
     <div class="container">
         @yield('content')
     </div>
+
+    
+    <link href="{{ asset('/js/jquery.min.js') }}" rel="stylesheet" >
+    <link href="{{ asset('/js/bootstrap.min.js') }}" rel="stylesheet" >
 </body>
 </html>
