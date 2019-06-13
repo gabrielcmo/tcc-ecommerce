@@ -19,4 +19,9 @@ class AdminController extends Controller
     public function orders(){
         return view('admin.orders')->with('orders', Order::all());
     }
+
+    public function support(){
+        // return view('support')->with('messages', Support::all());
+        return view('admin.support');
+    }
 }

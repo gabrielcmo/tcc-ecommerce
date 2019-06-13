@@ -14,20 +14,23 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="">Doomus - Painel de controle</a>
+        <a class="navbar-brand" href="{{ route('admin.index') }}">Doomus - Painel de controle</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-link">
-                    <a class="nav-link" href="{{ route('admin.index') }}">Home</a>
-                </li>
-                <li class="nav-link">
                     <a class="nav-link" href="{{ route('admin.products') }}">Produtos</a>
                 </li>
                 <li class="nav-link">
                     <a class="nav-link" href="{{ route('admin.orders') }}">Pedidos</a>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-link" href="{{ route('admin.support') }}">Suporte &nbsp;<span class="badge badge-dark">20</span></a>
+                </li>
+                <li class="nav-link">
+                    <a class="nav-link" href="{{ route('landing') }}">Ir para página inicial</a>
                 </li>
             </ul>
         </div>
@@ -57,7 +60,10 @@
     </div>
 
     
-    <link href="{{ asset('/js/jquery.min.js') }}" rel="stylesheet" >
-    <link href="{{ asset('/js/bootstrap.min.js') }}" rel="stylesheet" >
+    <!-- JQuery -->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </body>
 </html>

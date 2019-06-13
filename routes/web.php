@@ -58,23 +58,40 @@ Route::group(['middleware' => ['auth']], function (){
 /*
  * Cart routes
  * */
-Route::get('/carrinho/{product_id}/add/', 'UserController@addToCart');
-Route::get('/carrinho/add/', 'UserController@addToCart')->name('cart.add');
-Route::get('/carrinho/delete', 'UserController@clearCart')->name('cart.clear');
-
-Route::get('/carrinho', 'UserController@showCart')->name('user.cart');
+Route::get('/carrinho/{product_id}/add/', 'CartController@addToCart');
+Route::get('/carrinho/add/', 'CartController@addToCart')->name('cart.add');
+Route::get('/carrinho/delete', 'CartController@clearCart')->name('cart.clear');
+Route::get('/carrinho', 'CartController@show')->name('user.cart');
 
 /*
  * Admin routes
  * */
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
+    /*
+    *   Landing page admin 
+    */
     Route::get('/', 'AdminController@index')->name('admin.index');
+    
+    /*
+    *   Produtos 
+    */
     Route::get('/products', 'AdminController@products')->name('admin.products');
-    Route::get('/orders', 'AdminController@orders')->name('admin.orders');
     Route::get('/product/{product_id}/destroy', 'ProductController@destroy');
     Route::get('/product/{product_id}/edit', 'ProductController@formEdit');
-    Route::post('/product/edit/data', 'ProductController@store')->name('admin.product.store');
-    Route::post('/product/create', 'ProductController@create')->name('admin.createProduct');
+    Route::post('/product/edit/data', 'ProductController@update')->name('admin.product.update');
+    Route::get('/product/create', 'ProductController@create')->name('admin.createProduct');
+    Route::post('/product/create/data', 'ProductController@store')->name('admin.product.store');
+
+    /*
+    *   Pedidos 
+    */
+    Route::get('/orders', 'AdminController@orders')->name('admin.orders');
+    Route::post('/order/cancel', 'AdminController@cancel')->name('admin.order.cancel');
+    
+    /*
+    *   Suporte 
+    */
+    Route::get('/support', 'AdminController@support')->name('admin.support');
 });
 
 /*

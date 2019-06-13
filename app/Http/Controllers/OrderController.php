@@ -30,18 +30,16 @@ class OrderController extends Controller
         return view('user.order')->with('orders', $orders);
     }
 
-    public function track(){
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \Doomus\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function cancel(Order $order)
+    public function cancel(Request $request)
     {
+        $order = Order::find($request->id);
+        
         //
     }
 }

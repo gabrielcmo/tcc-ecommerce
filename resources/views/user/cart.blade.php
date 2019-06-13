@@ -27,6 +27,8 @@
                     @endforeach
                 </tbody>
             </table>
+            
+    <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
             </div>
             <div class="col-md-3">
                 <table class="table">
@@ -48,8 +50,7 @@
                         </tr>
                     </thead>
                 </table>
-        </div><br>
-    <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
+        </div>
     </div>
 </div>
 @endsection
