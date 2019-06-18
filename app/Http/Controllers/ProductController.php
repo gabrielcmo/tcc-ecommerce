@@ -30,6 +30,12 @@ class ProductController extends Controller
     public function store(Request $request){
         $product = new Product();
 
+        if($request->hasFile('image')){
+            $filename = time().'.'.request()->image->getClientOriginalExtension();
+
+            request()->image->move(public_path('img/products'), $filename);
+        }
+
         $product->name = $request->name;
         $product->details = $request->details;
         $product->description = $request->description;
@@ -58,6 +64,12 @@ class ProductController extends Controller
     */
     public function update(Request $request){
         $product = Product::find($request->product_id);
+
+        if($request->hasFile('image')){
+            $filename = time().'.'.request()->image->getClientOriginalExtension();
+
+            request()->image->move(public_path('img/products'), $filename);
+        }
 
         $product->name = $request->name;
         $product->details = $request->details;

@@ -22,10 +22,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <form class="form-inline my-2 my-lg-0 mx-5 w-75">
-          <input class="form-control mr-sm-2 col-lg-12" id="search" type="search" placeholder="Pesquise por produtos, temos muitos!" aria-label="Search">
-        </form>
-        <div class="dropdown-menu" aria-labelledby="search" id="result">
+        <div class="dropdown my-2 my-lg-0 mx-5 w-75">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2 col-lg-12" id="search" type="search" placeholder="Pesquise por produtos!" aria-label="Search">
+              </form>
+              <div class="dropdown-menu" aria-labelledby="search" id="result">
+              </div>
         </div>
         <ul class="navbar-nav">
           @auth
@@ -93,8 +95,6 @@
 
     <!-- Main layout -->
     <main>
-
-
     
       @yield('content')
 

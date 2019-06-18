@@ -12,6 +12,7 @@
         @csrf
         <div class="row">
             <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <img src="{{ asset("img/products/$product->image") }}" class="rounded mx-auto d-block" alt="Produto">
             <div class="form-group col-md-6">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" name="name" id="name" value="{{ $product->name }}">

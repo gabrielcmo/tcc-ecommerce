@@ -45,8 +45,11 @@
       </a>
     </div>
     </div>
-    <br>
-      @foreach($products as $product)
+  </section>
+@endsection
+
+@section('content')
+@foreach($products as $product)
         <a href="/carrinho/{{ $product->id }}/add">Adicionar produto {{ $product->name }} ao carrinho</a><br>
       @endforeach
     <br>
@@ -55,11 +58,6 @@
         <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
       </div>
     </div>
-  </section>
-@endsection
-
-@section('content')
-  {{-- {{ debug($products, $categories) }} --}}
 @endsection
 
 @section('scripts')

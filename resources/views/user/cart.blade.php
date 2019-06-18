@@ -4,6 +4,9 @@
 
 @section('content')
 <div class="container">
+    @if(Cart::count() == 0)
+        <h2>Seu carrinho está vazio!</h2>
+    @else
     <a class="btn btn-danger" href="/carrinho/delete">Limpar carrinho</a><br><br>
     <div class="row">
         <div class="col-md-9">
@@ -27,30 +30,30 @@
                     @endforeach
                 </tbody>
             </table>
-            
-    <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
-            </div>
-            <div class="col-md-3">
-                <table class="table">
-                    <thead class="thead-dark ">
-                        <tr>
-                            <th colspan="2" class="text-center">Pedido</th>
-                        </tr>
-                        <tr>
-                            <th>Subtotal</th>
-                            <td>{{ Cart::subtotal() }}</td>
-                        </tr>
-                        <tr>
-                            <th>Taxa</th>
-                            <td>{{ Cart::tax() }}</td>
-                        </tr>
-                        <tr>
-                            <th>Total</th>
-                            <td>{{ Cart::total() }}</td>
-                        </tr>
-                    </thead>
-                </table>
+        <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
+        </div>
+        <div class="col-md-3">
+            <table class="table">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th colspan="2" class="text-center">Pedido</th>
+                    </tr>
+                    <tr>
+                        <th>Subtotal</th>
+                        <td>{{ Cart::subtotal() }}</td>
+                    </tr>
+                    <tr>
+                        <th>Taxa</th>
+                        <td>{{ Cart::tax() }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td>{{ Cart::total() }}</td>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
+    @endif
 </div>
 @endsection
