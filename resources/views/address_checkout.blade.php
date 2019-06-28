@@ -6,6 +6,10 @@
 
 @section('content')
     <div class="container">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
+        </div>
+
         <h2>Olá, {{ $user->name }}!</h2><br>
 
         <div class="row">

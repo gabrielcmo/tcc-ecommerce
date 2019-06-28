@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('products')->insert([
-            'name' => 'Endredom',
+            'name' => 'Edredom',
             'details' => 'Macio e quente',
             'description' => 'Com ótimo material, é excelente para esquentar sua noite',
             'qtd_last' => 33,

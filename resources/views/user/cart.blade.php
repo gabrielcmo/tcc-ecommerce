@@ -30,7 +30,10 @@
                     @endforeach
                 </tbody>
             </table>
-        <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
+        <a class="btn btn-success" href="/checkout/endereco" onclick="displaySpinner();">
+            <span style="display:none;" id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Fazer pedido
+        </a>
         </div>
         <div class="col-md-3">
             <table class="table">
@@ -56,4 +59,14 @@
     </div>
     @endif
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    function displaySpinner(){
+        var x = document.getElementById('spinner');
+        x.style.display = 'inline-block';
+        x.style.padding = '2.5px';
+    }
+</script>
 @endsection
