@@ -15,10 +15,10 @@ class AdminController extends Controller
     public function products(){
         $products = Product::all();
 
-        $array[] = ['Nome', 'Quantidade', 'Valor', 'Categoria'];
+        $array[] = ['Product ID', 'Nome', 'Quantidade', 'Valor', 'Categoria'];
 
         foreach($products as $key => $data){
-            $array[] = [$data->name, $data->qtd_last, $data->price, $data->category->name];
+            $array[] = [$data->id, $data->name, $data->qtd_last, $data->price, $data->category->name];
         }
 
         return view('admin.products')->with('products', json_encode($array));    

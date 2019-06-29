@@ -16,8 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         $cart1 = new Cart();
         $cart2 = new Cart();
+        $cart3 = new Cart();
         $cart1->save();
         $cart2->save();
+        $cart3->save();
 
         DB::table('roles')->insert([
             'name' => 'client',
@@ -28,11 +30,20 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'image' => 'user-placeholder.jpg',
+            'name' => 'Cliente',
+            'email' => 'cliente'.'@doomus.com',
+            'password' => bcrypt('secret'),
+            'cart_id' => 3,
+            'role_id' => 2,
+        ]);
+
+        DB::table('users')->insert([
+            'image' => 'user-placeholder.jpg',
             'name' => 'Gabriel',
             'email' => 'gabriel'.'@doomus.com',
             'password' => bcrypt('secret'),
             'cart_id' => 1,
-            'role_id' => 2,
+            'role_id' => 1,
         ]);
         
         DB::table('users')->insert([
@@ -70,6 +81,246 @@ class DatabaseSeeder extends Seeder
             'height' => 20.0,
             'price' => 4.99,
             'category_id' => 3,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Edredom',
+            'details' => 'Macio e quente',
+            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_last' => 33,
+            'weight' => 466.2,
+            'width' => 200.0,
+            'height' => 150.0,
+            'price' => 79.99,
+            'category_id' => 1,
         ]);
         
         DB::table('products')->insert([
