@@ -13,7 +13,15 @@ class AdminController extends Controller
     }
 
     public function products(){
-        return view('admin.products')->with('products', Product::all());    
+        $products = Product::all();
+
+        $array[] = ['Nome', 'Quantidade', 'Valor', 'Categoria'];
+
+        foreach($products as $key => $data){
+            $array[] = [$data->name, $data->qtd_last, $data->price, $data->category->name];
+        }
+
+        return view('admin.products')->with('products', json_encode($array));    
     }
 
     public function orders(){
