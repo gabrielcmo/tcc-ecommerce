@@ -408,5 +408,53 @@ class DatabaseSeeder extends Seeder
             'product_id' => 4,
             'status_id' => 3,
         ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 1,
+            'product_id' => 3,
+            'payment_method_id' => 1
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 1,
+            'product_id' => 3,
+            'payment_method_id' => 1
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 1,
+            'product_id' => 3,
+            'payment_method_id' => 1
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 1,
+            'product_id' => 3,
+            'payment_method_id' => 1
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 1,
+            'product_id' => 3,
+            'payment_method_id' => 1
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 1,
+            'product_id' => 4,
+            'payment_method_id' => 1
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 1,
+            'product_id' => 2,
+            'payment_method_id' => 1
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 1,
+            'product_id' => 1,
+            'payment_method_id' => 1
+        ]);
     }
 }

@@ -4,7 +4,7 @@
 
 @section('content')
     <h2>Produtos</h2>
-
+    <br>
     <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
 
     <div id="products_table"></div>
@@ -31,8 +31,6 @@
                 var product_id = analytics[i+1][0];
                 data.setCell(i, 5, "<a href=" + "/admin/product/" + product_id + "/edit" + "><i class='fas fa-pencil-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=" + "/admin/product/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>");
             }
-
-            console.log(analytics);
 
             var table = new google.visualization.Table(document.getElementById('products_table'));
 

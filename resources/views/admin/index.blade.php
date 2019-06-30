@@ -14,14 +14,16 @@
             <div id="piechart"></div>
         </div>
     </div>
+
+    {{ debug(($qtdPedidosMes), $qtdPedidosStatus) }}
 @endsection
 
 @section('scripts')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-        var qtdPedidosMes = {!! $qtdPedidosMes !!}
-        var qtdPedidosStatus = {!! $qtdPedidosStatus !!}
+        var qtdPedidosMes = {!! $qtdPedidosMes !!};
+        var qtdPedidosStatus = {!! $qtdPedidosStatus !!};
 
         google.charts.load('current', {'packages':['line', 'corechart']});
         google.charts.setOnLoadCallback(drawChart);
@@ -29,11 +31,7 @@
 
         function drawChart() {
 
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', 'Mês');
-            data.addColumn('number', 'Vendas');
-
-            data.google.visualization.arrayToDataTable(qtdPedidosMes);
+            var data = new google.visualization.arrayToDataTable(qtdPedidosMes);
 
             var options = {
                 chart: {
@@ -54,7 +52,7 @@
             var data = google.visualization.arrayToDataTable(qtdPedidosStatus);
 
             var options = {
-                title: 'Pedidos'
+                title: 'Pedidos e status'
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));

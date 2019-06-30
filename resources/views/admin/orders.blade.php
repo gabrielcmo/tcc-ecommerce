@@ -6,38 +6,31 @@
     <h2>Pedidos</h2>
     <br>
 
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Produto</th>
-                <th scope="col">Usuário</th>
-                <th scope="col">Status</th>
-                <th scope="col">Método de pagamento</th>
-                <th scope="col">Editar</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($orders as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->product }}</td>
-                    <td>{{ $item->user }}</td>
-                    <td>{{ $item->payment_method }}</td>
-                    <td>{{ $item->status }}</td>
-                    <td>
-                        <a onclick='event.preventDefault();
-                            if(confirm("Cancelar pedido?")){document.getElementById("cancel-order")}'>
-                            <i class="fas fa-remove"></i></a>
+    <div id="orders_table"></div>
+@endsection
 
-                        <form action="{{ route('admin.order.cancel') }}" method="post">
-                            @csrf
+@section('scripts')
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-                            <input type="hidden" name="order_id" value="{{ $item->id }}">
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <script type="text/javascript">
+        var orders = {!! $orders !!};
+        google.charts.load('current', {'packages':['table']});
+        google.charts.setOnLoadCallback(drawTable);
+
+        function drawTable() {
+            var data = new google.visualization.arrayToDataTable(orders);
+            data.addColumn('string', 'Editar');
+
+            
+            for(var i = 0; i < data.getNumberOfRows(); i++){
+                var order_id = orders[i+1][0];
+                data.setCell(i, 5, "<a href=" + "/admin/order/" + order_id + "/destroy" + "><i class='fas fa-trash'></i></a>");
+            }
+
+
+            var table = new google.visualization.Table(document.getElementById('orders_table'));
+
+            table.draw(data, {allowHtml: true, showRowNumber: true, width: '100%', height: '100%'});
+        }
+    </script>
 @endsection
