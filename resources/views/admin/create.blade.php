@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    Painel de Controle - Criar produto
-@endsection
+@section('title', 'Painel de Controle - Criar produto')
 
 @section('content')
     <h2>Criar produto</h2>

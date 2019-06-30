@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    Painel inicial - Suporte
-@endsection
+@section('title', 'Painel inicial - Suporte')
 
 @section('content')
     <h2>Mensagens</h2>

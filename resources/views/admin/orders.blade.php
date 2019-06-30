@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    Painel de Controle - Pedidos
-@endsection
+@section('title', 'Painel de Controle - Pedidos')
 
 @section('content')
     <h2>Pedidos</h2>

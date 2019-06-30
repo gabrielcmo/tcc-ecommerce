@@ -1,8 +1,10 @@
 @extends('layouts.default')
 
-@section('title')
-    {{ $product->name }}
+@section('stylesheets')
+  <link href="{{ asset('/css/styleHome.css') }}" rel="stylesheet"/>
 @endsection
+
+@section('title', $product->name)
 
 @section('content')
   <form action="{{ route('cart.add') }}" method="get">
@@ -19,7 +21,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="page-header">{{ $product->name }}</h1>
+        <h2 class="page-header">{{ $product->name }}</h2>
       </div>
     </div>
     <div class="row">
@@ -27,7 +29,7 @@
         <div class="">
           @foreach($product->image as $image)
             <div class="main-product-image">
-              <img src="/img/products/{{$image->filename}}" alt="DualShock Controller for PlayStation 4" class="img-fluid">
+              <img src="/img/products/{{$image->filename}}" alt="Product" class="img-fluid">
             </div>
           @endforeach
         </div>
@@ -83,7 +85,38 @@
           </div>
         </div>
       </div>
-      </form>
+      </form><br><br>
+      <div class="col-md-12">
+        <h2>Outros produtos</h2><br>
+      </div>
+
+      <?php $i = 0; ?>
+      @foreach(Doomus\Product::all() as $product)
+          <?php $images = $product->image; ?>
+          <div class="col-md-4">
+            <div class="card">
+              @foreach($product->image as $image)
+                @if(isset($image) && $image !== null && $image->filename !== null || $image->filename !== '')
+                  <div class="card-image">
+                    <img src="/img/products/{{$image->filename}}" alt="Produto" class="img-fluid">
+                  </div>
+                @elseif(!isset($image))  
+                  <div class="card-image">
+                    <img src="/img/doomus.png" alt="Produto" class="img-fluid">
+                  </div>
+                @endif
+              @endforeach
+              <h3 class="card-title">{{ $product->name }}</h3>
+              <a class="btn btn-success" href="/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a><br>      
+            </div>
+          </div>
+        <?php 
+          $i++;
+          if($i == 3){
+            break;
+          }
+        ?>
+      @endforeach
     </div>
   </div>
 @endsection

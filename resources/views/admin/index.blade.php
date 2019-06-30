@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    Painel inicial
-@endsection
+@section('title', 'Painel inicial')
 
 @section('content')
     <h2>Bem-vindo ao painel de controle, {{ Auth::user()->name }}</h2>
@@ -22,8 +20,12 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['line']});
+        var qtdPedidosMes = {!! $qtdPedidosMes !!}
+        var qtdPedidosStatus = {!! $qtdPedidosStatus !!}
+
+        google.charts.load('current', {'packages':['line', 'corechart']});
         google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawChart2);
 
         function drawChart() {
 
@@ -31,20 +33,7 @@
             data.addColumn('number', 'Mês');
             data.addColumn('number', 'Vendas');
 
-            data.addRows([
-                [1,  37],
-                [2,  30],
-                [3,  25],
-                [4,  11],
-                [5,  11],
-                [6,   8],
-                [7,   7],
-                [8,  12],
-                [9,  16],
-                [10, 12],
-                [11,  90],
-                [12,  6]  
-            ]);
+            data.google.visualization.arrayToDataTable(qtdPedidosMes);
 
             var options = {
                 chart: {
@@ -60,17 +49,9 @@
             chart.draw(data, google.charts.Line.convertOptions(options));
         }
 
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart2);
-
         function drawChart2() {
 
-            var data = google.visualization.arrayToDataTable([
-                ['Pedidos', 'Total de pedidos'],
-                ['Aprovados', 111],
-                ['Recusados', 13],
-                ['Cancelados', 20]
-            ]);
+            var data = google.visualization.arrayToDataTable(qtdPedidosStatus);
 
             var options = {
                 title: 'Pedidos'

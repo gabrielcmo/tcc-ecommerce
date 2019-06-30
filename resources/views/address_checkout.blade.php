@@ -4,11 +4,19 @@
     Checkout
 @endsection
 
+@section('stylesheets')
+    <style>
+        .footer{
+            display: none;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="progress">
           <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
-        </div>
+        </div><br>
 
         <h2>Olá, {{ $user->name }}!</h2><br>
 
@@ -18,14 +26,14 @@
                 <br>
                 <form action="/checkout/address/data" method="post">
                     @csrf
-                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name" placeholder="Nome completo">
+                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} col-md-6" type="text" name="name" placeholder="Nome completo">
                     @if ($errors->has('name'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('name') }}</strong>
                         </span>
                     @endif
                     <br>
-                    <input class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }}" type="text" name="cpf" placeholder="CPF">
+                    <input class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }} col-md-6" type="text" name="cpf" placeholder="CPF">
                     @if ($errors->has('cpf'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('cpf') }}</strong>
@@ -39,14 +47,14 @@
                         </span>
                     @endif
                     <br>
-                    <input class="form-control{{ $errors->has('n') ? ' is-invalid' : '' }}" type="number" name="n" placeholder="Número">
+                    <input class="form-control{{ $errors->has('n') ? ' is-invalid' : '' }} col-md-3" type="number" name="n" placeholder="Número">
                     @if ($errors->has('n'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('n') }}</strong>
                         </span>
                     @endif
                     <br>
-                    <select class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" name="state">
+                    <select class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }} col-md-5" name="state">
                         <option value="">Selecione seu estado</option>
                         <option value="SP">São Paulo</option>
                     </select>
@@ -56,7 +64,7 @@
                         </span>
                     @endif
                     <br>
-                    <input class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" type="text" name="city" placeholder="Cidade">
+                    <input class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }} col-md-6" type="text" name="city" placeholder="Cidade">
                     @if ($errors->has('city'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('city') }}</strong>

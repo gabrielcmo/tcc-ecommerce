@@ -1,20 +1,13 @@
 @extends('layouts.admin')
 
-@section('title')
-    Painel de Controle - Produtos
-@endsection
+@section('title', 'Painel de Controle - Produtos')
 
 @section('content')
     <h2>Produtos</h2>
-    <br>
 
     <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
-    
-    <br>
-    <br>
 
     <div id="products_table"></div>
-
 @endsection
 
 @section('scripts')

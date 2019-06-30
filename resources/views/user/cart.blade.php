@@ -2,6 +2,14 @@
 
 @section('title', 'Carrinho')
 
+@section('stylesheets')
+    <style>
+        .footer{
+            position: fixed;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     @if(Cart::count() == 0)
