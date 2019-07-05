@@ -5,7 +5,10 @@
 @section('content')
     <h2>Pedidos</h2>
     <br>
-
+    <div id="dashboard">
+        <div id="string_filter_div"></div>
+        <div id="string_filter_userID_div"></div>
+    </div>
     <div id="orders_table"></div>
 @endsection
 
@@ -14,12 +17,30 @@
 
     <script type="text/javascript">
         var orders = {!! $orders !!};
-        google.charts.load('current', {'packages':['table']});
+        google.charts.load('current', {'packages':['table', 'controls']});
         google.charts.setOnLoadCallback(drawTable);
 
         function drawTable() {
             var data = new google.visualization.arrayToDataTable(orders);
             data.addColumn('string', 'Editar');
+
+            var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboard'));
+
+            var stringFilter = new google.visualization.ControlWrapper({
+                controlType: 'StringFilter',
+                containerId: 'string_filter_div',
+                options: {
+                    filterColumnIndex: 0
+                }
+            });
+            
+            var stringFilterUserId = new google.visualization.ControlWrapper({
+                controlType: 'StringFilter',
+                containerId: 'string_filter_userID_div',
+                options: {
+                    filterColumnIndex: 2
+                }
+            });
 
             
             for(var i = 0; i < data.getNumberOfRows(); i++){
@@ -28,9 +49,17 @@
             }
 
 
-            var table = new google.visualization.Table(document.getElementById('orders_table'));
+            var table = new google.visualization.ChartWrapper({
+                chartType: 'Table',
+                containerId: 'orders_table',
+                options: {
+                    allowHtml: true,
+                    showRowNumber: true
+                }
+            });
 
-            table.draw(data, {allowHtml: true, showRowNumber: true, width: '100%', height: '100%'});
+            dashboard.bind([stringFilter, stringFilterUserId], [table]);
+            dashboard.draw(data);
         }
     </script>
 @endsection
