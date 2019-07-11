@@ -23,6 +23,14 @@ Route::get('/', 'IndexController@index')->name('landing');
 
 Route::get('/find', 'SearchController@find')->name('search');
 
+/*
+*   Checar CEP
+*/
+Route::get('/checkout/address/cep', 'CheckoutController@checkCep')->name('checkCep');
+
+/*
+*   Mostrar produto
+*/
 Route::get('/produto/{id}', 'ProductController@show');
 
 Route::group(['middleware' => ['auth']], function (){
