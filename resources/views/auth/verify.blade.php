@@ -1,11 +1,19 @@
 @extends('layouts.default')
 
+@section('stylesheets')
+    <style>
+        .footer{
+            position: fixed;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                <div class="card-header">{{ __('Verifique seu endereço de email') }}</div>
 
                 <div class="card-body">
                     @if (session('resent'))
@@ -14,8 +22,8 @@
                         </div>
                     @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+                    {{ __('Depois de enviado, por favor cheque seu email para acessar o link de verificação') }}
+                    {{ __('Se você não recebeu o email') }}, <a href="{{ route('verification.resend') }}">{{ __('clique aqui para enviar novamente') }}</a>.
                 </div>
             </div>
         </div>

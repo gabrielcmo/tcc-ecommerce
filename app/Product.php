@@ -48,4 +48,8 @@ class Product extends Model
     public function category(){
         return $this->belongsTo('Doomus\Category');
     }
+
+    public function orders(){
+        return $this->hasMany('Doomus\Order');
+    }
 }

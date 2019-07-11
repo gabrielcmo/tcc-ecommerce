@@ -20,18 +20,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-link">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.products') }}">Produtos</a>
                 </li>
-                <li class="nav-link">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.orders') }}">Pedidos</a>
                 </li>
-                <li class="nav-link">
-                    <a class="nav-link" href="{{ route('admin.support') }}">Suporte &nbsp;<span class="badge badge-dark">20</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.support') }}">Mensagens</a>
                 </li>
-                <li class="nav-link">
-                    <a class="nav-link" href="{{ route('landing') }}">Ir para página inicial</a>
-                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('landing') }}">Ir para página inicial</a>
+              </li>
             </ul>
         </div>
     </nav>
@@ -62,8 +64,11 @@
     
     <!-- JQuery -->
     <script type="text/javascript" src="/js/jquery.min.js"></script>
-
+    
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    
+    @yield('scripts')
+
 </body>
 </html>

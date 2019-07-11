@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" >
-
-    @yield('stylesheets')
-
-    <title>@yield('title')</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" >
+  <link href="{{ asset('/css/styleDefault.min.css') }}" rel="stylesheet" >
+  
+  @yield('stylesheets')
+  
+  <title>@yield('title')</title>
 </head>
 <body>
     <nav class="navbar shadow rounded navbar-expand-lg navbar-light" style="background-color: #f3f2f1;">
@@ -102,8 +102,19 @@
     <!-- /Main layout -->
 
     <!-- Footer -->
-    <footer>
-      
+    <footer class="footer">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Nossas redes socias</h4>
+          <a href="https://facebook.com.br/doomus">Facebook</a>&nbsp;
+          <a href="https://instagram.com.br/doomus">Instagram</a>
+        </div>
+        <div class="col-md-6">
+          <h4>Fale conosco</h4>
+          suporte@doomus.com
+        </div>
+      </div>
+      Copyright &copy; 2019. Doomus.
     </footer>
     <!-- /Footer -->
 

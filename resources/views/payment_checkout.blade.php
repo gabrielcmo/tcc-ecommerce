@@ -1,7 +1,19 @@
 @extends('layouts.default')
 
+@section('stylesheets')
+    <style>
+        .footer{
+            display: none;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+        </div><br>
+
         <div class="row">
             <div class="col-md-6">
                 <h3>Formas de pagamento</h3><br>

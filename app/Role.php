@@ -10,8 +10,8 @@ class Role extends Model
      * Possible values
      *
      */
-    public static $ROLE_ADMIN = 0;
-    public static $ROLE_CLIENT = 1;
+    public static $ROLE_ADMIN = 1;
+    public static $ROLE_CLIENT = 2;
 
     /**
      * The Relationship
