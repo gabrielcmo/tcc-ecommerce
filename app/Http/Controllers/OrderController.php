@@ -3,6 +3,7 @@
 namespace Doomus\Http\Controllers;
 
 use Doomus\Order;
+use Doomus\OrderStatus;
 use Illuminate\Http\Request;
 use Doomus\Http\Controllers\UserController as User;
 
@@ -16,7 +17,14 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        foreach($request->products as $product){
+            $order = new Order();
+            $order->user_id = User::getUser()->id;
+            $order->product_id = $product->id;
+            $order->payment_method = $request->payment_method;
+        }
+
+        return back();
     }
 
     /**
@@ -31,7 +39,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Cancel the order
      *
      * @param  \Doomus\Order  $order
      * @return \Illuminate\Http\Response
@@ -40,6 +48,14 @@ class OrderController extends Controller
     {
         $order = Order::find($request->id);
         
-        //
+        foreach(Order::products() as $product){
+            $historic = new Historic();
+            $historic->user_id = User::getUser()->id;
+            $historic->product_id = $product->id;
+            $historic->status_id = OrderStatus::$STATUS_CANCELLED;
+        }
+
+        Session::flash('status', 'Pedido cancelado');
+        return back();
     }
 }

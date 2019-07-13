@@ -14,10 +14,6 @@ class User extends Authenticatable
      * The Relationship
      *
      */
-    public function cart(){
-        return $this->belongsTo('Doomus\Cart');
-    }
-
     public function role(){
         return $this->belongsTo('Doomus\Role');
     }

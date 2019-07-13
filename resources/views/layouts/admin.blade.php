@@ -26,9 +26,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.orders') }}">Pedidos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.support') }}">Mensagens</a>
-                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">

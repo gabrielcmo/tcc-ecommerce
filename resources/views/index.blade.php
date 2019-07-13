@@ -54,7 +54,7 @@
       @foreach($products as $product)
         <?php $images = $product->image; ?>
         <div class="col-md-4">
-          <div class="card">
+          <div class="card view overlay zoom">
             @foreach($product->image as $image)
               @if(isset($image) && $image !== null && $image->filename !== null || $image->filename !== '')
                 <div class="card-image">
@@ -66,8 +66,10 @@
                 </div>
               @endif
             @endforeach
+            <div class="mask flex-center">
+              <a class="btn btn-success" href="/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a><br>      
+            </div>
             <h3 class="card-title">{{ $product->name }}</h3>
-            <a class="btn btn-success" href="/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a><br>      
           </div>
         </div>
       @endforeach

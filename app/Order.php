@@ -14,14 +14,6 @@ class Order extends Model
         return $this->belongsTo('Doomus\Product');
     }
 
-    public function status(){
-        return $this->belongsTo('Doomus\OrderStatus');
-    }
-
-    public function cart(){
-        return $this->belongsTo('Doomus\Cart');
-    }
-
     public function user(){
         return $this->belongsTo('Doomus\User');
     }

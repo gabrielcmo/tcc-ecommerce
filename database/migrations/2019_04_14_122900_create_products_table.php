@@ -16,13 +16,13 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('details');
             $table->string('description');
             $table->integer('qtd_last');
             $table->double('weight', 5, 1);
             $table->double('width', 4, 1);
             $table->double('height', 4, 1);
             $table->float('price');
+            $table->integer('looks')->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')
                 ->onDelete('cascade')

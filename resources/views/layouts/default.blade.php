@@ -7,9 +7,13 @@
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" >
   <link href="{{ asset('/css/styleDefault.min.css') }}" rel="stylesheet" >
+
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/css/mdb.min.css" rel="stylesheet">
   
   @yield('stylesheets')
   
@@ -72,6 +76,28 @@
         @endif
       </a>
     </nav>
+    <nav class="navbar shadow bg-dark rounded navbar-expand-lg navbar-dark" style="background-color: #f3f2f1;">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mx-4 mr-2" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Nossas categorias
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="">Cama</a>
+              <a class="dropdown-item" href="">Mesa</a>
+              <a class="dropdown-item" href="">Banho</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">Oferta <strong style='color:red;'>BOOM</strong></a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">Novidades</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <br>
     @if(Session::has('status'))
       @if(Session::has('status-type'))
@@ -90,7 +116,7 @@
         </div>
       @endif
     @endif
-
+    
     @yield('other-contents')
 
     <!-- Main layout -->
@@ -123,8 +149,14 @@
       <!-- JQuery -->
       <script type="text/javascript" src="/js/jquery.min.js"></script>
 
+      <!-- Bootstrap tooltips -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
       <!-- Bootstrap core JavaScript -->
       <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/js/mdb.min.js"></script>
 
       <script>
         $(document).ready(function(){
