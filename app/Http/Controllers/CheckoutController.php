@@ -9,12 +9,52 @@ use Canducci\ZipCode\ZipCode;
 
 class CheckoutController extends Controller
 {
+    public static function calcFretePrazo($cep_destino){
+        $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
+        $url .= "?nCdEmpresa=";
+        $url .= "&sDsSenha=";
+        $url .= "&sCepOrigem=08090284";
+        $url .= "&sCepDestino=$cep_destino";
+        $url .= "&nVlPeso=3";
+        $url .= "&nCdFormato=1";
+        $url .= "&nVlComprimento=30";
+        $url .= "&nVlAltura=2";
+        $url .= "&nVlLargura=18";
+        $url .= "&sCdMaoPropria=n";
+        $url .= "&nVlValorDeclarado=0";
+        $url .= "&sCdAvisoRecebimento=s";
+        $url .= "&nCdServico=04510";
+        $url .= "&nVlDiametro=38";
+        $url .= "&StrRetorno=xml";
+        $url .= "&nIndicaCalculo=3";
+
+        $result = simplexml_load_file($url);
+
+        return $result->cServico;
+    }
+
     public function adressCheckout(){
         return view('address_checkout')->with('user', User::getUser());
     }
     
     public function paymentCheckout(){
-        return view('payment_checkout');
+        $valor = 0;
+
+        foreach(User::getCart() as $item){
+            $resultadoCalc = self::calcFretePrazo(
+                session('userData')['cep']
+            );
+
+            $valor += $resultadoCalc->Valor;
+        }
+
+        $resultadoCalc = [
+            'valorEntrega' => $valor,
+            'prazoEntrega' => $resultadoCalc->PrazoEntrega,
+            'obs' => $resultadoCalc->obsFim
+        ];
+
+        return view('payment_checkout')->with('calcFretePrazo', $resultadoCalc);
     }
 
     public function checkCep(Request $request){
@@ -26,14 +66,13 @@ class CheckoutController extends Controller
     }
 
     public function addressData(Request $data){
-        
-        $userData[] = $data->name;
-        $userData[] = $data->cpf;
-        $userData[] = $data->cep;
-        $userData[] = $data->state;
-        $userData[] = $data->city;
-        $userData[] = $data->address;
-        $userData[] = $data->n;
+        $userData['name'] = $data->name;
+        $userData['cpf'] = $data->cpf;
+        $userData['cep'] = $data->cep;
+        $userData['state'] = $data->state;
+        $userData['city'] = $data->city;
+        $userData['address'] = $data->address;
+        $userData['n'] = $data->n;
 
         $data->session()->put('userData', $userData);
 

@@ -101,9 +101,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     // */
     // Route::get('/support', 'AdminController@support')->name('admin.support');
 });
-
-/*
-* Social login routes
-**/
-Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
-Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
