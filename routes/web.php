@@ -107,3 +107,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
 **/
 Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('/test', function(){
+    return view('new_landing');
+});
+
+Route::get('/test-components', function(){
+    return view('test_components');
+});

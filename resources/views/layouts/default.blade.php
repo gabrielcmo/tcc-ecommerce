@@ -8,7 +8,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <!-- Bootstrap core CSS -->
-  <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" >
+  <link href="{{ asset('/css/app.css') }}" rel="stylesheet" >
   <link href="{{ asset('/css/styleDefault.min.css') }}" rel="stylesheet" >
   
   @yield('stylesheets')
@@ -121,10 +121,10 @@
     <!-- SCRIPTS -->
 
       <!-- JQuery -->
-      <script type="text/javascript" src="/js/jquery.min.js"></script>
+      <script type="text/javascript" src="/js/app.js"></script>
 
       <!-- Bootstrap core JavaScript -->
-      <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+      {{-- <script type="text/javascript" src="/js/bootstrap.min.js"></script> --}}
 
       <script>
         $(document).ready(function(){
