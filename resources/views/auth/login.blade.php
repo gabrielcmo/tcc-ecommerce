@@ -56,7 +56,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
-                                    <a href="{{ url('/auth/google') }}" class="btn btn-primary"><i class="fab fa-google"></i>&nbsp;&nbsp;Google</a>
+                                    <a href="{{ url('api/auth/google') }}" class="btn btn-primary"><i class="fab fa-google"></i>&nbsp;&nbsp;Google</a>
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Esqueceu sua senha?') }}

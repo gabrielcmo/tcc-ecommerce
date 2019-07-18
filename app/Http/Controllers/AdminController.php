@@ -50,13 +50,13 @@ class AdminController extends Controller
         return view('admin.orders')->with('orders', json_encode($array));
     }
 
-    public function support(){
-        $arrayMessages[] = ['ID Mensagem', 'ID Usuário', 'Email', 'Nome', 'Assunto'];
+    // public function support(){
+    //     $arrayMessages[] = ['ID Mensagem', 'ID Usuário', 'Email', 'Nome', 'Assunto'];
         
-        for($i = 1; $i <= 20; $i++){
-            $arrayMessages[] = [$i, $i, 'gabriel@doomus.com', 'Gabriel', 'Meu pedido'];
-        }
+    //     for($i = 1; $i <= 20; $i++){
+    //         $arrayMessages[] = [$i, $i, 'gabriel@doomus.com', 'Gabriel', 'Meu pedido'];
+    //     }
 
-        return view('admin.support')->with('messages', json_encode($arrayMessages));
-    }
+    //     return view('admin.support')->with('messages', json_encode($arrayMessages));
+    // }
 }

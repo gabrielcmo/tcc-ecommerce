@@ -16,6 +16,7 @@ class CreateHistoricsTable extends Migration
         Schema::create('historics', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
+            $table->integer('qty');
             $table->integer('status_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')

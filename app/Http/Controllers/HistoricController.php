@@ -28,13 +28,13 @@ class HistoricController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-
-        $historic = new Historic();
-        $historic->product_id = $request->product_id;
-        $historic->user_id = $user->id;
-        $historic->status = $request->status;
-        $historic->save();
+        foreach($request->products as $product){
+            $historic = new Historic();
+            $historic->product_id = $product->id;
+            $historic->user_id = User::getUser()->id;
+            $historic->status = $request->status;
+            $historic->save();
+        }
 
         return back();
     }
@@ -47,11 +47,9 @@ class HistoricController extends Controller
      */
     public function destroy(Historic $historic)
     {
-        $historic_of_user = $historic->id;
-        $historic_of_user->destroy();
+        $historic->destroy();
 
         Session::flash('status', 'Histórico apagado com sucesso');
-
         return back();
     }
 }

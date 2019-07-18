@@ -41,10 +41,6 @@ class Product extends Model
         return $this->hasMany('Doomus\ProductImage');
     }
 
-    public function cart(){
-        return $this->belongsToMany('Doomus\Cart', 'cart_products');
-    }
-
     public function category(){
         return $this->belongsTo('Doomus\Category');
     }

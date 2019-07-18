@@ -36,7 +36,7 @@ class SocialController extends Controller
         // $user->getNickname();
         // $user->getName();
         // $user->getEmail();
-        
-        dd($user);
+
+        return;
     }
 }

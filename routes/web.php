@@ -115,3 +115,8 @@ Route::get('/test', function(){
 Route::get('/test-components', function(){
     return view('test_components');
 });
+
+/*
+* Suporte 
+*/
+Route::get('/support', 'AdminController@support')->name('admin.support');
