@@ -98,8 +98,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::get('/orders', 'AdminController@orders')->name('admin.orders');
     Route::post('/order/cancel', 'AdminController@cancel')->name('admin.order.cancel');
     
-    // /*
-    // *   Suporte 
-    // */
-    // Route::get('/support', 'AdminController@support')->name('admin.support');
+    /*
+    *   Suporte 
+    */
+    Route::get('/support', 'AdminController@support')->name('admin.support');
 });
+
+/*
+* Social login routes
+**/
+Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('/test', function(){
+    return view('new_landing');
+});
+
+Route::get('/test-components', function(){
+    return view('test_components');
+});
+
+/*
+* Suporte 
+*/
+Route::get('/support', 'AdminController@support')->name('admin.support');
