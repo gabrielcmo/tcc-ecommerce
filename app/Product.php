@@ -48,4 +48,8 @@ class Product extends Model
     public function orders(){
         return $this->hasMany('Doomus\Order');
     }
+
+    public function historics(){
+        return $this->hasMany('Doomus\Order');
+    }
 }

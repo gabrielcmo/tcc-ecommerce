@@ -22,7 +22,7 @@ class User extends Authenticatable
         return $this->hasMany('Doomus\Historic');
     }
 
-    public function orders(){
+    public function order(){
          return $this->hasMany('Doomus\Order');
     }
 

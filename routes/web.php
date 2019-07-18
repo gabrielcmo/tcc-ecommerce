@@ -39,8 +39,8 @@ Route::group(['middleware' => ['auth']], function (){
      * */
     Route::get('/perfil', 'UserController@showProfile')->name('perfil');
     Route::post('/perfil/update', 'UserController@updateProfile');
-    Route::get('/pedidos', 'OrderController@show');
-    Route::get('/historico', 'HistoricController@show');
+    Route::get('/pedidos', 'OrderController@show')->name('orders');
+    Route::get('/historico', 'HistoricController@show')->name('historic');
 
     /*
      * Checkout
@@ -50,6 +50,8 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/checkout/address/data', 'CheckoutController@addressData');
     Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
     Route::get('/sucesso', 'CheckoutController@success');
+
+    // Route::get('/frete', 'CheckoutController@calcFretePaypal');
 
     /*
      * Order

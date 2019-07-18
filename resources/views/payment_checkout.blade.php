@@ -23,7 +23,7 @@
                 <div id="paypal-button-container"></div>
 
                 <!-- Include the PayPal JavaScript SDK -->
-                <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=BRL"></script>
+                <script src="https://www.paypal.com/sdk/js?client-id=AdwcdXX0rds2X-qrkfkg0z5g-ixXqdrmotEd9mBMoSODPKHkQHtn3wawgKe0E7pWhkZiFKj38M5rAyLR&currency=BRL"></script>
 
                 <script>
                     // Render the PayPal button into #paypal-button-container
@@ -43,8 +43,8 @@
                         // Finalize the transaction
                         onApprove: function(data, actions) {
                             return actions.order.capture().then(function(details) {
-                                // Show a success message to the buyer
-                                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                                alert('compra finalizada');
+                                window.location.href = "localhost:8000/sucesso";
                             });
                         }
 
@@ -68,6 +68,10 @@
                 @if(isset($calcFretePrazo['obs']) && $calcFretePrazo['obs'] !== "")
                     Observação: <strong>{{ $calcFretePrazo['obs'] }}</strong>    
                 @endif
+                <!-- INICIO CODIGO PAGSEGURO -->
+                <a href="https://pagseguro.uol.com.br/desenvolvedor/simulador_de_frete.jhtml?CepOrigem=13835000&amp;Peso=1&amp;Valor=0,00" id="ps_freight_simulator" target="_blank"><img src="https://p.simg.uol.com.br/out/pagseguro/i/user/imgCalculoFrete.gif" id="imgCalculoFrete" alt="Cálculo automático de frete" border="0" /></a>
+                <script type="text/javascript" src="https://p.simg.uol.com.br/out/pagseguro/j/simulador_de_frete.js"></script>
+                <!-- FINAL CODIGO PAGSEGURO -->
             </div>
         </div>
     </div>

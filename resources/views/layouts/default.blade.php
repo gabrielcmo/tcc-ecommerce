@@ -42,8 +42,10 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
                 @if(Auth::user()->role_id == 1)
-                  <a class="dropdown-item" href="{{ route('admin.index') }}">Painel de controle</a>
+                <a class="dropdown-item" href="{{ route('admin.index') }}">Painel de controle</a>
                 @endif
+                <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
+                <a class="dropdown-item" href="{{ route('historic') }}">Histórico</a>
                 <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                     {{ __('Sair') }}

@@ -22,6 +22,10 @@ class Historic extends Model
     }
 
     public function status(){
-        $this->belongsTo('Doomus\HistoricStatus');
+        return $this->belongsTo('Doomus\HistoricStatus');
+    }
+
+    public function product(){
+        return $this->belongsTo('Doomus\Product');
     }
 }

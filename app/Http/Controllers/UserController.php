@@ -56,7 +56,7 @@ class UserController extends Controller
 
     public static function getOrders()
     {
-        return Auth::guard()->user()->orders;
+        return Auth::guard()->user()->order;
     }
 
     public static function getHistoric()
