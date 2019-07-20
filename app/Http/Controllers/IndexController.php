@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Category;
 use Illuminate\Support\Facades\Auth;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class IndexController extends Controller
 {
@@ -32,6 +33,7 @@ class IndexController extends Controller
 
         return view('index')
             ->with('products', $products)
-            ->with('categories', $categories);
+            ->with('categories', $categories)
+            ->with('cart', Cart::content());
     }
 }

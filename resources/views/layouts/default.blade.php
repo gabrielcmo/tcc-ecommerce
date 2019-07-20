@@ -72,7 +72,7 @@
           @endguest
         </ul>
       </div>
-      <a class="btn btn-info mx-2 mr-2" href="{{ route('user.cart') }}"><i class="fas fa-shopping-cart"></i>
+      <a class="btn btn-info mx-2 mr-2" href="#modal-sections" uk-toggle><i class="fas fa-shopping-cart"></i>
         @if(Cart::count() > 0)
           <span class="badge badge-light">{{ Cart::count() }}</span>
         @endif

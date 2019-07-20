@@ -18,6 +18,8 @@
       </div>
     </div>
 
+    <select class="mdc-select__native-control" id="basic-select"><option value="grains" aria-selected="true">Bread, Cereal, Rice, and Pasta</option><option value="vegetables" disabled="">Vegetables</option><option value="fruit">Fruit</option><option value="dairy">Milk, Yogurt, and Cheese</option><option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option><option value="fats">Fats, Oils, and Sweets</option></select>
+
   </div> 
 </div>
 @endsection
