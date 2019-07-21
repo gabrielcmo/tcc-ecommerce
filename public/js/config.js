@@ -24,4 +24,3 @@ function closeNav() {
     document.querySelector('.mdc-top-app-bar').classList.remove('mdc-top-app-bar--short-collapsed');
   }
 }
-

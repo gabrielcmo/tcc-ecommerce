@@ -13,17 +13,6 @@ use Doomus\Product;
 
 class CartController extends Controller
 {
-    /*
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        $cart = User::getCart();
-        return view('user.cart')->with('cart', $cart);
-    }
-
     /**
      * Add to cart
      *

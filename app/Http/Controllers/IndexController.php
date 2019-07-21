@@ -33,7 +33,6 @@ class IndexController extends Controller
 
         return view('index')
             ->with('products', $products)
-            ->with('categories', $categories)
-            ->with('cart', Cart::content());
+            ->with('categories', $categories);
     }
 }

@@ -44,7 +44,7 @@
                         onApprove: function(data, actions) {
                             return actions.order.capture().then(function(details) {
                                 alert('compra finalizada');
-                                window.location.href = "localhost:8000/sucesso";
+                                window.location.href = "/sucesso";
                             });
                         }
 

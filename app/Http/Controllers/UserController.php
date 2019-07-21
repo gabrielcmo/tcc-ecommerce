@@ -32,12 +32,6 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         $user = self::getUser();
-
-        $filename = time().'.'.request()->image->getClientOriginalExtension();
-
-        request()->image->move(public_path('img/avatars'), $filename);
-
-        $user->image = $filename;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
