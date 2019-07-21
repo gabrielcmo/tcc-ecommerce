@@ -1,8 +1,44 @@
 @extends('layouts.new_layout')
 
 @section('content')
-<div class="row align-items-center">
-  <div class="col-lg-4 mt-1">
+<div class="row justify-content-center mt-2">
+  <div class="col-lg-9">
+    <div id="carouselExampleIndicators" class="carousel slide mt-2" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" style="border-radius: 10px;">
+        <div class="carousel-item active" style="height: 420px">
+          <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+        </div>
+        <div class="carousel-item" style="height: 420px">
+          <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+        </div>
+        <div class="carousel-item" style="height: 420px">
+          <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+        </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </div>
+  </div>
+
+</div>
+<div class="row justify-content-center mt-2">
+  <div class="col-lg-9">
+    
+  </div>
+</div>
+<div class="row justify-content-center mt-1">
+  <div class="col-lg-3 mt-1">
     <div class="mdc-card">
       <div class="mdc-card__primary-action" tabindex="0">
         <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square" style="background-image: url(&quot;{{asset('img/capa_13.jpg')}}&quot;);">
@@ -10,14 +46,17 @@
             <h2 class="mdc-typography mdc-typography--headline6" style="color: white; padding-left: 0.5rem">Lucian, o purificador</h2>
           </div>
         </div>
-      </div>
-      <div class="mdc-card__actions">
-        <button class="mdc-icon-button material-icons mdc-card__action mdc-card_action--button" aria-label="Add to cart">
-          add_shopping_cart
-        </button>
+        <div style="padding: 0.5rem">
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star_half</i>
+          <h2 class="mdc-typography mdc-typography--headline4" style="margin: 0px">R$ 27,00</h2>
+          <h2 class="mdc-typography mdc-typography--subtitle2" style="color:gray;">10x de R$2,70 sem juros</h2>
+        </div>   
       </div>
     </div>
-
-  </div> 
+  </div>
 </div>
 @endsection

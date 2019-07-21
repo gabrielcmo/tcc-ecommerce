@@ -1,4 +1,58 @@
-@extends('layouts.default')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/config.css')}}">
+</head>
+<body>
+    <div class="container-fluid">
+            <div class="row justify-content-center mt-5">
+                    <div class="col-lg-8">
+                            <section class="login-header">
+                                <img src="{{asset('img/capa_13.jpg')}}" class="login-doomus-logo" alt="doomus-logo">
+                                    <h1 style="font-family: 'Roboto';">DOOMUS</h1>
+                                  </section>
+                                
+                                  <form action="home.html">
+                                    <div class="mdc-text-field login-email">
+                                      <input type="text" class="mdc-text-field__input" id="email-input" name="email" required>
+                                      <label class="mdc-floating-label" for="email-input">Email</label>
+                                      <div class="mdc-line-ripple"></div>
+                                    </div>
+                                    <div class="mdc-text-field login-password">
+                                      <input type="password" class="mdc-text-field__input" id="password-input" name="password" required minlength="8">
+                                      <label class="mdc-floating-label" for="password-input">Senha</label>
+                                      <div class="mdc-line-ripple"></div>
+                                    </div>
+                                    <div class="login-button-container">
+                                      <button type="button" class="mdc-button cancel">
+                                        <span class="mdc-button__label">
+                                          Voltar
+                                        </span>
+                                      </button>
+                                      <button class="mdc-button mdc-button--raised next">
+                                        <span class="mdc-button__label">
+                                          Logar
+                                        </span>
+                                      </button>
+                                    </div>
+                                  </form>
+                    </div>
+                </div>
+    </div>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/configLogin.js')}}"></script>
+</body>
+</html>
+    
+
+
+
+{{-- @extends('layouts.default')
 
 @section('title', 'Login')
 
@@ -70,4 +124,4 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection --}}
