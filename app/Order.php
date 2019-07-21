@@ -10,7 +10,7 @@ class Order extends Model
      * The Relationship
      *
      */
-    public function products(){
+    public function product(){
         return $this->belongsTo('Doomus\Product');
     }
 

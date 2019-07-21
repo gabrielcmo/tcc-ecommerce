@@ -61,9 +61,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Toalha de rosto',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
             'qtd_last' => 4,
+            'lenght' => 12.0,
             'weight' => 20.3,
             'width' => 50.0,
             'height' => 20.0,
+            'diameter' => 80.0,
             'price' => 4.99,
             'category_id' => 3,
         ]);
@@ -72,9 +74,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Edredom',
             'description' => 'Com ótimo material, é excelente para esquentar sua noite',
             'qtd_last' => 33,
+            'lenght' => 12.0,
             'weight' => 466.2,
             'width' => 200.0,
             'height' => 150.0,
+            'diameter' => 80.0,
             'price' => 79.99,
             'category_id' => 1,
         ]);
@@ -83,9 +87,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Travesseiro',
             'description' => 'Grande e maravilhoso',
             'qtd_last' => 1,
+            'lenght' => 12.0,
             'weight' => 250.0,
             'width' => 45.0,
             'height' => 25.0,
+            'diameter' => 80.0,
             'price' => 39.98,
             'category_id' => 1,
         ]);
@@ -94,6 +100,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Colher de silicone',
             'description' => 'Colher ótima',
             'qtd_last' => 37,
+            'lenght' => 12.0,
             'weight' => 125.0,
             'width' => 20.0,
             'height' => 2.0,
@@ -139,6 +146,13 @@ class DatabaseSeeder extends Seeder
             'product_id' => 2,
             'status_id' => 2,
         ]);
+        
+        DB::table('historics')->insert([
+            'user_id' => 1,
+            'qty' => 6,
+            'product_id' => 2,
+            'status_id' => 2,
+        ]);
 
         DB::table('historics')->insert([
             'user_id' => 2,
@@ -146,19 +160,19 @@ class DatabaseSeeder extends Seeder
             'product_id' => 3,
             'status_id' => 1,
         ]);
-
+        
         DB::table('historics')->insert([
-            'user_id' => 1,
-            'qty' => 2,
-            'product_id' => 4,
+            'user_id' => 2,
+            'qty' => 1,
+            'product_id' => 2,
             'status_id' => 3,
         ]);
         
-        DB::table('orders')->insert([
-            'user_id' => 1,
-            'qty' => 2,
-            'product_id' => 3,
-            'payment_method_id' => 1
+        DB::table('historics')->insert([
+            'user_id' => 2,
+            'qty' => 4,
+            'product_id' => 1,
+            'status_id' => 2,
         ]);
         
         DB::table('orders')->insert([
@@ -192,19 +206,26 @@ class DatabaseSeeder extends Seeder
         DB::table('orders')->insert([
             'user_id' => 1,
             'qty' => 2,
+            'product_id' => 3,
+            'payment_method_id' => 1
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 2,
+            'qty' => 1,
             'product_id' => 4,
             'payment_method_id' => 1
         ]);
         
         DB::table('orders')->insert([
-            'user_id' => 1,
-            'qty' => 2,
+            'user_id' => 2,
+            'qty' => 5,
             'product_id' => 2,
             'payment_method_id' => 1
         ]);
         
         DB::table('orders')->insert([
-            'user_id' => 1,
+            'user_id' => 2,
             'qty' => 2,
             'product_id' => 1,
             'payment_method_id' => 1

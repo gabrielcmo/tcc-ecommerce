@@ -18,11 +18,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('qtd_last');
-            $table->double('weight', 5, 1);
+            $table->double('weight', 5, 1)->nullable();
             $table->double('lenght', 4, 1);
             $table->double('width', 4, 1);
             $table->double('height', 4, 1);
-            $table->double('diameter', 4, 1);
+            $table->double('diameter', 4, 1)->nullable();
             $table->float('price');
             $table->integer('looks')->nullable();
             $table->integer('category_id')->unsigned();

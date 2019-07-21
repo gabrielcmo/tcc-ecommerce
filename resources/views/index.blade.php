@@ -2,75 +2,53 @@
 
 @section('title', 'Home')
 
-@section('stylesheets')
+@section('styles')
   <link href="{{ asset('/css/styleHome.min.css') }}" rel="stylesheet"/>
 @endsection
 
-@section('other-contents')
-  <!-- Page Content -->
-    
-  <section class="container">
-      <div class="row">
-        <section class="col-12 d-none d-md-block">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/" class="trsn" title="Go back to Home">Home</a></li>
-          </ol>
-        </section>
-      </div>
-
-    <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="http://lojasnazari.com.br/img/site/431/t/570051.jpg" alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="http://lojasnazari.com.br/img/site/431/t/570038.jpg" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="http://lojasnazari.com.br/img/site/431/t/570047.jpg" alt="Third slide">
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    </div>
-  </section>
-@endsection
-
 @section('content')
-  <div class="container"><br>
+  <div class="container">
     <div class="row">
-      @foreach($products as $product)
-        <?php $images = $product->image; ?>
-        <div class="col-md-4">
-          <div class="card view overlay zoom">
-            @foreach($product->image as $image)
-              @if(isset($image) && $image !== null && $image->filename !== null || $image->filename !== '')
-                <div class="card-image">
-                  <img src="/img/products/{{$image->filename}}" alt="Produto" class="img-fluid">
-                </div>
-              @elseif(!isset($image))  
-                <div class="card-image">
-                  <img src="/img/doomus.png" alt="Produto" class="img-fluid">
-                </div>
-              @endif
-            @endforeach
-            <div class="mask flex-center">
-              <a class="btn btn-success" href="/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a><br>      
+        <div class="mdc-card demo-card">
+            <div class="mdc-card__primary-action demo-card__primary-action" tabindex="0">
+              <div class="mdc-card__media mdc-card__media--16-9 demo-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
+              <div class="demo-card__primary">
+                <h2 class="demo-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
+                <h3 class="demo-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
+              </div>
+              <div class="demo-card__secondary mdc-typography mdc-typography--body2">Visit ten places on our planet that are undergoing the biggest changes today.</div>
             </div>
-            <h3 class="card-title">{{ $product->name }}</h3>
+            <div class="mdc-card__actions">
+              <div class="mdc-card__action-icons">
+                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded" aria-pressed="false" aria-label="Add to favorites" title="Add to favorites">
+                  <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
+                  <i class="material-icons mdc-icon-button__icon">favorite_border</i>
+                </button>
+                <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="Share" data-mdc-ripple-is-unbounded="true">share</button>
+                <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded" title="More options" data-mdc-ripple-is-unbounded="true">more_vert</button>
+              </div>
+            </div>
           </div>
+      @foreach($products as $product)
+        <div class="row align-items-center">
+          <div class="col-lg-4 mt-1">
+            <div class="mdc-card">
+              <div class="mdc-card__primary-action">
+                @foreach ($product->image as $image)
+                  <img class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square" src="{{asset("img/products/$image->filename")}}">   
+                @endforeach
+                  <div class="mdc-card__media-content" style="display: flex; align-items: flex-end;">
+                    <h2 class="mdc-typography mdc-typography--headline6" style="color: white; padding-left: 0.5rem">{{$product->name}}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-card__actions">
+                <button class="mdc-icon-button material-icons mdc-card__action mdc-card_action--button" aria-label="Add to cart">
+                  add_shopping_cart
+                </button>
+              </div>
+            </div>
+          </div> 
         </div>
       @endforeach
     </div>

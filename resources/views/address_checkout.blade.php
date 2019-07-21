@@ -133,10 +133,12 @@
                 $('#state option').each(function(){
                     if($(this).val() == result.uf){
                         $(this).attr('selected', true);
+                        $('#state').attr('disabled', true);
                     }
                 });
 
                 $('#city').val(result.localidade);
+                $('#city').attr('disabled', true);
 
               }
             });

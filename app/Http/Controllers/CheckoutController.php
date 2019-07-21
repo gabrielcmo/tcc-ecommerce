@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use Doomus\Http\Controllers\UserController as User;
 use Canducci\ZipCode\ZipCodeUf;
 use Canducci\ZipCode\ZipCode;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Doomus\stdClass;
+use SoapClient;
 
 class CheckoutController extends Controller
 {
+    const ADDRESS = 'https://ff.paypal-brasil.com.br/FretesPayPalWS/WSFretesPayPal';
+    private $request;
+
     public static function calcFretePrazo($cep_destino){
         $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
         $url .= "?nCdEmpresa=";
@@ -32,6 +38,25 @@ class CheckoutController extends Controller
 
         return $result->cServico;
     }
+
+    // public function calcFretePaypal($cepDestino){
+    //     $this->dados = new StdClass();
+    //     $this->dados->altura = 1;
+    //     $this->dados->largura = 1;
+    //     $this->dados->peso = 1;
+    //     $this->dados->cepDestino = $cepDestino;
+    //     $this->dados->cepOrigem = '08090284';
+
+    //     try {
+    //         $client = new SoapClient(self::ADDRESS . '?wsdl');
+            
+    //         $response = $client->__soapCall($this->dados);
+			
+	// 		return $response;
+	// 	} catch ( Exception $e ) {
+	// 		throw new RuntimeException( 'Falha ao consumir o webservice' , $e->getCode() , $e );
+	// 	}
+    // }
 
     public function adressCheckout(){
         return view('address_checkout')->with('user', User::getUser());
@@ -84,6 +109,7 @@ class CheckoutController extends Controller
     }
 
     public function success(){
+        Cart::destroy();
         return view('success');
     }
 }
