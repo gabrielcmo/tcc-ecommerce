@@ -9,11 +9,12 @@ use Canducci\ZipCode\ZipCode;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Doomus\stdClass;
 use SoapClient;
+use Doomus\Http\Controllers\ProductController;
 
 class CheckoutController extends Controller
 {
-    const ADDRESS = 'https://ff.paypal-brasil.com.br/FretesPayPalWS/WSFretesPayPal';
-    private $request;
+    // const ADDRESS = 'https://ff.paypal-brasil.com.br/FretesPayPalWS/WSFretesPayPal';
+    // private $request;
 
     public static function calcFretePrazo($cep_destino){
         $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
@@ -109,6 +110,15 @@ class CheckoutController extends Controller
     }
 
     public function success(){
+        foreach(Cart::content() as $item){
+            ProductController::changeQtyLast($item->id, $item->qty);
+            $dataOrder['products'][] = ['id' => $item->id, 'qty' => $item->qty];
+        }
+
+        $dataOrder['p_method_id'] = 1;
+
+        OrderController::store($dataOrder);
+
         Cart::destroy();
         return view('success');
     }

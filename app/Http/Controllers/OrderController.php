@@ -12,16 +12,17 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 
      */
-    public function store(Request $request)
+    public static function store($request)
     {
-        foreach($request->products as $product){
+        foreach($request['products'] as $product){
             $order = new Order();
             $order->user_id = User::getUser()->id;
-            $order->product_id = $product->id;
-            $order->payment_method = $request->payment_method;
+            $order->product_id = $product['id'];
+            $order->qty = $product['qty'];
+            $order->payment_method_id = $request['p_method_id'];
+            $order->save();
         }
 
         return back();

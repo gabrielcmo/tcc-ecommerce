@@ -35,7 +35,6 @@ $(document).ready(function(){
       $('#topAppBar').removeClass('mdc-top-app-bar--short-collapsed');
     } 
   }
-<<<<<<< HEAD
   
 $(window).resize(function(){
   var windowWidth = $(window).width();
@@ -57,6 +56,3 @@ $(window).resize(function(){
 });
   
 });
-=======
-}
->>>>>>> 1dc7bfa2be624c7c95cee50e7a31b029b790ba4e
