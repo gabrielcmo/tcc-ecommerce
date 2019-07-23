@@ -17,14 +17,15 @@
                                     <h1 style="font-family: 'Roboto';">DOOMUS</h1>
                                   </section>
                                 
-                                  <form action="home.html">
+                                  <form action="{{route('login')}}" method="POST">
+                                    @csrf
                                     <div class="mdc-text-field login-email">
                                       <input type="text" class="mdc-text-field__input" id="email-input" name="email" required>
                                       <label class="mdc-floating-label" for="email-input">Email</label>
                                       <div class="mdc-line-ripple"></div>
                                     </div>
                                     <div class="mdc-text-field login-password">
-                                      <input type="password" class="mdc-text-field__input" id="password-input" name="password" required minlength="8">
+                                      <input type="password" class="mdc-text-field__input" id="password-input" name="password" required minlength="6">
                                       <label class="mdc-floating-label" for="password-input">Senha</label>
                                       <div class="mdc-line-ripple"></div>
                                     </div>

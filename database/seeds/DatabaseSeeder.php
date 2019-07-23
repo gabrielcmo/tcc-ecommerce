@@ -107,6 +107,54 @@ class DatabaseSeeder extends Seeder
             'price' => 19.99,
             'category_id' => 2,
         ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Colher de pau',
+            'description' => 'Colher ótima',
+            'qtd_last' => 37,
+            'lenght' => 12.0,
+            'weight' => 125.0,
+            'width' => 20.0,
+            'height' => 2.0,
+            'price' => 19.99,
+            'category_id' => 2,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Tapete',
+            'description' => 'ótimo',
+            'qtd_last' => 37,
+            'lenght' => 12.0,
+            'weight' => 125.0,
+            'width' => 20.0,
+            'height' => 2.0,
+            'price' => 19.99,
+            'category_id' => 2,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Cortina',
+            'description' => 'ótimo',
+            'qtd_last' => 37,
+            'lenght' => 12.0,
+            'weight' => 125.0,
+            'width' => 20.0,
+            'height' => 2.0,
+            'price' => 19.99,
+            'category_id' => 2,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Conjunto talheres',
+            'description' => 'ótimo',
+            'qtd_last' => 37,
+            'lenght' => 12.0,
+            'weight' => 125.0,
+            'width' => 20.0,
+            'height' => 2.0,
+            'price' => 19.99,
+            'category_id' => 2,
+        ]);
 
         DB::table('product_images')->insert([
             'filename' => 'placeholder-2.jpg',
