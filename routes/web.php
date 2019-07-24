@@ -96,7 +96,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     *   Pedidos 
     */
     Route::get('/orders', 'AdminController@orders')->name('admin.orders');
-    Route::post('/order/cancel', 'AdminController@cancel')->name('admin.order.cancel');
+    Route::get('/order/{id}/cancel', 'OrderController@cancel')->name('admin.order.cancel');
     
     /*
     *   Suporte 

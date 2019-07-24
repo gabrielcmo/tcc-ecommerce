@@ -57,7 +57,7 @@
             @if($product->qtd_last == 0)
               <span class="bg-danger btn product-form-price">Esgotado</span>
               <p>Infelizmente este produto está esgotado. Contate-nos para solitar um para você.</p>
-              <a href="/contact" class="btn btn-secondary btn-sm" title="Contact Us">Contate-nos</a>
+              <a href="#" class="btn btn-secondary btn-sm" title="Contact Us">Contate-nos</a>
               <a href="javascript:history.back()" class="btn btn-link btn-sm" title="&larr; Ou continue comprando">&larr; Ou continue comprando</a>
             @elseif($product->qtd_last <= 25)
               <span class="bg-danger btn product-form-price">Restam apenas {{ $product->qtd_last }}</span>

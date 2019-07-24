@@ -6,6 +6,7 @@ use Doomus\Order;
 use Doomus\OrderStatus;
 use Illuminate\Http\Request;
 use Doomus\Http\Controllers\UserController as User;
+use Session;
 
 class OrderController extends Controller
 {
@@ -45,16 +46,18 @@ class OrderController extends Controller
      * @param  \Doomus\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function cancel(Request $request)
+    public function cancel($order_id)
     {
-        $order = Order::find($request->id);
+        $order = Order::find($order_id);
         
-        foreach(Order::products() as $product){
+        foreach($order->product() as $product){
             $historic = new Historic();
             $historic->user_id = User::getUser()->id;
             $historic->product_id = $product->id;
             $historic->status_id = OrderStatus::$STATUS_CANCELLED;
         }
+
+        $order->destroy();
 
         Session::flash('status', 'Pedido cancelado');
         return back();

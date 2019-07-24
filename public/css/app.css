@@ -68,7 +68,7 @@ body {
   margin: 0;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
-  /* font-weight: 400; */
+  font-weight: 400;
   line-height: 1.6;
   color: #212529;
   text-align: left;
@@ -248,10 +248,10 @@ button {
   border-radius: 0;
 }
 
-/* button:focus {
+button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
-} */
+}
 
 input,
 button,
