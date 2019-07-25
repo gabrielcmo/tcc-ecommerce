@@ -105,11 +105,7 @@ class CheckoutController extends Controller
         return redirect('/checkout/pagamento');
     }
 
-    public function paymentData(Request $data){
-        //
-    }
-
-    public function success(){
+    public function paymentSuccess(){
         foreach(Cart::content() as $item){
             ProductController::changeQtyLast($item->id, $item->qty);
             $dataOrder['products'][] = ['id' => $item->id, 'qty' => $item->qty];
@@ -120,6 +116,7 @@ class CheckoutController extends Controller
         OrderController::store($dataOrder);
 
         Cart::destroy();
+
         return view('success');
     }
 }

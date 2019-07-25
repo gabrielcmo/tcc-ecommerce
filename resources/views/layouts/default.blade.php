@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <div class="dropdown my-2 my-lg-0 mx-5 w-75">
             <form class="form-inline">
-              <input class="form-control mr-sm-2 col-lg-12" id="search" type="search" placeholder="Pesquise por produtos!" aria-label="Search">
+              <input class="form-control mr-sm-2 col-lg-12" id="search" type="search" placeholder="Pesquise por produtos!" autocomplete="off" aria-label="Search">
             </form>
             <div class="dropdown-menu" aria-labelledby="search" id="result">
             </div>

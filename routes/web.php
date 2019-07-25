@@ -11,71 +11,69 @@
 |
 */
 
-/* 
-* Rotas da autentificação
+/*
+*   Cart routes
 */
-Auth::routes();
+Route::get('/carrinho/{product_id}/add/', 'CartController@addToCart');
+Route::get('/carrinho/add/', 'CartController@addToCart')->name('cart.add');
+Route::get('/carrinho/delete', 'CartController@clearCart')->name('cart.clear');
+Route::get('/carrinho', 'CartController@show')->name('user.cart');
 
 /* 
-* Rota da página inicial 
+*   Autentificação - Login
+*/
+Auth::routes();
+Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+/* 
+*   Pág. inicial 
 */
 Route::get('/', 'IndexController@index')->name('landing');
 
+/* 
+*   Barra de pesquisa de produtos
+*/
 Route::get('/find', 'SearchController@find')->name('search');
+
+/*
+*   View produto
+*/
+Route::get('/produto/{id}', 'ProductController@show');
 
 /*
 *   Checar CEP
 */
 Route::get('/checkout/address/cep', 'CheckoutController@checkCep')->name('checkCep');
 
-/*
-*   Mostrar produto
-*/
-Route::get('/produto/{id}', 'ProductController@show');
-
 Route::group(['middleware' => ['auth']], function (){
     /*
-     * User views
-     * */
+    *   User views
+    */
     Route::get('/perfil', 'UserController@showProfile')->name('perfil');
     Route::post('/perfil/update', 'UserController@updateProfile');
     Route::get('/pedidos', 'OrderController@show')->name('orders');
     Route::get('/historico', 'HistoricController@show')->name('historic');
 
     /*
-     * Checkout
-     * */
+    *   Checkout
+    */
     Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');
     Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
     Route::post('/checkout/address/data', 'CheckoutController@addressData');
     Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
-    Route::get('/sucesso', 'CheckoutController@success');
-
-    // Route::get('/frete', 'CheckoutController@calcFretePaypal');
+    Route::get('/payment/success', 'CheckoutController@paymentSuccess');
 
     /*
-     * Order
-     * */
+    *   Order
+    */
     Route::get('/pedido/cancel', 'OrderController@cancel');
     Route::get('/pedido/rastrear', 'OrderController@track');
-
-    /*
-     * Support page
-     * */
-    Route::get('/suporte', 'SuporteController@show')->name('suporte');
 });
 
 /*
- * Cart routes
- * */
-Route::get('/carrinho/{product_id}/add/', 'CartController@addToCart');
-Route::get('/carrinho/add/', 'CartController@addToCart')->name('cart.add');
-Route::get('/carrinho/delete', 'CartController@clearCart')->name('cart.clear');
-Route::get('/carrinho', 'CartController@show')->name('user.cart');
-
-/*
- * Admin routes
- * */
+*   Admin
+*/
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     /*
     *   Landing page admin 
@@ -97,19 +95,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     */
     Route::get('/orders', 'AdminController@orders')->name('admin.orders');
     Route::post('/order/cancel', 'AdminController@cancel')->name('admin.order.cancel');
-    
-    /*
-    *   Suporte 
-    */
-    Route::get('/support', 'AdminController@support')->name('admin.support');
 });
 
-/*
-* Social login routes
-**/
-Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
-Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
-
+/* 
+*   Testes
+*/
 Route::get('/test', function(){
     return view('new_landing');
 });
@@ -117,8 +107,3 @@ Route::get('/test', function(){
 Route::get('/test-components', function(){
     return view('test_components');
 });
-
-/*
-* Suporte 
-*/
-Route::get('/support', 'AdminController@support')->name('admin.support');
