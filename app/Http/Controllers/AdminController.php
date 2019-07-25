@@ -31,11 +31,30 @@ class AdminController extends Controller
 
         $array[] = ['ID Produto', 'Nome', 'Quantidade', 'Valor', 'Categoria'];
 
-        foreach($products as $key => $data){
+        foreach($products as $data){
             $array[] = [$data->id, $data->name, $data->qtd_last, $data->price, $data->category->name];
         }
 
         return view('admin.products')->with('products', json_encode($array));    
+    }
+
+    // Aplicar desconto a um determinado produto
+    public function ofertaProduto($product_id, $desconto){
+        $product = Product::find($product_id);
+        $product->price = $product->price - ($product->price * $desconto);
+        $product->save();
+        return back();
+    }
+
+    // Aplicar desconto a toda uma categoria
+    public function ofertaCategoria($categoria_id, $desconto){
+        $products = Product::where('category_id', $categoria_id);
+
+        foreach($products as $product){
+            $product->price = $product->price - ($product->price * $desconto);
+            $product->save();
+        }
+        return back();
     }
 
     public function orders(){
@@ -44,7 +63,7 @@ class AdminController extends Controller
         $array[] = ['ID Pedido', 'Produto', 'Usuário', 'Status', 'Método de Pagamento'];
 
         foreach($orders as $order){
-            $array[] = [$order->id, $order->products()->count(), $order->user->id, true, $order->payment_method->name];
+            $array[] = [$order->id, $order->product->id, $order->user->id, true, $order->payment_method->name];
         }
         
         return view('admin.orders')->with('orders', json_encode($array));

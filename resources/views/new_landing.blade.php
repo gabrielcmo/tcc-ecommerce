@@ -1,9 +1,9 @@
 @extends('layouts.new_layout')
 
 @section('content')
-<div class="row justify-content-center mt-2">
-  <div class="col-lg-9">
-    <div id="carouselExampleIndicators" class="carousel slide mt-2" data-ride="carousel">
+<div class="row justify-content-center mt-1">
+  <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 col-xl-9">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -32,13 +32,29 @@
   </div>
 
 </div>
+
 <div class="row justify-content-center mt-2">
-  <div class="col-lg-9">
-    
+  <div class="col-lg-3">
+    <div class="mdc-card">
+      <div class="mdc-card__primary-action" tabindex="0">
+        <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square" style="background-image: url(&quot;{{asset('img/capa_13.jpg')}}&quot;);">
+          <div class="mdc-card__media-content" style="display: flex; align-items: flex-end;">
+            <h2 class="mdc-typography mdc-typography--headline6" style="color: white; padding-left: 0.5rem">Lucian, o purificador</h2>
+          </div>
+        </div>
+        <div style="padding: 0.5rem">
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star_half</i>
+          <h2 class="mdc-typography mdc-typography--headline4" style="margin: 0px">R$ 27,00</h2>
+          <h2 class="mdc-typography mdc-typography--subtitle2" style="color:gray;">10x de R$2,70 sem juros</h2>
+        </div>   
+      </div>
+    </div>
   </div>
-</div>
-<div class="row justify-content-center mt-1">
-  <div class="col-lg-3 mt-1">
+  <div class="col-lg-3">
     <div class="mdc-card">
       <div class="mdc-card__primary-action" tabindex="0">
         <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square" style="background-image: url(&quot;{{asset('img/capa_13.jpg')}}&quot;);">
@@ -58,5 +74,30 @@
       </div>
     </div>
   </div> 
+  <div class="col-lg-3">
+    <div class="mdc-card">
+      <div class="mdc-card__primary-action" tabindex="0">
+        <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square" style="background-image: url(&quot;{{asset('img/capa_13.jpg')}}&quot;);">
+          <div class="mdc-card__media-content" style="display: flex; align-items: flex-end;">
+            <h2 class="mdc-typography mdc-typography--headline6" style="color: white; padding-left: 0.5rem">Lucian, o purificador</h2>
+          </div>
+        </div>
+        <div style="padding: 0.5rem">
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star</i>
+          <i class="material-icons">star_half</i>
+          <h2 class="mdc-typography mdc-typography--headline4" style="margin: 0px">R$ 27,00</h2>
+          <h2 class="mdc-typography mdc-typography--subtitle2" style="color:gray;">10x de R$2,70 sem juros</h2>
+        </div>   
+      </div>
+    </div>
+  </div>
+ 
 </div>
+@endsection
+
+@section('scripts')
+  <script src="{{asset('js/configLanding.js')}}"></script>
 @endsection

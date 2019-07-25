@@ -42,12 +42,15 @@
                 }
             });
 
-            
             for(var i = 0; i < data.getNumberOfRows(); i++){
                 var order_id = orders[i+1][0];
-                data.setCell(i, 5, "<a href=" + "/admin/order/" + order_id + "/destroy" + "><i class='fas fa-trash'></i></a>");
+                data.setCell(i, 5, "<a href=" + "/admin/order/" + order_id + "/cancel" + "><i class='fas fa-trash'></i></a>");
             }
-
+            
+            // for(var i = 0; i < data.getNumberOfRows(); i++){
+            //     var product_id = products[i+2][1];
+            //     data.setCell(i, 5, product_id);
+            // }
 
             var table = new google.visualization.ChartWrapper({
                 chartType: 'Table',

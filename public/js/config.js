@@ -49,7 +49,7 @@ $(window).resize(function(){
   if ( windowWidth > 768 ) {
     $('#sidebarMenu, #sidebarMenuButton').addClass('d-none');
     $('#allMenu').removeClass('d-none');
-    $('#topAppBar').removeClass('mdc-top-app-bar--short');
+    $('#topAppBar').removeClass('mdc-top-app-bar--short mdc-top-app-bar--short-collapsed');
     $('#topAppBar').addClass('mdc-top-app-bar--fixed');
     $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '5%');
   }

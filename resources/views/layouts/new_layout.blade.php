@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  @yield('stylesheets')
   <script src="https://kit.fontawesome.com/828f671aa2.js"></script>
 </head>
 <body>
@@ -99,5 +100,6 @@
 
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/config.js')}}"></script>
+  @yield('scripts')
 </body>
 </html>
