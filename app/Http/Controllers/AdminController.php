@@ -38,12 +38,21 @@ class AdminController extends Controller
         return view('admin.products')->with('products', json_encode($array));    
     }
 
+    public function ofertaProdutoView($product_id){
+        return view('admin.productDesconto')->with('product_id', $product_id);
+    }
+
+    public function ofertaCategoriaView(){
+        return view('admin.categoryDesconto')->with('category_id', $category_id);
+    }
+
     // Aplicar desconto a um determinado produto
-    public function ofertaProduto($product_id, $desconto){
-        $product = Product::find($product_id);
+    public function ofertaProduto(Request $data){
+        $desconto = $data->desconto * 0.01;
+        $product = Product::find($data->product_id);
         $product->price = $product->price - ($product->price * $desconto);
         $product->save();
-        return back();
+        return redirect('/admin/products');
     }
 
     // Aplicar desconto a toda uma categoria

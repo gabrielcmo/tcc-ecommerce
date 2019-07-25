@@ -11,7 +11,7 @@
         <div id="string_filter_name_div"></div>
         <div id="number_range_filter_div"></div>
     </div>
-    <div id="products_table"></div>
+    <div style="text-align:center!important;" id="products_table"></div>
 @endsection
 
 @section('scripts')
@@ -35,7 +35,9 @@
 
             for(var i = 0; i < data.getNumberOfRows(); i++){
                 var product_id = analytics[i+1][0];
-                data.setCell(i, 5, "<a href=" + "/admin/product/" + product_id + "/edit" + "><i class='fas fa-pencil-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=" + "/admin/product/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>");
+                data.setCell(i, 5, "<a href=" + "/admin/product/" + product_id + "/edit" + "><i class='fas fa-pencil-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
+                + "<a href=" + "/admin/product/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
+                + "<a href=" + "/admin/product/" + product_id + "/desconto" + " class='btn btn-info'>Aplicar desconto</a>");
             }
 
             var stringFilter = new google.visualization.ControlWrapper({

@@ -3,10 +3,11 @@
 namespace Doomus\Http\Controllers;
 
 use Doomus\Order;
-use Doomus\OrderStatus;
 use Illuminate\Http\Request;
 use Doomus\Http\Controllers\UserController as User;
 use Session;
+use Doomus\Historic;
+use Doomus\HistoricStatus;
 
 class OrderController extends Controller
 {
@@ -50,14 +51,14 @@ class OrderController extends Controller
     {
         $order = Order::find($order_id);
         
-        foreach($order->product() as $product){
-            $historic = new Historic();
-            $historic->user_id = User::getUser()->id;
-            $historic->product_id = $product->id;
-            $historic->status_id = OrderStatus::$STATUS_CANCELLED;
-        }
-
-        $order->destroy();
+        $historic = new Historic();
+        $historic->user_id = User::getUser()->id;
+        $historic->product_id = $order->product->id;
+        $historic->qty = $order->qty;
+        $historic->status_id = HistoricStatus::$STATUS_CANCELLED;
+        $historic->save();
+        
+        $order->destroy($order_id);
 
         Session::flash('status', 'Pedido cancelado');
         return back();

@@ -89,6 +89,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::post('/product/edit/data', 'ProductController@update')->name('admin.product.update');
     Route::get('/product/create', 'ProductController@create')->name('admin.createProduct');
     Route::post('/product/create/data', 'ProductController@store')->name('admin.product.store');
+    Route::get('/product/{product_id}/desconto', 'AdminController@ofertaProdutoView');
+    Route::post('/product/desconto', 'AdminController@ofertaProduto');
+    
+    Route::get('/category/desconto', 'AdminController@ofertaCategoriaView');
+    Route::post('/category/desconto', 'AdminController@ofertaCategoriaView');
 
     /*
     *   Pedidos 
