@@ -69,10 +69,17 @@ class AdminController extends Controller
     public function orders(){
         $orders = Order::all();
 
-        $array[] = ['ID Pedido', 'Produto', 'Usuário', 'Status', 'Método de Pagamento'];
+        $array[] = ['ID Pedido', 'ID Produtos', 'Usuário', 'Status', 'Método de Pagamento'];
 
         foreach($orders as $order){
-            $array[] = [$order->id, $order->product->id, $order->user->id, true, $order->payment_method->name];
+            $products = "";
+            $i = 1;
+            foreach($order->product as $item){
+                $products .= $i == count($order->product) ? $item->id. "." : $item->id. ", ";
+                $i++;
+            }
+
+            $array[] = [$order->id, $products, $order->user->id, true, $order->payment_method->name];
         }
         
         return view('admin.orders')->with('orders', json_encode($array));

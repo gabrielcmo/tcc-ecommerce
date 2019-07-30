@@ -11,7 +11,7 @@ class Order extends Model
      *
      */
     public function product(){
-        return $this->belongsTo('Doomus\Product');
+        return $this->belongsToMany('Doomus\Product');
     }
 
     public function user(){

@@ -11,6 +11,9 @@
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet" >
   <link href="{{ asset('/css/styleDefault.min.css') }}" rel="stylesheet" >
+  <link rel="stylesheet" href="{{asset('css/app.css')}}">
+  <link rel="stylesheet" href="{{asset('css/config.css')}}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/css/mdb.min.css" rel="stylesheet">
@@ -35,9 +38,10 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <div class="dropdown my-2 my-lg-0 mx-5 w-75">
             <form class="form-inline">
-              <input class="form-control mr-sm-2 col-lg-12" id="search" type="search" placeholder="Pesquise por produtos!" autocomplete="off" aria-label="Search">
+              <input class="form-control mr-sm-2 col-lg-12 dropdown-toggle" id="search" type="search" placeholder="Pesquise por produtos!" autocomplete="off" aria-label="Search">
             </form>
-            <div class="dropdown-menu" aria-labelledby="search" id="result">
+            <div aria-labelledby="search">
+              <ul class="mdc-list demo-list mdc-list--two-line mdc-list--avatar-list" id="result"></ul>
             </div>
         </div>
         <ul class="navbar-nav">
@@ -174,6 +178,9 @@
 
       <!-- Bootstrap tooltips -->
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+      <script src="{{asset('js/app.js')}}"></script>
+      <script src="{{asset('js/config.js')}}"></script>
 
       <!-- Bootstrap core JavaScript -->
       {{-- <script type="text/javascript" src="/js/bootstrap.min.js"></script> --}}

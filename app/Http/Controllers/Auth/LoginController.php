@@ -6,7 +6,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Doomus\User;
-use Doomus\Http\Controllers\CartController;
 use Socialite;
 use Doomus\Role;
 
@@ -72,10 +71,8 @@ class LoginController extends Controller
             // add user to database and login
             $user = User::create([
                 'email' => $providerUser->getEmail(),
-                'image' => 'user-placeholder.jpg',
                 'name' => $providerUser->getName(),
                 'provider_id' => $providerUser->getId(),
-                'cart_id' => CartController::setCart(),
                 'role_id' => Role::$ROLE_CLIENT,
                 'provider' => $provider
             ]);
