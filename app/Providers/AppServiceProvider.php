@@ -4,6 +4,7 @@ namespace Doomus\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Schema;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::DefaultStringLength(191);
+        Blade::component('components.card', 'card');
     }
 }

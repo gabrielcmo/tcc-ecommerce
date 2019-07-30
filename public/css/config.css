@@ -39,3 +39,8 @@ a:hover {
 .login-button-container button {
   margin: 3px;
 }
+
+button:focus {
+  border: 0 none;
+  outline: 0;
+}

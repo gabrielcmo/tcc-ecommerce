@@ -1,4 +1,5 @@
 <?php
+
 namespace Doomus\Http\Controllers\Auth;
 
 use Doomus\Http\Controllers\Controller;
@@ -29,10 +30,11 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected function redirectTo(){
-        if(Auth::user()->role_id == 1){
+    protected function redirectTo()
+    {
+        if (Auth::user()->role_id == 1) {
             return '/admin';
-        }else{
+        } else {
             return '/';
         }
     }
@@ -65,7 +67,7 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $providerUser = Socialite::driver($provider)->user();
-        
+
         $user = User::where('provider_id', $providerUser->getId())->first();
 
         if (!$user) {
@@ -75,7 +77,6 @@ class LoginController extends Controller
                 'image' => 'user-placeholder.jpg',
                 'name' => $providerUser->getName(),
                 'provider_id' => $providerUser->getId(),
-                'cart_id' => CartController::setCart(),
                 'role_id' => Role::$ROLE_CLIENT,
                 'provider' => $provider
             ]);

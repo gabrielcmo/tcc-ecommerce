@@ -54,5 +54,10 @@ $(window).resize(function(){
     $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '5%');
   }
 });
-  
+
+  $('.actionButton').click(function(){
+    var route = $(this).data('href');
+    window.location.href = route;
+  });
+
 });

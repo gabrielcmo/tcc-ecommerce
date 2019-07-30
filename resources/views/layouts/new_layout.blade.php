@@ -9,14 +9,14 @@
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   @yield('stylesheets')
-  <script src="https://kit.fontawesome.com/828f671aa2.js"></script>
+  <link rel="stylesheet" href="{{asset('css/icons.css')}}">
 </head>
-<body>
+<body style="background-color: #e9e9e9;">
         <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar">
           <div class="mdc-top-app-bar__row">
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
               <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
-              <span class="mdc-top-app-bar__title">Teste</span>       
+              <span class="mdc-top-app-bar__title">Doomus</span>       
             </section>
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
               <div class="mdc-menu-surface--anchor" id="allMenu">
@@ -26,18 +26,18 @@
                 </button> 
                 <div class="mdc-menu mdc-menu-surface" id="menu">
                     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-                        <li class="mdc-list-item" role="menuitem">
-                          <span class="mdc-list-item__text">Logar</span>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                          <span class="mdc-list-item__text">Registrar</span>
-                        </li>
-                        <li class="mdc-list-divider" role="separator"></li>
-                        <li class="mdc-list-item" role="menuitem">
-                          <i class="fab fa-google" style="font-size: 20px; margin-right: 5px"></i>
-                          <span class="mdc-list-item__text">Entrar com Google</span>
-                        </li>
-                      </ul>
+                      <li class="mdc-list-item actionButton" role="menuitem" data-href="{{route('login')}}">
+                        <span class="mdc-list-item__text">Logar</span>
+                      </li>
+                      <li class="mdc-list-item actionButton" role="menuitem" data-href="{{route('register')}}">
+                        <span class="mdc-list-item__text">Registrar</span>
+                      </li>
+                      <li class="mdc-list-divider" role="separator"></li>
+                      <li class="mdc-list-item actionButton" role="menuitem" data-href="{{route('loginSocial', ['provider'=>'google'])}}">
+                        <i class="fab fa-google" style="font-size: 20px; margin-right: 5px"></i>
+                        <span class="mdc-list-item__text">Entrar com Google</span>
+                      </li>
+                    </ul>
                 </div>
               </div>
               <button class="mdc-button mdc-top-app-bar__action-item">
@@ -73,13 +73,13 @@
                 <span class="mdc-list-item__text">Drafts</span>
               </a>
             </div>
-            <button class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
+            <button data-href="{{route('register')}}" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
               <span class="mdc-button__label">Registrar</span>
             </button>
-            <button class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
+            <button data-href="{{route('login')}}" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
               <span class="mdc-button__label">Logar</span>
             </button>
-            <button class="mdc-button mdc-button--raised" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
+            <button data-href="{{route('loginSocial', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
               <i class="mdc-button__icon fab fa-google" style="font-size: 18px; margin-right: 5px"></i>
               <span class="mdc-button__label">Entrar com Google</span>
             </button>
@@ -94,7 +94,6 @@
             </div>
           </main>
         </div>
-
 
 
 

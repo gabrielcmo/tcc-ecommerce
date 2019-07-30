@@ -35,4 +35,10 @@ class IndexController extends Controller
             ->with('products', $products)
             ->with('categories', $categories);
     }
+    public function testData()
+    {
+        $products = Product::all();
+
+        return view('new_landing')->with('products', $products);
+    }
 }

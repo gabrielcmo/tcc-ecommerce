@@ -20,10 +20,10 @@ Route::get('/carrinho/delete', 'CartController@clearCart')->name('cart.clear');
 Route::get('/carrinho', 'CartController@show')->name('user.cart');
 
 /* 
-*   Autentificação - Login
+*   Autentificação - Login - Rede Social
 */
 Auth::routes();
-Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('loginSocial');
 Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 /* 
@@ -105,9 +105,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
 /* 
 *   Testes
 */
-Route::get('/test', function(){
-    return view('new_landing');
-});
+Route::get('/test', 'IndexController@testData');
 
 Route::get('/test-components', function(){
     return view('test_components');
