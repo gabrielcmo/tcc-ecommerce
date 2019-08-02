@@ -2,6 +2,15 @@ const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer
 const list = mdc.list.MDCList.attachTo(document.querySelector('.mdc-list'))
 const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('.mdc-top-app-bar'));
 const menu = mdc.menu.MDCMenu.attachTo(document.querySelector('.mdc-menu'));
+const buttons = document.querySelectorAll('.mdc-button');
+const textsFields = document.querySelectorAll('.mdc-text-field');
+
+textsFields.forEach(textField => {
+  mdc.textField.MDCTextField.attachTo(textField);
+});
+buttons.forEach(button => {
+  mdc.ripple.MDCRipple.attachTo(button);
+});
 topAppBar.setScrollTarget(document.getElementById('main-content'));
 topAppBar.listen('MDCTopAppBar:nav', () => {
   drawer.open = !drawer.open;
@@ -59,5 +68,7 @@ $(window).resize(function(){
     var route = $(this).data('href');
     window.location.href = route;
   });
+
+  $('#modalLogin').modal('toggle');
 
 });

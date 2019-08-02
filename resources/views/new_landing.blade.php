@@ -72,6 +72,8 @@
 @endforeach
 <div class="col-lg-2"></div>
 </div>
+
+
 @endsection
 
 @section('scripts')

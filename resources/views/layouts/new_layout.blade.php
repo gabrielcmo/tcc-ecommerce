@@ -7,7 +7,6 @@
   <title>Document</title>
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   @yield('stylesheets')
   <link rel="stylesheet" href="{{asset('css/icons.css')}}">
 </head>
@@ -95,7 +94,74 @@
           </main>
         </div>
 
+        {{-- Modais --}}
+        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="TituloModalLogin" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="TituloModalLogin">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST">
+                  <div class="container-fluid">
+                  <div class="row justify-content-center">
+                  <img src="{{asset('img/logo_icone.png')}}" alt="dwa" class="img-fluid">
+                  <h1 style="font-family: 'Roboto'">DOOMUS</h1>
+                  </div>
+                  <div class="row justify-content-center">
+                  <div class="mdc-text-field mdc-text-field--outlined"> 
+                    <input type="text" id="email-text-field" class="mdc-text-field__input">
+                    <div class="mdc-notched-outline">
+                      <div class="mdc-notched-outline__leading"></div>
+                      <div class="mdc-notched-outline__notch">
+                        <label for="email-text-field" class="mdc-floating-label">E-Mail</label>
+                      </div>
+                      <div class="mdc-notched-outline__trailing"></div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="row justify-content-center">
+                  <div class="mdc-text-field mdc-text-field--outlined mt-3">
+                    <input type="text" id="password-text-field" class="mdc-text-field__input">
+                    <div class="mdc-notched-outline">
+                      <div class="mdc-notched-outline__leading"></div>
+                      <div class="mdc-notched-outline__notch">
+                        <label class="mdc-floating-label" for="password-text-field">Senha</label>
+                      </div>
+                      <div class="mdc-notched-outline__trailing"></div>
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button class="mdc-button mdc-button--raised">
+                  <span class="mdc-button__label">Logar</span>
+                </button>
+                <button class="mdc-button mdc-button--raised">
+                  <span class="mdc-button__label">Fechar</span>
+                </button>
+              </div>
+            </div>
+          </div>  
+        </div>
 
+        <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="TituloModalRegister" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="TituloModalRegister">Registro</h5>
+                <button>
+                  <span aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('js/config.js')}}"></script>
