@@ -25,10 +25,10 @@
                 </button> 
                 <div class="mdc-menu mdc-menu-surface" id="menu">
                     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-                      <li class="mdc-list-item actionButton" role="menuitem" data-href="{{route('login')}}">
+                      <li class="mdc-list-item" id="loginMenu" role="menuitem">
                         <span class="mdc-list-item__text">Logar</span>
                       </li>
-                      <li class="mdc-list-item actionButton" role="menuitem" data-href="{{route('register')}}">
+                      <li class="mdc-list-item" id="registerMenu" role="menuitem">
                         <span class="mdc-list-item__text">Registrar</span>
                       </li>
                       <li class="mdc-list-divider" role="separator"></li>
@@ -105,12 +105,13 @@
                 </button>
               </div>
               <div class="modal-body">
+                <div class="row justify-content-center">
+                  <img src="{{asset('img/logo_icone.png')}}" alt="Logo Doomus" class="img-fluid">
+                  <h1 style="font-family: 'Roboto'">DOOMUS</h1>
+                </div>
                 <form action="" method="POST">
                   <div class="container-fluid">
-                  <div class="row justify-content-center">
-                  <img src="{{asset('img/logo_icone.png')}}" alt="dwa" class="img-fluid">
-                  <h1 style="font-family: 'Roboto'">DOOMUS</h1>
-                  </div>
+                  
                   <div class="row justify-content-center">
                   <div class="mdc-text-field mdc-text-field--outlined"> 
                     <input type="text" id="email-text-field" class="mdc-text-field__input">
@@ -155,8 +156,74 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="TituloModalRegister">Registro</h5>
-                <button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                   <span aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST">
+                  <div class="container-fluid">
+                    <div class="row justify-content-center">
+                      <img src="{{asset('img/logo_icone.png')}}" alt="Logo Doomus" class="img-fluid">
+                      <h1 style="font-family: 'Roboto'">DOOMUS</h1>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="mdc-text-field mdc-text-field--outlined">
+                        <input class="mdc-text-field__input" id="name-text-field" type="text">
+                        <div class="mdc-notched-outline">
+                          <div class="mdc-notched-outline__leading"></div>
+                          <div class="mdc-notched-outline__notch">
+                            <label for="name-text-field" class="mdc-floating-label">Nome</label>
+                          </div>
+                          <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                      <div class="mdc-text-field mdc-text-field--outlined">
+                        <input class="mdc-text-field__input" id="email-tex-field" type="text">
+                        <div class="mdc-notched-outline">
+                          <div class="mdc-notched-outline__leading"></div>
+                          <div class="mdc-notched-outline__notch">
+                            <label for="email-text-field" class="mdc-floating-label">E-Mail</label>
+                          </div>
+                          <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                      <div class="mdc-text-field mdc-text-field--outlined">
+                        <input class="mdc-text-field__input" id="password-text-field" type="password" minlength="8">
+                        <div class="mdc-notched-outline">
+                          <div class="mdc-notched-outline__leading"></div>
+                          <div class="mdc-notched-outline__notch">
+                            <label for="password-text-field" class="mdc-floating-label">Senha</label>
+                          </div>
+                          <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                      <div class="mdc-text-field mdc-text-field--outlined">
+                        <input class="mdc-text-field__input" id="password-confirmation-text-field" type="password" minlength="8">
+                        <div class="mdc-notched-outline">
+                          <div class="mdc-notched-outline__leading"></div>
+                          <div class="mdc-notched-outline__notch">
+                            <label for="password-confirmation-text-field" class="mdc-floating-label">Confirme sua senha</label>
+                          </div>
+                          <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button class="mdc-button mdc-button--raised">
+                  <span class="mdc-button__label">Registrar</span>
+                </button>
+                <button class="mdc-button mdc-button--raised">
+                  <span class="mdc-button__label">Fechar</span>
                 </button>
               </div>
             </div>
