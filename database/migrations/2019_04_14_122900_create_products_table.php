@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->double('width', 4, 1);
             $table->double('height', 4, 1);
             $table->double('diameter', 4, 1)->nullable();
-            $table->float('price');
+            $table->float('price', 5, 2);
             $table->integer('looks')->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')

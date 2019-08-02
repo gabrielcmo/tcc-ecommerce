@@ -225,58 +225,44 @@ class DatabaseSeeder extends Seeder
         
         DB::table('orders')->insert([
             'user_id' => 1,
-            'qty' => 2,
-            'product_id' => 3,
-            'payment_method_id' => 1
-        ]);
-        
-        DB::table('orders')->insert([
-            'user_id' => 1,
-            'qty' => 2,
-            'product_id' => 3,
-            'payment_method_id' => 1
-        ]);
-        
-        DB::table('orders')->insert([
-            'user_id' => 1,
-            'qty' => 2,
-            'product_id' => 3,
-            'payment_method_id' => 1
-        ]);
-        
-        DB::table('orders')->insert([
-            'user_id' => 1,
-            'qty' => 2,
-            'product_id' => 3,
-            'payment_method_id' => 1
-        ]);
-        
-        DB::table('orders')->insert([
-            'user_id' => 1,
-            'qty' => 2,
-            'product_id' => 3,
             'payment_method_id' => 1
         ]);
         
         DB::table('orders')->insert([
             'user_id' => 2,
-            'qty' => 1,
-            'product_id' => 4,
             'payment_method_id' => 1
         ]);
         
-        DB::table('orders')->insert([
-            'user_id' => 2,
-            'qty' => 5,
-            'product_id' => 2,
-            'payment_method_id' => 1
-        ]);
-        
-        DB::table('orders')->insert([
-            'user_id' => 2,
-            'qty' => 2,
+        DB::table('order_product')->insert([
             'product_id' => 1,
-            'payment_method_id' => 1
+            'order_id' => 1,
+            'qty' => 2,
+            'price' => 133,
+            'value_total' => 200
+        ]);
+        
+        DB::table('order_product')->insert([
+            'product_id' => 2,
+            'order_id' => 1,
+            'qty' => 4,
+            'price' => 20,
+            'value_total' => 50.22
+        ]);
+        
+        DB::table('order_product')->insert([
+            'product_id' => 3,
+            'order_id' => 2,
+            'qty' => 2,
+            'price' => 133,
+            'value_total' => 200
+        ]);
+        
+        DB::table('order_product')->insert([
+            'product_id' => 1,
+            'order_id' => 2,
+            'qty' => 2,
+            'price' => 133,
+            'value_total' => 200
         ]);
     }
 }

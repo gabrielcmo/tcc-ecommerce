@@ -46,7 +46,7 @@ class Product extends Model
     }
 
     public function orders(){
-        return $this->hasMany('Doomus\Order');
+        return $this->belongsToMany('Doomus\Order');
     }
 
     public function historics(){

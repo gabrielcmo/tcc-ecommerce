@@ -4,10 +4,10 @@ namespace Doomus\Http\Controllers\Auth;
 
 use Doomus\User;
 use Doomus\Http\Controllers\Controller;
-use Doomus\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Socialite;
 use Doomus\Role;
 
 class RegisterController extends Controller
@@ -67,11 +67,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'image' => 'user-placeholder.jpg',
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'cart_id' => CartController::setCart(),
             'role_id' => Role::$ROLE_CLIENT,
         ]);
     }
