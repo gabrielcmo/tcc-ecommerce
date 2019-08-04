@@ -17,7 +17,7 @@ class HistoricController extends Controller
     public function show()
     {
         $historic = User::getHistoric();
-        return view('user.historic')->with('historic', $historic);
+        return view('user.historic')->with('historics', $historic);
     }
 
     /**

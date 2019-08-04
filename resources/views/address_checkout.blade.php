@@ -47,7 +47,14 @@
                         </span>
                     @endif
                     <br>
-                    <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" type="text" name="address" placeholder="Rua">
+                    <input class="form-control{{ $errors->has('bairro') ? ' is-invalid' : '' }}" type="text" name="bairro" id="bairro" placeholder="Bairro">
+                    @if ($errors->has('bairro'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('bairro') }}</strong>
+                        </span>
+                    @endif
+                    <br>
+                    <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" type="text" name="address" id="address" placeholder="Rua">
                     @if ($errors->has('address'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('address') }}</strong>
@@ -140,6 +147,13 @@
                 $('#city').val(result.localidade);
                 $('#city').attr('disabled', true);
 
+                if(result.logradouro != '' && result.bairro != ''){
+                    $('#address').val(result.logradouro);
+                    $('#address').attr('disabled', true);
+
+                    $('#bairro').val(result.bairro);
+                    $('#bairro').attr('disabled', true);
+                }
               }
             });
           }

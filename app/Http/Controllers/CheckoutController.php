@@ -106,13 +106,17 @@ class CheckoutController extends Controller
     }
 
     public function paymentSuccess(){
+        $total = 0;
+        
         foreach(Cart::content() as $item){
             ProductController::changeQtyLast($item->id, $item->qty);
-            $dataOrder['products'][] = ['id' => $item->id, 'qty' => $item->qty];
+            $dataOrder['products'][] = ['id' => $item->id, 'qty' => $item->qty, 'price' => $item->price];
+            $total += $item->value;
         }
 
         $dataOrder['p_method_id'] = 1;
-
+        $dataOrder['value_total'] = $total;
+        
         OrderController::store($dataOrder);
 
         Cart::destroy();

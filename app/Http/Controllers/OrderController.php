@@ -8,6 +8,7 @@ use Doomus\Http\Controllers\UserController as User;
 use Session;
 use Doomus\Historic;
 use Doomus\HistoricStatus;
+use Doomus\OrderProduct;
 
 class OrderController extends Controller
 {
@@ -18,13 +19,19 @@ class OrderController extends Controller
      */
     public static function store($request)
     {
+        $order = new Order();
+        $order->user_id = User::getUser()->id;
+        $order->payment_method_id = $request['p_method_id'];
+        $order->value_total = $request['value_total'];
+        $order->save();
+        
         foreach($request['products'] as $product){
-            $order = new Order();
-            $order->user_id = User::getUser()->id;
-            $order->product_id = $product['id'];
-            $order->qty = $product['qty'];
-            $order->payment_method_id = $request['p_method_id'];
-            $order->save();
+            $order_product = new OrderProduct();
+            $order_product->order_id = $order->id;
+            $order_product->product_id = $product['id'];
+            $order_product->qty = $product['qty'];
+            $order_product->price = $product['price'];
+            $order_product->save();
         }
 
         return back();

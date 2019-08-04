@@ -19,7 +19,6 @@ class OrderProduct extends Migration
             $table->integer('order_id')->unsigned();
             $table->integer('qty');
             $table->float('price', 5, 2);
-            $table->float('value_total', 5, 2);
             $table->foreign('product_id')->references('id')->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

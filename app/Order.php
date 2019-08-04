@@ -3,6 +3,7 @@
 namespace Doomus;
 
 use Illuminate\Database\Eloquent\Model;
+use Doomus\Product;
 
 class Order extends Model
 {
@@ -12,6 +13,10 @@ class Order extends Model
      */
     public function product(){
         return $this->belongsToMany('Doomus\Product');
+    }
+
+    public function historic(){
+        return $this->hasMany('Doomus\Historic');
     }
 
     public function user(){

@@ -70,7 +70,7 @@
           @endauth
           @guest
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle mx-4 mr-2" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle mx-4 mr-2" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-user"></i> olá, entre com sua conta ou cadastre-se
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

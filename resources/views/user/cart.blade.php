@@ -26,8 +26,7 @@
                 @endforeach
             </tbody>
         </table>
-    <a class="btn btn-success" href="/checkout/endereco" onclick="displaySpinner();">
-        <span style="display:none;" id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <a class="btn btn-success" href="/checkout/endereco">
         Fazer pedido
     </a>
     </div>

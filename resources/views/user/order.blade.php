@@ -5,10 +5,12 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                @if (count($orders) == 0)
+            @if (count($orders) == 0)
+                <div class="col-md-9">
                     <h3>Você ainda não tem nenhum pedido em andamento!</h3>
-                @else
+                </div>
+            @else
+                @foreach ($orders as $order)
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
@@ -20,19 +22,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $item)
+                            @foreach($order->product as $item)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>{{ $item->qty }}</td>
-                                    <td>{{ $item->payment_method->name }}</td>
-                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $order->payment_method->name }}</td>
+                                    <td>{{ $order->created_at }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                @endif
-            </div>
+                    <br>
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection

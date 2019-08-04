@@ -6,32 +6,34 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                @if (count($historic) == 0)
+                @if (count($historics) == 0)
                     <h1>Seu histórico está vazio!</h1>
                 @else
-                    <button class="btn btn-danger">Limpar histórico</button><br><br>
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Produto</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($historic as $item)
+                    @foreach($historics as $historic)
+                        <button class="btn btn-danger">Limpar histórico</button><br><br>
+                        <table class="table">
+                            <thead class="thead-light">
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->product->name }}</td>
-                                    <td>{{ $item->qty }}</td>
-                                    <td>{{ $item->status->name }}</td>
-                                    <td>{{ $item->created_at }}</td>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Pedido ID</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Data</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                    {{dd($historic->order)}}
+                                @foreach($historic->order as $order)
+                                    <tr>
+                                        <td>{{ $historic->id }}</td>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->payment_method->name }}</td>
+                                        <td>{{ $order->created_at }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <br>
+                    @endforeach
                 @endif
             </div>
         </div>
