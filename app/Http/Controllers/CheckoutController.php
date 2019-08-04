@@ -10,6 +10,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Doomus\stdClass;
 use SoapClient;
 use Doomus\Http\Controllers\ProductController;
+use Doomus\Http\Requests\Address;
 
 class CheckoutController extends Controller
 {
@@ -91,7 +92,7 @@ class CheckoutController extends Controller
         return response($zipcodeinfo->getArray());
     }
 
-    public function addressData(Request $data){
+    public function addressData(Address $data){
         $userData['name'] = $data->name;
         $userData['cpf'] = $data->cpf;
         $userData['cep'] = $data->cep;

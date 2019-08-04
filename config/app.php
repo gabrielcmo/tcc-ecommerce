@@ -178,6 +178,7 @@ return [
 
         Canducci\ZipCode\Providers\ZipCodeServiceProvider::class,
         Canducci\ZipCode\Providers\ZipCodeAddressServiceProvider::class,
+        LaravelLegends\PtBrValidator\ValidatorProvider::class
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'ZipCode'   => Canducci\ZipCode\Facades\ZipCode::class,
         'Address'   => Canducci\ZipCode\Facades\ZipCodeAddress::class,
+        'PTBRValidator' => LaravelLegends\PtBrValidator\ValidatorProvider::class
     ],
 
 ];

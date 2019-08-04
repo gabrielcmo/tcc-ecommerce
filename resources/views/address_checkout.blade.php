@@ -26,13 +26,6 @@
                 <br>
                 <form action="/checkout/address/data" method="post">
                     @csrf
-                    <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} col-md-6" type="text" name="name" placeholder="Nome completo">
-                    @if ($errors->has('name'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
-                    <br>
                     <input class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }} col-md-6" type="text" name="cpf" placeholder="CPF">
                     @if ($errors->has('cpf'))
                         <span class="invalid-feedback" role="alert">
@@ -140,19 +133,19 @@
                 $('#state option').each(function(){
                     if($(this).val() == result.uf){
                         $(this).attr('selected', true);
-                        $('#state').attr('disabled', true);
+                        $('#state').attr('readonly', "readonly");
                     }
                 });
 
                 $('#city').val(result.localidade);
-                $('#city').attr('disabled', true);
+                $('#city').attr('readonly', "readonly");
 
                 if(result.logradouro != '' && result.bairro != ''){
                     $('#address').val(result.logradouro);
-                    $('#address').attr('disabled', true);
+                    $('#address').attr('readonly', "readonly");
 
                     $('#bairro').val(result.bairro);
-                    $('#bairro').attr('disabled', true);
+                    $('#bairro').attr('readonly', "readonly");
                 }
               }
             });
