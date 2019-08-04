@@ -17,11 +17,15 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('payment_method_id')->unsigned();
+            $table->integer('status_id')->unsigned();
             $table->float('value_total', 5, 2);
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('status_id')->references('id')->on('order_statuses')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();

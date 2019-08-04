@@ -175,27 +175,46 @@ class DatabaseSeeder extends Seeder
             'filename' => 'placeholder-4.jpg',
             'product_id' => 4,
         ]);
-
+        
         DB::table('historic_statuses')->insert([
-            'name' => 'denied',
+            'name' => 'entrege',
+        ]);
+        
+        DB::table('historic_statuses')->insert([
+            'name' => 'recusado',
         ]);
 
         DB::table('historic_statuses')->insert([
-            'name' => 'approved',
+            'name' => 'cancelado',
+        ]);
+        
+        DB::table('order_statuses')->insert([
+            'name' => 'em andamento',
         ]);
 
-        DB::table('historic_statuses')->insert([
-            'name' => 'cancelled',
+        DB::table('order_statuses')->insert([
+            'name' => 'aprovado',
         ]);
+        
+        DB::table('order_statuses')->insert([
+            'name' => 'em transporte',
+        ]);
+        
+        DB::table('order_statuses')->insert([
+            'name' => 'erro',
+        ]);
+        
 
         DB::table('orders')->insert([
             'user_id' => 1,
+            'status_id' => 1,
             'payment_method_id' => 1,
             'value_total' => 200
         ]);
         
         DB::table('orders')->insert([
             'user_id' => 2,
+            'status_id' => 3,
             'payment_method_id' => 1,
             'value_total' => 200
         ]);
@@ -223,11 +242,13 @@ class DatabaseSeeder extends Seeder
 
         DB::table('historics')->insert([
             'order_id' => 2,
+            'user_id' => 2,
             'status_id' => 1
         ]);
         
         DB::table('historics')->insert([
             'order_id' => 1,
+            'user_id' => 1,
             'status_id' => 2
         ]);
 

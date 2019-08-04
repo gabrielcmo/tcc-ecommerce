@@ -45,9 +45,14 @@ class HistoricController extends Controller
      * @param  \Doomus\Historic  $historic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Historic $historic)
+    public function destroy($id)
     {
-        $historic->destroy();
+        
+        $historic = UserController::getHistoric();
+        
+        foreach($historic as $item){
+            $item->destroy($item->id);
+        }
 
         Session::flash('status', 'Histórico apagado com sucesso');
         return back();

@@ -8,6 +8,7 @@ use Canducci\ZipCode\ZipCodeUf;
 use Canducci\ZipCode\ZipCode;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Doomus\stdClass;
+use Doomus\OrderStatus;
 use SoapClient;
 use Doomus\Http\Controllers\ProductController;
 use Doomus\Http\Requests\Address;
@@ -117,7 +118,8 @@ class CheckoutController extends Controller
 
         $dataOrder['p_method_id'] = 1;
         $dataOrder['value_total'] = $total;
-        
+        $dataOrder['status_id'] = OrderStatus::$STATUS_PROCESSING;
+
         OrderController::store($dataOrder);
 
         Cart::destroy();

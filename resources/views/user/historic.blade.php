@@ -6,30 +6,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
+                <a class="btn btn-danger" href="/historico/{{ Auth::user()->id }}/clean">Limpar histórico</a><br><br>
                 @if (count($historics) == 0)
                     <h1>Seu histórico está vazio!</h1>
                 @else
                     @foreach($historics as $historic)
-                        <button class="btn btn-danger">Limpar histórico</button><br><br>
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Pedido ID</th>
+                                    <th scope="col">produto</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Data</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    {{dd($historic->order)}}
-                                @foreach($historic->order as $order)
+                                @foreach($historic->order->product as $product)
                                     <tr>
                                         <td>{{ $historic->id }}</td>
-                                        <td>{{ $order->id }}</td>
-                                        <td>{{ $order->payment_method->name }}</td>
-                                        <td>{{ $order->created_at }}</td>
+                                        <td>{{ $product->id }}</td>
+                                        <td>{{ $historic->status->name }}</td>
+                                        <td>{{ $historic->created_at }}</td>
                                     </tr>
                                 @endforeach
+                                <br>
                             </tbody>
                         </table>
                         <br>

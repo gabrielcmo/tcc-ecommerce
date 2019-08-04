@@ -17,6 +17,8 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Produto</th>
                                 <th scope="col">Quantidade</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Método de Pagamento</th>
                                 <th scope="col">Data</th>
                             </tr>
@@ -26,7 +28,9 @@
                                 <tr>
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->qty }}</td>
+                                    <td>{{ $item->pivot->qty }}</td>
+                                    <td>{{ $item->price }}</td>
+                                    <td>{{ $order->status->name }}</td>
                                     <td>{{ $order->payment_method->name }}</td>
                                     <td>{{ $order->created_at }}</td>
                                 </tr>

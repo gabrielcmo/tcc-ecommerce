@@ -16,8 +16,12 @@ class CreateHistoricsTable extends Migration
         Schema::create('historics', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('historic_statuses')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('order_id')->references('id')->on('orders')

@@ -56,6 +56,11 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/historico', 'HistoricController@show')->name('historic');
 
     /*
+    *   Limpar histórico
+    */
+    Route::get('/historico/{id}/clean', 'HistoricController@destroy');
+
+    /*
     *   Checkout
     */
     Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');

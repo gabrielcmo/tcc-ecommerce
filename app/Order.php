@@ -12,7 +12,7 @@ class Order extends Model
      *
      */
     public function product(){
-        return $this->belongsToMany('Doomus\Product');
+        return $this->belongsToMany('Doomus\Product')->withPivot('qty');
     }
 
     public function historic(){
@@ -21,6 +21,10 @@ class Order extends Model
 
     public function user(){
         return $this->belongsTo('Doomus\User');
+    }
+
+    public function status(){
+        return $this->belongsTo('Doomus\OrderStatus');
     }
 
     public function payment_method(){
