@@ -16174,6 +16174,9 @@ a.mdc-list-item {
   right: initial;
   display: none;
   position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 [dir=rtl] .mdc-menu__selection-group .mdc-menu__selection-group-icon,
