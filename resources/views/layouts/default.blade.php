@@ -10,9 +10,9 @@
   
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet" >
+  <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" >
   <link href="{{ asset('/css/styleDefault.min.css') }}" rel="stylesheet" >
-  <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  <link rel="stylesheet" href="{{asset('css/config.css')}}">
+  <link rel="stylesheet" href="{{asset('/css/config.css')}}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Material Design Bootstrap -->
@@ -47,17 +47,13 @@
         <ul class="navbar-nav">
           @auth
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle mx-4 mr-2" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"></i> {{ Auth::user()->name }}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
+                <a class="nav-link" href="{{ route('perfil') }}">Perfil</a>
                 @if(Auth::user()->role_id == 1)
-                <a class="dropdown-item" href="{{ route('admin.index') }}">Painel de controle</a>
+                <a class="nav-linknav-link" href="{{ route('admin.index') }}">Painel de controle</a>
                 @endif
-                <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
-                <a class="dropdown-item" href="{{ route('historic') }}">Histórico</a>
-                <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a class="nav-link" href="{{ route('orders') }}">Pedidos</a>
+                <a class="nav-link" href="{{ route('historic') }}">Histórico</a>
+                <a class="nav-link text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                     {{ __('Sair') }}
                 </a>
@@ -70,12 +66,8 @@
           @endauth
           @guest
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle mx-4 mr-2" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user"></i> olá, entre com sua conta ou cadastre-se
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
-              <a class="dropdown-item" href="{{ route('register') }}">
+              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              <a class="nav-link" href="{{ route('register') }}">
                   {{ __('Registrar') }}
               </a>
             </div>

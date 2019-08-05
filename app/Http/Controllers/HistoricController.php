@@ -3,6 +3,7 @@
 namespace Doomus\Http\Controllers;
 
 use Doomus\Historic;
+use Doomus\Order;
 use Illuminate\Http\Request;
 use Session;
 use Doomus\Http\Controllers\UserController as User;
@@ -51,6 +52,7 @@ class HistoricController extends Controller
         $historic = UserController::getHistoric();
         
         foreach($historic as $item){
+            Order::destroy($item->order_id);
             $item->destroy($item->id);
         }
 

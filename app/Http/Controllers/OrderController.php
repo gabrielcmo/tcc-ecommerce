@@ -65,6 +65,7 @@ class OrderController extends Controller
             Session::flash('status-type', 'danger');
             return back();
         }
+        
         $historic = new Historic();
         $historic->order_id = $order_id;
         $historic->user_id = User::getUser()->id;
