@@ -109,12 +109,12 @@
                   <img src="{{asset('img/logo_icone.png')}}" alt="Logo Doomus" class="img-fluid">
                   <h1 style="font-family: 'Roboto'">DOOMUS</h1>
                 </div>
-                <form action="" method="POST">
+                <form action="{{ route('login') }}" method="POST">
                   <div class="container-fluid">
                   
                   <div class="row justify-content-center">
                   <div class="mdc-text-field mdc-text-field--outlined"> 
-                    <input type="text" id="email-text-field" class="mdc-text-field__input">
+                    <input type="email" name="email" id="email-text-field" class="mdc-text-field__input">
                     <div class="mdc-notched-outline">
                       <div class="mdc-notched-outline__leading"></div>
                       <div class="mdc-notched-outline__notch">
@@ -126,7 +126,7 @@
                   </div>
                   <div class="row justify-content-center">
                   <div class="mdc-text-field mdc-text-field--outlined mt-3">
-                    <input type="text" id="password-text-field" class="mdc-text-field__input">
+                    <input type="password" name="password" id="password-text-field" class="mdc-text-field__input">
                     <div class="mdc-notched-outline">
                       <div class="mdc-notched-outline__leading"></div>
                       <div class="mdc-notched-outline__notch">
@@ -140,7 +140,7 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button class="mdc-button mdc-button--raised">
+                <button class="mdc-button mdc-button--raised" type="submit">
                   <span class="mdc-button__label">Logar</span>
                 </button>
                 <button class="mdc-button mdc-button--raised">

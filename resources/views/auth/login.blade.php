@@ -30,12 +30,12 @@
                                       <div class="mdc-line-ripple"></div>
                                     </div>
                                     <div class="login-button-container">
-                                      <button type="button" class="mdc-button cancel">
-                                        <span class="mdc-button__label">
-                                          Voltar
-                                        </span>
-                                      </button>
-                                      <button class="mdc-button mdc-button--raised next">
+                                        <a type="button" class="mdc-button cancel" href="{{ URL::previous() }}">
+                                            <span class="mdc-button__label">
+                                            Voltar
+                                            </span>
+                                        </a>
+                                      <button class="mdc-button mdc-button--raised next" type="submit">
                                         <span class="mdc-button__label">
                                           Logar
                                         </span>

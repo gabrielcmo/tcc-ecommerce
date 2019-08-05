@@ -27,12 +27,12 @@ class Address extends FormRequest
     {
         return [
             'cpf' => 'required||formato_cpf||cpf',
-            'cep' => 'formato_cep',
-            'bairro' => 'required',
-            'address' => 'required',
-            'n' => 'required',
-            'state' => 'required',
-            'city' => 'required'
+            'cep' => 'formato_cep||numeric',
+            'bairro' => 'required||string',
+            'address' => 'required||string',
+            'n' => 'required||numeric',
+            'state' => 'required||string',
+            'city' => 'required||string'
         ];
     }
 
