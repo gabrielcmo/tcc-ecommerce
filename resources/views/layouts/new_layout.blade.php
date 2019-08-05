@@ -169,7 +169,7 @@
                     </div>
                     <div class="row justify-content-center">
                       <div class="mdc-text-field mdc-text-field--outlined" style="width: 81%;">
-                        <input class="mdc-text-field__input" id="name-text-field" type="text">
+                        <input class="mdc-text-field__input" id="name-text-field" type="text" name="name">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
@@ -181,7 +181,7 @@
                     </div>
                     <div class="row justify-content-center mt-2">
                       <div class="mdc-text-field mdc-text-field--outlined" style="width: 81%;">
-                        <input class="mdc-text-field__input" id="email-text-field" type="text">
+                        <input class="mdc-text-field__input" id="email-text-field" type="text" name="email">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
@@ -193,7 +193,7 @@
                     </div>
                     <div class="row justify-content-center mt-2">
                       <div class="mdc-text-field mdc-text-field--outlined" style="width: 40%;">
-                        <input class="mdc-text-field__input" id="password-text-field" type="password" minlength="8">
+                        <input class="mdc-text-field__input" id="password-text-field" type="password" minlength="8" name="password">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
@@ -203,7 +203,7 @@
                         </div>
                       </div>
                       <div class="mdc-text-field mdc-text-field--outlined ml-1" style="width: 40%;">
-                        <input class="mdc-text-field__input" id="password-confirmation-text-field" type="password" minlength="8">
+                        <input class="mdc-text-field__input" id="password-confirmation-text-field" type="password" minlength="8" name="password_confirmation">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
