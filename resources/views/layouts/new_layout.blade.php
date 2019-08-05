@@ -105,45 +105,45 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div class="row justify-content-center">
-                  <img src="{{asset('img/logo_icone.png')}}" alt="Logo Doomus" class="img-fluid">
-                  <h1 style="font-family: 'Roboto'">DOOMUS</h1>
-                </div>
-                <form action="" method="POST">
+                <form action="{{route('login')}}" method="POST" id="loginForm">
+                  @csrf
                   <div class="container-fluid">
-                  
-                  <div class="row justify-content-center">
-                  <div class="mdc-text-field mdc-text-field--outlined"> 
-                    <input type="text" id="email-text-field" class="mdc-text-field__input">
-                    <div class="mdc-notched-outline">
-                      <div class="mdc-notched-outline__leading"></div>
-                      <div class="mdc-notched-outline__notch">
-                        <label for="email-text-field" class="mdc-floating-label">E-Mail</label>
-                      </div>
-                      <div class="mdc-notched-outline__trailing"></div>
+                    <div class="row align-items-center">
+                        <img src="{{asset('img/logo_icone.png')}}" alt="Logo Doomus" class="img-fluid">
+                        <h1 style="font-family: 'Roboto'" class="mx-auto">DOOMUS</h1>
                     </div>
-                  </div>
-                  </div>
-                  <div class="row justify-content-center">
-                  <div class="mdc-text-field mdc-text-field--outlined mt-3">
-                    <input type="text" id="password-text-field" class="mdc-text-field__input">
-                    <div class="mdc-notched-outline">
-                      <div class="mdc-notched-outline__leading"></div>
-                      <div class="mdc-notched-outline__notch">
-                        <label class="mdc-floating-label" for="password-text-field">Senha</label>
+                    <div class="row justify-content-center">
+                      <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%"> 
+                        <input type="text" id="email-text-field" class="mdc-text-field__input" name="email">
+                        <div class="mdc-notched-outline">
+                          <div class="mdc-notched-outline__leading"></div>
+                          <div class="mdc-notched-outline__notch">
+                            <label for="email-text-field" class="mdc-floating-label">E-Mail</label>
+                          </div>
+                          <div class="mdc-notched-outline__trailing"></div>
+                        </div>
                       </div>
-                      <div class="mdc-notched-outline__trailing"></div>
                     </div>
-                  </div>
-                  </div>
+                    <div class="row justify-content-center">
+                      <div class="mdc-text-field mdc-text-field--outlined mt-3" style="width: 80%">
+                        <input type="password" id="password-text-field" class="mdc-text-field__input" name="password">
+                        <div class="mdc-notched-outline">
+                          <div class="mdc-notched-outline__leading"></div>
+                          <div class="mdc-notched-outline__notch">
+                            <label class="mdc-floating-label" for="password-text-field">Senha</label>
+                          </div>
+                          <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button class="mdc-button mdc-button--raised">
+                <button class="mdc-button mdc-button--raised" type="submit" form="loginForm">
                   <span class="mdc-button__label">Logar</span>
                 </button>
-                <button class="mdc-button mdc-button--raised">
+                <button class="mdc-button mdc-button--raised" type="reset" form="loginForm" id="closeLoginForm">
                   <span class="mdc-button__label">Fechar</span>
                 </button>
               </div>
@@ -161,14 +161,14 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{route('register')}}" method="POST" id="registerForm">
                   <div class="container-fluid">
                     <div class="row justify-content-center">
                       <img src="{{asset('img/logo_icone.png')}}" alt="Logo Doomus" class="img-fluid">
                       <h1 style="font-family: 'Roboto'">DOOMUS</h1>
                     </div>
                     <div class="row justify-content-center">
-                      <div class="mdc-text-field mdc-text-field--outlined">
+                      <div class="mdc-text-field mdc-text-field--outlined" style="width: 81%;">
                         <input class="mdc-text-field__input" id="name-text-field" type="text">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
@@ -180,8 +180,8 @@
                       </div>
                     </div>
                     <div class="row justify-content-center mt-2">
-                      <div class="mdc-text-field mdc-text-field--outlined">
-                        <input class="mdc-text-field__input" id="email-tex-field" type="text">
+                      <div class="mdc-text-field mdc-text-field--outlined" style="width: 81%;">
+                        <input class="mdc-text-field__input" id="email-text-field" type="text">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
@@ -192,7 +192,7 @@
                       </div>
                     </div>
                     <div class="row justify-content-center mt-2">
-                      <div class="mdc-text-field mdc-text-field--outlined">
+                      <div class="mdc-text-field mdc-text-field--outlined" style="width: 40%;">
                         <input class="mdc-text-field__input" id="password-text-field" type="password" minlength="8">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
@@ -202,9 +202,7 @@
                           <div class="mdc-notched-outline__trailing"></div>
                         </div>
                       </div>
-                    </div>
-                    <div class="row justify-content-center mt-2">
-                      <div class="mdc-text-field mdc-text-field--outlined">
+                      <div class="mdc-text-field mdc-text-field--outlined ml-1" style="width: 40%;">
                         <input class="mdc-text-field__input" id="password-confirmation-text-field" type="password" minlength="8">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
@@ -219,10 +217,10 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button class="mdc-button mdc-button--raised">
+                <button class="mdc-button mdc-button--raised" type="submit" form="registerForm">
                   <span class="mdc-button__label">Registrar</span>
                 </button>
-                <button class="mdc-button mdc-button--raised">
+                <button class="mdc-button mdc-button--raised" type="reset" form="registerForm" id="closeRegisterForm">
                   <span class="mdc-button__label">Fechar</span>
                 </button>
               </div>

@@ -63,25 +63,25 @@ $(document).ready(function(){
     $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '5%');
   }
   
-$(window).resize(function(){
-  var windowWidth = $(window).width();
+  $(window).resize(function(){
+    var windowWidth = $(window).width();
 
-  if ((windowWidth >= 576 && windowWidth < 768) || (windowWidth < 576)) {
-    $('#sidebarMenu, #sidebarMenuButton').removeClass('d-none');
-    $('#allMenu').addClass('d-none');
-    $('#topAppBar').removeClass('mdc-top-app-bar--fixed');
-    $('#topAppBar').addClass('mdc-top-app-bar--short');
-    $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '0');
-  }
-  if ( windowWidth > 768 ) {
-    $('#sidebarMenu, #sidebarMenuButton').addClass('d-none');
-    $('#sidebarMenu').removeClass('mdc-drawer--open');
-    $('#allMenu').removeClass('d-none');
-    $('#topAppBar').removeClass('mdc-top-app-bar--short mdc-top-app-bar--short-collapsed');
-    $('#topAppBar').addClass('mdc-top-app-bar--fixed');
-    $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '5%');
-  }
-});
+    if ((windowWidth >= 576 && windowWidth < 768) || (windowWidth < 576)) {
+      $('#sidebarMenu, #sidebarMenuButton').removeClass('d-none');
+      $('#allMenu').addClass('d-none');
+      $('#topAppBar').removeClass('mdc-top-app-bar--fixed');
+      $('#topAppBar').addClass('mdc-top-app-bar--short');
+      $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '0');
+    }
+    if ( windowWidth > 768 ) {
+      $('#sidebarMenu, #sidebarMenuButton').addClass('d-none');
+      $('#sidebarMenu').removeClass('mdc-drawer--open');
+      $('#allMenu').removeClass('d-none');
+      $('#topAppBar').removeClass('mdc-top-app-bar--short mdc-top-app-bar--short-collapsed');
+      $('#topAppBar').addClass('mdc-top-app-bar--fixed');
+      $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '5%');
+    }
+  });
 
   $('.actionButton').click(function(){
     var route = $(this).data('href');
@@ -93,5 +93,12 @@ $(window).resize(function(){
   });
   $('#registerMenu').click(function(){
     $('#modalRegister').modal('toggle');
+  });
+
+  $('#closeLoginForm').click(function(){
+    $('#modalLogin').modal('hide');
+  });
+  $('#closeRegisterForm').click(function(){
+    $('#modalRegister').modal('hide');
   });
 });
