@@ -20,48 +20,80 @@
 
         <h2>Olá, {{ $user->name }}!</h2><br>
 
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Dados de entrega</h4>
+        <div class="row">   
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="text-muted">Seu carrinho</span>
+                  <span class="badge badge-secondary badge-pill">{{ Cart::count() }}</span>
+                </h4>
+                <ul class="list-group mb-3">
+                  @foreach (Cart::content() as $item)
+                      <li class="list-group-item d-flex justify-content-between lh-condensed">
+                          <div>
+                              <h6 class="my-0">{{ $item->name }}</h6>
+                              <small class="text-muted">{{ $item->description }}</small>
+                          </div>
+                          <span class="text-muted">{{ $item->qty }} x {{ $item->price }}</span>
+                      </li>
+                  @endforeach
+                  <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                      <h6 class="my-0">Cupom</h6>
+                      <small>TOGURO120</small>
+                    </div>
+                    <span class="text-success">-$5</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (BRL)</span>
+                    <strong>{{Cart::total()}}</strong>
+                  </li>
+                </ul>
+            
+                <form class="card p-2">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cupom">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-secondary">Resgatar</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Endereço de entrega</h4>
                 <br>
                 <form action="/checkout/address/data" method="post">
                     @csrf
-                    <input class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }} col-md-6" type="text" name="cpf" placeholder="CPF">
+                    <input class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3" type="text" name="cpf" placeholder="CPF">
                     @if ($errors->has('cpf'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('cpf') }}</strong>
                         </span>
                     @endif
-                    <br>
-                    <input class="form-control{{ $errors->has('cep') ? ' is-invalid' : '' }} col-md-6" type="number" name="cep" id="cep" placeholder="CEP" maxlength="8">
+                    <input class="form-control{{ $errors->has('cep') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3" type="number" name="cep" id="cep" placeholder="CEP" maxlength="8">
                     @if ($errors->has('cep'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('cep') }}</strong>
                         </span>
                     @endif
-                    <br>
-                    <input class="form-control{{ $errors->has('bairro') ? ' is-invalid' : '' }}" type="text" name="bairro" id="bairro" placeholder="Bairro">
+                    <input class="form-control{{ $errors->has('bairro') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3" type="text" name="bairro" id="bairro" placeholder="Bairro">
                     @if ($errors->has('bairro'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('bairro') }}</strong>
                         </span>
                     @endif
-                    <br>
-                    <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" type="text" name="address" id="address" placeholder="Rua">
+                    <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3" type="text" name="address" id="address" placeholder="Rua">
                     @if ($errors->has('address'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('address') }}</strong>
                         </span>
                     @endif
-                    <br>
-                    <input class="form-control{{ $errors->has('n') ? ' is-invalid' : '' }} col-md-3" type="number" name="n" placeholder="Número">
+                    <input class="form-control{{ $errors->has('n') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3" type="number" name="n" placeholder="Número">
                     @if ($errors->has('n'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('n') }}</strong>
                         </span>
                     @endif
-                    <br>
-                    <select class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }} col-md-5" name="state" id="state">
+                    <select class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3" name="state" id="state">
                         <option selected value="">Estado</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -96,26 +128,24 @@
                             <strong>{{ $errors->first('state') }}</strong>
                         </span>
                     @endif
-                    <br>
-                    <input class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }} col-md-6" type="text" name="city" id="city" placeholder="Cidade">
+                    <input class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3" type="text" name="city" id="city" placeholder="Cidade">
                     @if ($errors->has('city'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('city') }}</strong>
                         </span>
                     @endif
-                    <br>
-                    <button class="btn btn-success" type="submit">Pronto</button>
+                    <hr class="mb-4">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="same-address">
+                        <label class="custom-control-label" for="same-address">O endereço de entrega é o mesmo que o de pagamento</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="save-info">
+                        <label class="custom-control-label" for="save-info">Salvar minhas informações para próxima compra</label>
+                    </div>
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Pronto</button>
                 </form>
-            </div>
-            <div class="col-md-6">
-                <h4>Seu pedido</h4><br>
-
-                @foreach(Cart::content() as $row)
-                    {{ $row->name }} &nbsp; {{ $row->qty }} x {{ $row->price }} <br>
-                @endforeach
-                <br>
-                Subtotal: {{Cart::subtotal()}} <br>
-                Total: {{Cart::total()}}
             </div>
         </div>
     </div>
