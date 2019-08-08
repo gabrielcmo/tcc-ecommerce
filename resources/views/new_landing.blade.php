@@ -50,7 +50,6 @@
 @foreach ($products as $product)
   <div class="col-lg-2 col-xl-2 col-md-6 col-sm-12 col-xs-12 mt-1">
     <div class="mdc-card">
-      <a id="link-card" href="/produto/{{$product->id}}">
       <div class="mdc-card__primary-action" tabindex="0" style="border-radius: 0px;">
         <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
           style="background-image: url(&quot;{{asset('img/capa_13.jpg')}}&quot;);">
@@ -62,16 +61,14 @@
           <?php $rating = $product->ratingPercent(100); ?>
           @for ($i = 1; $i <= 5; $i++)
             @if($i > $rating)
-              <i class="material-icons">star_border</i>
-            @elseif($i < $rating)
-              @if($i + 0.7 < $rating)
-                <i class="material-icons">star</i>
-              @elseif($i + 0.3 > $rating)
+              @if($i - 0.7 > $rating)
                 <i class="material-icons">star_border</i>
+              @elseif($i - 0.3 < $rating)
+                <i class="material-icons">star</i>
               @else
                 <i class="material-icons">star_half</i>
               @endif
-            @else
+            @elseif($i <= $rating)
               <i class="material-icons">star</i>
             @endif
             @if($i == 5)
@@ -81,11 +78,14 @@
           <h2 class="mdc-typography mdc-typography--headline4" style="margin: 0px">R${{$product->price}}</h2>
           <h2 class="mdc-typography mdc-typography--subtitle2" style="color:gray;">10x de R$2,70 sem juros</h2>
         </div>
-      </div></a>
+      </div>
       <div class="mdc-card__actions">
         <div class="mdc-card__action-buttons">
           <button class="mdc-button mdc-card__action mdc-card__action--button">
             <a href="/carrinho/{{ $product->id }}/add"><i class="mdc-icon-button material-icons mdc-card__action mdc-card__action--button">shopping_cart</i></a>
+          </button>
+          <button class="mdc-button mdc-card__action mdc-card__action--button">
+            <a href="/produto/{{ $product->id }}">Ver mais</a>
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-@extends('layouts.new_layouts')
+@extends('layouts.new_layout')
 
 @section('title', 'Pedidos')
 

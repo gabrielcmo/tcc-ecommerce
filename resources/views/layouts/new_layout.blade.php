@@ -9,11 +9,6 @@
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
   @yield('stylesheets')
   <link rel="stylesheet" href="{{asset('css/icons.css')}}">
-  <style>
-    #link-card{
-      text-decoration: none;
-    }
-  </style>
 </head>
 <body style="background-color: #e9e9e9;">
         <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar">
@@ -308,9 +303,6 @@
                         @endforeach
                       </tbody>
                     </table>
-                    <a class="btn btn-success" href="/checkout/endereco">
-                      Fazer pedido
-                    </a>
                     </div>
                 </div>
                 @endif
