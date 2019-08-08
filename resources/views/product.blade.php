@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.new_layout')
 
 @section('stylesheets')
   <link href="{{ asset('/css/styleHome.css') }}" rel="stylesheet"/>
@@ -7,7 +7,7 @@
 @section('title', $product->name)
 
 @section('content')
-  <form action="{{ route('cart.add') }}" method="get">
+  <form name="addToCart" action="{{ route('cart.add') }}" method="get">
   <section class="container">
     <div class="row">
       <section class="col-12 d-none d-md-block">
@@ -81,11 +81,24 @@
         <input type="hidden" name="product_id" value="{{$product->id}}">
         <div class="form-group row">
           <div class="col-sm-9 col-md-9">
-            <button type="submit" class="btn btn-dark">Adicionar ao carrinho</button>  
+            <button type="button" onclick="document.addToCart.submit();" class="btn btn-dark">Adicionar ao carrinho</button>  
           </div>
         </div>
       </div>
-      </form><br><br>
+      </form>
+      
+      <div class="form-group row">
+        <label class="col-sm-3 col-md-3 form-control-label">Avaliar produto:</label>
+        <div class="col-sm-8 col-md-9">
+        <p><form name="avaliateForm" action="{{ route('avaliate') }}" method="post">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}" id="">
+            <input type="number" min="0" max="5" name="valor" id="">
+            <input type="button" onclick="document.avaliateForm.submit();" value="Avaliar">
+        </form></p>
+        </div>
+      </div>
+      <br><br>
       <div class="col-md-12">
         <h2>Outros produtos</h2><br>
       </div>

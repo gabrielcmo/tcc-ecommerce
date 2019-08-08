@@ -94,9 +94,9 @@ class CheckoutController extends Controller
     }
 
     public function addressData(Address $data){
-        $userData['name'] = $data->name;
         $userData['cpf'] = $data->cpf;
         $userData['cep'] = $data->cep;
+        $userData['bairro'] = $data->bairro;
         $userData['state'] = $data->state;
         $userData['city'] = $data->city;
         $userData['address'] = $data->address;

@@ -39,7 +39,7 @@
           <img class="mdc-image-list__image" src="{{asset('img/capa_13.jpg')}}" alt="..." >
         </div>
         <div class="mdc-image-list__supporting">
-          <span class="mdc-image-list__label">Teste</span>
+          <span class="mdc-image-list__label">Doomus</span>
         </div>
       </li>
     </ul>
@@ -50,6 +50,7 @@
 @foreach ($products as $product)
   <div class="col-lg-2 col-xl-2 col-md-6 col-sm-12 col-xs-12 mt-1">
     <div class="mdc-card">
+      <a id="link-card" href="/produto/{{$product->id}}">
       <div class="mdc-card__primary-action" tabindex="0" style="border-radius: 0px;">
         <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
           style="background-image: url(&quot;{{asset('img/capa_13.jpg')}}&quot;);">
@@ -58,13 +59,34 @@
           </div>
         </div>
         <div style="padding: 0.5rem;">
-          <i class="material-icons">star</i>
-          <i class="material-icons">star</i>
-          <i class="material-icons">star</i>
-          <i class="material-icons">star</i>
-          <i class="material-icons">star_half</i>
+          <?php $rating = $product->ratingPercent(100); ?>
+          @for ($i = 1; $i <= 5; $i++)
+            @if($i > $rating)
+              <i class="material-icons">star_border</i>
+            @elseif($i < $rating)
+              @if($i + 0.7 < $rating)
+                <i class="material-icons">star</i>
+              @elseif($i + 0.3 > $rating)
+                <i class="material-icons">star_border</i>
+              @else
+                <i class="material-icons">star_half</i>
+              @endif
+            @else
+              <i class="material-icons">star</i>
+            @endif
+            @if($i == 5)
+              ({{ $rating }})
+            @endif
+          @endfor
           <h2 class="mdc-typography mdc-typography--headline4" style="margin: 0px">R${{$product->price}}</h2>
           <h2 class="mdc-typography mdc-typography--subtitle2" style="color:gray;">10x de R$2,70 sem juros</h2>
+        </div>
+      </div></a>
+      <div class="mdc-card__actions">
+        <div class="mdc-card__action-buttons">
+          <button class="mdc-button mdc-card__action mdc-card__action--button">
+            <a href="/carrinho/{{ $product->id }}/add"><i class="mdc-icon-button material-icons mdc-card__action mdc-card__action--button">shopping_cart</i></a>
+          </button>
         </div>
       </div>
     </div>
@@ -72,8 +94,6 @@
 @endforeach
 <div class="col-lg-2"></div>
 </div>
-
-
 @endsection
 
 @section('scripts')

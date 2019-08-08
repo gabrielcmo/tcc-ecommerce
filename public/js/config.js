@@ -94,11 +94,17 @@ $(document).ready(function(){
   $('#registerMenu').click(function(){
     $('#modalRegister').modal('toggle');
   });
+  $('#cartMenu').click(function(){
+    $('#modalCart').modal('toggle');
+  });
 
   $('#closeLoginForm').click(function(){
     $('#modalLogin').modal('hide');
   });
   $('#closeRegisterForm').click(function(){
     $('#modalRegister').modal('hide');
+  });
+  $('#closeCartMenu').click(function(){
+    $('#modalCart').modal('hide');
   });
 });

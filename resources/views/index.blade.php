@@ -25,6 +25,9 @@
               @endif
             @endforeach
             <h3 class="card-title">{{ $product->name }}</h3>
+            @for ($i = 0; $i < $product->ratingPercent(100); $i++)
+                <i class="material-icons">star</i>
+            @endfor
             <a class="btn btn-success" href="/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a><br>      
           </div>
         </div>

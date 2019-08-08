@@ -178,7 +178,8 @@ return [
 
         Canducci\ZipCode\Providers\ZipCodeServiceProvider::class,
         Canducci\ZipCode\Providers\ZipCodeAddressServiceProvider::class,
-        LaravelLegends\PtBrValidator\ValidatorProvider::class
+        LaravelLegends\PtBrValidator\ValidatorProvider::class,
+        willvincent\Rateable\RateableServiceProvider::class
     ],
 
     /*

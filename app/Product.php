@@ -2,12 +2,14 @@
 
 namespace Doomus;
 
+use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Product extends Model
 {
     use SearchableTrait;
+    use Rateable;
 
     protected $fillable = ['id', 'name', 'details', 'description', 'price'];
 
@@ -51,5 +53,9 @@ class Product extends Model
 
     public function historics(){
         return $this->hasMany('Doomus\Order');
+    }
+
+    public function evaluations(){
+        return $this->hasMany('Doomus\EvaluationText');
     }
 }

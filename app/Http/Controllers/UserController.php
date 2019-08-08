@@ -10,9 +10,22 @@ use Doomus\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Hash;
+use willvincent\Rateable\Rating;
 
 class UserController extends Controller
 {
+    public function avaliate(Request $avaliacao){
+        $post = Product::find($avaliacao->product_id);
+
+        $rating = new Rating;
+        $rating->rating = $avaliacao->valor;
+        $rating->user_id = \Auth::id();
+
+        $post->ratings()->save($rating);
+
+        return back();
+    }
+
     /**
      * Display the specified resource.
      *
