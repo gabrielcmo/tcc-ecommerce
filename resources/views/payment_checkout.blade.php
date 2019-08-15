@@ -28,8 +28,13 @@
                         },
                         // Finalize the transaction
                         onApprove: function(data, actions) {
-                            return actions.order.capture().then(function(details) {
-                                window.location.href = "/payment/success";
+                            // Call your server to save the transaction
+                            return fetch('/paypal/transaction/complete', {
+                                method: 'post',
+                                headers: {
+                                    'content-type': 'application/json',
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
                             });
                         }
                     }).render('#paypal-button-container');

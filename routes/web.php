@@ -69,7 +69,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
     Route::post('/checkout/address/data', 'CheckoutController@addressData');
     Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
-    Route::get('/payment/success', 'CheckoutController@paymentSuccess');
+    Route::post('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
 
     /*
     *   Order

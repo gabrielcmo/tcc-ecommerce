@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
@@ -308,9 +309,11 @@
                 @endif
               </div>
               <div class="modal-footer">
-                <a class="mdc-button mdc-button--raised" href="/checkout/endereco">
-                  Fazer pedido
-                </a>
+                @if(Cart::count() >= 1)
+                  <a class="mdc-button mdc-button--raised" href="/checkout/endereco">
+                    Fazer pedido
+                  </a>
+                @endif
                 <button class="mdc-button mdc-button--raised" type="reset" id="closeCartMenu">
                   <span class="mdc-button__label">Fechar</span>
                 </button>
