@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/pedidos', 'OrderController@show')->name('orders');
     Route::get('/historico', 'HistoricController@show')->name('historic');
 
+    Route::post('/avaliar', 'UserController@avaliate')->name('avaliate');
+
     /*
     *   Limpar histórico
     */
@@ -67,7 +69,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
     Route::post('/checkout/address/data', 'CheckoutController@addressData');
     Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
-    Route::get('/payment/success', 'CheckoutController@paymentSuccess');
+    Route::post('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
 
     /*
     *   Order
@@ -106,11 +108,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::get('/orders', 'AdminController@orders')->name('admin.orders');
     Route::get('/order/{id}/cancel', 'OrderController@cancel')->name('admin.order.cancel');
 });
-
-/* 
-*   Testes
-*/
-Route::get('/test', 'IndexController@testData');
 
 Route::get('/test-components', function(){
     return view('test_components');

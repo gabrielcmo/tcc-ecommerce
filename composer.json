@@ -18,7 +18,8 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "laravellegends/pt-br-validator": "5.1.*",
-        "paypal/rest-api-sdk-php": "*"
+        "paypal/rest-api-sdk-php": "*",
+        "willvincent/laravel-rateable": "^1.07"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

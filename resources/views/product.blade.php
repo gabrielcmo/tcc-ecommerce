@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.new_layout')
 
 @section('stylesheets')
   <link href="{{ asset('/css/styleHome.css') }}" rel="stylesheet"/>
@@ -7,7 +7,7 @@
 @section('title', $product->name)
 
 @section('content')
-  <form action="{{ route('cart.add') }}" method="get">
+  <form name="addToCart" action="{{ route('cart.add') }}" method="get">
   <section class="container">
     <div class="row">
       <section class="col-12 d-none d-md-block">
@@ -39,6 +39,22 @@
           <label class="col-sm-3 col-md-3 form-control-label nopaddingtop">Preço:</label>
           <div class="col-sm-8 col-md-9">
             <span class="product-form-price" id="product-form-price">R$ {{ $product->price }}</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-md-3 form-control-label nopaddingtop">Avalie o produto:</label>
+          <div class="col-sm-8 col-md-9">
+            <form name="avaliateForm" action="{{ route('avaliate') }}" method="post">
+              @csrf
+              <input type="hidden" id="product_id" value="{{ $product->id }}" id="">
+              <div id="rating_bar">
+                <span class="fas fa-star" name="rate" value="5" id="rate_5" onclick="avaliatesubmit(this.id);"></span>
+                <span class="fas fa-star" name="rate" value="4" id="rate_4" onclick="avaliatesubmit(this.id);"></span>
+                <span class="fas fa-star" name="rate" value="3" id="rate_3" onclick="avaliatesubmit(this.id);"></span>
+                <span class="fas fa-star" name="rate" value="2" id="rate_2" onclick="avaliatesubmit(this.id);"></span>
+                <span class="fas fa-star" name="rate" value="1" id="rate_1" onclick="avaliatesubmit(this.id);"></span>
+              </div>
+            </form>
           </div>
         </div>
         <div class="form-group row">
@@ -81,11 +97,12 @@
         <input type="hidden" name="product_id" value="{{$product->id}}">
         <div class="form-group row">
           <div class="col-sm-9 col-md-9">
-            <button type="submit" class="btn btn-dark">Adicionar ao carrinho</button>  
+            <button type="button" onclick="document.addToCart.submit();" class="btn btn-dark">Adicionar ao carrinho</button>  
           </div>
         </div>
       </div>
-      </form><br><br>
+      </form>
+      <br><br>
       <div class="col-md-12">
         <h2>Outros produtos</h2><br>
       </div>
@@ -119,4 +136,28 @@
       @endforeach
     </div>
   </div>
+@endsection
+
+@section('scripts')
+<script>
+  function avaliatesubmit(rate){
+
+    rating = rate.charAt(5);
+
+    $.ajax({
+      type: 'post',
+      url: {{ route('avaliate') }},
+      header: {
+        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+      },
+      data: {
+        product_id: document.getElementById('product_id').value,
+        rate: rating
+      },
+      success: function () {
+        alert('form was submitted');
+      }
+    });
+  }
+</script>
 @endsection

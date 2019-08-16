@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.new_layout')
 
 @section('content')
     <div class="container">
@@ -28,30 +28,41 @@
                         },
                         // Finalize the transaction
                         onApprove: function(data, actions) {
-                            return actions.order.capture().then(function(details) {
-                                window.location.href = "/payment/success";
+                            // Call your server to save the transaction
+                            return fetch('/paypal/transaction/complete', {
+                                method: 'post',
+                                headers: {
+                                    'content-type': 'application/json',
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
                             });
                         }
                     }).render('#paypal-button-container');
                 </script>
             </div>
-            <div class="col-md-6">
-                <h3>Suas informações</h3><br>
-                <h6>Entrega</h6>
-                @foreach(session('userData') as $row)
-                    {{$row}} &nbsp;
-                @endforeach
-                <br><br>
-                <h6>Pedido</h6>
-                @foreach(Cart::content() as $row)
-                    {{ $row->name }} &nbsp; {{ $row->qty }} x {{ $row->price }} <br>
-                @endforeach
-                <br>
-                Frete para {{ session('userData')['cep'] }}: <strong>R${{ $calcFretePrazo['valorEntrega'] }} reais</strong> <br>
-                Prazo: <strong>{{ $calcFretePrazo['prazoEntrega'] }} dias</strong> <br>
-                @if(isset($calcFretePrazo['obs']) && $calcFretePrazo['obs'] !== "")
-                    Observação: <strong>{{ $calcFretePrazo['obs'] }}</strong>    
-                @endif
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="text-muted">Endereço de entrega</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div class="row">
+                        <h6 class="col-12 my-0">{{ session('userData')['address'] }}, {{ session('userData')['n'] }}. {{ session('userData')['bairro'] }}. {{ session('userData')['state'] }} - {{ session('userData')['city'] }}</h6>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Frete para {{ session('userData')['cep'] }}</h6>
+                            <span class="text-muted"><strong>R${{ $calcFretePrazo['valorEntrega'] }}</strong></span>
+                        </div>
+                        <span class="text-muted">Prazo de <strong>{{$calcFretePrazo['prazoEntrega'] }} dias</strong></span>
+                        <span class="text-muted">
+                            @if(isset($calcFretePrazo['obs']) && $calcFretePrazo['obs'] != "")
+                                Observação: <strong>{{ $calcFretePrazo['obs'] }}</strong>    
+                            @endif
+                        </span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

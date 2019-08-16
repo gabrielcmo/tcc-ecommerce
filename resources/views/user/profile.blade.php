@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.new_layout')
 
 @section('title', 'Perfil')
 

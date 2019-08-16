@@ -31,14 +31,8 @@ class IndexController extends Controller
          $products = Product::all();
          $categories = Category::all();
 
-        return view('index')
+        return view('new_landing')
             ->with('products', $products)
             ->with('categories', $categories);
-    }
-    public function testData()
-    {
-        $products = Product::all();
-
-        return view('new_landing')->with('products', $products);
     }
 }

@@ -46,8 +46,9 @@ class OrderController extends Controller
      */
     public function show()
     {
-        $orders = User::getOrders();
-        return view('user.order')->with('orders', $orders);
+        $orders = User::getOrders()->where('status_id', '!=' , 4);
+        $historic = User::getHistoric();
+        return view('user.order')->with('orders', $orders)->with('historics', $historic);
     }
 
     /**

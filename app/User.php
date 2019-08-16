@@ -26,6 +26,10 @@ class User extends Authenticatable
          return $this->hasMany('Doomus\Order');
     }
 
+    public function evaluations(){
+        return $this->hasMany('Doomus\EvaluationText');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

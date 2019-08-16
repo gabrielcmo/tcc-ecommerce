@@ -7,6 +7,37 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+#imgProduct{
+  width: 70px;
+}
+
+#accordion{
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#rating_bar{
+	width:100px;
+	height:100px;
+	margin: 4px 175px !important;    
+    display:inline-block;
+    display:inline;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
+#rating_bar > span:before{
+     color: #c7c5c5;
+	 height:50px;
+	 width:50px;
+	 cursor:pointer;
+    font-size:2em;
+	 
+}
+#rating_bar > span:hover:before,#rating_bar span:hover ~ span:before{
+	color: #ecd81f;
+}
+
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;
