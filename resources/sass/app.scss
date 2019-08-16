@@ -8,10 +8,21 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+// $mdc-theme-primary: #d7cec7;
+// $mdc-theme-secondary: #565656;
+
+// $mdc-theme-surface: #d7cec7;
+// $mdc-theme-background: #d7cec7;
+// $mdc-theme-error: #b00020;
+
+// $mdc-theme-on-primary: #d7cec7;
+// $mdc-theme-on-secondary: #c09f80;
+// $mdc-theme-on-error: #76323f;
+// $mdc-theme-on-surface: #d7cec7;
 
 @import '~material-components-web/material-components-web';
+
+.my-image-list {
+  @include mdc-image-list-standard-columns(4);
+}
 

@@ -10662,11 +10662,6 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
 .mdc-button {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
@@ -21547,5 +21542,10 @@ a.mdc-list-item {
   letter-spacing: 0.1666666667em;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.my-image-list .mdc-image-list__item {
+  width: calc(100% / 4 - 4.25px);
+  margin: 2px;
 }
 

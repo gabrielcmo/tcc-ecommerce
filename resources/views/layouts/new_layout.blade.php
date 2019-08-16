@@ -7,8 +7,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
-  @yield('stylesheets')
   <link rel="stylesheet" href="{{asset('css/icons.css')}}">
+  @yield('stylesheets')
 </head>
 <body style="background-color: #e9e9e9;">
         <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar">

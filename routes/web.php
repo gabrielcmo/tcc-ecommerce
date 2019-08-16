@@ -115,3 +115,7 @@ Route::get('/test', 'IndexController@testData');
 Route::get('/test-components', function(){
     return view('test_components');
 });
+
+Route::get('/carrinho', function(){
+    return view('cart');
+});

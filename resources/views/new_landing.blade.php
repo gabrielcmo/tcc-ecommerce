@@ -31,10 +31,42 @@
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row justify-content-center">
   <div class="col-lg-8">
-    <ul class="mdc-image-list">
-      <li class="mdc-image-list-item">
+    <ul class="mdc-image-list mdc-image-list--with-text-protection my-image-list">
+      <li class="mdc-image-list__item">
+        <div class="mdc-image-list__image-aspect-container">
+          <img class="mdc-image-list__image" src="{{asset('img/capa_13.jpg')}}" alt="..." >
+        </div>
+        <div class="mdc-image-list__supporting">
+          <span class="mdc-image-list__label">Teste</span>
+        </div>
+      </li>
+      <li class="mdc-image-list__item">
+        <div class="mdc-image-list__image-aspect-container">
+          <img class="mdc-image-list__image" src="{{asset('img/capa_13.jpg')}}" alt="..." >
+        </div>
+        <div class="mdc-image-list__supporting">
+          <span class="mdc-image-list__label">Teste</span>
+        </div>
+      </li>
+      <li class="mdc-image-list__item" style="position: relative">
+        <div class="mdc-image-list__image-aspect-container">
+          <img class="mdc-image-list__image" src="{{asset('img/capa_13.jpg')}}" alt="..." >
+        </div>
+        <div class="mdc-image-list__supporting">
+          <span class="mdc-image-list__label">Teste</span>
+        </div>
+      </li>
+      <li class="mdc-image-list__item">
+        <div class="mdc-image-list__image-aspect-container">
+          <img class="mdc-image-list__image" src="{{asset('img/capa_13.jpg')}}" alt="..." >
+        </div>
+        <div class="mdc-image-list__supporting">
+          <span class="mdc-image-list__label">Teste</span>
+        </div>
+      </li>
+      <li class="mdc-image-list__item">
         <div class="mdc-image-list__image-aspect-container">
           <img class="mdc-image-list__image" src="{{asset('img/capa_13.jpg')}}" alt="..." >
         </div>
