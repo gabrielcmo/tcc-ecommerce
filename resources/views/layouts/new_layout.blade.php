@@ -23,9 +23,9 @@
                 <button class="mdc-button mdc-top-app-bar__action-item" id="menuButton">
                   <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">person</i>  
                   @auth
-                      {{ Auth::user()->name }}
+                      Olá {{ Auth::user()->name }}
                   @else
-                    <span class="mdc-button__label">Entrar</span>
+                    <span class="mdc-button__label">possui uma conta? entre ou registre-se</span>
                   @endauth
                 </button> 
                 <div class="mdc-menu mdc-menu-surface" id="menu">
@@ -38,15 +38,9 @@
                           </a>
                         </li>
                         <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item" href="{{ route('historic') }}">
+                          <a class="mdc-list-item" href="{{ route('orders') }}">
                             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
                             <span class="mdc-list-item__text">Meus pedidos</span>
-                          </a>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item" href="{{ route('orders') }}">
-                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-                            <span class="mdc-list-item__text">Drafts</span>
                           </a>
                         </li>
                         <li class="mdc-list-item" role="menuitem">
@@ -61,7 +55,7 @@
                         </li>
                       @else
                         <li class="mdc-list-item" id="loginMenu" role="menuitem">
-                          <span class="mdc-list-item__text">Logar</span>
+                          <span class="mdc-list-item__text">Entrar</span>
                         </li>
                         <li class="mdc-list-item" id="registerMenu" role="menuitem">
                           <span class="mdc-list-item__text">Registrar</span>
@@ -321,9 +315,11 @@
             </div>
           </div>
         </div>
-
-  <script src="{{asset('js/app.js')}}"></script>
-  <script src="{{asset('js/config.js')}}"></script>
+        
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <script src="{{asset('/js/app.js')}}"></script>
+  <script src="{{asset('/js/config.js')}}"></script>
   @yield('scripts')
 </body>
 </html>

@@ -42,6 +42,22 @@
           </div>
         </div>
         <div class="form-group row">
+          <label class="col-sm-3 col-md-3 form-control-label nopaddingtop">Avalie o produto:</label>
+          <div class="col-sm-8 col-md-9">
+            <form name="avaliateForm" action="{{ route('avaliate') }}" method="post">
+              @csrf
+              <input type="hidden" id="product_id" value="{{ $product->id }}" id="">
+              <div id="rating_bar">
+                <span class="fas fa-star" name="rate" value="5" id="rate_5" onclick="avaliatesubmit(this.id);"></span>
+                <span class="fas fa-star" name="rate" value="4" id="rate_4" onclick="avaliatesubmit(this.id);"></span>
+                <span class="fas fa-star" name="rate" value="3" id="rate_3" onclick="avaliatesubmit(this.id);"></span>
+                <span class="fas fa-star" name="rate" value="2" id="rate_2" onclick="avaliatesubmit(this.id);"></span>
+                <span class="fas fa-star" name="rate" value="1" id="rate_1" onclick="avaliatesubmit(this.id);"></span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="form-group row">
           <label for="Quantity" class="col-sm-3 col-md-3 form-control-label">Quantidade:</label>
           <div class="col-sm-8 col-md-9">
             <input type="number" class="form-control{{ $errors->has('qty') ? ' is-invalid' : '' }}" name="qty" min='1' max="100" value="1" >
@@ -86,18 +102,6 @@
         </div>
       </div>
       </form>
-      
-      <div class="form-group row">
-        <label class="col-sm-3 col-md-3 form-control-label">Avaliar produto:</label>
-        <div class="col-sm-8 col-md-9">
-        <p><form name="avaliateForm" action="{{ route('avaliate') }}" method="post">
-            @csrf
-            <input type="hidden" name="product_id" value="{{ $product->id }}" id="">
-            <input type="number" min="0" max="5" name="valor" id="">
-            <input type="button" onclick="document.avaliateForm.submit();" value="Avaliar">
-        </form></p>
-        </div>
-      </div>
       <br><br>
       <div class="col-md-12">
         <h2>Outros produtos</h2><br>
@@ -132,4 +136,28 @@
       @endforeach
     </div>
   </div>
+@endsection
+
+@section('scripts')
+<script>
+  function avaliatesubmit(rate){
+
+    rating = rate.charAt(5);
+
+    $.ajax({
+      type: 'post',
+      url: {{ route('avaliate') }},
+      header: {
+        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+      },
+      data: {
+        product_id: document.getElementById('product_id').value,
+        rate: rating
+      },
+      success: function () {
+        alert('form was submitted');
+      }
+    });
+  }
+</script>
 @endsection
