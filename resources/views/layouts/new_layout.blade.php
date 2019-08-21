@@ -7,6 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
+  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
   <link rel="stylesheet" href="{{asset('css/icons.css')}}">
   @yield('stylesheets')
@@ -25,7 +26,7 @@
                   @auth
                       Olá {{ Auth::user()->name }}
                   @else
-                    <span class="mdc-button__label">possui uma conta? entre ou registre-se</span>
+                    <span class="mdc-button__label">entre ou registre-se</span>
                   @endauth
                 </button> 
                 <div class="mdc-menu mdc-menu-surface" id="menu">
@@ -118,6 +119,24 @@
             </button>
           </div>
         </aside>
+
+        @if(Session::has('status'))
+          @if(Session::has('status-type'))
+            <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
+              <strong>{{ Session::get('status') }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @else
+            <div class="alert alert-info alert-dismissible fade show container" role="alert">
+              <strong>{{ Session::get('status') }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @endif
+        @endif
 
         <div class="mdc-drawer-scrim"></div>
         <div class="mdc-top-app-bar--fixed-adjust">
@@ -246,6 +265,11 @@
                           <div class="mdc-notched-outline__trailing"></div>
                         </div>
                       </div>
+                      <div class="form-group row">
+                        <div class="col-md-6 mx-auto">
+                            {!! NoCaptcha::display() !!}        
+                        </div>                   
+                    </div>
                     </div>
                   </div>
                 </form>
@@ -315,11 +339,13 @@
             </div>
           </div>
         </div>
-        
+
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
   <script src="{{asset('/js/app.js')}}"></script>
   <script src="{{asset('/js/config.js')}}"></script>
+  <script src="{{asset('css/bootstrap.min.css')}}"></script>
   @yield('scripts')
+  {!! NoCaptcha::renderJs() !!}
 </body>
 </html>

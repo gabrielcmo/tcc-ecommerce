@@ -35,7 +35,7 @@
     <div class="row">
         @foreach ($products as $product)
         <div class="col-lg-2 col-xl-3 col-md-6 col-sm-12 col-xs-12 mt-1">
-          <div class="card ml-2 mr-2 mt-2" style="width: 18rem;">
+          <div class="card ml-2 mr-2 mt-2" style="width: 17rem;">
             <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
               style="background-image: url(&quot;{{asset('img/capa_13.jpg')}}&quot;);">
             </div>

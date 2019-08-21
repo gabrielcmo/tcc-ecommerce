@@ -15,10 +15,13 @@
         </thead>
         <tbody>
           <div class="">
-            <tr >
-              <td>
+            <tr>
+              <td colspan="2" style="position: relative">
                 <img class="rounded" src="{{asset('img/capa_13.jpg')}}" alt="Product Name" style="width: 100px; height: 100px">
                 <span class="mdc-typography mdc-typography--subtitle1 ml-1">Samsung Galaxy S8 - 64GB</span>
+                <button class="mdc-icon-button material-icons" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%)">
+                  close
+                </button>
               </td>
             </tr>
             <tr >
@@ -37,13 +40,16 @@
             </tr>
           </div>
           <div class="">
-              <tr class="border-top border-right border-left border-dark">
-                <td colspan="2">
+              <tr class="border-top border-dark">
+                <td colspan="2" style="position: relative">
                   <img class="rounded" src="{{asset('img/capa_13.jpg')}}" alt="Product Name" style="width: 100px; height: 100px">
                   <span class="mdc-typography mdc-typography--subtitle1 ml-1">Samsung Galaxy S8 - 64GB</span>
+                  <button class="mdc-icon-button material-icons" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%)">
+                    close
+                  </button>
                 </td>
               </tr>
-              <tr class="border-bottom border-right border-left border-dark">
+              <tr class="">
                 <td class="align-middle">
                     <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label" style="width: 20%">
                         <input type="number" class="mdc-text-field__input" aria-label="Quantidade" min="1">
@@ -81,7 +87,7 @@
       </table>
 
     </div>
-    <div class="col-lg-2 p-2" style="background-color: gainsboro">
+    <div class="col-lg-2 p-2">
       <h4 class="p-1 mdc-typography mdc-typography--headline6 text-center">Resumo do pedido</h4>
       <div class="table-responsive">
         <table class="table table-borderless">
