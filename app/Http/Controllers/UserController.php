@@ -18,11 +18,12 @@ class UserController extends Controller
         $post = Product::find($avaliacao->product_id);
 
         $rating = new Rating;
-        $rating->rating = $avaliacao->valor;
-        $rating->user_id = \Auth::id();
+        $rating->rating = $avaliacao->rate;
+        $rating->user_id = Auth::id();
 
         $post->ratings()->save($rating);
 
+        Session::flash('status', 'Avaliado com sucesso!');
         return back();
     }
 

@@ -7,7 +7,6 @@
 @section('title', $product->name)
 
 @section('content')
-  <form name="addToCart" action="{{ route('cart.add') }}" method="get">
   <section class="container">
     <div class="row">
       <section class="col-12 d-none d-md-block">
@@ -46,17 +45,24 @@
           <div class="col-sm-8 col-md-9">
             <form name="avaliateForm" action="{{ route('avaliate') }}" method="post">
               @csrf
-              <input type="hidden" id="product_id" value="{{ $product->id }}" id="">
-              <div id="rating_bar">
-                <span class="fas fa-star" name="rate" value="5" id="rate_5" onclick="avaliatesubmit(this.id);"></span>
-                <span class="fas fa-star" name="rate" value="4" id="rate_4" onclick="avaliatesubmit(this.id);"></span>
-                <span class="fas fa-star" name="rate" value="3" id="rate_3" onclick="avaliatesubmit(this.id);"></span>
-                <span class="fas fa-star" name="rate" value="2" id="rate_2" onclick="avaliatesubmit(this.id);"></span>
-                <span class="fas fa-star" name="rate" value="1" id="rate_1" onclick="avaliatesubmit(this.id);"></span>
+              <input type="hidden" name="product_id" value="{{ $product->id }}">
+              <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5" required/>
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" required/>
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" required/>
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" required/>
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" required/>
+                <label for="star1" title="text">1 star</label>
               </div>
+              <button class="btn btn-primary btn-sm" type="submit">Avaliar</button>
             </form>
           </div>
         </div>
+        <form name="addToCart" action="{{ route('cart.add') }}" method="get">
         <div class="form-group row">
           <label for="Quantity" class="col-sm-3 col-md-3 form-control-label">Quantidade:</label>
           <div class="col-sm-8 col-md-9">
@@ -139,25 +145,5 @@
 @endsection
 
 @section('scripts')
-<script>
-  function avaliatesubmit(rate){
 
-    rating = rate.charAt(5);
-
-    $.ajax({
-      type: 'post',
-      url: {{ route('avaliate') }},
-      header: {
-        'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-      },
-      data: {
-        product_id: document.getElementById('product_id').value,
-        rate: rating
-      },
-      success: function () {
-        alert('form was submitted');
-      }
-    });
-  }
-</script>
 @endsection
