@@ -254,7 +254,7 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('order_statuses')->insert([
-            'name' => 'erro',
+            'name' => 'em historico',
         ]);
         
 
@@ -267,9 +267,30 @@ class DatabaseSeeder extends Seeder
         
         DB::table('orders')->insert([
             'user_id' => 2,
-            'status_id' => 3,
+            'status_id' => 4,
             'payment_method_id' => 1,
             'value_total' => 200
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 2,
+            'status_id' => 4,
+            'payment_method_id' => 1,
+            'value_total' => 35
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 2,
+            'status_id' => 4,
+            'payment_method_id' => 1,
+            'value_total' => 341
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 2,
+            'status_id' => 3,
+            'payment_method_id' => 1,
+            'value_total' => 75
         ]);
         
         DB::table('order_product')->insert([
@@ -293,6 +314,48 @@ class DatabaseSeeder extends Seeder
             'price' => 133
         ]);
 
+        DB::table('order_product')->insert([
+            'product_id' => 7,
+            'order_id' => 3,
+            'qty' => 1,
+            'price' => 133
+        ]);
+
+        DB::table('order_product')->insert([
+            'product_id' => 6,
+            'order_id' => 3,
+            'qty' => 5,
+            'price' => 53
+        ]);
+
+        DB::table('order_product')->insert([
+            'product_id' => 2,
+            'order_id' => 4,
+            'qty' => 7,
+            'price' => 13
+        ]);
+
+        DB::table('order_product')->insert([
+            'product_id' => 5,
+            'order_id' => 3,
+            'qty' => 1,
+            'price' => 30
+        ]);
+
+        DB::table('order_product')->insert([
+            'product_id' => 3,
+            'order_id' => 3,
+            'qty' => 1,
+            'price' => 120
+        ]);
+
+        DB::table('order_product')->insert([
+            'product_id' => 8,
+            'order_id' => 5,
+            'qty' => 10,
+            'price' => 19.99
+        ]);
+
         DB::table('historics')->insert([
             'order_id' => 2,
             'user_id' => 2,
@@ -300,17 +363,15 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('historics')->insert([
-            'order_id' => 1,
-            'user_id' => 1,
+            'order_id' => 3,
+            'user_id' => 2,
             'status_id' => 2
         ]);
-
         
-        DB::table('order_product')->insert([
-            'product_id' => 1,
-            'order_id' => 2,
-            'qty' => 2,
-            'price' => 133
+        DB::table('historics')->insert([
+            'order_id' => 4,
+            'user_id' => 2,
+            'status_id' => 3
         ]);
     }
 }

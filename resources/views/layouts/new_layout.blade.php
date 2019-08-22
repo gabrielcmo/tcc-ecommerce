@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
+  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
-  @yield('stylesheets')
   <link rel="stylesheet" href="{{asset('css/icons.css')}}">
+  @yield('stylesheets')
 </head>
 <body style="background-color: #e9e9e9;">
         <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar">
@@ -22,9 +24,9 @@
                 <button class="mdc-button mdc-top-app-bar__action-item" id="menuButton">
                   <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">person</i>  
                   @auth
-                      {{ Auth::user()->name }}
+                      Olá {{ Auth::user()->name }}
                   @else
-                    <span class="mdc-button__label">Entrar</span>
+                    <span class="mdc-button__label">entre ou registre-se</span>
                   @endauth
                 </button> 
                 <div class="mdc-menu mdc-menu-surface" id="menu">
@@ -37,15 +39,9 @@
                           </a>
                         </li>
                         <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item" href="{{ route('historic') }}">
+                          <a class="mdc-list-item" href="{{ route('orders') }}">
                             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
                             <span class="mdc-list-item__text">Meus pedidos</span>
-                          </a>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item" href="{{ route('orders') }}">
-                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-                            <span class="mdc-list-item__text">Drafts</span>
                           </a>
                         </li>
                         <li class="mdc-list-item" role="menuitem">
@@ -60,7 +56,7 @@
                         </li>
                       @else
                         <li class="mdc-list-item" id="loginMenu" role="menuitem">
-                          <span class="mdc-list-item__text">Logar</span>
+                          <span class="mdc-list-item__text">Entrar</span>
                         </li>
                         <li class="mdc-list-item" id="registerMenu" role="menuitem">
                           <span class="mdc-list-item__text">Registrar</span>
@@ -123,6 +119,24 @@
             </button>
           </div>
         </aside>
+
+        @if(Session::has('status'))
+          @if(Session::has('status-type'))
+            <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
+              <strong>{{ Session::get('status') }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @else
+            <div class="alert alert-info alert-dismissible fade show container" role="alert">
+              <strong>{{ Session::get('status') }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @endif
+        @endif
 
         <div class="mdc-drawer-scrim"></div>
         <div class="mdc-top-app-bar--fixed-adjust">
@@ -251,6 +265,11 @@
                           <div class="mdc-notched-outline__trailing"></div>
                         </div>
                       </div>
+                      <div class="form-group row">
+                        <div class="col-md-6 mx-auto">
+                            {!! NoCaptcha::display() !!}        
+                        </div>                   
+                    </div>
                     </div>
                   </div>
                 </form>
@@ -308,9 +327,11 @@
                 @endif
               </div>
               <div class="modal-footer">
-                <a class="mdc-button mdc-button--raised" href="/checkout/endereco">
-                  Fazer pedido
-                </a>
+                @if(Cart::count() >= 1)
+                  <a class="mdc-button mdc-button--raised" href="/checkout/endereco">
+                    Fazer pedido
+                  </a>
+                @endif
                 <button class="mdc-button mdc-button--raised" type="reset" id="closeCartMenu">
                   <span class="mdc-button__label">Fechar</span>
                 </button>
@@ -319,8 +340,12 @@
           </div>
         </div>
 
-  <script src="{{asset('js/app.js')}}"></script>
-  <script src="{{asset('js/config.js')}}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <script src="{{asset('/js/app.js')}}"></script>
+  <script src="{{asset('/js/config.js')}}"></script>
+  <script src="{{asset('css/bootstrap.min.css')}}"></script>
   @yield('scripts')
+  {!! NoCaptcha::renderJs() !!}
 </body>
 </html>

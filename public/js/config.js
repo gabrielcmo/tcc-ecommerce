@@ -4,6 +4,12 @@ const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('.m
 const menu = mdc.menu.MDCMenu.attachTo(document.querySelector('.mdc-menu'));
 const buttons = document.querySelectorAll('.mdc-button');
 const textsFields = document.querySelectorAll('.mdc-text-field');
+const imageListItems = document.querySelectorAll('.mdc-image-list__item');
+
+imageListItems.forEach(imageItem => {
+  mdc.ripple.MDCRipple.attachTo(imageItem);
+});
+
 
 textsFields.forEach(textField => {
   mdc.textField.MDCTextField.attachTo(textField);

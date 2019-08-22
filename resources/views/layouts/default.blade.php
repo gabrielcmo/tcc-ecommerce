@@ -175,10 +175,10 @@
       <script src="{{asset('js/config.js')}}"></script>
 
       <!-- Bootstrap core JavaScript -->
-      {{-- <script type="text/javascript" src="/js/bootstrap.min.js"></script> --}}
+      <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
       <!-- MDB core JavaScript -->
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/js/mdb.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/js/mdb.min.js"></script> 
 
       <script>
         $(document).ready(function(){

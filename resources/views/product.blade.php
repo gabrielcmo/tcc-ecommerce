@@ -7,7 +7,6 @@
 @section('title', $product->name)
 
 @section('content')
-  <form name="addToCart" action="{{ route('cart.add') }}" method="get">
   <section class="container">
     <div class="row">
       <section class="col-12 d-none d-md-block">
@@ -41,6 +40,29 @@
             <span class="product-form-price" id="product-form-price">R$ {{ $product->price }}</span>
           </div>
         </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-md-3 form-control-label nopaddingtop">Avalie o produto:</label>
+          <div class="col-sm-8 col-md-9">
+            <form name="avaliateForm" action="{{ route('avaliate') }}" method="post">
+              @csrf
+              <input type="hidden" name="product_id" value="{{ $product->id }}">
+              <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5" required/>
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" required/>
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" required/>
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" required/>
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" required/>
+                <label for="star1" title="text">1 star</label>
+              </div>
+              <button class="btn btn-primary btn-sm" type="submit">Avaliar</button>
+            </form>
+          </div>
+        </div>
+        <form name="addToCart" action="{{ route('cart.add') }}" method="get">
         <div class="form-group row">
           <label for="Quantity" class="col-sm-3 col-md-3 form-control-label">Quantidade:</label>
           <div class="col-sm-8 col-md-9">
@@ -86,18 +108,6 @@
         </div>
       </div>
       </form>
-      
-      <div class="form-group row">
-        <label class="col-sm-3 col-md-3 form-control-label">Avaliar produto:</label>
-        <div class="col-sm-8 col-md-9">
-        <p><form name="avaliateForm" action="{{ route('avaliate') }}" method="post">
-            @csrf
-            <input type="hidden" name="product_id" value="{{ $product->id }}" id="">
-            <input type="number" min="0" max="5" name="valor" id="">
-            <input type="button" onclick="document.avaliateForm.submit();" value="Avaliar">
-        </form></p>
-        </div>
-      </div>
       <br><br>
       <div class="col-md-12">
         <h2>Outros produtos</h2><br>
@@ -132,4 +142,8 @@
       @endforeach
     </div>
   </div>
+@endsection
+
+@section('scripts')
+
 @endsection
