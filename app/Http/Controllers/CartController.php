@@ -13,28 +13,6 @@ use Doomus\Product;
 
 class CartController extends Controller
 {
-    /*
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        $cart = User::getCart();
-        return view('user.cart')->with('cart', $cart);
-    }
-
-    /*
-    * Para gerar um novo carrinho e retornar seu id
-    */
-    public static function setCart()
-    {
-        $cart = new CartModel();
-        $cart->save();
-
-        return $cart->id;
-    }
-
     /**
      * Add to cart
      *
@@ -60,7 +38,7 @@ class CartController extends Controller
 
             Cart::add($product_id, $name, $qtd, $price)->associate('Product');
 
-            Session::flash('status', 'Produto adicionado ao carrinho');
+            Session::flash('status', 'Produto adicionado ao carrinho!');
 
             return back();    
         }
@@ -72,8 +50,7 @@ class CartController extends Controller
 
         Cart::add($request->get('product_id'), $name, $qtd, $price)->associate('Product');
 
-        Session::flash('status', 'Produto adicionado ao carrinho');
-
+        Session::flash('status', 'Produto adicionado ao carrinho!');
         return back();
     }
     
@@ -88,7 +65,7 @@ class CartController extends Controller
         Cart::remove($product_id);
 
         Session::flash('status', 'Produto removido do carrinho');
-
+        Session::flash('status-type', 'danger');
         return back();
     }
 
@@ -110,7 +87,6 @@ class CartController extends Controller
         Cart::destroy();
 
         Session::flash('status', 'Carrinho limpo');
-
         return back();
     }
 }

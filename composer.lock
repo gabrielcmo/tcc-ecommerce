@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eba7a7722135baab1e9a309fe8222cd1",
+    "content-hash": "baad229c9623ccea73c6e070782a5b3c",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -64,6 +64,60 @@
                 "recaptcha"
             ],
             "time": "2019-02-25T10:51:21+00:00"
+        },
+        {
+            "name": "canducci/zipcode",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/netdragoon/zipcode.git",
+                "reference": "7d9f66eaa7561b14dc20003ba476963e220001ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netdragoon/zipcode/zipball/7d9f66eaa7561b14dc20003ba476963e220001ce",
+                "reference": "7d9f66eaa7561b14dc20003ba476963e220001ce",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Canducci\\ZipCode\\": "src/Canducci/ZipCode/"
+                },
+                "files": [
+                    "src/Canducci/ZipCode/ZipCodeHelper.php",
+                    "src/Canducci/ZipCode/ZipCodeAddressHelper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NETDragoon",
+                    "email": "netdragoon@outlook.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "ZipCode From Brazil",
+            "homepage": "https://github.com/netdragoon/zipcode",
+            "keywords": [
+                "cep",
+                "cep from brazil",
+                "laravel5",
+                "zip",
+                "zipcode"
+            ],
+            "time": "2019-01-30T17:13:10+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1573,52 +1627,6 @@
             ],
             "description": "PHP Client for using Nexmo's API.",
             "time": "2019-05-13T20:27:43+00:00"
-        },
-        {
-            "name": "nicolaslopezj/searchable",
-            "version": "1.10.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nicolaslopezj/searchable.git",
-                "reference": "69dfeb12ae283067288e4bc412235b1f3f13dcf4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nicolaslopezj/searchable/zipball/69dfeb12ae283067288e4bc412235b1f3f13dcf4",
-                "reference": "69dfeb12ae283067288e4bc412235b1f3f13dcf4",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "illuminate/database": "4.2.x|~5.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Nicolaslopezj\\Searchable\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Lopez",
-                    "email": "nicolaslopezj@me.com"
-                }
-            ],
-            "description": "Eloquent model search trait.",
-            "keywords": [
-                "database",
-                "eloquent",
-                "laravel",
-                "model",
-                "search",
-                "searchable"
-            ],
-            "time": "2018-11-05T20:28:35+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3672,6 +3680,65 @@
             "time": "2019-01-29T11:11:52+00:00"
         },
         {
+            "name": "willvincent/laravel-rateable",
+            "version": "1.07",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willvincent/laravel-rateable.git",
+                "reference": "010bcbf8d12cec79ba106d85ad7baeae48faa96c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willvincent/laravel-rateable/zipball/010bcbf8d12cec79ba106d85ad7baeae48faa96c",
+                "reference": "010bcbf8d12cec79ba106d85ad7baeae48faa96c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "willvincent\\Rateable\\RateableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/commands"
+                ],
+                "psr-4": {
+                    "willvincent\\Rateable\\": "src/Rateable"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Will Vincent",
+                    "email": "tcindie@gmail.com"
+                }
+            ],
+            "description": "Allows multiple models to be rated with a fivestar like system.",
+            "keywords": [
+                "Rating",
+                "fivestar",
+                "laravel",
+                "laravel 5",
+                "rateable",
+                "vote"
+            ],
+            "time": "2018-08-27T16:13:28+00:00"
+        },
+        {
             "name": "zendframework/zend-diactoros",
             "version": "2.1.2",
             "source": {
@@ -4487,6 +4554,52 @@
                 "object graph"
             ],
             "time": "2019-04-07T13:18:21+00:00"
+        },
+        {
+            "name": "nicolaslopezj/searchable",
+            "version": "1.10.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicolaslopezj/searchable.git",
+                "reference": "69dfeb12ae283067288e4bc412235b1f3f13dcf4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicolaslopezj/searchable/zipball/69dfeb12ae283067288e4bc412235b1f3f13dcf4",
+                "reference": "69dfeb12ae283067288e4bc412235b1f3f13dcf4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "illuminate/database": "4.2.x|~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nicolaslopezj\\Searchable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Lopez",
+                    "email": "nicolaslopezj@me.com"
+                }
+            ],
+            "description": "Eloquent model search trait.",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "model",
+                "search",
+                "searchable"
+            ],
+            "time": "2018-11-05T20:28:35+00:00"
         },
         {
             "name": "nunomaduro/collision",

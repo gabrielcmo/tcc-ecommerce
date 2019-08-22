@@ -18,6 +18,15 @@ body,
   .carousel {
     height: 100%; } }
 
-/* Footer color for sake of consistency with Navbar */
-.page-footer {
-  background-color: #929FBA; }
+.footer{
+    text-align: center;
+    width: 100%;
+    position: static;
+    bottom: 0px;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    text-shadow: 2px;
+    -webkit-text-stroke: 1px;
+    background-color: #a1a2a3;
+}
+  

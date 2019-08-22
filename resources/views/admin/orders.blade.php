@@ -1,45 +1,68 @@
 @extends('layouts.admin')
 
-@section('title')
-    Painel de Controle - Pedidos
-@endsection
+@section('title', 'Painel de Controle - Pedidos')
 
 @section('content')
     <h2>Pedidos</h2>
     <br>
+    <div id="dashboard">
+        <div id="string_filter_div"></div>
+        <div id="string_filter_userID_div"></div>
+    </div>
+    <div id="orders_table"></div>
+@endsection
 
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Produto</th>
-                <th scope="col">Usuário</th>
-                <th scope="col">Status</th>
-                <th scope="col">Método de pagamento</th>
-                <th scope="col">Editar</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($orders as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->product }}</td>
-                    <td>{{ $item->user }}</td>
-                    <td>{{ $item->payment_method }}</td>
-                    <td>{{ $item->status }}</td>
-                    <td>
-                        <a onclick='event.preventDefault();
-                            if(confirm("Cancelar pedido?")){document.getElementById("cancel-order")}'>
-                            <i class="fas fa-remove"></i></a>
+@section('scripts')
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-                        <form action="{{ route('admin.order.cancel') }}" method="post">
-                            @csrf
+    <script type="text/javascript">
+        var orders = {!! $orders !!};
+        google.charts.load('current', {'packages':['table', 'controls']});
+        google.charts.setOnLoadCallback(drawTable);
 
-                            <input type="hidden" name="order_id" value="{{ $item->id }}">
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+        function drawTable() {
+            var data = new google.visualization.arrayToDataTable(orders);
+            data.addColumn('string', 'Editar');
+
+            var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboard'));
+
+            var stringFilter = new google.visualization.ControlWrapper({
+                controlType: 'StringFilter',
+                containerId: 'string_filter_div',
+                options: {
+                    filterColumnIndex: 0
+                }
+            });
+            
+            var stringFilterUserId = new google.visualization.ControlWrapper({
+                controlType: 'StringFilter',
+                containerId: 'string_filter_userID_div',
+                options: {
+                    filterColumnIndex: 2
+                }
+            });
+
+            for(var i = 0; i < data.getNumberOfRows(); i++){
+                var order_id = orders[i+1][0];
+                data.setCell(i, 5, "<a href=" + "/admin/order/" + order_id + "/cancel" + "><i class='fas fa-trash'></i></a>");
+            }
+            
+            // for(var i = 0; i < data.getNumberOfRows(); i++){
+            //     var product_id = products[i+2][1];
+            //     data.setCell(i, 5, product_id);
+            // }
+
+            var table = new google.visualization.ChartWrapper({
+                chartType: 'Table',
+                containerId: 'orders_table',
+                options: {
+                    allowHtml: true,
+                    showRowNumber: true
+                }
+            });
+
+            dashboard.bind([stringFilter, stringFilterUserId], [table]);
+            dashboard.draw(data);
+        }
+    </script>
 @endsection

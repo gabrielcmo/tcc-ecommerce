@@ -1,0 +1,46 @@
+a {
+  text-decoration: none !important;
+  padding-left: 5px;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.mdc-button__label {
+  font-weight: 600;
+}
+
+.login-header {
+  text-align: center;
+}
+
+.login-doomus-logo {
+  width: 150px;
+  height: 150px;
+  padding-top: 80px;
+  fill: currentColor;
+}
+
+.login-email,
+.login-password {
+  display: block;
+  width: 300px;
+  margin: 20px auto;
+}
+
+.login-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 300px;
+  margin: auto;
+}
+
+.login-button-container button {
+  margin: 3px;
+}
+
+button:focus {
+  border: 0 none;
+  outline: 0;
+}

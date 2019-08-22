@@ -3,6 +3,7 @@
 namespace Doomus\Http\Controllers;
 
 use Doomus\Historic;
+use Doomus\Order;
 use Illuminate\Http\Request;
 use Session;
 use Doomus\Http\Controllers\UserController as User;
@@ -17,7 +18,7 @@ class HistoricController extends Controller
     public function show()
     {
         $historic = User::getHistoric();
-        return view('user.historic')->with('historic', $historic);
+        return view('user.historic')->with('historics', $historic);
     }
 
     /**
@@ -28,13 +29,13 @@ class HistoricController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-
-        $historic = new Historic();
-        $historic->product_id = $request->product_id;
-        $historic->user_id = $user->id;
-        $historic->status = $request->status;
-        $historic->save();
+        foreach($request->products as $product){
+            $historic = new Historic();
+            $historic->product_id = $product->id;
+            $historic->user_id = User::getUser()->id;
+            $historic->status = $request->status;
+            $historic->save();
+        }
 
         return back();
     }
@@ -45,13 +46,17 @@ class HistoricController extends Controller
      * @param  \Doomus\Historic  $historic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Historic $historic)
+    public function destroy($id)
     {
-        $historic_of_user = $historic->id;
-        $historic_of_user->destroy();
+        
+        $historic = UserController::getHistoric();
+        
+        foreach($historic as $item){
+            Order::destroy($item->order_id);
+            $item->destroy($item->id);
+        }
 
         Session::flash('status', 'Histórico apagado com sucesso');
-
         return back();
     }
 }

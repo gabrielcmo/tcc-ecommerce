@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentMethod extends Model
 {
+    public static $PAYPAL = 1;
+
     /**
      * The Relationship
      *

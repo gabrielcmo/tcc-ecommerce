@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHistoricsTable extends Migration
+class OrderProduct extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreateHistoricsTable extends Migration
      */
     public function up()
     {
-        Schema::create('historics', function (Blueprint $table) {
+        Schema::create('order_product', function (Blueprint $table){
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-            $table->integer('status_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('order_id')->unsigned();
+            $table->integer('qty');
+            $table->float('price', 5, 2);
             $table->foreign('product_id')->references('id')->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('status_id')->references('id')->on('historic_statuses')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->foreign('order_id')->references('id')->on('orders')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
@@ -38,6 +36,6 @@ class CreateHistoricsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('historics');
+        //
     }
 }

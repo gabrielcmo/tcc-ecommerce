@@ -10,9 +10,22 @@ use Doomus\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Hash;
+use willvincent\Rateable\Rating;
 
 class UserController extends Controller
 {
+    public function avaliate(Request $avaliacao){
+        $post = Product::find($avaliacao->product_id);
+
+        $rating = new Rating;
+        $rating->rating = $avaliacao->valor;
+        $rating->user_id = \Auth::id();
+
+        $post->ratings()->save($rating);
+
+        return back();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -32,12 +45,6 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         $user = self::getUser();
-
-        $filename = time().'.'.request()->image->getClientOriginalExtension();
-
-        request()->image->move(public_path('img/avatars'), $filename);
-
-        $user->image = $filename;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
@@ -56,7 +63,7 @@ class UserController extends Controller
 
     public static function getOrders()
     {
-        return Auth::guard()->user()->orders;
+        return Auth::guard()->user()->order;
     }
 
     public static function getHistoric()

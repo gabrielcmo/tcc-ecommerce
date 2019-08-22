@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Doomus\Cart;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $cart1 = new Cart();
-        $cart2 = new Cart();
-        $cart1->save();
-        $cart2->save();
-
         DB::table('roles')->insert([
             'name' => 'client',
         ]);
@@ -27,20 +21,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'image' => 'user-placeholder.jpg',
+            'name' => 'Cliente',
+            'email' => 'cliente'.'@doomus.com',
+            'password' => bcrypt('secret'),
+            'role_id' => 2,
+        ]);
+
+        DB::table('users')->insert([
             'name' => 'Gabriel',
             'email' => 'gabriel'.'@doomus.com',
             'password' => bcrypt('secret'),
-            'cart_id' => 1,
-            'role_id' => 2,
+            'role_id' => 1,
         ]);
         
         DB::table('users')->insert([
-            'image' => 'user-placeholder.jpg',
             'name' => 'Geovanne',
             'email' => 'geovanne'.'@doomus.com',
             'password' => bcrypt('secret'),
-            'cart_id' => 2,
             'role_id' => 1,
         ]);
         
@@ -62,45 +59,100 @@ class DatabaseSeeder extends Seeder
 
         DB::table('products')->insert([
             'name' => 'Toalha de rosto',
-            'details' => 'Pano macio para secar o rosto',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
             'qtd_last' => 4,
+            'lenght' => 12.0,
             'weight' => 20.3,
             'width' => 50.0,
             'height' => 20.0,
+            'diameter' => 80.0,
             'price' => 4.99,
             'category_id' => 3,
         ]);
         
         DB::table('products')->insert([
             'name' => 'Edredom',
+<<<<<<< HEAD
             'details' => 'Macio e quente',
+=======
+>>>>>>> 5352919788ca5884c0c40442cdac39e0c419b023
             'description' => 'Com ótimo material, é excelente para esquentar sua noite',
             'qtd_last' => 33,
+            'lenght' => 12.0,
             'weight' => 466.2,
             'width' => 200.0,
             'height' => 150.0,
+            'diameter' => 80.0,
             'price' => 79.99,
             'category_id' => 1,
         ]);
         
         DB::table('products')->insert([
             'name' => 'Travesseiro',
-            'details' => 'Macio',
             'description' => 'Grande e maravilhoso',
             'qtd_last' => 1,
+            'lenght' => 12.0,
             'weight' => 250.0,
             'width' => 45.0,
             'height' => 25.0,
+            'diameter' => 80.0,
             'price' => 39.98,
             'category_id' => 1,
         ]);
         
         DB::table('products')->insert([
             'name' => 'Colher de silicone',
-            'details' => 'Grande e magnífica',
             'description' => 'Colher ótima',
             'qtd_last' => 37,
+            'lenght' => 12.0,
+            'weight' => 125.0,
+            'width' => 20.0,
+            'height' => 2.0,
+            'price' => 19.99,
+            'category_id' => 2,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Colher de pau',
+            'description' => 'Colher ótima',
+            'qtd_last' => 37,
+            'lenght' => 12.0,
+            'weight' => 125.0,
+            'width' => 20.0,
+            'height' => 2.0,
+            'price' => 19.99,
+            'category_id' => 2,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Tapete',
+            'description' => 'ótimo',
+            'qtd_last' => 37,
+            'lenght' => 12.0,
+            'weight' => 125.0,
+            'width' => 20.0,
+            'height' => 2.0,
+            'price' => 19.99,
+            'category_id' => 2,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Cortina',
+            'description' => 'ótimo',
+            'qtd_last' => 37,
+            'lenght' => 12.0,
+            'weight' => 125.0,
+            'width' => 20.0,
+            'height' => 2.0,
+            'price' => 19.99,
+            'category_id' => 2,
+        ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Conjunto talheres',
+            'description' => 'ótimo',
+            'qtd_last' => 37,
+            'lenght' => 12.0,
             'weight' => 125.0,
             'width' => 20.0,
             'height' => 2.0,
@@ -164,6 +216,7 @@ class DatabaseSeeder extends Seeder
             'product_id' => 4,
         ]);
         
+<<<<<<< HEAD
         DB::table('product_images')->insert([
             'filename' => 'placeholder-5.jpg',
             'product_id' => 5,
@@ -174,34 +227,90 @@ class DatabaseSeeder extends Seeder
             'product_id' => 6,
         ]);
 
+=======
+>>>>>>> 5352919788ca5884c0c40442cdac39e0c419b023
         DB::table('historic_statuses')->insert([
-            'name' => 'deny',
+            'name' => 'entrege',
+        ]);
+        
+        DB::table('historic_statuses')->insert([
+            'name' => 'recusado',
         ]);
 
         DB::table('historic_statuses')->insert([
-            'name' => 'ok',
+            'name' => 'cancelado',
+        ]);
+        
+        DB::table('order_statuses')->insert([
+            'name' => 'em andamento',
         ]);
 
-        DB::table('historic_statuses')->insert([
-            'name' => 'cancelled',
+        DB::table('order_statuses')->insert([
+            'name' => 'aprovado',
         ]);
+        
+        DB::table('order_statuses')->insert([
+            'name' => 'em transporte',
+        ]);
+        
+        DB::table('order_statuses')->insert([
+            'name' => 'erro',
+        ]);
+        
 
-        DB::table('historics')->insert([
+        DB::table('orders')->insert([
             'user_id' => 1,
-            'product_id' => 2,
-            'status_id' => 2,
-        ]);
-
-        DB::table('historics')->insert([
-            'user_id' => 2,
-            'product_id' => 3,
             'status_id' => 1,
+            'payment_method_id' => 1,
+            'value_total' => 200
+        ]);
+        
+        DB::table('orders')->insert([
+            'user_id' => 2,
+            'status_id' => 3,
+            'payment_method_id' => 1,
+            'value_total' => 200
+        ]);
+        
+        DB::table('order_product')->insert([
+            'product_id' => 1,
+            'order_id' => 1,
+            'qty' => 2,
+            'price' => 133
+        ]);
+        
+        DB::table('order_product')->insert([
+            'product_id' => 2,
+            'order_id' => 1,
+            'qty' => 4,
+            'price' => 20
+        ]);
+        
+        DB::table('order_product')->insert([
+            'product_id' => 3,
+            'order_id' => 2,
+            'qty' => 2,
+            'price' => 133
         ]);
 
         DB::table('historics')->insert([
+            'order_id' => 2,
+            'user_id' => 2,
+            'status_id' => 1
+        ]);
+        
+        DB::table('historics')->insert([
+            'order_id' => 1,
             'user_id' => 1,
-            'product_id' => 4,
-            'status_id' => 3,
+            'status_id' => 2
+        ]);
+
+        
+        DB::table('order_product')->insert([
+            'product_id' => 1,
+            'order_id' => 2,
+            'qty' => 2,
+            'price' => 133
         ]);
     }
 }

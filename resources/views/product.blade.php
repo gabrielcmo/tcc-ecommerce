@@ -1,11 +1,13 @@
-@extends('layouts.default')
+@extends('layouts.new_layout')
 
-@section('title')
-    {{ $product->name }}
+@section('stylesheets')
+  <link href="{{ asset('/css/styleHome.css') }}" rel="stylesheet"/>
 @endsection
 
+@section('title', $product->name)
+
 @section('content')
-  <form action="{{ route('cart.add') }}" method="get">
+  <form name="addToCart" action="{{ route('cart.add') }}" method="get">
   <section class="container">
     <div class="row">
       <section class="col-12 d-none d-md-block">
@@ -19,7 +21,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="page-header">{{ $product->name }}</h1>
+        <h2 class="page-header">{{ $product->name }}</h2>
       </div>
     </div>
     <div class="row">
@@ -27,7 +29,7 @@
         <div class="">
           @foreach($product->image as $image)
             <div class="main-product-image">
-              <img src="/img/products/{{$image->filename}}" alt="DualShock Controller for PlayStation 4" class="img-fluid">
+              <img src="/img/products/{{$image->filename}}" alt="Product" class="img-fluid">
             </div>
           @endforeach
         </div>
@@ -55,9 +57,9 @@
             @if($product->qtd_last == 0)
               <span class="bg-danger btn product-form-price">Esgotado</span>
               <p>Infelizmente este produto está esgotado. Contate-nos para solitar um para você.</p>
-              <a href="/contact" class="btn btn-secondary btn-sm" title="Contact Us">Contate-nos</a>
+              <a href="#" class="btn btn-secondary btn-sm" title="Contact Us">Contate-nos</a>
               <a href="javascript:history.back()" class="btn btn-link btn-sm" title="&larr; Ou continue comprando">&larr; Ou continue comprando</a>
-            @elseif($product->qtd_last < 5)
+            @elseif($product->qtd_last <= 25)
               <span class="bg-danger btn product-form-price">Restam apenas {{ $product->qtd_last }}</span>
             @else
               <span class="bg-success btn product-form-price">Disponível</span>
@@ -79,11 +81,55 @@
         <input type="hidden" name="product_id" value="{{$product->id}}">
         <div class="form-group row">
           <div class="col-sm-9 col-md-9">
-            <button type="submit" class="btn btn-dark">Adicionar ao carrinho</button>  
+            <button type="button" onclick="document.addToCart.submit();" class="btn btn-dark">Adicionar ao carrinho</button>  
           </div>
         </div>
       </div>
       </form>
+      
+      <div class="form-group row">
+        <label class="col-sm-3 col-md-3 form-control-label">Avaliar produto:</label>
+        <div class="col-sm-8 col-md-9">
+        <p><form name="avaliateForm" action="{{ route('avaliate') }}" method="post">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}" id="">
+            <input type="number" min="0" max="5" name="valor" id="">
+            <input type="button" onclick="document.avaliateForm.submit();" value="Avaliar">
+        </form></p>
+        </div>
+      </div>
+      <br><br>
+      <div class="col-md-12">
+        <h2>Outros produtos</h2><br>
+      </div>
+
+      <?php $i = 0; ?>
+      @foreach(Doomus\Product::all() as $product)
+          <?php $images = $product->image; ?>
+          <div class="col-md-4">
+            <div class="card">
+              @foreach($product->image as $image)
+                @if(isset($image) && $image !== null && $image->filename !== null || $image->filename !== '')
+                  <div class="card-image">
+                    <img src="/img/products/{{$image->filename}}" alt="Produto" class="img-fluid">
+                  </div>
+                @elseif(!isset($image))  
+                  <div class="card-image">
+                    <img src="/img/doomus.png" alt="Produto" class="img-fluid">
+                  </div>
+                @endif
+              @endforeach
+              <h3 class="card-title">{{ $product->name }}</h3>
+              <a class="btn btn-success" href="/carrinho/{{ $product->id }}/add">Adicionar ao carrinho</a><br>      
+            </div>
+          </div>
+        <?php 
+          $i++;
+          if($i == 3){
+            break;
+          }
+        ?>
+      @endforeach
     </div>
   </div>
 @endsection

@@ -8,6 +8,22 @@ use Session;
 
 class ProductController extends Controller
 {
+    public static function addPicture($image){
+        $filename = time().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('img/products'), $filename);
+        $product_img = new ProductImage();
+        $product_img->filename = $filename;
+        $product_img->save();
+        return;
+    }
+    
+    public static function changeQtyLast($product_id, $qty){
+        $product = Product::find($product_id);
+        $product->qtd_last = $product->qtd_last - $qty;
+        $product->save();
+        return back();
+    }
+
     /**
      * Show product method
      * @param Product $id
@@ -30,14 +46,11 @@ class ProductController extends Controller
     public function store(Request $request){
         $product = new Product();
 
-        if($request->hasFile('image')){
-            $filename = time().'.'.request()->image->getClientOriginalExtension();
-
-            request()->image->move(public_path('img/products'), $filename);
-        }
-
+       if($request->hasFile('image')){
+            self::addPicture(request()->image);
+       }
+        
         $product->name = $request->name;
-        $product->details = $request->details;
         $product->description = $request->description;
         $product->qtd_last = $request->qtd_last;
         $product->weight = $request->weight;
@@ -64,15 +77,12 @@ class ProductController extends Controller
     */
     public function update(Request $request){
         $product = Product::find($request->product_id);
-
+        
         if($request->hasFile('image')){
-            $filename = time().'.'.request()->image->getClientOriginalExtension();
-
-            request()->image->move(public_path('img/products'), $filename);
-        }
+            self::addPicture(request()->image);
+       }
 
         $product->name = $request->name;
-        $product->details = $request->details;
         $product->description = $request->description;
         $product->qtd_last = $request->qtd_last;
         $product->weight = $request->weight;

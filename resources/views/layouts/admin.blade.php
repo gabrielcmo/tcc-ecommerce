@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" >
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" >
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,18 +21,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-link">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.products') }}">Produtos</a>
                 </li>
-                <li class="nav-link">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.orders') }}">Pedidos</a>
                 </li>
-                <li class="nav-link">
-                    <a class="nav-link" href="{{ route('admin.support') }}">Suporte &nbsp;<span class="badge badge-dark">20</span></a>
-                </li>
-                <li class="nav-link">
-                    <a class="nav-link" href="{{ route('landing') }}">Ir para página inicial</a>
-                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('landing') }}">Ir para página inicial</a>
+              </li>
             </ul>
         </div>
     </nav>
@@ -61,9 +61,9 @@
 
     
     <!-- JQuery -->
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-
+    <script type="text/javascript" src="/js/app.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    {{-- <script type="text/javascript" src="/js/bootstrap.min.js"></script> --}}
+    @yield('scripts')
 </body>
 </html>

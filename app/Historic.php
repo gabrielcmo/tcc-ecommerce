@@ -11,17 +11,21 @@ class Historic extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'user_id', 'product_id', 'status_id'];
+    protected $fillable = ['id', 'order_id', 'status_id'];
 
     /**
      * The Relationship
      *
      */
+    public function status(){
+        return $this->belongsTo('Doomus\HistoricStatus');
+    }
+
     public function user(){
         return $this->belongsTo('Doomus\User');
     }
 
-    public function status(){
-        $this->belongsTo('Doomus\HistoricStatus');
+    public function order(){
+        return $this->belongsTo('Doomus\Order');
     }
 }

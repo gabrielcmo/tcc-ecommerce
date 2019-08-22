@@ -2,12 +2,14 @@
 
 namespace Doomus;
 
+use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Product extends Model
 {
     use SearchableTrait;
+    use Rateable;
 
     protected $fillable = ['id', 'name', 'details', 'description', 'price'];
 
@@ -41,11 +43,19 @@ class Product extends Model
         return $this->hasMany('Doomus\ProductImage');
     }
 
-    public function cart(){
-        return $this->belongsToMany('Doomus\Cart', 'cart_products');
-    }
-
     public function category(){
         return $this->belongsTo('Doomus\Category');
+    }
+
+    public function orders(){
+        return $this->belongsToMany('Doomus\Order');
+    }
+
+    public function historics(){
+        return $this->hasMany('Doomus\Order');
+    }
+
+    public function evaluations(){
+        return $this->hasMany('Doomus\EvaluationText');
     }
 }

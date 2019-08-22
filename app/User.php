@@ -14,10 +14,6 @@ class User extends Authenticatable
      * The Relationship
      *
      */
-    public function cart(){
-        return $this->belongsTo('Doomus\Cart');
-    }
-
     public function role(){
         return $this->belongsTo('Doomus\Role');
     }
@@ -26,8 +22,12 @@ class User extends Authenticatable
         return $this->hasMany('Doomus\Historic');
     }
 
-    public function orders(){
+    public function order(){
          return $this->hasMany('Doomus\Order');
+    }
+
+    public function evaluations(){
+        return $this->hasMany('Doomus\EvaluationText');
     }
 
     /**
