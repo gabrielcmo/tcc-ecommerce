@@ -24,7 +24,7 @@
                 <button class="mdc-button mdc-top-app-bar__action-item" id="menuButton">
                   <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">person</i>  
                   @auth
-                      Olá {{ Auth::user()->name }}
+                      <span class="mdc-button__label">Olá {{ Auth::user()->name }}</span>
                   @else
                     <span class="mdc-button__label">entre ou registre-se</span>
                   @endauth
@@ -32,25 +32,18 @@
                 <div class="mdc-menu mdc-menu-surface" id="menu">
                     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
                       @auth
-                        <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item" href="{{ route('perfil') }}">
-                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
-                            <span class="mdc-list-item__text">Minha conta</span>
-                          </a>
+                        <li class="mdc-list-item actionButton" role="menuitem" data-href="{{ route('perfil') }}">
+                          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
+                          <span class="mdc-list-item__text">Minha conta</span>
                         </li>
-                        <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item" href="{{ route('orders') }}">
-                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
-                            <span class="mdc-list-item__text">Meus pedidos</span>
-                          </a>
+                        <li class="mdc-list-item actionButton" role="menuitem" data-href="{{ route('orders') }}">
+                          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
+                          <span class="mdc-list-item__text">Meus pedidos</span>
                         </li>
-                        <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                              {{ __('Sair') }}
-                          </a>
-
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <li class="mdc-list-divider" role="separator"></li>
+                        <li class="mdc-list-item" role="menuitem" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+                          <span class="mdc-list-item__text text-danger">Sair</span>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                               {{ csrf_field() }}
                           </form>
                         </li>
