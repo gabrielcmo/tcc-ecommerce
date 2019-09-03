@@ -58,7 +58,7 @@
       <table class="table table-borderless" style="table-layout: auto; width: 100%">
         <tbody>
           <tr>
-            <th style="width: 50%">Subtotal (quantidade de itens)</th>
+            <th style="width: 50%">Subtotal (4444)</th>
             <td style="width: 50%">R$ 100,00</td>
           </tr>
           <tr>

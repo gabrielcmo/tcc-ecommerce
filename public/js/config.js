@@ -91,6 +91,7 @@ $(document).ready(function(){
   });
 
   $('.actionButton').click(function(){
+    
     var route = $(this).data('href');
     window.location.href = route;
   });
