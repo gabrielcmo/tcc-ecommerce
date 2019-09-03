@@ -7,12 +7,11 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/config.css')}}">
   <link rel="stylesheet" href="{{asset('css/icons.css')}}">
   @yield('stylesheets')
 </head>
-<body style="background-color: #e9e9e9;">
+<body style="background-color: white;">
         <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar">
           <div class="mdc-top-app-bar__row">
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -265,8 +264,8 @@
                           <div class="mdc-notched-outline__trailing"></div>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <div class="col-md-6 mx-auto">
+                      <div class="row justify-content-center mt-2">
+                        <div class="col-md-12">
                             {!! NoCaptcha::display() !!}        
                         </div>                   
                     </div>
@@ -340,11 +339,8 @@
           </div>
         </div>
 
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
   <script src="{{asset('/js/app.js')}}"></script>
   <script src="{{asset('/js/config.js')}}"></script>
-  <script src="{{asset('css/bootstrap.min.css')}}"></script>
   @yield('scripts')
   {!! NoCaptcha::renderJs() !!}
 </body>

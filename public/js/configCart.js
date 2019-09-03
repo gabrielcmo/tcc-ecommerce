@@ -1,3 +1,5 @@
+
+
 const iconButtons = document.querySelectorAll('.mdc-icon-button');
 
 iconButtons.forEach(iconButton => {
@@ -12,6 +14,7 @@ $(document).ready(function(){
   if ((width < 576) || (width >= 576 && width < 992)) {
     $('#productTableHeader').remove();
     $('#productTableItens').remove();
+    
   }
   
   $(window).resize(function(){

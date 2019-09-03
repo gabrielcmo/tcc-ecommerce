@@ -14,9 +14,9 @@
           <th scope="col">Excluir</th>
         </tr>
       </thead>
+      <tbody id="productTableItens">
       @foreach(Cart::content() as $item)
-      <tbody>
-        <div id="productTableItens">
+        <div >
           <tr>
           <td class="align-middle" style="width: 40%">
             <div class="media align-middle">
@@ -47,8 +47,9 @@
           </td>
         </tr>
       </div>
-      </tbody>
+      
       @endforeach
+      </tbody>
     </table>
   </div>
   <div class="col-xl-3 col-lg-3">
