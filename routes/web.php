@@ -69,7 +69,14 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
     Route::post('/checkout/address/data', 'CheckoutController@addressData');
     Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
-    Route::post('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
+    Route::get('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
+
+    /*
+    *   PayPal
+    */
+    Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
+    Route::get('/execute-payment', 'PaymentController@execute');
+    Route::get('/cancel-payment', 'PaymentController@cancel');
 
     /*
     *   Order

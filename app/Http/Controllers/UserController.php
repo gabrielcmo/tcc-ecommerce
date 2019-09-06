@@ -11,20 +11,27 @@ use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Hash;
 use willvincent\Rateable\Rating;
+use DB;
 
 class UserController extends Controller
 {
     public function avaliate(Request $avaliacao){
-        $post = Product::find($avaliacao->product_id);
-
-        $rating = new Rating;
-        $rating->rating = $avaliacao->rate;
-        $rating->user_id = Auth::id();
-
-        $post->ratings()->save($rating);
-
-        Session::flash('status', 'Avaliado com sucesso!');
-        return back();
+        $result = DB::table('ratings')->where([['user_id', Auth::id()], ['rateable_id', $avaliacao->product_id]])->first();
+        if($result !== null){
+            Session::flash('status', 'Você já avaliou esse produto!');
+            return back();
+        }else{   
+            $post = Product::find($avaliacao->product_id);
+            
+            $rating = new Rating;
+            $rating->rating = $avaliacao->rate;
+            $rating->user_id = Auth::id();
+            
+            $post->ratings()->save($rating);
+            
+            Session::flash('status', 'Avaliado com sucesso!');
+            return back();
+        }
     }
 
     /**

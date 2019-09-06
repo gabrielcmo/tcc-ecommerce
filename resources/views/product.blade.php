@@ -57,7 +57,7 @@
                 <label for="star2" title="text">2 stars</label>
                 <input type="radio" id="star1" name="rate" value="1" required/>
                 <label for="star1" title="text">1 star</label>
-              </div>
+              </div>({{ $product->ratingPercent(100) }})
               <button class="btn btn-primary btn-sm" type="submit">Avaliar</button>
             </form>
           </div>
