@@ -33,36 +33,51 @@
                   <span class="text-muted">Seu carrinho</span>
                   <span class="badge badge-secondary badge-pill">{{ Cart::count() }}</span>
                 </h4>
-                <ul class="list-group mb-3">
-                  @foreach (Cart::content() as $item)
-                      <li class="list-group-item d-flex justify-content-between lh-condensed">
-                          <div>
-                              <h6 class="my-0">{{ $item->name }}</h6>
-                              <small class="text-muted">{{ $item->description }}</small>
-                          </div>
-                          <span class="text-muted">{{ $item->qty }} x {{ $item->price }}</span>
-                      </li>
-                  @endforeach
-                  <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                      <h6 class="my-0">Cupom</h6>
-                      <small>TOGURO120</small>
-                    </div>
-                    <span class="text-success">-$5</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (BRL)</span>
-                    <strong>{{Cart::total()}}</strong>
-                  </li>
-                </ul>
+                
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Produtos</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            
+                        </tr>
+                        @foreach (Cart::content() as $item)
+                            <tr class="border-dark border-top">
+                                <td class="align-middle">{{$item->name}} ({{$item->qty}})</td>
+                                <td>
+                                    <span>{{$item->qty}} x R${{$item->price}}</span><br>
+                                    <span class="text-success">R${{$item->price * $item->qty}}</span>
+                                    
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             
                 <form class="card p-2">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cupom">
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-secondary">Resgatar</button>
+                    <div class="d-flex">
+                        <div class="d-flex w-50">
+                            <div class="mdc-text-field mdc-text-field--outlined">
+                                <input type="text" id="cupom-text-field" class="mdc-text-field__input">
+                                <div class="mdc-notched-outline">
+                                    <div class="mdc-notched-outline__leading"></div>
+                                    <div class="mdc-notched-outline__notch">
+                                        <label for="cupom-text-field" class="mdc-floating-label">Cupom</label>
+                                    </div>
+                                    <div class="mdc-notched-outline__trailing"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center w-50 ml-1">
+                            <button class="mdc-button mdc-button--raised h-75 w-100">
+                                <span class="mdc-button__label">Resgatar</span>
+                            </button>
+                        </div>
                     </div>
-                  </div>
                 </form>
             </div>
             <div class="col-md-8 order-md-1">
@@ -218,16 +233,34 @@
                         </span>
                     @endif
                     <hr class="mb-4">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="same-address">
-                        <label class="custom-control-label" for="same-address">O endereço de entrega é o mesmo que o de pagamento</label>
+                    <div class="mdc-form-field" id="form-field-1">
+                        <div class="mdc-checkbox" id="checkbox-1">
+                            <input type="checkbox" class="mdc-checkbox__native-control" id="checkbox-same-adress">
+                            <div class="mdc-checkbox__background">
+                                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                    <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                                </svg>
+                                <div class="mdc-checkbox__mixedmark"></div>
+                            </div>
+                        </div>
+                        <label for="checkbox-same-adress" class="mb-0">O endereço de entrega é o mesmo que o de pagamento</label>
                     </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="save-info">
-                        <label class="custom-control-label" for="save-info">Salvar minhas informações para próxima compra</label>
+                    <div class="mdc-form-field" id="form-field-2">
+                        <div class="mdc-checkbox" id="checkbox-2">
+                            <input type="checkbox" class="mdc-checkbox__native-control" id="checkbox-save-info">
+                            <div class="mdc-checkbox__background">
+                                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                    <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                                </svg>
+                                <div class="mdc-checkbox__mixedmark"></div>
+                            </div>
+                        </div>
+                        <label for="checkbox-save-info" class="mb-0">Salvar minhas informações para próxima compra</label>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Pronto</button>
+                    <button class="mdc-button mdc-button--raised w-100" type="submit">
+                        <span class="mdc-button__label">Prosseguir</span>
+                    </button>
                 </form>
             </div>
         </div>

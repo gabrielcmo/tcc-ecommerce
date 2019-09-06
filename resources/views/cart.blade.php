@@ -83,6 +83,25 @@
         </tbody>
       </table>
     </div>
+    <div class="d-flex mt-2 p-2" style="background-color: gainsboro">
+      <div class="d-flex justify-content-center align-items-center w-50">
+        <div class="mdc-text-field mdc-text-field--outlined">
+          <input type="text" class="mdc-text-field__input" id="cep-cart-text-field">
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+              <label for="cep-cart-text-field" class="mdc-floating-label">CEP</label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-center w-50">
+        <div class="mdc-button mdc-button--raised h-75">
+          <span class="mdc-button__label">Calcular Frete</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 @endsection
