@@ -4,7 +4,7 @@ namespace Doomus\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
-use Paypal\Rest\ApiContext;
+use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Exception\PayPalConnectionException;
 use PayPal\Api\Amount;
@@ -13,32 +13,35 @@ use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
+use Config;
 
 class PaymentController extends Controller
 {
     public function __construct(){
         $paypal_config = Config::get('paypal');
 
-        $this->$_apiContext = new ApiContext(
+        $this->_apiContext = new ApiContext(
             new OAuthTokenCredential(
               $paypal_config['client_id'],
               $paypal_config['secret']
             )
         );
-        $this->_api_context->setConfig($paypal_conf['settings']);
+
+        $this->_apiContext->setConfig($paypal_config['settings']);
     }
 
-    public function createPayment(){
+    public function create(){
         // Create new payer and method
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
 
         // Set redirect URLs
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl(route('processPaypal'))
-        ->setCancelUrl(route('cancelPaypal'));
+        $redirectUrls->setReturnUrl('http://localhost:8000/execute-payment')
+        ->setCancelUrl('http://localhost:8000/cancel-payment');
 
         // Set payment amount
         $amount = new Amount();
@@ -62,7 +65,7 @@ class PaymentController extends Controller
             $payment->create($this->_apiContext);
         
             // Get PayPal redirect URL and redirect the customer
-            $approvalUrl = $payment->getApprovalLink();
+            return redirect($payment->getApprovalLink());
         
             // Redirect the customer to $approvalUrl
         } catch (PayPalConnectionException $ex) {
@@ -74,7 +77,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function executePayment(){
+    public function execute(){
         // Get payment object by passing paymentId
         $paymentId = $_GET['paymentId'];
         $payment = Payment::get($paymentId, $this->_apiContext);
@@ -83,27 +86,50 @@ class PaymentController extends Controller
         // Execute payment with payer ID
         $execution = new PaymentExecution();
         $execution->setPayerId($payerId);
+        
+        $transaction = new Transaction();
+        $amount = new Amount();
+
+        $details = new Details();
+        $details->setShipping(2.2)
+            ->setTax(1.3)
+            ->setSubtotal(17.50);
+
+        $amount->setCurrency('BRL');
+        $amount->setTotal(21);
+        $amount->setDetails($details);
+
+        $transaction->setAmount($amount);
+
+        $execution->addTransaction($transaction);
 
         try{
             // Execute payment
             $result = $payment->execute($execution, $this->_apiContext);
             
-            if($result->getState() == 'approved'){
-                Session::flash('status', 'Pagamento aprovado!');
+            try{
 
-                return redirect('/');
-            }else{
-                Session::flash('status', 'O pagamento falhou');
-                Session::flash('status-type', 'danger');
+                $payment = Payment::get($paymentId, $this->_apiContext);
+            }catch(Exception $ex){
 
-                return redirect('/');
+                die($ex);
             }
         }catch(PayPalConnectionException $ex){
+
             echo $ex->getCode();
             echo $ex->getData();
             die($ex);
         }catch(Exception $ex){
+
             die($ex);
         }
+
+        Session::flash('status', 'Pagamento realizado');
+        Session::put('token-paypal', $_GET['token']);
+        return redirect('/paypal/transaction/complete');
+    }
+
+    public function cancel(){
+        return redirect('/');
     }
 }
