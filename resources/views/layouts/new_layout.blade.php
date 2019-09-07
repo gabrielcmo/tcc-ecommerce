@@ -19,51 +19,33 @@
               <span class="mdc-top-app-bar__title"><a style="color:white;" href="{{ route('landing') }}">Doomus</a></span>       
             </section>
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
-              <div class="mdc-menu-surface--anchor" id="allMenu">
-                <button class="mdc-button mdc-top-app-bar__action-item" id="menuButton">
-                  <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">person</i>  
+              <div class="dropdown" id="dropdown">
+                <button class="btn btn-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   @auth
-                      <span class="mdc-button__label">Olá {{ Auth::user()->name }}</span>
+                    Olá {{ Auth::user()->name }}   
                   @else
-                    <span class="mdc-button__label">entre ou registre-se</span>
-                  @endauth
-                </button> 
-                <div class="mdc-menu mdc-menu-surface" id="menu">
-                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-                      @auth
-                        <li class="mdc-list-item actionButton" role="menuitem" data-href="{{ route('perfil') }}">
-                          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
-                          <span class="mdc-list-item__text">Minha conta</span>
-                        </li>
-                        <li class="mdc-list-item actionButton" role="menuitem" data-href="{{ route('orders') }}">
-                          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
-                          <span class="mdc-list-item__text">Meus pedidos</span>
-                        </li>
-                        <li class="mdc-list-divider" role="separator"></li>
-                        <li class="mdc-list-item" role="menuitem" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
-                          <span class="mdc-list-item__text text-danger">Sair</span>
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                              {{ csrf_field() }}
-                          </form>
-                        </li>
-                      @else
-                        <li class="mdc-list-item" id="loginMenu" role="menuitem">
-                          <span class="mdc-list-item__text">Entrar</span>
-                        </li>
-                        <li class="mdc-list-item" id="registerMenu" role="menuitem">
-                          <span class="mdc-list-item__text">Registrar</span>
-                        </li>
-                        <li class="mdc-list-divider" role="separator"></li>
-                        <li class="mdc-list-item actionButton" role="menuitem" data-href="{{route('loginSocial', ['provider'=>'google'])}}">
-                          <i class="fab fa-google" style="font-size: 20px; margin-right: 5px"></i>
-                          <span class="mdc-list-item__text">Entrar com Google</span>
-                        </li>
-                      @endauth
-                    </ul>
+                    Entrar ou registrar
+                  @endif
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  @auth
+                    <a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a>
+                    <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
+                    <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      {{ csrf_field() }}
+                    </form>
+                  @else
+                    <a class="dropdown-item" id="loginMenu" role="menuitem">Entrar</a>
+                    <a class="dropdown-item" id="registerMenu" role="menuitem">Registrar</a>
+                    <a class="dropdown-item" href="{{route('loginSocial', ['provider'=>'google'])}}">
+                      <i class="fab fa-google" style="font-size: 20px; margin-right: 10px"></i>Entrar com Google</a>
+                  @endif
                 </div>
               </div>
-              <button class="mdc-button mdc-top-app-bar__action-item" id="cartMenu">
-                <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">shopping_cart</i>
+              <button type="button" class="btn btn-primary" data-toggle="modal" id="cartMenu" data-target="#cartModal1">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                 @if(Cart::count() > 0)
                   <span class="badge badge-light">{{ Cart::count() }}</span>
                 @endif
@@ -73,7 +55,6 @@
         </header>
         
         <aside class="mdc-drawer mdc-drawer--modal d-none" id="sidebarMenu">
-
           @auth
             <div class="mdc-drawer__header">
             <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
@@ -85,25 +66,26 @@
             </div>
           @endauth
           <div class="mdc-drawer__content" style="position:relative">
-            <div class="mdc-list">
-              <a class="mdc-list-item" href="{{ route('perfil') }}">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
-                <span class="mdc-list-item__text">Minha conta</span>
-              </a>
-              <a class="mdc-list-item" href="{{ route('historic') }}">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
-                <span class="mdc-list-item__text">Meus pedidos</span>
-              </a>
-              <a class="mdc-list-item" href="{{ route('orders') }}">
-                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-                <span class="mdc-list-item__text">Drafts</span>
-              </a>
-            </div>
+            @auth
+              <div class="mdc-list">
+                <a class="mdc-list-item" href="{{ route('perfil') }}">
+                  <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
+                  <span class="mdc-list-item__text">Meu perfil</span>
+                </a>
+                <a class="mdc-list-item" href="{{ route('orders') }}">
+                  <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                  <span class="mdc-list-item__text">Pedidos</span>
+                </a>
+              </div>
+            @else
+              <div class="mdc-list">
+              </div>
+            @endif
+            <button data-href="{{route('login')}}" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
+              <span class="mdc-button__label">Entrar</span>
+            </button>
             <button data-href="{{route('register')}}" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
               <span class="mdc-button__label">Registrar</span>
-            </button>
-            <button data-href="{{route('login')}}" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
-              <span class="mdc-button__label">Logar</span>
             </button>
             <button data-href="{{route('loginSocial', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
               <i class="mdc-button__icon fab fa-google" style="font-size: 18px; margin-right: 5px"></i>
@@ -278,13 +260,14 @@
           </div>
         </div>
 
-        <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="TituloModalCart" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+        <!-- Modal -->
+        <div class="modal fade" id="cartModal1" tabindex="-1" role="dialog" aria-labelledby="ModalCarrinho" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="TituloModalCart">Carrinho</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                  <span aria-hidden="true"></span>
+                <h5 class="modal-title" id="ModalCarrinho">Carrinho</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
@@ -293,7 +276,7 @@
                 @else
                 <a class="btn btn-danger" href="/carrinho/delete">Limpar carrinho</a><br><br>
                 <div class="row">
-                  <div class="col-md-9">
+                  <div class="col-md-12">
                     <table class="table">
                       <thead class="thead-dark">
                         <tr>
@@ -319,14 +302,7 @@
                 @endif
               </div>
               <div class="modal-footer">
-                @if(Cart::count() >= 1)
-                  <a class="mdc-button mdc-button--raised" href="/checkout/endereco">
-                    Fazer pedido
-                  </a>
-                @endif
-                <button class="mdc-button mdc-button--raised" type="reset" id="closeCartMenu">
-                  <span class="mdc-button__label">Fechar</span>
-                </button>
+                <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
               </div>
             </div>
           </div>
