@@ -22,7 +22,7 @@
                                                 <div class="d-flex">
                                                     <div class="ml-5 mr-5">{{ $order->status->name }}</div>
                                                     <div class="ml-5 mr-5">{{ $order->payment_method->name }}</div>
-                                                    <div class="ml-5 mr-5">Frete R$20.99 <span>Prazo 2 dias</span></div>
+                                                    <div class="ml-5 mr-5">Frete R${{$order->frete}} <span>{{$order->prazo}}</span></div>
                                                     <div class="ml-5 mr-5">Total R${{ $order->value_total }}</div>
                                                     <div class="ml-5 mr-5">{{ $order->created_at }}</div>
                                                 </div>
@@ -81,7 +81,7 @@
                                                 </div>
                                             @endforeach
                                             <div class="ml-5 mr-5">{{ $order->status->name }}</div>
-                                            <div class="ml-5 mr-5">Frete R$20.99 <span>Prazo 2 dias</span></div>
+                                            <div class="ml-5 mr-5">Frete R${{$order->frete}} <span>{{$order->prazo}} dias</span></div>
                                             <div class="ml-5 mr-5">Total R${{ $order->value_total }}</div>
                                             <div class="ml-5 mr-5">{{ $order->created_at }}</div>
                                         </div>
@@ -105,7 +105,7 @@
                                                 <div class="d-flex">
                                                     <div class="ml-5 mr-5">{{ $historic->status->name }}</div>
                                                     <div class="ml-5 mr-5">{{ $historic->order->payment_method->name }}</div>
-                                                    <div class="ml-5 mr-5">Frete R$20.99 <span>Prazo 2 dias</span></div>
+                                                    <div class="ml-5 mr-5">Frete R${{$order->frete}} <span>{{$order->prazo}} dias</span></div>
                                                     <div class="ml-5 mr-5">Total R${{ $historic->order->value_total }}</div>
                                                     <div class="ml-5 mr-5">{{ $historic->created_at }}</div>
                                                 </div>
@@ -165,7 +165,7 @@
                                             @endforeach
                                             <div class="ml-5 mr-5">{{ $historic->status->name }}</div>
                                             <div class="ml-5 mr-5">{{ $historic->order->payment_method->name }}</div>
-                                            <div class="ml-5 mr-5">Frete R$20.99 <span>Prazo 2 dias</span></div>
+                                            <div class="ml-5 mr-5">Frete R${{$order->frete}} <span>{{$order->prazo}} dias</span></div>
                                             <div class="ml-5 mr-5">Total R${{ $historic->order->value_total  }}</div>
                                             <div class="ml-5 mr-5">{{ $historic->created_at }}</div>
                                         </div>

@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->integer('payment_method_id')->unsigned();
             $table->integer('status_id')->unsigned();
             $table->float('value_total', 5, 2);
+            $table->float('frete', 5, 2);
+            $table->integer('prazo');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

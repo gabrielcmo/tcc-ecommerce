@@ -204,40 +204,49 @@ class DatabaseSeeder extends Seeder
             'name' => 'em historico',
         ]);
         
-
         DB::table('orders')->insert([
             'user_id' => 1,
             'status_id' => 1,
             'payment_method_id' => 1,
-            'value_total' => 200
+            'value_total' => 200,
+            'frete' => 30.22,
+            'prazo' => 3
         ]);
         
         DB::table('orders')->insert([
             'user_id' => 2,
             'status_id' => 4,
             'payment_method_id' => 1,
-            'value_total' => 200
+            'value_total' => 200,
+            'frete' => 30.22,
+            'prazo' => 3
         ]);
         
         DB::table('orders')->insert([
             'user_id' => 2,
             'status_id' => 4,
             'payment_method_id' => 1,
-            'value_total' => 35
+            'value_total' => 35,
+            'frete' => 30.22,
+            'prazo' => 3
         ]);
         
         DB::table('orders')->insert([
             'user_id' => 2,
             'status_id' => 4,
             'payment_method_id' => 1,
-            'value_total' => 341
+            'value_total' => 341,
+            'frete' => 30.22,
+            'prazo' => 3
         ]);
         
         DB::table('orders')->insert([
             'user_id' => 2,
             'status_id' => 3,
             'payment_method_id' => 1,
-            'value_total' => 75
+            'value_total' => 75,
+            'frete' => 30.22,
+            'prazo' => 3
         ]);
         
         DB::table('order_product')->insert([

@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="row justify-content-center mt-1">
-    <div class="col-lg-12">
+    <div class="col-lg-10">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -10,27 +10,27 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" style="border-radius: 0px;">
-          <div class="carousel-item active" style="height: 500px;">
-            <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-item active">
+            <img src="{{asset('/img/landing/img1.jpg')}}" style="width:100%;height:auto" class="d-block" alt="...">
           </div>
-          <div class="carousel-item" style="height: 500px">
-            <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-item">
+            <img src="{{asset('/img/landing/img2.jpg')}}" style="width:100%;height:auto" class="d-block" alt="...">
           </div>
-          <div class="carousel-item" style="height: 500px">
-            <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-item">
+            <img src="{{asset('/img/landing/img3.jpg')}}" style="width:100%;height:auto" class="d-block" alt="...">
           </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
     </div>
-  </div>
+  </div><br>
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Fluid jumbotron</h1>
@@ -42,9 +42,15 @@
         @foreach ($products as $product)
         <div class="col-lg-2 col-xl-3 col-md-6 col-sm-12 col-xs-12 mt-1">
           <div class="card ml-2 mr-2 mt-2" style="width: 17rem;">
-            <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
-              style="background-image: url(&quot;{{asset('img/capa_13.jpg')}}&quot;);">
-            </div>
+            @if(isset($product->image[0]->filename))
+              <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
+                style="background-image: url(&quot;{{asset("/img/products/".$product->image[0]->filename)}}&quot;);width:100%;">
+              </div>
+            @else
+              <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square mx-auto"
+                style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;);width:80%">
+              </div>
+            @endif
             <div class="card-body">
               <h4 class="card-title">{{$product->name}}</h4>
               <?php $rating = $product->ratingPercent(100); ?>

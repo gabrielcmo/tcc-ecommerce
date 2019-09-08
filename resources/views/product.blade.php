@@ -26,11 +26,41 @@
     <div class="row">
       <div class="col-lg-6 mb-4">
         <div class="">
-          @foreach($product->image as $image)
-            <div class="main-product-image">
-              <img src="/img/products/{{$image->filename}}" alt="Product" class="img-fluid">
-            </div>
-          @endforeach
+          <!--Carousel Wrapper-->
+          <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+              @for ($i = 0; $i < count($product->image); $i++)
+                @if($i == 0)
+                  <li data-target="#carousel-example-1z" data-slide-to="{{$i}}" class="active"></li>
+                @else
+                  <li data-target="#carousel-example-1z" data-slide-to="{{$i}}"></li>
+                @endif
+              @endfor
+            </ol>
+            <!--/.Indicators-->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+              @for($i = 0; $i < count($product->image); $i++)
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="{{asset("/img/products/".$product->image[$i]->filename)}}"
+                    alt="Slide product">
+                </div>
+              @endfor
+            <!--/.Slides-->
+            </div>  
+            <!--Controls-->
+            <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+            <!--/.Controls-->
+          </div>
+          <!--/.Carousel Wrapper-->
         </div>
       </div>
       <div class="col-lg-6">

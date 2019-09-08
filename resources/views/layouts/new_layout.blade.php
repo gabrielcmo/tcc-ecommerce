@@ -37,10 +37,11 @@
                       {{ csrf_field() }}
                     </form>
                   @else
-                    <a class="dropdown-item" id="loginMenu" role="menuitem">Entrar</a>
-                    <a class="dropdown-item" id="registerMenu" role="menuitem">Registrar</a>
+                    <a class="dropdown-item" data-toggle="modal" id="cartMenu" data-target="#modalLogin">Entrar</a>
+                    <a class="dropdown-item" data-toggle="modal" id="cartMenu" data-target="#modalRegister">Registrar</a>
                     <a class="dropdown-item" href="{{route('loginSocial', ['provider'=>'google'])}}">
-                      <i class="fab fa-google" style="font-size: 20px; margin-right: 10px"></i>Entrar com Google</a>
+                      <i class="fab fa-google" style="font-size: 16px; margin-right: 10px"></i>Entrar com Google
+                    </a>
                   @endif
                 </div>
               </div>
@@ -57,9 +58,14 @@
         <aside class="mdc-drawer mdc-drawer--modal d-none" id="sidebarMenu">
           @auth
             <div class="mdc-drawer__header">
-            <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
+              <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
               <h6 class="mdc-drawer__subtitle">{{ Auth::user()->email }}</h6>
             </div>
+            <a class="btn btn-danger btn-sm" style="" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
+            
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              {{ csrf_field() }}
+            </form>
           @else
             <div class="mdc-drawer__header">
               <h3 class="mdc-drawer__title">Visitante</h3>
@@ -81,41 +87,44 @@
               <div class="mdc-list">
               </div>
             @endif
-            <button data-href="{{route('login')}}" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
-              <span class="mdc-button__label">Entrar</span>
-            </button>
-            <button data-href="{{route('register')}}" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
-              <span class="mdc-button__label">Registrar</span>
-            </button>
-            <button data-href="{{route('loginSocial', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
-              <i class="mdc-button__icon fab fa-google" style="font-size: 18px; margin-right: 5px"></i>
-              <span class="mdc-button__label">Entrar com Google</span>
-            </button>
+            @guest
+              <button data-toggle="modal" data-target="#modalLogin" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
+                <span class="mdc-button__label">Entrar</span>
+              </button>
+              <button data-toggle="modal" data-target="#modalRegister" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
+                <span class="mdc-button__label">Registrar</span>
+              </button>
+              <button data-href="{{route('loginSocial', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
+                <i class="mdc-button__icon fab fa-google" style="font-size: 18px; margin-right: 5px"></i>
+                <span class="mdc-button__label">Entrar com Google</span>
+              </button>
+            @endguest
           </div>
         </aside>
-
-        @if(Session::has('status'))
-          @if(Session::has('status-type'))
-            <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
-              <strong>{{ Session::get('status') }}</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          @else
-            <div class="alert alert-info alert-dismissible fade show container" role="alert">
-              <strong>{{ Session::get('status') }}</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          @endif
-        @endif
 
         <div class="mdc-drawer-scrim"></div>
         <div class="mdc-top-app-bar--fixed-adjust">
           <main class="main-content" id="main-content">
             <div class="container-fluid"><br>
+
+              @if(Session::has('status'))
+                @if(Session::has('status-type'))
+                  <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
+                    <strong>{{ Session::get('status') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @else
+                  <div class="alert alert-info alert-dismissible fade show container" role="alert">
+                    <strong>{{ Session::get('status') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @endif
+              @endif
+
               @yield('content')
             </div>
           </main>
@@ -123,11 +132,11 @@
 
         {{-- Modais --}}
         <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="TituloModalLogin" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="TituloModalLogin">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -136,8 +145,7 @@
                   @csrf
                   <div class="container-fluid">
                     <div class="row align-items-center">
-                        <img src="{{asset('img/logo_icone.png')}}" alt="Logo Doomus" class="img-fluid">
-                        <h1 style="font-family: 'Roboto'" class="mx-auto">DOOMUS</h1>
+                        <img src="{{asset('img/logo_icone.png')}}" width="50%" height="50%" alt="Logo Doomus" class="img-fluid mx-auto">
                     </div>
                     <div class="row justify-content-center">
                       <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%"> 
@@ -145,7 +153,7 @@
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
-                            <label for="email-text-field" class="mdc-floating-label">E-Mail</label>
+                            <label for="email-text-field" class="mdc-floating-label">Email</label>
                           </div>
                           <div class="mdc-notched-outline__trailing"></div>
                         </div>
@@ -162,40 +170,34 @@
                           <div class="mdc-notched-outline__trailing"></div>
                         </div>
                       </div>
-                    </div>
+                    </div><br>
+                    <button class="mdc-button mdc-button--raised float-right" type="submit" form="loginForm">
+                      <span class="mdc-button__label">Logar</span>
+                    </button>
                   </div>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button class="mdc-button mdc-button--raised" type="submit" form="loginForm">
-                  <span class="mdc-button__label">Logar</span>
-                </button>
-                <button class="mdc-button mdc-button--raised" type="reset" form="loginForm" id="closeLoginForm">
-                  <span class="mdc-button__label">Fechar</span>
-                </button>
               </div>
             </div>
           </div>  
         </div>
 
         <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="TituloModalRegister" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="TituloModalRegister">Registro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                  <span aria-hidden="true"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <form action="{{route('register')}}" method="POST" id="registerForm">
                   <div class="container-fluid">
                     <div class="row justify-content-center">
-                      <img src="{{asset('img/logo_icone.png')}}" alt="Logo Doomus" class="img-fluid">
-                      <h1 style="font-family: 'Roboto'">DOOMUS</h1>
+                        <img src="{{asset('img/logo_icone.png')}}" width="35%" height="35%" alt="Logo Doomus" class="img-fluid mx-auto">
                     </div>
                     <div class="row justify-content-center">
-                      <div class="mdc-text-field mdc-text-field--outlined" style="width: 81%;">
+                      <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%;">
                         <input class="mdc-text-field__input" id="name-text-field" type="text" name="name">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
@@ -207,12 +209,12 @@
                       </div>
                     </div>
                     <div class="row justify-content-center mt-2">
-                      <div class="mdc-text-field mdc-text-field--outlined" style="width: 81%;">
+                      <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%;">
                         <input class="mdc-text-field__input" id="email-text-field" type="text" name="email">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
-                            <label for="email-text-field" class="mdc-floating-label">E-Mail</label>
+                            <label for="email-text-field" class="mdc-floating-label">Email</label>
                           </div>
                           <div class="mdc-notched-outline__trailing"></div>
                         </div>
@@ -247,20 +249,14 @@
                     </div>
                   </div>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button class="mdc-button mdc-button--raised" type="submit" form="registerForm">
+                <button class="mdc-button mdc-button--raised float-right" type="submit" form="registerForm">
                   <span class="mdc-button__label">Registrar</span>
-                </button>
-                <button class="mdc-button mdc-button--raised" type="reset" form="registerForm" id="closeRegisterForm">
-                  <span class="mdc-button__label">Fechar</span>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Modal -->
         <div class="modal fade" id="cartModal1" tabindex="-1" role="dialog" aria-labelledby="ModalCarrinho" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -301,9 +297,11 @@
                 </div>
                 @endif
               </div>
-              <div class="modal-footer">
-                <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
-              </div>
+              @if(Cart::count() > 0)
+                <div class="modal-footer">
+                  <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
+                </div>
+              @endif
             </div>
           </div>
         </div>
