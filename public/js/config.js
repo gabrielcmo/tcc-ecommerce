@@ -9,7 +9,6 @@ imageListItems.forEach(imageItem => {
   mdc.ripple.MDCRipple.attachTo(imageItem);
 });
 
-
 textsFields.forEach(textField => {
   mdc.textField.MDCTextField.attachTo(textField);
 });
@@ -31,8 +30,11 @@ $(document).ready(function(){
       $('#topAppBar').css('width', '125px');
     } else {
       $('#topAppBar').css('width', '100%');
-    } 
+    }
+
+    $('#sidebarMenu').removeClass('mdc-drawer--open');
   });
+  
   function closeNav(scroll) {
     if (scroll > 80) {
       $('#topAppBar').addClass('mdc-top-app-bar--short-collapsed');

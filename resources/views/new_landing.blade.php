@@ -31,17 +31,17 @@
       </div>
     </div>
   </div><br>
-  <div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid text-white" style="background-image: url({{ asset('/img/imgbanner.jpg') }});">
     <div class="container">
-      <h1 class="display-4">Fluid jumbotron</h1>
-      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      <h1 class="display-4">As melhores ofertas</h1>
+      <p class="lead">O tempo está acabando! <a class="text-warning" href="{{route('offers')}}">Clique aqui para ver nossas promoções</a></p>
     </div>
   </div>
   <div class="container">
     <div class="row">
         @foreach ($products as $product)
-        <div class="col-lg-2 col-xl-3 col-md-6 col-sm-12 col-xs-12 mt-1">
-          <div class="card ml-2 mr-2 mt-2" style="width: 17rem;">
+        <div class="col-lg-4 col-xl-3 col-md-4 col-sm-6 col-xs-12 mt-1">
+          <div class="card ml-2 mr-2 mt-2" style="width: 15rem;">
             @if(isset($product->image[0]->filename))
               <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
                 style="background-image: url(&quot;{{asset("/img/products/".$product->image[0]->filename)}}&quot;);width:100%;">

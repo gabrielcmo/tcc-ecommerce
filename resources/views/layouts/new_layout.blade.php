@@ -13,46 +13,46 @@
 </head>
 <body style="background-color: white;">
         <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar">
-          <div class="mdc-top-app-bar__row">
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-              <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
-              <span class="mdc-top-app-bar__title"><a style="color:white;" href="{{ route('landing') }}">Doomus</a></span>       
-            </section>
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
-              <div class="dropdown" id="dropdown">
-                <button class="btn btn-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  @auth
-                    Olá {{ Auth::user()->name }}   
-                  @else
-                    Entrar ou registrar
+            <div class="mdc-top-app-bar__row">
+              <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
+                <span class="mdc-top-app-bar__title"><a style="color:white;" href="{{ route('landing') }}">Doomus</a></span>       
+              </section>
+              <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
+                <div class="dropdown" id="dropdown">
+                  <button class="btn btn-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @auth
+                      Olá {{ Auth::user()->name }}   
+                    @else
+                      Entrar ou registrar
+                    @endif
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @auth
+                      <a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a>
+                      <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
+                      <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        {{ csrf_field() }}
+                      </form>
+                    @else
+                      <a class="dropdown-item pb-2" data-toggle="modal" id="cartMenu" data-target="#modalLogin">Entrar</a>
+                      <a class="dropdown-item pb-2" data-toggle="modal" id="cartMenu" data-target="#modalRegister">Cliente novo? Cadastre-se</a>
+                      <a class="dropdown-item pb-2" href="{{route('loginSocial', ['provider'=>'google'])}}">
+                        <i class="fab fa-google" style="font-size: 16px; margin-right: 10px"></i>Entrar com Google
+                      </a>
+                    @endif
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary mr-3" data-toggle="modal" id="cartMenu" data-target="#cartModal1">
+                  <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                  @if(Cart::count() > 0)
+                    <span class="badge badge-light">{{ Cart::count() }}</span>
                   @endif
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  @auth
-                    <a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a>
-                    <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
-                    <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                      {{ csrf_field() }}
-                    </form>
-                  @else
-                    <a class="dropdown-item" data-toggle="modal" id="cartMenu" data-target="#modalLogin">Entrar</a>
-                    <a class="dropdown-item" data-toggle="modal" id="cartMenu" data-target="#modalRegister">Registrar</a>
-                    <a class="dropdown-item" href="{{route('loginSocial', ['provider'=>'google'])}}">
-                      <i class="fab fa-google" style="font-size: 16px; margin-right: 10px"></i>Entrar com Google
-                    </a>
-                  @endif
-                </div>
-              </div>
-              <button type="button" class="btn btn-primary" data-toggle="modal" id="cartMenu" data-target="#cartModal1">
-                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                @if(Cart::count() > 0)
-                  <span class="badge badge-light">{{ Cart::count() }}</span>
-                @endif
-              </button>
-            </section>
-          </div>
+              </section>
+            </div>
         </header>
         
         <aside class="mdc-drawer mdc-drawer--modal d-none" id="sidebarMenu">
@@ -61,7 +61,7 @@
               <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
               <h6 class="mdc-drawer__subtitle">{{ Auth::user()->email }}</h6>
             </div>
-            <a class="btn btn-danger btn-sm" style="" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-2" style="" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
             
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
               {{ csrf_field() }}
@@ -84,8 +84,7 @@
                 </a>
               </div>
             @else
-              <div class="mdc-list">
-              </div>
+              <div class="mdc-list"></div>
             @endif
             @guest
               <button data-toggle="modal" data-target="#modalLogin" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
@@ -101,11 +100,22 @@
             @endguest
           </div>
         </aside>
+        <br>
+        <br>
+        <br>
+        <div class="nav-scroller bg-light shadow-sm">
+            <nav class="nav nav-underline">
+              <a class="nav-link mx-auto" href="#">Explore</a>
+              <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
+              <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
+              <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
+              <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
+            </nav>
+          </div>
 
-        <div class="mdc-drawer-scrim"></div>
-        <div class="mdc-top-app-bar--fixed-adjust">
+        <div class="mdc-drawer-scrim"></div><br>
           <main class="main-content" id="main-content">
-            <div class="container-fluid"><br>
+            <div class="container-fluid">
 
               @if(Session::has('status'))
                 @if(Session::has('status-type'))
@@ -135,7 +145,7 @@
           <div class="modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="TituloModalLogin">Login</h5>
+                <h2 class="modal-title" id="TituloModalLogin">Login</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -185,7 +195,7 @@
           <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="TituloModalRegister">Registro</h5>
+                <h2 class="modal-title" id="TituloModalRegister">Registro</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -261,14 +271,14 @@
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="ModalCarrinho">Carrinho</h5>
+                <h2 class="modal-title" id="ModalCarrinho">Carrinho</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 @if(Cart::count() == 0)
-                  <h2>Seu carrinho está vazio!</h2>
+                  <h4>Seu carrinho está vazio!</h4>
                 @else
                 <a class="btn btn-danger" href="/carrinho/delete">Limpar carrinho</a><br><br>
                 <div class="row">
