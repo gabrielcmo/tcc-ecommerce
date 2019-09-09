@@ -76,11 +76,14 @@ class CheckoutController extends Controller
 
             $valor += $resultadoCalc->Valor;
         }
+        
+        $prazo = $resultadoCalc->PrazoEntrega->__toString();
+        $obs = $resultadoCalc->obsFim->__toString();
 
         $resultadoCalc = [
             'valorEntrega' => $valor,
-            'prazoEntrega' => $resultadoCalc->PrazoEntrega,
-            'obs' => $resultadoCalc->obsFim
+            'prazoEntrega' => $prazo,
+            'obs' => $obs
         ];
 
         session()->put('correiosData', $resultadoCalc);

@@ -45,7 +45,7 @@
                     @endif
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary mr-3" data-toggle="modal" id="cartMenu" data-target="#cartModal1">
+                <button type="button" class="btn btn-primary mr-2" data-toggle="modal" id="cartMenu" data-target="#cartModal1">
                   <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                   @if(Cart::count() > 0)
                     <span class="badge badge-light">{{ Cart::count() }}</span>
