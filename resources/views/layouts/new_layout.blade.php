@@ -23,7 +23,7 @@
                 <button class="mdc-button mdc-top-app-bar__action-item" id="menuButton">
                   <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">person</i>  
                   @auth
-                      <span class="mdc-button__label">Olá {{ Auth::user()->name }}</span>
+                    <span class="mdc-button__label">Olá {{ Auth::user()->name }}</span>
                   @else
                     <span class="mdc-button__label">entre ou registre-se</span>
                   @endauth
@@ -132,6 +132,7 @@
 
         <div class="mdc-drawer-scrim"></div>
         <div class="mdc-top-app-bar--fixed-adjust">
+          
           <main class="main-content" id="main-content">
             <div class="container-fluid"><br>
               @yield('content')

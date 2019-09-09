@@ -46,7 +46,7 @@
                             
                         </tr>
                         @foreach (Cart::content() as $item)
-                            <tr class="border-dark border-top">
+                            <tr class="">
                                 <td class="align-middle">{{$item->name}} ({{$item->qty}})</td>
                                 <td>
                                     <span>{{$item->qty}} x R${{$item->price}}</span><br>
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center w-50 ml-1">
-                            <button class="mdc-button mdc-button--raised h-75 w-100">
+                            <button class="mdc-button mdc-button--raised h-100 w-100">
                                 <span class="mdc-button__label">Resgatar</span>
                             </button>
                         </div>
@@ -174,6 +174,11 @@
                             <strong>{{ $errors->first('state') }}</strong>
                         </span>
                     @endif
+                    @if ($errors->has('city'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('city') }}</strong>
+                        </span>
+                    @endif
 
                     <div class="mdc-select mdc-select--outlined d-flex d-block mt-2 w-50">
                         <i class="mdc-select__dropdown-icon"></i>
@@ -227,11 +232,7 @@
                         </div>
                     </div>
 
-                    @if ($errors->has('city'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('city') }}</strong>
-                        </span>
-                    @endif
+
                     <hr class="mb-4">
                     <div class="mdc-form-field" id="form-field-1">
                         <div class="mdc-checkbox" id="checkbox-1">
