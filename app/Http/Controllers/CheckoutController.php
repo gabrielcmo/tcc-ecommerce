@@ -76,12 +76,17 @@ class CheckoutController extends Controller
 
             $valor += $resultadoCalc->Valor;
         }
+        
+        $prazo = $resultadoCalc->PrazoEntrega->__toString();
+        $obs = $resultadoCalc->obsFim->__toString();
 
         $resultadoCalc = [
             'valorEntrega' => $valor,
-            'prazoEntrega' => $resultadoCalc->PrazoEntrega,
-            'obs' => $resultadoCalc->obsFim
+            'prazoEntrega' => $prazo,
+            'obs' => $obs
         ];
+
+        session()->put('correiosData', $resultadoCalc);
 
         return view('payment_checkout')->with('calcFretePrazo', $resultadoCalc);
     }
@@ -119,12 +124,14 @@ class CheckoutController extends Controller
             foreach(Cart::content() as $item){
                 ProductController::changeQtyLast($item->id, $item->qty);
                 $dataOrder['products'][] = ['id' => $item->id, 'qty' => $item->qty, 'price' => $item->price];
-                $total += $item->value;
+                $total += $item->price;
             }
 
             $dataOrder['p_method_id'] = 1;
             $dataOrder['value_total'] = $total;
             $dataOrder['status_id'] = OrderStatus::$STATUS_PROCESSING;
+            $dataOrder['frete'] = session('correiosData')['valorEntrega'];
+            $dataOrder['prazo'] = session('correiosData')['prazoEntrega'];
 
             OrderController::store($dataOrder);
 

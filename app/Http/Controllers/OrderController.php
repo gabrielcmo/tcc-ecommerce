@@ -25,6 +25,8 @@ class OrderController extends Controller
         $order->payment_method_id = $request['p_method_id'];
         $order->value_total = $request['value_total'];
         $order->status_id = $request['status_id'];
+        $order->frete = $request['frete'];
+        $order->prazo = $request['prazo'];
         $order->save();
         
         foreach($request['products'] as $product){
