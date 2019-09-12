@@ -1,15 +1,13 @@
-@extends('layouts.default')
+@extends('layouts.new_layout')
 
 @section('stylesheets')
     <style>
-        .footer{
-            display: none;
-        }
+
     </style>
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container pt-2">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \Doomus\Http\Middleware\Admin::class,
         'Checkout' => \Doomus\Http\Middleware\Checkout::class,
+        'CheckoutPayment' => \Doomus\Http\Middleware\CheckoutPayment::class,
     ];
 
     /**

@@ -40,11 +40,26 @@
                         {{ csrf_field() }}
                       </form>
                     @else
-                      <a class="dropdown-item pb-2" data-toggle="modal" id="cartMenu" data-target="#modalLogin">Entrar</a>
-                      <a class="dropdown-item pb-2" data-toggle="modal" id="cartMenu" data-target="#modalRegister">Cliente novo? Cadastre-se</a>
-                      <a class="dropdown-item pb-2" href="{{route('loginSocial', ['provider'=>'google'])}}">
-                        <i class="fab fa-google" style="font-size: 16px; margin-right: 10px"></i>Entrar com Google
-                      </a>
+                      <h4 class="text-center">Login</h4>
+                      <hr>
+                      <form class="ml-3 mr-3 pb-2" action="{{ route('login') }}" method="post">
+                        @csrf
+                        <div class="mdc-text-field login-email">
+                          <input type="text" class="mdc-text-field__input" id="email-input" name="email" required>
+                          <label class="mdc-floating-label" for="email-input">Email</label>
+                          <div class="mdc-line-ripple"></div>
+                        </div>
+                        <div class="mdc-text-field login-password">
+                          <input type="password" class="mdc-text-field__input" id="password-input" name="password" required minlength="6">
+                          <label class="mdc-floating-label" for="password-input">Senha</label>
+                          <div class="mdc-line-ripple"></div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Entrar</button>
+                        <a class="pb-2 float-right text-dark" style="font-size: 14px" href="{{route('register')}}">Cliente novo? Cadastre-se</a> 
+                        <a class="pb-2 float-right text-dark" href="{{route('loginSocial', ['provider'=>'google'])}}">
+                          <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
+                        </a>
+                      </form>
                     @endif
                   </div>
                 </div>
@@ -125,7 +140,6 @@
         </div>
 
         <div class="mdc-drawer-scrim"></div>
-        <div class="mdc-top-app-bar--fixed-adjust">
           <main class="main-content" id="main-content">
             <div class="container-fluid">
               @if(Session::has('status'))
@@ -213,6 +227,7 @@
               </div>
               <div class="modal-body">
                 <form action="{{route('register')}}" method="POST" id="registerForm">
+                  @csrf
                   <div class="container-fluid">
                     <div class="row justify-content-center">
                         <img src="{{asset('img/logo_icone.png')}}" width="35%" height="35%" alt="Logo Doomus" class="img-fluid mx-auto">
@@ -231,7 +246,7 @@
                     </div>
                     <div class="row justify-content-center mt-2">
                       <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%;">
-                        <input class="mdc-text-field__input" id="email-text-field" type="text" name="email">
+                        <input class="mdc-text-field__input" id="email-text-field" type="email" name="email">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">

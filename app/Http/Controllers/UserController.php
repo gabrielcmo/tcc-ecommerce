@@ -19,6 +19,7 @@ class UserController extends Controller
         $result = DB::table('ratings')->where([['user_id', Auth::id()], ['rateable_id', $avaliacao->product_id]])->first();
         if($result !== null){
             Session::flash('status', 'Você já avaliou esse produto!');
+            Session::flash('status-type', 'danger');
             return back();
         }else{   
             $post = Product::find($avaliacao->product_id);
