@@ -12,6 +12,7 @@
                 <form action="{{ route('create-payment') }}" method="post">
                     @csrf
                     <input type="submit" value="Pagar com PayPal">
+                    <script>paypal.Buttons().render('body')</script>
                 </form>
                 
             </div>
@@ -41,4 +42,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
 @endsection

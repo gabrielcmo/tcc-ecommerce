@@ -1,15 +1,15 @@
 @extends('layouts.new_layout')
 
 @section('content')
-  <div class="row justify-content-center mt-1">
-    <div class="col-lg-10">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 h-50">
+      <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner" style="border-radius: 0px;">
+        <div class="carousel-inner h-50" style="border-radius: 0px;">
           <div class="carousel-item active">
             <img src="{{asset('/img/landing/img1.jpg')}}" style="width:100%;height:auto" class="d-block" alt="...">
           </div>
@@ -30,8 +30,8 @@
         </a>
       </div>
     </div>
-  </div><br>
-  <div class="jumbotron jumbotron-fluid text-white" style="background-image: url({{ asset('/img/imgbanner.jpg') }});">
+  </div>
+  <div class="jumbotron jumbotron-fluid text-white mt-2" style="background-image: url({{ asset('/img/imgbanner.jpg') }});">
     <div class="container">
       <h1 class="display-4">As melhores ofertas</h1>
       <p class="lead">O tempo está acabando! <a class="text-warning" href="{{route('offers')}}">Clique aqui para ver nossas promoções</a></p>

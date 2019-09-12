@@ -45,10 +45,10 @@
                     @endif
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary mr-2" data-toggle="modal" id="cartMenu" data-target="#cartModal1">
+                <button class="mdc-button mdc-button--raised actionButton" data-href="{{ route('user.cart') }}">
                   <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                   @if(Cart::count() > 0)
-                    <span class="badge badge-light">{{ Cart::count() }}</span>
+                    <span class="badge badge-light ml-1">{{ Cart::count() }}</span>
                   @endif
                 </button>
               </section>
@@ -104,25 +104,19 @@
         <br>
         <br>
         <div class="nav-scroller bg-light shadow-sm">
-            <nav class="nav nav-underline">
-              <a class="nav-link mx-auto" href="#">Explore</a>
-              <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
-              <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
-              <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
-              <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
-            </nav>
-          </div>
+          <nav class="nav nav-underline">
+            <a class="nav-link mx-auto" href="#">Explore</a>
+            <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
+            <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
+            <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
+            <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
+          </nav>
+        </div>
 
-<<<<<<< HEAD
-        <div class="mdc-drawer-scrim"></div>
-        <div class="mdc-top-app-bar--fixed-adjust">
-          
-=======
         <div class="mdc-drawer-scrim"></div><br>
->>>>>>> fd7a7ff5524df91055f8d3d1cc666786e2d5c4f4
           <main class="main-content" id="main-content">
-            <div class="container-fluid">
-
+            <div class="container">
+              
               @if(Session::has('status'))
                 @if(Session::has('status-type'))
                   <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">

@@ -33,3 +33,6 @@ require('./bootstrap');
 // });
 
 window.mdc = require('material-components-web/index');
+
+require('jquery-validation/dist/jquery.validate');
+require('jquery-validation/dist/additional-methods');

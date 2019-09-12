@@ -121,7 +121,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
 Route::get('/test-components', function(){
     return view('test_components');
 });
-
-Route::get('/carrinho', function(){
-    return view('cart');
-});

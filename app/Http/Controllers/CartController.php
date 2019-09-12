@@ -13,6 +13,9 @@ use Doomus\Product;
 
 class CartController extends Controller
 {
+    public function show(){
+        return view('cart');
+    }
     /**
      * Add to cart
      *
