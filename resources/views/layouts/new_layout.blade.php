@@ -110,18 +110,22 @@
             @endguest
           </div>
         </aside>
-        
+
         <div class="mdc-drawer-scrim"></div>
-          <div class="mdc-top-app-bar--fixed-adjust">
-              <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
-                  <nav class="nav nav-underline">
-                    <a class="nav-link mx-auto" href="#">Explore</a>
-                    <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
-                    <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
-                    <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
-                    <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
-                  </nav>
-                </div>
+        <div class="mdc-top-app-bar--fixed-adjust">
+          <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
+            <nav class="nav nav-underline">
+              <a class="nav-link mx-auto" href="#">Explore</a>
+              <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
+              <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
+              <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
+              <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="mdc-drawer-scrim"></div>
+        <div class="mdc-top-app-bar--fixed-adjust">
           <main class="main-content" id="main-content">
             <div class="container-fluid">
               @if(Session::has('status'))
