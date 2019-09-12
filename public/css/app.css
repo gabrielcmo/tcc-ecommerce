@@ -7,6 +7,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+#cartMenu{
+  font-size: 0.88em;
+}
+
 #imgProduct{
   width: 70px;
 }

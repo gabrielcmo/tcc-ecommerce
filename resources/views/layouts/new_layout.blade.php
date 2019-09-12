@@ -30,6 +30,9 @@
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @auth
                       <a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a>
+                      @if(Auth::user()->role_id == 1)
+                        <a class="dropdown-item" href="/admin">Painel de Controle</a>
+                      @endif
                       <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
                       <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
 
@@ -78,11 +81,18 @@
                   <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
                   <span class="mdc-list-item__text">Meu perfil</span>
                 </a>
+                @if(Auth::user()->role_id == 1)
+                  <a class="mdc-list-item" href="/admin">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                    <span class="mdc-list-item__text">Painel de administração</span>
+                  </a>
+                @endif
                 <a class="mdc-list-item" href="{{ route('orders') }}">
                   <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
                   <span class="mdc-list-item__text">Pedidos</span>
                 </a>
               </div>
+              
             @else
               <div class="mdc-list"></div>
             @endif
@@ -100,23 +110,20 @@
             @endguest
           </div>
         </aside>
-        <br>
-        <br>
-        <br>
-        <div class="nav-scroller bg-light shadow-sm">
-            <nav class="nav nav-underline">
-              <a class="nav-link mx-auto" href="#">Explore</a>
-              <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
-              <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
-              <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
-              <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
-            </nav>
-          </div>
-
-        <div class="mdc-drawer-scrim"></div><br>
+        
+        <div class="mdc-drawer-scrim"></div>
+          <div class="mdc-top-app-bar--fixed-adjust">
+              <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
+                  <nav class="nav nav-underline">
+                    <a class="nav-link mx-auto" href="#">Explore</a>
+                    <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
+                    <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
+                    <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
+                    <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
+                  </nav>
+                </div>
           <main class="main-content" id="main-content">
             <div class="container-fluid">
-
               @if(Session::has('status'))
                 @if(Session::has('status-type'))
                   <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
@@ -259,7 +266,7 @@
                     </div>
                   </div>
                 </form>
-                <button class="mdc-button mdc-button--raised float-right" type="submit" form="registerForm">
+                <button class="mdc-button mdc-button--raised float-right mt-2" type="submit" form="registerForm">
                   <span class="mdc-button__label">Registrar</span>
                 </button>
               </div>

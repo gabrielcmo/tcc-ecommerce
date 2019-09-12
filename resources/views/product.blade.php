@@ -41,12 +41,19 @@
             <!--/.Indicators-->
             <!--Slides-->
             <div class="carousel-inner" role="listbox">
-              @for($i = 0; $i < count($product->image); $i++)
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="{{asset("/img/products/".$product->image[$i]->filename)}}"
-                    alt="Slide product">
-                </div>
-              @endfor
+              <?php $count = 0 ?>
+              @foreach($product->image as $image)
+                @if ($count == 0)
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="{{asset("/img/products/".$image->filename)}}">
+                  </div>
+                @else
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="{{asset("/img/products/".$image->filename)}}">
+                  </div>
+                @endif
+                <?php $count++; ?>
+              @endforeach
             <!--/.Slides-->
             </div>  
             <!--Controls-->

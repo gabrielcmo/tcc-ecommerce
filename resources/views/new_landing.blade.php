@@ -8,16 +8,20 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" style="border-radius: 0px;">
           <div class="carousel-item active">
-            <img src="{{asset('/img/landing/img1.jpg')}}" style="width:100%;height:auto" class="d-block" alt="...">
+            <img src="{{asset('/img/landing/banner-cama.png')}}" style="width:100%;height:auto;" class="d-block" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{{asset('/img/landing/img2.jpg')}}" style="width:100%;height:auto" class="d-block" alt="...">
+            <img src="{{asset('/img/landing/banner-toalha.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{{asset('/img/landing/img3.jpg')}}" style="width:100%;height:auto" class="d-block" alt="...">
+            <img src="{{asset('/img/landing/banner-roupao.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{{asset('/img/landing/banner-travesseiro.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -40,7 +44,7 @@
   <div class="container">
     <div class="row">
         @foreach ($products as $product)
-        <div class="col-lg-4 col-xl-3 col-md-4 col-sm-6 col-xs-12 mt-1">
+        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-12 mt-1">
           <div class="card ml-2 mr-2 mt-2" style="width: 15rem;">
             @if(isset($product->image[0]->filename))
               <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"

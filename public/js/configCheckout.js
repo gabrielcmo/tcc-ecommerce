@@ -7,9 +7,6 @@ const checkbox_2 = mdc.checkbox.MDCCheckbox.attachTo(document.querySelector('#ch
 
 formField_1.input = checkbox_1;
 formField_2.input = checkbox_2;
-select.listen('MDCSelect:change', () => {
-  alert('Selected option at index ' + select.selectedIndex + ' com o valor ' + select.value);
-});
 
 linearProgress.progress = 0.33;
 linearProgress.buffer = 0.40;

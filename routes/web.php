@@ -67,10 +67,13 @@ Route::group(['middleware' => ['auth']], function (){
     /*
     *   Checkout
     */
-    Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');
-    Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
-    Route::post('/checkout/address/data', 'CheckoutController@addressData');
-    Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
+    Route::group(['middleware' => ['Checkout']], function (){
+        Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');
+        Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
+        Route::post('/checkout/address/data', 'CheckoutController@addressData');
+        Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
+    });
+
     Route::get('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
 
     /*
