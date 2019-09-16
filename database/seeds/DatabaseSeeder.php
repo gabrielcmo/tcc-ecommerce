@@ -319,15 +319,60 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('historics')->insert([
-            'order_id' => 3,
-            'user_id' => 2,
-            'status_id' => 2
+        'order_id' => 3,
+        'user_id' => 2,
+        'status_id' => 2
         ]);
         
         DB::table('historics')->insert([
-            'order_id' => 4,
-            'user_id' => 2,
-            'status_id' => 3
+        'order_id' => 4,
+        'user_id' => 2,
+        'status_id' => 3
         ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Roupão',
+            'description' => 'Longo e sedoso para te aquecer/secar após o banho',
+            'qtd_last' => 60,
+            'lenght' => 50.0,
+            'weight' => 750.0,
+            'width' => 30.0,
+            'height' => 120.0,
+            'price' => 49.99,
+            'category_id' => 3,
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Cobertor Azul',
+            'description' => 'Te aquece nas suas noites mais frias',
+            'qtd_last' => 98,
+            'lenght' => 1.0,
+            'weight' => 560.0,
+            'width' => 135.0,
+            'height' => 200.0,
+            'price' => 79.98,
+            'category_id' => 1,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'roupao1.png',
+            'product_id' => 9,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'roupao1.png',
+            'product_id' => 9,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'roupao1.png',
+            'product_id' => 9,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'cama.png',
+            'product_id' => 10,
+        ]);
+
     }
 }

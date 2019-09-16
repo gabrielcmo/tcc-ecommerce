@@ -43,6 +43,7 @@
       $(document).ready(function(){
         $('.inputQty').change(function (e) { 
           e.preventDefault();
+          
           let product = $(e.target).data('product');
           var productValue = parseFloat($('.productValue'+product).html().substring(2).replace(',', '.'));
           let qty = $(e.target).val();

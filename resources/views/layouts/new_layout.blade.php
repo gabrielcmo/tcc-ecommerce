@@ -30,6 +30,9 @@
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @auth
                       <a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a>
+                      @if(Auth::user()->role_id == 1)
+                        <a class="dropdown-item" href="/admin">Painel de Controle</a>
+                      @endif
                       <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
                       <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
 
@@ -37,11 +40,26 @@
                         {{ csrf_field() }}
                       </form>
                     @else
-                      <a class="dropdown-item pb-2" data-toggle="modal" id="cartMenu" data-target="#modalLogin">Entrar</a>
-                      <a class="dropdown-item pb-2" data-toggle="modal" id="cartMenu" data-target="#modalRegister">Cliente novo? Cadastre-se</a>
-                      <a class="dropdown-item pb-2" href="{{route('loginSocial', ['provider'=>'google'])}}">
-                        <i class="fab fa-google" style="font-size: 16px; margin-right: 10px"></i>Entrar com Google
-                      </a>
+                      <h4 class="text-center">Login</h4>
+                      <hr>
+                      <form class="ml-3 mr-3 pb-2" action="{{ route('login') }}" method="post">
+                        @csrf
+                        <div class="mdc-text-field login-email">
+                          <input type="text" class="mdc-text-field__input" id="email-input" name="email" required>
+                          <label class="mdc-floating-label" for="email-input">Email</label>
+                          <div class="mdc-line-ripple"></div>
+                        </div>
+                        <div class="mdc-text-field login-password">
+                          <input type="password" class="mdc-text-field__input" id="password-input" name="password" required minlength="6">
+                          <label class="mdc-floating-label" for="password-input">Senha</label>
+                          <div class="mdc-line-ripple"></div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Entrar</button>
+                        <a class="pb-2 float-right text-dark" style="font-size: 14px" href="{{route('register')}}">Cliente novo? Cadastre-se</a> 
+                        <a class="pb-2 float-right text-dark" href="{{route('loginSocial', ['provider'=>'google'])}}">
+                          <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
+                        </a>
+                      </form>
                     @endif
                   </div>
                 </div>
@@ -78,11 +96,18 @@
                   <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
                   <span class="mdc-list-item__text">Meu perfil</span>
                 </a>
+                @if(Auth::user()->role_id == 1)
+                  <a class="mdc-list-item" href="/admin">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                    <span class="mdc-list-item__text">Painel de administração</span>
+                  </a>
+                @endif
                 <a class="mdc-list-item" href="{{ route('orders') }}">
                   <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
                   <span class="mdc-list-item__text">Pedidos</span>
                 </a>
               </div>
+              
             @else
               <div class="mdc-list"></div>
             @endif
@@ -100,23 +125,23 @@
             @endguest
           </div>
         </aside>
-        <br>
-        <br>
-        <br>
-        <div class="nav-scroller bg-light shadow-sm">
-          <nav class="nav nav-underline">
-            <a class="nav-link mx-auto" href="#">Explore</a>
-            <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
-            <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
-            <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
-            <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
-          </nav>
+
+        <div class="mdc-drawer-scrim"></div>
+        <div class="mdc-top-app-bar--fixed-adjust">
+          <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
+            <nav class="nav nav-underline">
+              <a class="nav-link mx-auto" href="#">Explore</a>
+              <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
+              <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
+              <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
+              <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
+            </nav>
+          </div>
         </div>
 
-        <div class="mdc-drawer-scrim"></div><br>
+        <div class="mdc-drawer-scrim"></div>
           <main class="main-content" id="main-content">
-            <div class="container">
-              
+            <div class="container-fluid">
               @if(Session::has('status'))
                 @if(Session::has('status-type'))
                   <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
@@ -202,6 +227,7 @@
               </div>
               <div class="modal-body">
                 <form action="{{route('register')}}" method="POST" id="registerForm">
+                  @csrf
                   <div class="container-fluid">
                     <div class="row justify-content-center">
                         <img src="{{asset('img/logo_icone.png')}}" width="35%" height="35%" alt="Logo Doomus" class="img-fluid mx-auto">
@@ -220,7 +246,7 @@
                     </div>
                     <div class="row justify-content-center mt-2">
                       <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%;">
-                        <input class="mdc-text-field__input" id="email-text-field" type="text" name="email">
+                        <input class="mdc-text-field__input" id="email-text-field" type="email" name="email">
                         <div class="mdc-notched-outline">
                           <div class="mdc-notched-outline__leading"></div>
                           <div class="mdc-notched-outline__notch">
@@ -259,7 +285,7 @@
                     </div>
                   </div>
                 </form>
-                <button class="mdc-button mdc-button--raised float-right" type="submit" form="registerForm">
+                <button class="mdc-button mdc-button--raised float-right mt-2" type="submit" form="registerForm">
                   <span class="mdc-button__label">Registrar</span>
                 </button>
               </div>

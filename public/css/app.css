@@ -7,6 +7,58 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+<<<<<<< HEAD
+=======
+#cartMenu{
+  font-size: 0.88em;
+}
+
+#imgProduct{
+  width: 70px;
+}
+
+#accordion{
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+>>>>>>> 21b7ef8bf3e79d7dff0bcca98abe0526adb36df9
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;
