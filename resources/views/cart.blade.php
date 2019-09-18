@@ -47,7 +47,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-2 col-md-12 col-sm-12">
       <h4 class="d-flex justify-content-between align-items-center">
         <span class="">Resumo do pedido</span>
         <span class="badge badge-secondary">{{Cart::count()}}</span>
@@ -99,11 +99,24 @@
 @section('scripts')
     <script>
       $(document).ready(function(){
+
+        function totalCart() {
+          var total = 0;
+          $('.eachProductValue').each(function () {
+            // console.log($(this).data('value'));
+            total += $(this).data('value');
+            
+          });
+          $('#totalCart').text("R$"+total.toFixed(2).replace('.',','));
+        }
+
+        totalCart();
+
         $('.inputQty').change(function (e) { 
           e.preventDefault();
           
           let product = $(e.target).data('product');
-          var productValue = parseFloat($('.productValue'+product).html().substring(2).replace(',', '.'));
+          var productValue = $('.productValue'+product).text().substring(2).replace(',', '.');
           let qty = $(e.target).val();
           var product_rowId = $('.product_rowId'+product).val();
           var product_id = $('.product_id').val();
