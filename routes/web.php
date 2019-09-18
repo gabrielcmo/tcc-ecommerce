@@ -18,6 +18,8 @@ Route::get('/carrinho/{product_id}/add/', 'CartController@addToCart');
 Route::get('/carrinho/add/', 'CartController@addToCart')->name('cart.add');
 Route::get('/carrinho/delete', 'CartController@clearCart')->name('cart.clear');
 Route::get('/carrinho', 'CartController@show')->name('user.cart');
+Route::get('/carrinho/{product_id}/remove', 'CartController@removeFromCart');
+Route::get('/carrinho/{product_rowId}/{qty}/{product_id}', 'CartController@changeQuantity');
 
 /* 
 *   Autentificação - Login - Rede Social
@@ -47,6 +49,11 @@ Route::get('/ofertas', 'OfertasController@view')->name('offers');
 *   Checar CEP
 */
 Route::get('/checkout/address/cep', 'CheckoutController@checkCep')->name('checkCep');
+
+/*
+*   Calcular CEP
+*/
+Route::post('/calc/frete', 'CheckoutController@calcFrete')->name('calcFrete');
 
 Route::group(['middleware' => ['auth']], function (){
     /*

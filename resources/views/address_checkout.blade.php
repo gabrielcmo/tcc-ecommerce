@@ -35,15 +35,17 @@ Checkout
                     <span class="text-muted">{{ $item->qty }} x R${{ $item->price }}</span>
                 </li>
                 @endforeach
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <h6 class="my-0">Cupom</h6>
-                        <small>TOGURO120</small>
-                    </div>
-                    <span class="text-success">-R$5</span>
-                </li>
+                @if(session('cupons') !== null)
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success">
+                            <h6 class="my-0">Cupom</h6>
+                            <small>TOGURO120</small>
+                        </div>
+                        <span class="text-success">-R$5</span>
+                    </li>
+                @endif
                 <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (BRL)</span>
+                    <span>Total (BRL) s/ frete</span>
                     <strong>R${{Cart::total()}}</strong>
                 </li>
             </ul>
@@ -64,14 +66,6 @@ Checkout
             <br>
             <form action="/checkout/address/data" method="post" id="addressCheckoutForm">
                 @csrf
-                <input
-                    class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3"
-                    type="text" name="cpf" placeholder="CPF">
-                @if ($errors->has('cpf'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('cpf') }}</strong>
-                </span>
-                @endif
                 <input
                     class="form-control{{ $errors->has('cep') ? ' is-invalid' : '' }} col-sm-6 col-md-6 col-xl-6 mb-3"
                     type="number" name="cep" id="cep" placeholder="CEP" maxlength="8">
@@ -188,7 +182,13 @@ Checkout
             n: {
                 required: true,
                 minlenght: 1
-            }
+            },
+            state: {
+                required: true
+            },
+            city: {
+                required: true
+            },
         },
         messages: {
             bairro: {
@@ -198,7 +198,20 @@ Checkout
             address: {
                 required: "Por favor, informe sua rua",
                 minlenght: "A rua deve ter pelo menos 5 caracteres"
-            }
+            },
+            cep: {
+                required: "Por favor, informe seu CEP",
+                minlenght: "O CEP deve ter pelo menos 8 caracteres"
+            },
+            n: {
+                required: "Por favor, informe o número da sua residência",
+            },
+            state: {
+                required: "Por favor, informe o seu estado"
+            },
+            city: {
+                required: "Por favor, informe sua cidade"
+            },
         }
     });
     $(document).ready(function(){

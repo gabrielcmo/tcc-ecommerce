@@ -63,7 +63,7 @@ class CartController extends Controller
      * @param Product $product_id
      * @return \Illuminate\Http\Response
      */
-    public function removeFromCart(Product $product_id)
+    public function removeFromCart($product_id)
     {
         Cart::remove($product_id);
 
@@ -79,9 +79,18 @@ class CartController extends Controller
      * @param Product $qty
      * @return \Illuminate\Http\Response
      */
-    public function changeQuantity(Product $product_id, $qty)
+    public function changeQuantity($product_rowId, $qty, $product_id)
     {
-        Cart::update($product_id, $qty);
+        $product = Product::find($product_id);
+
+        if($qty !== null && $qty > $product->qtd_last){
+            Session::flash('status', "Desculpe, nós só temos mais $product->qtd_last restante desse produto no estoque..
+                Adicione até esse valor!");
+            Session::flash('status-type', 'danger');
+            return back();
+        }
+        
+        Cart::update($product_rowId, $qty);
 
         return back();
     }

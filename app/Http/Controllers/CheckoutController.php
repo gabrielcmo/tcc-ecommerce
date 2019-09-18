@@ -19,6 +19,33 @@ class CheckoutController extends Controller
     // const ADDRESS = 'https://ff.paypal-brasil.com.br/FretesPayPalWS/WSFretesPayPal';
     // private $request;
 
+    public function calcFrete(Request $data){
+        $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
+        $url .= "?nCdEmpresa=";
+        $url .= "&sDsSenha=";
+        $url .= "&sCepOrigem=08090284";
+        $url .= "&sCepDestino=$data->cep";
+        $url .= "&nVlPeso=3";
+        $url .= "&nCdFormato=1";
+        $url .= "&nVlComprimento=30";
+        $url .= "&nVlAltura=2";
+        $url .= "&nVlLargura=18";
+        $url .= "&sCdMaoPropria=n";
+        $url .= "&nVlValorDeclarado=0";
+        $url .= "&sCdAvisoRecebimento=s";
+        $url .= "&nCdServico=04510";
+        $url .= "&nVlDiametro=38";
+        $url .= "&StrRetorno=xml";
+        $url .= "&nIndicaCalculo=3";
+
+        $result = simplexml_load_file($url);
+
+        Session::put('valorFrete', $result->cServico->Valor->__toString());
+        Session::put('prazoFrete', $result->cServico->PrazoEntrega->__toString());
+
+        return back();
+    }
+
     public static function calcFretePrazo($cep_destino){
         $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
         $url .= "?nCdEmpresa=";
@@ -42,25 +69,6 @@ class CheckoutController extends Controller
 
         return $result->cServico;
     }
-
-    // public function calcFretePaypal($cepDestino){
-    //     $this->dados = new StdClass();
-    //     $this->dados->altura = 1;
-    //     $this->dados->largura = 1;
-    //     $this->dados->peso = 1;
-    //     $this->dados->cepDestino = $cepDestino;
-    //     $this->dados->cepOrigem = '08090284';
-
-    //     try {
-    //         $client = new SoapClient(self::ADDRESS . '?wsdl');
-            
-    //         $response = $client->__soapCall($this->dados);
-			
-	// 		return $response;
-	// 	} catch ( Exception $e ) {
-	// 		throw new RuntimeException( 'Falha ao consumir o webservice' , $e->getCode() , $e );
-	// 	}
-    // }
 
     public function adressCheckout(){
         return view('address_checkout')->with('user', User::getUser());
@@ -134,6 +142,9 @@ class CheckoutController extends Controller
             $dataOrder['prazo'] = session('correiosData')['prazoEntrega'];
 
             OrderController::store($dataOrder);
+
+            Session::destroy('valorFrete');
+            Session::destroy('prazoFrete');
 
             Cart::destroy();
 
