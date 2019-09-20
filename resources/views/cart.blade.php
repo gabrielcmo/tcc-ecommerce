@@ -1,13 +1,20 @@
+{{-- @php
+  dd(Cart::content());
+@endphp --}}
+
 @extends('layouts.new_layout')
 
 @section('content')
-<div class="">
-  <div class="row justify-content-center mt-3">
+<div class="container">
+  <div class="row mt-3">
+    <h3 class="ml-4">Seu carrinho</h3>
+  </div>
+  <div class="row mt-1">
     @if(Cart::count() == 0)
-      <h4>Seu carrinho está vazio!</h4>
+    <h4>Seu carrinho está vazio!</h4>
     @else
-    <div class="col-lg-7">
-      <h4>Seu carrinho</h4>
+    <div class="col-lg-8">
+      
       <table class="table table-borderless">
         <thead>
           <tr>
@@ -18,16 +25,18 @@
         </thead>
         <tbody>
           @foreach (Cart::content() as $item)
-          <input type="hidden" class="product_rowId{{$loop->iteration}}" value="{{$item->rowId}}"/>
-          <input type="hidden" class="product_id" value="{{$item->id}}"/>
+          <input type="hidden" class="product_id" value="{{$item->id}}" />
           <tr>
             <td class="w-50">
               <div class="media align-items-center">
-                <?php $img = Doomus\Product::find($item->id)->image; ?>
+                @php
+                $img = Doomus\Product::find($item->id)->image;
+                @endphp
                 @if(isset($img[0]->filename))
-                  <img src="/img/products/{{$img[0]->filename}}")}}" class="rounded" style="height: 80px; width: 80px" alt="...">
+                <img src="/img/products/{{$img[0]->filename}}" )}}" class="rounded" style="height: 4.5rem; width: 4.5rem"
+                  alt="...">
                 @else
-                  <img src="/img/logo_icone.png" class="rounded" style="height: 80px; width: 80px" alt="...">
+                <img src="/img/logo_icone.png" class="rounded" style="height: 4.5rem; width: 4.5rem" alt="...">
                 @endif
                 <div class="media-body text-break ml-2 mt-0">
                   {{$item->name}}
@@ -35,11 +44,15 @@
               </div>
             </td>
             <td class="w-25 align-middle">
-              <input type="number" class="form-control inputQty" style="width:4.5rem" min="1" value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
+              <input type="number" class="form-control inputQty" style="width:4.5rem" min="1"
+                value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
               <a class="text-center" href="/carrinho/{{ $item->rowId }}/remove">Remover</a>
               <span class="d-none {{"productValue$loop->iteration"}}">R${{$item->price}}</span>
+              <span class="d-none {{"productRowId$loop->iteration"}}">{{$item->rowId}}</span>
+              <span class="d-none {{"productId$loop->iteration"}}">{{$item->id}}</span>
             </td>
-            <td class="{{"newProductValue$loop->iteration"}} w-25 align-middle">
+            <td class="{{"newProductValue$loop->iteration"}} w-25 align-middle eachProductValue"
+              data-value={{$item->price*$item->qty}}>
               R${{$item->price*$item->qty}}
             </td>
           </tr>
@@ -47,7 +60,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-lg-2 col-md-12 col-sm-12">
+    <div class="col-lg-4 col-md-12 col-sm-12 p-3" style="background-color: #f7f5f3">
       <h4 class="d-flex justify-content-between align-items-center">
         <span class="">Resumo do pedido</span>
         <span class="badge badge-secondary">{{Cart::count()}}</span>
@@ -56,79 +69,115 @@
         <tbody>
           <tr>
             <th>Subtotal</th>
-            <td>{{Cart::subtotal()}}</td>
+            <td id="totalCart" class="text-right"></td>
           </tr>
-          @if(session('valorFrete') !== null && session('prazoFrete') !== null)
-            <tr>
-              <th>Frete (prazo de {{session('prazoFrete')}} dias)</th>
-              <td>R${{session('valorFrete')}}</td>
-            </tr>
-          @endif
-          <tr class="border-top border-dark">
+          <tr class="d-none" id="dadosFrete">
+            <th id="prazoFrete"></th>
+            <td id="valorFrete" class="text-right"></td>
+          </tr>
+          <tr class="border-top">
             <th class="align-middle">Total</th>
-            <td>
-                @if(session('valorFrete') !== null)
-                  <span class="d-flex">R${{Cart::total() + floatval(session('valorFrete')) }}</span>
-                @else
-                  <span class="d-flex">R${{Cart::total()}}</span>
-                @endif
-            </td>
-          </tr>
-          <tr>
-            <td></td>
+            <td id="valorTotalCompra" class="text-right w-50"></td>
           </tr>
         </tbody>
       </table>
-      @if(session('valorFrete') == null && session('prazoFrete') == null)
+      <hr>
+      <p class="p-1 mb-1">Calcule o preço e o prazo de entrega</p>
+      <form action="{{route('calcFrete')}}" method="post" id="formCalcularFrete" style="border-top-color: #d7cec7">
         <div class="input-group">
-          <form action="{{ route('calcFrete') }}" method="POST">
-            @csrf
-            <input type="number" class="form-control" name="cep" aria-label="CEP" aria-describedby="">
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-outline-secondary">Calcular frete</button>
-            </div>
-          </form>
+          <input type="number" class="form-control" name="cep" aria-label="CEP" placeholder="CEP" aria-describedby="botao-cep">
+          <div class="input-group-append">
+            <button class="mdc-button mdc-button--raised" id="botaoCalcularFrete" style="border-radius: 0; background-color: #76323f" data-href="{{route('calcFrete')}}">
+              <span class="mdc-button__label">Calcular</span>
+            </button>
+          </div>
         </div>
+      </form>
+      <hr>
+      <button class="mdc-button mdc-button--raised actionButton w-100" data-href="localhost:8000/checkout/endereco" style="background-color: #76323f">
+        <span class="mdc-button__label">Continuar</span>
+      </button>
       @endif
-      <a href="/checkout/endereco" class="btn btn-success">Fazer pedido</a>
-    @endif
+    </div>
   </div>
-</div>
-@endsection
+  @endsection
 
-@section('scripts')
-    <script>
-      $(document).ready(function(){
+  @section('scripts')
+  <script>
+    $(document).ready(function(){
 
         function totalCart() {
           var total = 0;
           $('.eachProductValue').each(function () {
-            // console.log($(this).data('value'));
             total += $(this).data('value');
-            
           });
           $('#totalCart').text("R$"+total.toFixed(2).replace('.',','));
         }
-
+        
+        $('#valorTotalCompra').text('--')
         totalCart();
 
         $('.inputQty').change(function (e) { 
           e.preventDefault();
           
           let product = $(e.target).data('product');
-          var productValue = $('.productValue'+product).text().substring(2).replace(',', '.');
-          let qty = $(e.target).val();
-          var product_rowId = $('.product_rowId'+product).val();
-          var product_id = $('.product_id').val();
+          let productValue = $('.productValue'+product).text().substring(2).replace(',', '.');
+          let qty = parseInt($(e.target).val());
+          let productRowId = $('.productRowId'+product).text();
+          let productId = $('.productId'+product).text()
 
+          let newValue = (productValue*qty).toFixed(2).replace('.', ',');
+
+          $('.newProductValue'+product).data('value', parseFloat(newValue.replace(',', '.')));
+          $('.newProductValue'+product).text('R$' + newValue);
+
+          let total = 0;
+          $('.eachProductValue').each(function () {
+            // console.log($(this).data('value'));
+            total += $(this).data('value');
+            
+          });
+          $('#totalCart').text("R$"+total.toFixed(2).replace('.',','));
+          
           $.ajax({
             method: 'GET',
-            url : "/carrinho/" + product_rowId + "/" + qty + "/" + product_id,
+            url : "/carrinho/" + productRowId + "/" + qty + "/" + productId,
             beforeSend: function(){
-              location.reload();
+              
             }
           });
         });
+
+        $('#formCalcularFrete').submit(function (e) {
+          e.preventDefault();
+
+          let form = $(this),
+            cep = form.find("input[name='cep']").val(),
+            url = form.attr('action');
+          let csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+          $.ajax({
+            type: "POST",
+            url: url,
+            data: {cep:cep},
+            dataType: "JSON",
+            success: function (response) {
+              $('#dadosFrete').removeClass('d-none');
+              $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
+              $('#valorFrete').text('R$ ' + response.valorFrete);
+
+              let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
+              let totalComFrete = valorSemFrete + parseFloat(response.valorFrete);
+              $('#valorTotalCompra').text('R$ ' + totalComFrete.toString().replace('.',','));
+            }
+          });
+          
+        });
       });
-    </script>
-@endsection
+  </script>
+  @endsection

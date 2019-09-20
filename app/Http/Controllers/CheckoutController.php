@@ -19,12 +19,12 @@ class CheckoutController extends Controller
     // const ADDRESS = 'https://ff.paypal-brasil.com.br/FretesPayPalWS/WSFretesPayPal';
     // private $request;
 
-    public function calcFrete(Request $data){
+    public function calcFrete(Request $request){
         $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
         $url .= "?nCdEmpresa=";
         $url .= "&sDsSenha=";
         $url .= "&sCepOrigem=08090284";
-        $url .= "&sCepDestino=$data->cep";
+        $url .= "&sCepDestino=$request->cep";
         $url .= "&nVlPeso=3";
         $url .= "&nCdFormato=1";
         $url .= "&nVlComprimento=30";
@@ -43,7 +43,13 @@ class CheckoutController extends Controller
         Session::put('valorFrete', $result->cServico->Valor->__toString());
         Session::put('prazoFrete', $result->cServico->PrazoEntrega->__toString());
 
-        return back();
+        $response = array(
+            'status'=>'success',
+            'valorFrete'=>$result->cServico->Valor->__toString(),
+            'prazoFrete'=>$result->cServico->PrazoEntrega->__toString()
+        );
+
+        return response()->json($response);
     }
 
     public static function calcFretePrazo($cep_destino){
