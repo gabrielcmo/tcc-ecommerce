@@ -45,3 +45,17 @@ button:focus {
   outline: 0;
 }
 
+.general-button {
+  background-color:#76323f !important;
+}
+
+.input-valid {
+  border-color: green;
+}
+
+.input-invalid {
+  border-color: red;
+}
+.label-invalid {
+  color: red;
+}

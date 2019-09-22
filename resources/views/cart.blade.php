@@ -6,14 +6,15 @@
 
 @section('content')
 <div class="container">
+  @if(Cart::count() == 0)
+    <h4 class="text-center mt-1">Seu carrinho está vazio!</h4>
+  @else
   <div class="row mt-3">
     <h3 class="ml-4">Seu carrinho</h3>
   </div>
   <div class="row mt-1">
-    @if(Cart::count() == 0)
-    <h4>Seu carrinho está vazio!</h4>
-    @else
-    <div class="col-lg-8">
+    
+    <div class="col-lg-9">
       
       <table class="table table-borderless">
         <thead>
@@ -60,7 +61,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-lg-4 col-md-12 col-sm-12 p-3" style="background-color: #f7f5f3">
+    <div class="col-lg-3 col-md-12 col-sm-12 p-3" style="background-color: #f7f5f3">
       <h4 class="d-flex justify-content-between align-items-center">
         <span class="">Resumo do pedido</span>
         <span class="badge badge-secondary">{{Cart::count()}}</span>
@@ -87,14 +88,14 @@
         <div class="input-group">
           <input type="number" class="form-control" name="cep" aria-label="CEP" placeholder="CEP" aria-describedby="botao-cep">
           <div class="input-group-append">
-            <button class="mdc-button mdc-button--raised" id="botaoCalcularFrete" style="border-radius: 0; background-color: #76323f" data-href="{{route('calcFrete')}}">
+            <button class="mdc-button mdc-button--raised general-button" id="botaoCalcularFrete" style="border-radius: 0;" data-href="{{route('calcFrete')}}">
               <span class="mdc-button__label">Calcular</span>
             </button>
           </div>
         </div>
       </form>
       <hr>
-      <button class="mdc-button mdc-button--raised actionButton w-100" data-href="localhost:8000/checkout/endereco" style="background-color: #76323f">
+      <button type="submit" form="addressCheckoutForm" class="mdc-button mdc-button--raised general-button w-100">
         <span class="mdc-button__label">Continuar</span>
       </button>
       @endif
