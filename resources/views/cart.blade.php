@@ -95,7 +95,7 @@
         </div>
       </form>
       <hr>
-      <button type="submit" form="addressCheckoutForm" class="mdc-button mdc-button--raised general-button w-100">
+      <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="http://localhost:8000/checkout/endereco">
         <span class="mdc-button__label">Continuar</span>
       </button>
       @endif

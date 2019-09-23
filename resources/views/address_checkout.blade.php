@@ -67,7 +67,7 @@ Checkout
             <form action="/checkout/address/data" method="post" id="addressCheckoutForm">
                 @csrf
                 <div class="form-group col-lg-6 pl-0">
-                    <input type="number" name="cep" id="cep" placeholder="CEP" maxlength="8" class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" required>
+                    <input type="number" name="cep" id="cep" placeholder="CEP" maxlength="8" minlength="8" class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('cep'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{$errors->first('cep')}}</strong>
@@ -157,7 +157,7 @@ Checkout
 
                 <hr>
 
-                <button class="mdc-button mdc-button--raised general-button w-100">
+                <button type="submit" class="mdc-button mdc-button--raised general-button w-100">
                     <span class="mdc-button__label">Pronto</span>
                 </button>
             </form>
@@ -170,7 +170,41 @@ Checkout
 <script>
     
     $(document).ready(function(){
+
+        $('#cep').keyup(function (){
+
+            if ($(this).val().length == 8) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8000/checkout/address/cep",
+                    data: {cep:$(this).val()},
+                    dataType: "JSON",
+                    success: function (response) {
+                       sessionStorage.setItem('statusResponseCheckCep', response.status);
+                    }
+                });
+            }
+        });
+
+        $.validator.addMethod('validarCep', function (value, element){
+
+               let status = sessionStorage.getItem('statusResponseCheckCep');
+
+               if (status == "success") {
+                    return (this.optional(element) || true);
+               }
+               if (status == "failed") {
+                   return (this.optional(element) || false);
+               }
+
+        }, 'Esse CEP não é válido');
         $.validator.setDefaults({
+            errorClass: 'label-invalid mb-0',
             highlight : function (element) {
                 $(element).addClass('input-invalid');
                 $(element.form).find("label[for=" + element.id + "]").addClass('label-invalid mb-0');
@@ -178,27 +212,53 @@ Checkout
             unhighlight: function (element) {
                 $(element).removeClass('input-invalid');
                 $(element).addClass('input-valid');
-                $(element.form).find("label[for=" + element.id + "]").removeClass('label-invalid');
+                $(element.form).find("label[for=" + element.id + "]").removeClass('label-invalid mb-0');
             }
         });
         $('#addressCheckoutForm').validate({
-            submitHandler: function(form) {
-                alert('oi');
-            },
             rules: {
+                cep: {
+                    required: true,
+                    minlength: 8,
+                    maxlength: 8,
+                    validarCep: true
+                },
                 bairro: {
                     required: true
                 },
                 address: {
+                    required: true
+                },
+                n: {
+                    required: true
+                },
+                state: {
+                    required: true
+                },
+                city: {
                     required: true
                 }
             },
             messages: {
+                cep: {
+                    required: 'Esse campo é obrigatório.',
+                    minlength: 'O CEP deve conter 8 caracteres',
+                    maxlength: 'O CEP deve conter apenas 8 caracteres'
+                },
                 bairro: {
-                    required: 'Por favor, informe um bairro.'
+                    required: 'Esse campo é obrigatório.'
                 },
                 address: {
-                    required: 'Por favor, informe uma rua.'
+                    required: 'Esse campo é obrigatório.'
+                },
+                n: {
+                    required: 'Esse campo é obrigatório.'
+                },
+                state: {
+                    required: 'Esse campo é obrigatório.'
+                },
+                city: {
+                    required: 'Esse campo é obrigatório.'
                 }
             }
         });
