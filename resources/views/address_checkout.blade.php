@@ -262,43 +262,7 @@ Checkout
                 }
             }
         });
-        //   function search(query = ''){
-        //     $.ajax({
-        //       url: "{{ route('checkCep') }}",
-        //       method: 'GET',
-        //       data: {query:query},
-        //       success:function(result){
-        //         $('#state option').each(function(){
-        //             if($(this).val() == result.uf){
-        //                 $(this).attr('selected', true);
-        //                 $('#state').attr('readonly', "readonly");
-        //             }
-        //         });
-        //         $('#city').val(result.localidade);
-        //         $('#city').attr('readonly', "readonly");
-        //         if(result.logradouro != '' && result.bairro != ''){
-        //             $('#address').val(result.logradouro);
-        //             $('#address').attr('readonly', "readonly");
-        //             $('#bairro').val(result.bairro);
-        //             $('#bairro').attr('readonly', "readonly");
-        //         }
-        //       }
-        //     });
-        //   }
-        //   $('#cep').keyup(function(){
-        //     if($(this).val().length > 8){
-        //         $(this).val('');
-        //          alert('Seu CEP deve ter apenas 8 números.');
-        //     }else{
-        //         if($(this).val().length == 8){
-        //             var query = $('#cep').val();
-                    
-        //             search(query);
-        //         }
-        //     }
-        //   });
-        
-        });
+    });
         
 </script>
 @endsection

@@ -129,7 +129,6 @@ class CheckoutController extends Controller
     }
 
     public function addressData(Address $data){
-        $userData['cpf'] = $data->cpf;
         $userData['cep'] = $data->cep;
         $userData['bairro'] = $data->bairro;
         $userData['state'] = $data->state;
@@ -164,8 +163,8 @@ class CheckoutController extends Controller
 
             OrderController::store($dataOrder);
 
-            Session::destroy('valorFrete');
-            Session::destroy('prazoFrete');
+            Session::forget('valorFrete');
+            Session::forget('prazoFrete');
 
             Cart::destroy();
 
