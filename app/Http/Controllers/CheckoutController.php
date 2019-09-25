@@ -106,26 +106,26 @@ class CheckoutController extends Controller
     }
 
     public function checkCep(Request $request){
+
         if ($request->ajax()) {
-            $cep = $request->get('cep');
-            
+            $cep = $request->get('query');
             $zipcodeinfo = zipcode($cep);
             if (is_null($zipcodeinfo)) {
-                return response()->json(['status'=>'failed']);
+                return response()->json(['textStatus'=>'error']);
             } else {
-
                 $response = $zipcodeinfo->getArray();
-                $response['status'] = 'success';
-            return response()->json($response);
+                $response['textStatus'] = 'success';
+                return response()->json($response);
             }
-            
         } else {
             $cep = $request->get('query');
-
             $zipcodeinfo = zipcode($cep);
-
+            
             return response($zipcodeinfo->getArray());
         }
+        
+        
+        
     }
 
     public function addressData(Address $data){

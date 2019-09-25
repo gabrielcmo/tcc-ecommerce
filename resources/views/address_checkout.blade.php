@@ -67,22 +67,6 @@ Checkout
             <form action="/checkout/address/data" method="post" id="addressCheckoutForm">
                 @csrf
                 <div class="form-group col-lg-6 pl-0">
-                    <input type="number" name="cep" id="cep" placeholder="CEP" maxlength="8" minlength="8" class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" required>
-                    @if ($errors->has('cep'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$errors->first('cep')}}</strong>
-                        </span>
-                    @endif
-                </div>
-                <div class="form-group col-lg-6 pl-0">
-                    <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control {{$errors->has('bairro') ? 'is-invalid' : ''}}" required>
-                    @if ($errors->has('bairro'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$errors->first('bairro')}}</strong>
-                        </span>
-                    @endif
-                </div>
-                <div class="form-group col-lg-6 pl-0">
                     <input type="text" name="address" id="address" placeholder="Rua" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('address'))
                         <span class="invalid-feedback" role="alert">
@@ -93,8 +77,24 @@ Checkout
                 <div class="form-group col-lg-6 pl-0">
                     <input type="number" name="n" id="n" placeholder="Número" class="form-control {{$errors->has('n') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('n'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$errors->first('n')}}</strong>
+                    </span>
+                    @endif
+                </div>
+                <div class="form-group col-lg-6 pl-0">
+                    <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control {{$errors->has('bairro') ? 'is-invalid' : ''}}" required>
+                    @if ($errors->has('bairro'))
+                    <span class="invalid-feedback" role="alert">
+                            <strong>{{$errors->first('bairro')}}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group col-lg-6 pl-0 cep-form-group">
+                    <input type="number" name="cep" id="cep" placeholder="CEP" maxlength="8" minlength="8" class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" required>
+                    @if ($errors->has('cep'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{$errors->first('n')}}</strong>
+                            <strong>{{$errors->first('cep')}}</strong>
                         </span>
                     @endif
                 </div>
@@ -157,7 +157,7 @@ Checkout
 
                 <hr>
 
-                <button type="submit" class="mdc-button mdc-button--raised general-button w-100">
+                <button type="submit" class="mdc-button mdc-button--raised general-button w-100 submitButtonAddressForm">
                     <span class="mdc-button__label">Pronto</span>
                 </button>
             </form>
@@ -170,42 +170,84 @@ Checkout
 <script>
     
     $(document).ready(function(){
-
-        $('#cep').keyup(function (){
-
+        var verifyCep, verifyCepStatus;
+        $("#cep").blur(function (){
             if ($(this).val().length == 8) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "http://localhost:8000/checkout/address/cep",
-                    data: {cep:$(this).val()},
-                    dataType: "JSON",
-                    success: function (response) {
-                       sessionStorage.setItem('statusResponseCheckCep', response.status);
-                    }
-                });
+                
+                if (verifyCepStatus == 'error') {
+                    $('#cep').addClass('input-invalid');
+                    $('label#cep-error').remove();
+                    $('.cep-form-group').append('<label id="cep-error" class="label-invalid mb-0" for="cep">Esse CEP não é válido.</label>');
+                }
+
+                if (verifyCep !== $(this).val()) {
+
+                    $('label#cep-error').remove();
+                    $('#cep').addClass('input-process');
+                    verifyCep = $(this).val();
+                    
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:8000/checkout/address/cep",
+                        data: {query: verifyCep},
+                        dataType: "JSON",
+                        success: function(response){
+
+                            if (response.textStatus == 'error') {
+                                verifyCepStatus = 'error';
+                            } else {
+                                verifyCepStatus = 'success';
+                            }
+                        },
+                        complete: function (jqXHR, textStatus){
+                            
+                            if (verifyCepStatus == 'success') {
+                                validarCep(true);
+                            } else {
+                                validarCep(false);
+                            }
+                        }
+                    });
+
+                } else {
+
+                }
             }
         });
 
-        $.validator.addMethod('validarCep', function (value, element){
+        function validarCep(statusValidation) {
+            if (statusValidation) {
+                $('label#cep-error').remove();
+                $('#cep').removeClass('input-invalid');
+                $('#cep').removeClass('input-process');
+                $('#cep').addClass('input-valid');
+                $('#cep').data('check', 'valid');
+            } else {
+                $('label#cep-error').remove();
+                $('#cep').removeClass('input-valid');
+                $('#cep').removeClass('input-process');
+                $('#cep').addClass('input-invalid');
+                $('.cep-form-group').append('<label id="cep-error" class="label-invalid mb-0" for="cep">Esse CEP não é válido.</label>');
+                $('#cep').data('check', 'invalid');
+                
+            }
+        }
 
-               let status = sessionStorage.getItem('statusResponseCheckCep');
+        $('#submitButtonAddressForm').click( function(){
+            $('#cep').focus();
+        });
+        
 
-               if (status == "success") {
-                    return (this.optional(element) || true);
-               }
-               if (status == "failed") {
-                   return (this.optional(element) || false);
-               }
-
-        }, 'Esse CEP não é válido');
         $.validator.setDefaults({
             errorClass: 'label-invalid mb-0',
             highlight : function (element) {
+                $(element).removeClass('input-valid');
                 $(element).addClass('input-invalid');
                 $(element.form).find("label[for=" + element.id + "]").addClass('label-invalid mb-0');
             },
@@ -216,12 +258,35 @@ Checkout
             }
         });
         $('#addressCheckoutForm').validate({
+            submitHandler: function(form){
+
+
+                if ($('#cep').data('check') == 'valid') {
+                    alert('submited');
+                }   
+                if ($('#cep').data('check') == 'invalid') {
+                    $('#cep').focus();
+                    $('#cep').removeClass('input-valid');
+                    $('#cep').addClass('input-invalid');
+                    $('.cep-form-group').append('<label id="cep-error" class="label-invalid mb-0" for="cep">Esse CEP não é válido.</label>');
+                }
+
+            },
+            invalidHandler: function(event, validator){
+                if ($('#cep').data('check') == 'invalid') {
+                    $('#cep').focus();
+                    $('#cep').removeClass('input-valid');
+                    $('#cep').addClass('input-invalid');
+                    $('label#cep-error').remove();
+                    $('.cep-form-group').append('<label id="cep-error" class="label-invalid mb-0" for="cep">Esse CEP não é válido.</label>');
+                }
+                
+            },
             rules: {
                 cep: {
                     required: true,
                     minlength: 8,
-                    maxlength: 8,
-                    validarCep: true
+                    maxlength: 8
                 },
                 bairro: {
                     required: true
@@ -261,7 +326,13 @@ Checkout
                     required: 'Esse campo é obrigatório.'
                 }
             }
-        });
+        }); 
+        
+
+        
+
+
+        
         //   function search(query = ''){
         //     $.ajax({
         //       url: "{{ route('checkCep') }}",

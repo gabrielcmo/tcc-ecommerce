@@ -59,3 +59,7 @@ button:focus {
 .label-invalid {
   color: red;
 }
+
+.input-process {
+  border-color: orange;
+}
