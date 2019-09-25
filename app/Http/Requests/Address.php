@@ -26,7 +26,7 @@ class Address extends FormRequest
     public function rules()
     {
         return [
-            'cep' => 'formato_cep||numeric',
+            'cep' => 'numeric',
             'bairro' => 'required||string',
             'address' => 'required||string',
             'n' => 'required||numeric',

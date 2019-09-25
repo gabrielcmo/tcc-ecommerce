@@ -36,13 +36,13 @@ Checkout
                 </li>
                 @endforeach
                 @if(session('cupons') !== null)
-                    <li class="list-group-item d-flex justify-content-between bg-light">
-                        <div class="text-success">
-                            <h6 class="my-0">Cupom</h6>
-                            <small>TOGURO120</small>
-                        </div>
-                        <span class="text-success">-R$5</span>
-                    </li>
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <h6 class="my-0">Cupom</h6>
+                        <small>TOGURO120</small>
+                    </div>
+                    <span class="text-success">-R$5</span>
+                </li>
                 @endif
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total (BRL) s/ frete</span>
@@ -67,15 +67,17 @@ Checkout
             <form action="/checkout/address/data" method="post" id="addressCheckoutForm">
                 @csrf
                 <div class="form-group col-lg-6 pl-0">
-                    <input type="text" name="address" id="address" placeholder="Rua" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" required>
+                    <input type="text" name="address" id="address" placeholder="Rua"
+                        class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('address'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$errors->first('address')}}</strong>
-                        </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$errors->first('address')}}</strong>
+                    </span>
                     @endif
                 </div>
                 <div class="form-group col-lg-6 pl-0">
-                    <input type="number" name="n" id="n" placeholder="Número" class="form-control {{$errors->has('n') ? 'is-invalid' : ''}}" required>
+                    <input type="number" name="n" id="n" placeholder="Número"
+                        class="form-control {{$errors->has('n') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('n'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$errors->first('n')}}</strong>
@@ -83,23 +85,26 @@ Checkout
                     @endif
                 </div>
                 <div class="form-group col-lg-6 pl-0">
-                    <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="form-control {{$errors->has('bairro') ? 'is-invalid' : ''}}" required>
+                    <input type="text" name="bairro" id="bairro" placeholder="Bairro"
+                        class="form-control {{$errors->has('bairro') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('bairro'))
                     <span class="invalid-feedback" role="alert">
-                            <strong>{{$errors->first('bairro')}}</strong>
-                        </span>
+                        <strong>{{$errors->first('bairro')}}</strong>
+                    </span>
                     @endif
                 </div>
                 <div class="form-group col-lg-6 pl-0 cep-form-group">
-                    <input type="number" name="cep" id="cep" placeholder="CEP" maxlength="8" minlength="8" class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" required>
+                    <input type="number" name="cep" id="cep" placeholder="CEP" maxlength="8" minlength="8"
+                        class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('cep'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$errors->first('cep')}}</strong>
-                        </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$errors->first('cep')}}</strong>
+                    </span>
                     @endif
                 </div>
                 <div class="form-group col-lg-6 pl-0">
-                    <select name="state" id="state" class="form-control {{$errors->has('state') ? 'is-invalid' : ''}}" required>
+                    <select name="state" id="state" class="form-control {{$errors->has('state') ? 'is-invalid' : ''}}"
+                        required>
                         <option selected value="">Estado</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -130,17 +135,18 @@ Checkout
                         <option value="TO">Tocantins</option>
                     </select>
                     @if ($errors->has('state'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$errors->first('state')}}</strong>
-                        </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$errors->first('state')}}</strong>
+                    </span>
                     @endif
                 </div>
                 <div class="form-group col-lg-6 pl-0">
-                    <input type="text" name="city" id="city" placeholder="Cidade" class="form-control {{$errors->has('city') ? 'is-invalid' : ''}}" required>
+                    <input type="text" name="city" id="city" placeholder="Cidade"
+                        class="form-control {{$errors->has('city') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('state'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$errors->first('city')}}</strong>
-                        </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$errors->first('city')}}</strong>
+                    </span>
                     @endif
                 </div>
 
@@ -148,16 +154,19 @@ Checkout
 
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label for="same-adress" class="custom-control-label">O endereço de entrega é o mesmo que o de pagamento?</label>
+                    <label for="same-adress" class="custom-control-label">O endereço de entrega é o mesmo que o de
+                        pagamento?</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label for="save-info" class="custom-control-label">Salvar minhas informações para próxima compra</label>
+                    <label for="save-info" class="custom-control-label">Salvar minhas informações para próxima
+                        compra</label>
                 </div>
 
                 <hr>
 
-                <button type="submit" class="mdc-button mdc-button--raised general-button w-100 submitButtonAddressForm">
+                <button type="submit"
+                    class="mdc-button mdc-button--raised general-button w-100 submitButtonAddressForm">
                     <span class="mdc-button__label">Pronto</span>
                 </button>
             </form>
@@ -168,9 +177,8 @@ Checkout
 
 @section('scripts')
 <script>
-    
     $(document).ready(function(){
-        var verifyCep, verifyCepStatus;
+        var verifyCep, verifyCepStatus, cepData;
         $("#cep").blur(function (){
             if ($(this).val().length == 8) {
                 
@@ -184,6 +192,12 @@ Checkout
 
                     $('label#cep-error').remove();
                     $('#cep').addClass('input-process');
+
+                    $('#address').attr('disabled', true);
+                    $('#bairro').attr('disabled', true);
+                    $('#state').attr('disabled', true);
+                    $('#city').attr('disabled', true);
+
                     verifyCep = $(this).val();
                     
                     $.ajaxSetup({
@@ -203,12 +217,14 @@ Checkout
                                 verifyCepStatus = 'error';
                             } else {
                                 verifyCepStatus = 'success';
+                                cepData = response;
                             }
                         },
                         complete: function (jqXHR, textStatus){
                             
                             if (verifyCepStatus == 'success') {
                                 validarCep(true);
+                                mostrarDadosCep(cepData);
                             } else {
                                 validarCep(false);
                             }
@@ -239,6 +255,23 @@ Checkout
             }
         }
 
+        function mostrarDadosCep(cepData) {
+            $('#address').attr('disabled', false);
+            $('#bairro').attr('disabled', false);
+            $('#state').attr('disabled', false);
+            $('#city').attr('disabled', false);
+
+            if (cepData.logradouro !== "" & cepData.bairro !== "") {
+                $('#address').val(cepData.logradouro).addClass('input-valid');
+                $('#bairro').val(cepData.bairro).addClass('input-valid');
+                $('#state').val(cepData.uf).addClass('input-valid');
+                $('#city').val(cepData.localidade).addClass('input-valid');
+            } else {
+                $('#state').val(cepData.uf).addClass('input-valid');
+                $('#city').val(cepData.localidade).addClass('input-valid');
+            }
+        }
+
         $('#submitButtonAddressForm').click( function(){
             $('#cep').focus();
         });
@@ -262,7 +295,8 @@ Checkout
 
 
                 if ($('#cep').data('check') == 'valid') {
-                    alert('submited');
+                    sessionStorage.setItem($('#cep').val());
+                    form.submit();
                 }   
                 if ($('#cep').data('check') == 'invalid') {
                     $('#cep').focus();

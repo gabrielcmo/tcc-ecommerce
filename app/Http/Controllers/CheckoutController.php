@@ -19,7 +19,8 @@ class CheckoutController extends Controller
     // const ADDRESS = 'https://ff.paypal-brasil.com.br/FretesPayPalWS/WSFretesPayPal';
     // private $request;
 
-    public function calcFrete(Request $request){
+    public function calcFrete(Request $request)
+    {
         $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
         $url .= "?nCdEmpresa=";
         $url .= "&sDsSenha=";
@@ -44,15 +45,16 @@ class CheckoutController extends Controller
         Session::put('prazoFrete', $result->cServico->PrazoEntrega->__toString());
 
         $response = array(
-            'status'=>'success',
-            'valorFrete'=>$result->cServico->Valor->__toString(),
-            'prazoFrete'=>$result->cServico->PrazoEntrega->__toString()
+            'status' => 'success',
+            'valorFrete' => $result->cServico->Valor->__toString(),
+            'prazoFrete' => $result->cServico->PrazoEntrega->__toString()
         );
 
         return response()->json($response);
     }
 
-    public static function calcFretePrazo($cep_destino){
+    public static function calcFretePrazo($cep_destino)
+    {
         $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
         $url .= "?nCdEmpresa=";
         $url .= "&sDsSenha=";
@@ -73,24 +75,29 @@ class CheckoutController extends Controller
 
         $result = simplexml_load_file($url);
 
+        Session::put('valorFrete', $result->cServico->Valor->__toString());
+        Session::put('prazoFrete', $result->cServico->PrazoEntrega->__toString());
+
         return $result->cServico;
     }
 
-    public function adressCheckout(){
+    public function adressCheckout()
+    {
         return view('address_checkout')->with('user', User::getUser());
     }
-    
-    public function paymentCheckout(){
+
+    public function paymentCheckout()
+    {
         $valor = 0;
 
-        foreach(User::getCart() as $item){
+        foreach (User::getCart() as $item) {
             $resultadoCalc = self::calcFretePrazo(
                 session('userData')['cep']
             );
 
             $valor += $resultadoCalc->Valor;
         }
-        
+
         $prazo = $resultadoCalc->PrazoEntrega->__toString();
         $obs = $resultadoCalc->obsFim->__toString();
 
@@ -105,13 +112,14 @@ class CheckoutController extends Controller
         return view('payment_checkout')->with('calcFretePrazo', $resultadoCalc);
     }
 
-    public function checkCep(Request $request){
+    public function checkCep(Request $request)
+    {
 
         if ($request->ajax()) {
             $cep = $request->get('query');
             $zipcodeinfo = zipcode($cep);
             if (is_null($zipcodeinfo)) {
-                return response()->json(['textStatus'=>'error']);
+                return response()->json(['textStatus' => 'error']);
             } else {
                 $response = $zipcodeinfo->getArray();
                 $response['textStatus'] = 'success';
@@ -120,15 +128,13 @@ class CheckoutController extends Controller
         } else {
             $cep = $request->get('query');
             $zipcodeinfo = zipcode($cep);
-            
+
             return response($zipcodeinfo->getArray());
         }
-        
-        
-        
     }
 
-    public function addressData(Address $data){
+    public function addressData(Address $data)
+    {
         $userData['cep'] = $data->cep;
         $userData['bairro'] = $data->bairro;
         $userData['state'] = $data->state;
@@ -141,15 +147,16 @@ class CheckoutController extends Controller
         return redirect('/checkout/pagamento');
     }
 
-    public function paymentSuccess(){
-        if(session('token-paypal') == null){
+    public function paymentSuccess()
+    {
+        if (session('token-paypal') == null) {
             Session::flash('status', 'Acesso negado');
             Session::flash('status-type', 'danger');
             return redirect('/');
-        }else{
+        } else {
             $total = 0;
-        
-            foreach(Cart::content() as $item){
+
+            foreach (Cart::content() as $item) {
                 ProductController::changeQtyLast($item->id, $item->qty);
                 $dataOrder['products'][] = ['id' => $item->id, 'qty' => $item->qty, 'price' => $item->price];
                 $total += $item->price;
