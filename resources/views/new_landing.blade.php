@@ -91,5 +91,5 @@
 @endsection
 
 @section('scripts')
-  <script src="{{asset('js/configLanding.js')}}"></script>
+  <script src="{{asset('js/customJs/landing.js')}}"></script>
 @endsection

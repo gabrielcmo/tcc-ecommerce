@@ -6,9 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
-  <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  <link rel="stylesheet" href="{{asset('css/config.css')}}">
-  <link rel="stylesheet" href="{{asset('css/icons.css')}}">
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/828f671aa2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{asset('css/general.css')}}">
   @yield('stylesheets')
 </head>
 <body style="background-color: white;">
@@ -44,7 +46,7 @@
                       <hr>
                       <form class="ml-3 mr-3 pb-2" action="{{ route('login') }}" method="post">
                         @csrf
-                        <div class="mdc-text-field login-email">
+                        <div class="mdc-text-field login-email w-100">
                           <input type="text" class="mdc-text-field__input" id="email-input" name="email" required>
                           <label class="mdc-floating-label" for="email-input">Email</label>
                           <div class="mdc-line-ripple"></div>
@@ -341,9 +343,13 @@
             </div>
           </div>
         </div>
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  <script src="{{asset('/js/app.js')}}"></script>
-  <script src="{{asset('/js/config.js')}}"></script>
+  {{-- Custom Stylesheets --}}
+  <script src="{{asset('js/customJs/layout.js')}}"></script>
   @yield('scripts')
   {!! NoCaptcha::renderJs() !!}
 </body>
