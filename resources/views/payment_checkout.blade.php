@@ -135,27 +135,6 @@
                         </table>
                     </div>
                 </div>
-
-                <script>
-                    $(document).ready(function(){
-                
-                        $('.inputQty').change(function (e) { 
-                          e.preventDefault();
-                          
-                          let qty = parseInt($(e.target).val());
-                          let productRowId = $('.productRowId'+product).text();
-                          let productId = $('.productId'+product).text()
-
-                          $.ajax({
-                            method: 'GET',
-                            url : "/carrinho/" + productRowId + "/" + qty + "/" + productId,
-                            success: function(){
-                              akert(qty);
-                            }
-                          });
-                        });
-                      });
-                </script>
             </div>
         </div>
     </div>
@@ -163,6 +142,35 @@
 @endsection
 
 @section('scripts')
+<script>
+    $(document).ready(function(){
+        $('.inputQty').change(function (e) {
+          e.preventDefault();
+          
+            let product = $(e.target).data('product');
+            let productValue = $('.productValue'+product).text().substring(2).replace(',', '.');
+            let qty = parseInt($(e.target).val());
+            let productRowId = $('.productRowId'+product).text();
+            let productId = $('.productId'+product).text()
+
+            $.ajax({
+                method: 'GET',
+                url : "/carrinho/" + productRowId + "/" + qty + "/" + productId,
+                success: function(){
+                    
+                }
+            });
+
+            let newValue = (productValue*qty).toFixed(2).replace('.', ',');
+            $('.newProductValue'+product).data('value', parseFloat(newValue.replace(',', '.')));
+            $('.newProductValue'+product).text('R$' + newValue);
+        });
+
+        $('.close').click(function(){
+            location.reload();
+        });
+    });
+</script>
 <script>
     let valorSemFrete = "<?php echo Cart::subtotal() ?>";
     let totalComFrete = parseFloat(parseFloat(valorSemFrete) + parseFloat("<?php echo session('valorFrete') ?>".toString().replace(',','.'))).toFixed(2);
