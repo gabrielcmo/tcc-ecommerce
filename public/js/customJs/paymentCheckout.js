@@ -1,5 +1,7 @@
 $(document).ready(function(){
   $('#itensModal').on('shown.bs.modal', function(e){
+
+
     $('.inputQty').change(function(e){
       e.preventDefault();
 
@@ -22,13 +24,37 @@ $(document).ready(function(){
       });
       $('#totalCart').text("R$ "+total.toFixed(2).replace('.',','));
 
+      
+
+      $('#modalButton').attr('disabled', true);
+      $('#modalButton').removeClass('bg-success');
+      $('#modalButton').addClass('bg-warning');
+      $('#modalButtonLabel').text('Processando...');
+      
       $.ajax({
         type: "GET",
-        url: "/carrinho/" + productRowId + "/" + qty + "/" + productId
+        url: "/carrinho/" + productRowId + "/" + qty + "/" + productId,
+        
+        complete: function (jqXHR, textStatus){
+          if(textStatus == 'success') {
+            $('#modalButton').attr('disabled', false);
+            $('#modalButton').removeClass('bg-warning');
+            $('#modalButton').addClass('bg-success');
+            $('#modalButtonLabel').text('Alterar');
+          }
+        }
       });
     });
   });
   $('#itensModal').on('hidden.bs.modal', function(e){
+    let total = 0;
+    $('.eachProductValue').each(function () {
+      total += $(this).data('value');
+    });
+
+    total += parseFloat($('#valorFrete').data('frete').replace(',', '.'));
+
+    $('#valorTotalCompra').text('R$ ' + total.toFixed(2).toString().replace('.', ','));
     
   });
 });

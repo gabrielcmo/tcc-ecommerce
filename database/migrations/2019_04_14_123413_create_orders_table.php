@@ -20,6 +20,11 @@ class CreateOrdersTable extends Migration
             $table->integer('status_id')->unsigned();
             $table->float('value_total', 5, 2);
             $table->float('frete', 5, 2);
+            $table->date('data_realizado')->nullable();
+            $table->date('data_aprovado')->nullable();
+            $table->date('data_despache')->nullable();
+            $table->date('data_entrega')->nullable();
+            $table->date('data_cancelado')->nullable();
             $table->integer('prazo');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')

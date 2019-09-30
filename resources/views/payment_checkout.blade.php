@@ -46,7 +46,7 @@
                     </tr>
                     <tr id="dadosFrete">
                         <th id="prazoFrete">Frete <span class="">(prazo de {{session('prazoFrete')}} dias)</span></th>
-                        <td id="valorFrete" class="text-right">R$ {{session('valorFrete')}}</td>
+                        <td id="valorFrete" class="text-right" data-frete="{{session('valorFrete')}}">R$ {{session('valorFrete')}}</td>
                     </tr>
                     <tr class="border-top">
                         <th class="align-middle">Total</th>
@@ -126,8 +126,8 @@
                 <button class="mdc-button mdc-button--raised bg-danger" data-dismiss="modal">
                     <span class="mdc-button__label">Cancelar</span>
                 </button>
-                <button class="mdc-button mdc-button--raised bg-success">
-                    <span class="mdc-button__label">Alterar</span>
+                <button class="mdc-button mdc-button--raised bg-success" data-dismiss="modal" id="modalButton">
+                    <span class="mdc-button__label" id="modalButtonLabel">Alterar</span>
                 </button>
             </div>
         </div>
