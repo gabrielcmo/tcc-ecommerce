@@ -40,7 +40,7 @@
                 <img src="/img/logo_icone.png" class="rounded" style="height: 4.5rem; width: 4.5rem" alt="...">
                 @endif
                 <div class="media-body text-break ml-2 mt-0">
-                  {{$item->name}}
+                  <a href="/produto/{{$item->id}}">{{$item->name}}</a>
                 </div>
               </div>
             </td>
@@ -60,6 +60,7 @@
           @endforeach
         </tbody>
       </table>
+      <a class="float-right mr-2" href="/">Continuar comprando</a>
     </div>
     <div class="col-lg-3 col-md-12 col-sm-12 p-3" style="background-color: #f7f5f3">
       <h4 class="d-flex justify-content-between align-items-center">

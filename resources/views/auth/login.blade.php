@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('css/config.css')}}">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/828f671aa2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{asset('css/general.css')}}">
 </head>
 <body>
     <div class="container-fluid">
             <div class="row justify-content-center mt-5">
                     <div class="col-lg-8">
                             <section class="login-header">
-                                <img src="{{asset('img/capa_13.jpg')}}" class="login-doomus-logo" alt="doomus-logo">
-                                    <h1 style="font-family: 'Roboto';">DOOMUS</h1>
+                                <img src="{{asset('img/logo_inteiro.png')}}"  width="300px" height="200px" class="" alt="doomus-logo">
                                   </section>
                                 
                                   <form action="{{route('login')}}" method="POST">
@@ -30,7 +32,7 @@
                                       <div class="mdc-line-ripple"></div>
                                     </div>
                                     <div class="login-button-container">
-                                        <a type="button" class="mdc-button cancel" href="{{ URL::previous() }}">
+                                        <a style="margin-top:3.2px;" class="mdc-button mdc-button--raised" href="{{ URL::previous() }}">
                                             <span class="mdc-button__label">
                                             Voltar
                                             </span>
@@ -46,83 +48,5 @@
                 </div>
     </div>
     <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/configLogin.js')}}"></script>
 </body>
 </html>
-    
-
-
-
-{{-- @extends('layouts.default')
-
-@section('title', 'Login')
-
-@section('stylesheets')
-    <style>
-        .footer{
-            position: fixed;
-        }
-    </style>
-@endsection
-
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label>
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" >
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Lembrar de mim') }}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-                                    <a href="{{ url('api/auth/google') }}" class="btn btn-primary"><i class="fab fa-google"></i>&nbsp;&nbsp;Google</a>
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Esqueceu sua senha?') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection --}}
