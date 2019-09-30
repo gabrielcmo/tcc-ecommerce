@@ -34,10 +34,7 @@ $(document).ready(function(){
     
     $.ajax({
       method: 'GET',
-      url : "/carrinho/" + productRowId + "/" + qty + "/" + productId,
-      beforeSend: function(){
-        
-      }
+      url : "/carrinho/" + productRowId + "/" + qty + "/" + productId
     });
   });
 

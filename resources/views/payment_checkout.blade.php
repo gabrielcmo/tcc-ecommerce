@@ -36,23 +36,8 @@
                 </tbody>
             </table>
             <hr>
-            <h4 class="d-flex justify-content-between align-items-center">
-                <span class="">Seu pedido</span>
-                <span class="badge badge-secondary">{{Cart::count()}}</span>
-            </h4>
-            <ul class="list-group mb-3">
-                @foreach (Cart::content() as $item)
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">{{ $item->name }}</h6>
-                        <small class="text-muted">{{ $item->description }}</small>
-                    </div>
-                    <span class="text-muted">{{ $item->qty }} x R${{ $item->price }}</span>
-                </li>
-                @endforeach
-                <button data-toggle="modal" data-target="#itensModal" class=" btn btn-sm btn-info w-100">Revisar
-                    pedido</button>
-            </ul>
+            <p class="mb-1 text-center">Use o botão abaixo para revisar seu pedido!</p>
+            <button data-toggle="modal" data-target="#itensModal" class="btn btn-sm btn-info w-100">Revisar pedido</button>
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -97,7 +82,7 @@
                             </thead>
                             <tbody>
                                 @foreach (Cart::content() as $item)
-                                <input type="hidden" class="product_id" value="{{$item->id}}" />
+                                <input type="hidden" class="product_id" value="{{$item->id}}"/>
                                 <tr>
                                     <td class="w-50">
                                         <div class="media align-items-center">
@@ -117,11 +102,9 @@
                                         </div>
                                     </td>
                                     <td class="w-25 align-middle">
-                                        <input type="number" class="form-control inputQty" style="width:4.5rem" min="1"
-                                            value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
+                                        <input type="number" class="form-control inputQty" style="width:4.5rem" min="1" value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
                                         <a class="text-center" href="/carrinho/{{ $item->rowId }}/remove">Remover</a>
-                                        <span
-                                            class="d-none {{"productValue$loop->iteration"}}">R${{$item->price}}</span>
+                                        <span class="d-none {{"productValue$loop->iteration"}}">R${{$item->price}}</span>
                                         <span class="d-none {{"productRowId$loop->iteration"}}">{{$item->rowId}}</span>
                                         <span class="d-none {{"productId$loop->iteration"}}">{{$item->id}}</span>
                                     </td>
@@ -133,29 +116,19 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex">
+                            <p></p>
+                        </div>
                     </div>
                 </div>
-
-                <script>
-                    $(document).ready(function(){
-                
-                        $('.inputQty').change(function (e) { 
-                          e.preventDefault();
-                          
-                          let qty = parseInt($(e.target).val());
-                          let productRowId = $('.productRowId'+product).text();
-                          let productId = $('.productId'+product).text()
-
-                          $.ajax({
-                            method: 'GET',
-                            url : "/carrinho/" + productRowId + "/" + qty + "/" + productId,
-                            success: function(){
-                              akert(qty);
-                            }
-                          });
-                        });
-                      });
-                </script>
+            </div>
+            <div class="modal-footer">
+                <button class="mdc-button mdc-button--raised bg-danger" data-dismiss="modal">
+                    <span class="mdc-button__label">Cancelar</span>
+                </button>
+                <button class="mdc-button mdc-button--raised bg-success">
+                    <span class="mdc-button__label">Alterar</span>
+                </button>
             </div>
         </div>
     </div>
@@ -163,11 +136,12 @@
 @endsection
 
 @section('scripts')
-<script>
+<script src="{{asset('js/customJs/paymentCheckout.js')}}"></script>
+{{-- <script>
     let valorSemFrete = "<?php echo Cart::subtotal() ?>";
     let totalComFrete = parseFloat(parseFloat(valorSemFrete) + parseFloat("<?php echo session('valorFrete') ?>".toString().replace(',','.'))).toFixed(2);
     $('#valorTotalCompra').text('R$ ' + totalComFrete.toString().replace('.',','));
     console.log(valorSemFrete);
     console.log(totalComFrete);
-</script>
+</script> --}}
 @endsection
