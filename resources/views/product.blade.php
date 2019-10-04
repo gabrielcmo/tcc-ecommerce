@@ -26,11 +26,48 @@
     <div class="row">
       <div class="col-lg-6 mb-4">
         <div class="">
-          @foreach($product->image as $image)
-            <div class="main-product-image">
-              <img src="/img/products/{{$image->filename}}" alt="Product" class="img-fluid">
-            </div>
-          @endforeach
+          <!--Carousel Wrapper-->
+          <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+              @for ($i = 0; $i < count($product->image); $i++)
+                @if($i == 0)
+                  <li data-target="#carousel-example-1z" data-slide-to="{{$i}}" class="active"></li>
+                @else
+                  <li data-target="#carousel-example-1z" data-slide-to="{{$i}}"></li>
+                @endif
+              @endfor
+            </ol>
+            <!--/.Indicators-->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+              <?php $count = 0 ?>
+              @foreach($product->image as $image)
+                @if ($count == 0)
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="{{asset("/img/products/".$image->filename)}}">
+                  </div>
+                @else
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="{{asset("/img/products/".$image->filename)}}">
+                  </div>
+                @endif
+                <?php $count++; ?>
+              @endforeach
+            <!--/.Slides-->
+            </div>  
+            <!--Controls-->
+            <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+            <!--/.Controls-->
+          </div>
+          <!--/.Carousel Wrapper-->
         </div>
       </div>
       <div class="col-lg-6">
@@ -57,7 +94,7 @@
                 <label for="star2" title="text">2 stars</label>
                 <input type="radio" id="star1" name="rate" value="1" required/>
                 <label for="star1" title="text">1 star</label>
-              </div>
+              </div>({{ $product->ratingPercent(100) }})
               <button class="btn btn-primary btn-sm" type="submit">Avaliar</button>
             </form>
           </div>

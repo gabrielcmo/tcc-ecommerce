@@ -18,6 +18,8 @@ Route::get('/carrinho/{product_id}/add/', 'CartController@addToCart');
 Route::get('/carrinho/add/', 'CartController@addToCart')->name('cart.add');
 Route::get('/carrinho/delete', 'CartController@clearCart')->name('cart.clear');
 Route::get('/carrinho', 'CartController@show')->name('user.cart');
+Route::get('/carrinho/{product_id}/remove', 'CartController@removeFromCart');
+Route::get('/carrinho/{product_rowId}/{qty}/{product_id}', 'CartController@changeQuantity');
 
 /* 
 *   Autentificação - Login - Rede Social
@@ -41,10 +43,17 @@ Route::get('/find', 'SearchController@find')->name('search');
 */
 Route::get('/produto/{id}', 'ProductController@show');
 
+Route::get('/ofertas', 'OfertasController@view')->name('offers');
+
 /*
 *   Checar CEP
 */
 Route::get('/checkout/address/cep', 'CheckoutController@checkCep')->name('checkCep');
+
+/*
+*   Calcular CEP
+*/
+Route::post('/calc/frete', 'CheckoutController@calcFrete')->name('calcFrete');
 
 Route::group(['middleware' => ['auth']], function (){
     /*
@@ -65,11 +74,22 @@ Route::group(['middleware' => ['auth']], function (){
     /*
     *   Checkout
     */
-    Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');
-    Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
-    Route::post('/checkout/address/data', 'CheckoutController@addressData');
-    Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
-    Route::post('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
+    Route::group(['middleware' => ['Checkout']], function (){
+        Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');
+        Route::post('/checkout/address/data', 'CheckoutController@addressData');
+        Route::group(['middleware' => ['CheckoutPayment']], function (){
+            Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
+            Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
+            Route::get('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
+        });
+    });
+
+    /*
+    *   PayPal
+    */
+    Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
+    Route::get('/execute-payment', 'PaymentController@execute');
+    Route::get('/cancel-payment', 'PaymentController@cancel');
 
     /*
     *   Order
@@ -111,8 +131,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
 
 Route::get('/test-components', function(){
     return view('test_components');
-});
-
-Route::get('/carrinho', function(){
-    return view('cart');
 });

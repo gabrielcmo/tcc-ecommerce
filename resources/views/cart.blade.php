@@ -1,121 +1,111 @@
+{{-- @php
+  dd(Cart::content());
+@endphp --}}
+
 @extends('layouts.new_layout')
 
 @section('content')
-  
-  <div class="row mt-4 justify-content-center">
-    <div class="col-lg-7">
-      <h2 class="mdc-typography">Meu carrinho</h2>
-      <table class="table table-borderless">
-        <thead class="d-none">
-          <tr>
-            <th scope="col">Produtos</th>
-            <th scope="col">Quantidade</th>
-            <th scope="col">Preço</th>
-          </tr>
-        </thead>
-        <tbody>
-          <div class="">
-            <tr>
-              <td colspan="2" style="position: relative">
-                <img class="rounded" src="{{asset('img/capa_13.jpg')}}" alt="Product Name" style="width: 100px; height: 100px">
-                <span class="mdc-typography mdc-typography--subtitle1 ml-1">Samsung Galaxy S8 - 64GB</span>
-                <button class="mdc-icon-button material-icons" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%)">
-                  close
-                </button>
-              </td>
-            </tr>
-            <tr >
-              <td class="align-middle">
-                  <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label" style="width: 20%">
-                      <input type="number" class="mdc-text-field__input" aria-label="Quantidade" min="1">
-                      <div class="mdc-notched-outline">
-                        <div class="mdc-notched-outline__leading"></div>
-                        <div class="mdc-notched-outline__trailing"></div>
-                      </div>
-                    </div>
-              </td>
-              <td class="align-middle">
-                <p class="mdc-typography mdc-typography--headline6">R$ 2000,00</p>
-              </td>
-            </tr>
-          </div>
-          <div class="">
-              <tr class="border-top border-dark">
-                <td colspan="2" style="position: relative">
-                  <img class="rounded" src="{{asset('img/capa_13.jpg')}}" alt="Product Name" style="width: 100px; height: 100px">
-                  <span class="mdc-typography mdc-typography--subtitle1 ml-1">Samsung Galaxy S8 - 64GB</span>
-                  <button class="mdc-icon-button material-icons" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%)">
-                    close
-                  </button>
-                </td>
-              </tr>
-              <tr class="">
-                <td class="align-middle">
-                    <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label" style="width: 20%">
-                        <input type="number" class="mdc-text-field__input" aria-label="Quantidade" min="1">
-                        <div class="mdc-notched-outline">
-                          <div class="mdc-notched-outline__leading"></div>
-                          <div class="mdc-notched-outline__trailing"></div>
-                        </div>
-                      </div>
-                </td>
-                <td class="align-middle">
-                  <p class="mdc-typography mdc-typography--headline6">R$ 2000,00</p>
-                </td>
-              </tr>
-            </div>
-
-          <tr class="d-none">
-            <td class="align-middle">
-              <img class="rounded" src="{{asset('img/capa_13.jpg')}}" alt="Product Name" style="width: 100px; height: 100px">
-              <span class="mdc-typography mdc-typography--subtitle1 ml-1">Samsung Galaxy S8 - 64GB</span>
-            </td>
-            <td class="align-middle">
-              <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label" style="width: 20%">
-                <input type="number" class="mdc-text-field__input" aria-label="Quantidade" min="1">
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </td>
-            <td class="align-middle">
-              <p class="mdc-typography mdc-typography--headline6">R$ 2000,00</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
+  <div class="container">
+    @if(Cart::count() == 0)
+      <h4 class="text-center mt-1">Seu carrinho está vazio!</h4>
+    @else
+    <div class="row mt-3">
+      <h3 class="ml-4">Seu carrinho</h3>
     </div>
-    <div class="col-lg-2 p-2">
-      <h4 class="p-1 mdc-typography mdc-typography--headline6 text-center">Resumo do pedido</h4>
-      <div class="table-responsive">
+    <div class="row mt-1">
+    
+      <div class="col-lg-8">
+        
         <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>Produtos</th>
+              <th>Quantidade</th>
+              <th>Preço</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr>
-              <th scope="row">Total Frete</th>
-              <td>R$ 25,00</td>
+            @foreach (Cart::content() as $item)
+            <input type="hidden" class="product_id" value="{{$item->id}}" />
+            <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+              <td class="w-50">
+                <div class="media align-items-center">
+                  @php
+                  $img = Doomus\Product::find($item->id)->image;
+                  @endphp
+                  @if(isset($img[0]->filename))
+                  <img src="/img/products/{{$img[0]->filename}}" )}}" class="rounded" style="height: 4.5rem; width: 4.5rem"
+                    alt="...">
+                  @else
+                  <img src="/img/logo_icone.png" class="rounded" style="height: 4.5rem; width: 4.5rem" alt="...">
+                  @endif
+                  <div class="media-body text-break ml-2 mt-0">
+                    <a href="/produto/{{$item->id}}">{{$item->name}}</a>
+                  </div>
+                </div>
+              </td>
+              <td class="w-25 align-middle">
+                <input type="number" class="form-control inputQty" style="width:4.5rem" min="1"
+                  value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
+                <a class="text-center" href="/carrinho/{{ $item->rowId }}/remove">Remover</a>
+                <span class="d-none {{"productValue$loop->iteration"}}">R${{$item->price}}</span>
+                <span class="d-none {{"productRowId$loop->iteration"}}">{{$item->rowId}}</span>
+                <span class="d-none {{"productId$loop->iteration"}}">{{$item->id}}</span>
+              </td>
+              <td class="{{"newProductValue$loop->iteration"}} w-25 align-middle eachProductValue"
+                data-value={{$item->price*$item->qty}}>
+                R${{$item->price*$item->qty}}
+              </td>
             </tr>
-            <tr>
-              <th scope="row">Prazo de entrega</th>
-              <td>5 dias</td>
-            </tr>
-            <tr>
-              <th scope="row">Total Compra</th>
-              <td>R$421031,120</td>
-            </tr>
+            @endforeach
           </tbody>
         </table>
+        <a class="float-right mr-2" href="/">Continuar comprando</a>
       </div>
-      <hr>
-      <button class="mdc-button mdc-button--raised" style="width: 100%">
-        <i class="material-icons mdc-button__icon">shopping_cart</i>
-        <span class="mdc-button__label">Continuar</span>
-      </button>
+      <div class="col-lg-4 col-md-12 col-sm-12 p-3">
+        <div class="p-3" style="background-color: #f7f5f3">
+          <h4 class="d-flex justify-content-between align-items-center">
+            <span class="text-muted">Resumo do pedido</span>
+            <span class="badge badge-secondary">{{Cart::count()}}</span>
+          </h4>
+        
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th>Subtotal</th>
+                <td id="totalCart" class="text-right"></td>
+              </tr>
+              <tr class="d-none" id="dadosFrete">
+                <th id="prazoFrete"></th>
+                <td id="valorFrete" class="text-right"></td>
+              </tr>
+              <tr class="border-top">
+                <th class="align-middle">Total</th>
+                <td id="valorTotalCompra" class="text-right w-50"></td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <p class="p-1 mb-1">Calcule o frete e o prazo (opcional)</p>
+          <form action="{{route('calcFrete')}}" method="post" id="formCalcularFrete" style="border-top-color: #d7cec7">
+            <div class="input-group">
+              <input type="number" class="form-control" name="cep" aria-label="CEP" placeholder="CEP" aria-describedby="botao-cep">
+                <button class="mdc-button mdc-button--raised general-button" id="botaoCalcularFrete" style="border-radius: 0;" data-href="{{route('calcFrete')}}">
+                  <span class="mdc-button__label">Calcular</span>
+                </button>
+              </div>
+            </form>
+            <hr>
+            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="http://localhost:8000/checkout/endereco">
+              <span class="mdc-button__label">Continuar</span>
+            </button>
+          @endif
+        </div>
+      </div> 
     </div>
   </div>
 @endsection
 
-@section('scripts')
-  <script src="{{asset('js/configCart.js')}}"></script>
-@endsection
+  @section('scripts')
+  <script src="{{asset('js/customJs/cart.js')}}"></script>
+  @endsection

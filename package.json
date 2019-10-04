@@ -25,8 +25,15 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.10.1",
-        "@material/data-table": "^3.1.0",
-        "material-components-web": "^3.0.0",
+        "@material/auto-init": "^3.1.0",
+        "@material/button": "^3.2.0",
+        "@material/card": "^3.2.0",
+        "@material/drawer": "^3.2.0",
+        "@material/floating-label": "^3.2.0",
+        "@material/textfield": "^3.2.0",
+        "@material/top-app-bar": "^3.2.0",
+        "@material/typography": "^3.1.0",
+        "jquery-validation": "^1.19.1",
         "material-icons": "^0.3.1"
     }
 }
