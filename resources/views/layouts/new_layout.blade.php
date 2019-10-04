@@ -44,6 +44,14 @@
                             <span class="mdc-list-item__text">Meus pedidos</span>
                           </a>
                         </li>
+                        @if(Auth::user()->role_id == 1)
+                          <li class="mdc-list-item" role="menuitem">
+                            <a class="mdc-list-item" href="{{ route('admin.index') }}">
+                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
+                              <span class="mdc-list-item__text">Painel de controle</span>
+                            </a>
+                          </li>
+                        @endif
                         <li class="mdc-list-item" role="menuitem">
                           <a class="mdc-list-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">

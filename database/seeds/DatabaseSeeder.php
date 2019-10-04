@@ -72,10 +72,6 @@ class DatabaseSeeder extends Seeder
         
         DB::table('products')->insert([
             'name' => 'Edredom',
-<<<<<<< HEAD
-            'details' => 'Macio e quente',
-=======
->>>>>>> 5352919788ca5884c0c40442cdac39e0c419b023
             'description' => 'Com ótimo material, é excelente para esquentar sua noite',
             'qtd_last' => 33,
             'lenght' => 12.0,
@@ -162,9 +158,9 @@ class DatabaseSeeder extends Seeder
         
         DB::table('products')->insert([
             'name' => 'Toalha de mesa',
-            'details' => 'grande',
             'description' => 'ótima',
             'qtd_last' => 37,
+            'lenght' => 12.0,
             'weight' => 50.0,
             'width' => 100.0,
             'height' => 20.0,
@@ -174,9 +170,9 @@ class DatabaseSeeder extends Seeder
         
         DB::table('products')->insert([
             'name' => 'Balança de cozinha',
-            'details' => 'Grande e magnífica',
             'description' => 'Colher ótima',
             'qtd_last' => 37,
+            'lenght' => 12.0,
             'weight' => 125.0,
             'width' => 20.0,
             'height' => 2.0,
@@ -186,9 +182,9 @@ class DatabaseSeeder extends Seeder
         
         DB::table('products')->insert([
             'name' => 'Toalha de piso',
-            'details' => 'Grande e magnífica',
             'description' => 'Colher ótima',
             'qtd_last' => 37,
+            'lenght' => 12.0,
             'weight' => 125.0,
             'width' => 20.0,
             'height' => 2.0,
@@ -216,7 +212,6 @@ class DatabaseSeeder extends Seeder
             'product_id' => 4,
         ]);
         
-<<<<<<< HEAD
         DB::table('product_images')->insert([
             'filename' => 'placeholder-5.jpg',
             'product_id' => 5,
@@ -227,8 +222,6 @@ class DatabaseSeeder extends Seeder
             'product_id' => 6,
         ]);
 
-=======
->>>>>>> 5352919788ca5884c0c40442cdac39e0c419b023
         DB::table('historic_statuses')->insert([
             'name' => 'entrege',
         ]);

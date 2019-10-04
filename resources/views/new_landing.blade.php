@@ -10,14 +10,14 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" style="border-radius: 0px;">
-          <div class="carousel-item active" style="height: 500px;">
-            <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-item active" style="">
+            <img src="{{asset('img/capa1.jpg')}}" class="d-block w-100 h-100" alt="...">
           </div>
-          <div class="carousel-item" style="height: 500px">
-            <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-item" style="">
+            <img src="{{asset('img/capa2.png')}}" class="d-block w-100 h-100" alt="...">
           </div>
-          <div class="carousel-item" style="height: 500px">
-            <img src="{{asset('img/capa_13.jpg')}}" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-item" style="">
+            <img src="{{asset('img/capa3.jpg')}}" class="d-block w-100 h-100" alt="...">
           </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
