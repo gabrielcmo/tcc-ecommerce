@@ -3,6 +3,11 @@ const list = mdc.list.MDCList.attachTo(document.querySelector('.mdc-list'))
 const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('.mdc-top-app-bar'));
 const buttons = document.querySelectorAll('.mdc-button');
 const textsFields = document.querySelectorAll('.mdc-text-field');
+const snackbars = document.querySelectorAll('.mdc-snackbar');
+
+snackbars.forEach(snackbar => {
+  mdc.snackbar.MDCSnackbar.attachTo(snackbar);
+});
 
 
 textsFields.forEach(textField => {
@@ -49,7 +54,10 @@ $(document).ready(function(){
     $('#topAppBar2').addClass('d-none');
     $('#topAppBar').removeClass('mdc-top-app-bar--fixed');
     $('#topAppBar').addClass('mdc-top-app-bar--short');
+    $('#topAppBar').css('z-index', '0');
     $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '0');
+    $('#cartButton').css('margin-right', '5px');
+
   }
   if ( windowWidth >= 992 ) {
     $('#sidebarMenu, #sidebarMenuButton').addClass('d-none');

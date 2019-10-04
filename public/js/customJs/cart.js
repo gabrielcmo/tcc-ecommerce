@@ -15,9 +15,9 @@ $(document).ready(function(){
     
     let product = $(e.target).data('product');
     let productValue = $('.productValue'+product).text().substring(2).replace(',', '.');
-    let qty = parseInt($(e.target).val());
+    let qty = $(e.target).val();
     let productRowId = $('.productRowId'+product).text();
-    let productId = $('.productId'+product).text()
+    let productId = $('.productId'+product).text();
 
     let newValue = (productValue*qty).toFixed(2).replace('.', ',');
 

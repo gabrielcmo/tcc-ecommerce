@@ -15,45 +15,37 @@ Checkout
 
     <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Seu carrinho</span>
-                <span class="badge badge-secondary badge-pill">{{ Cart::count() }}</span>
-            </h4>
-            <ul class="list-group mb-3">
-                @foreach (Cart::content() as $item)
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">{{ $item->name }}</h6>
-                        <small class="text-muted">{{ $item->description }}</small>
+            <div class="p-3" style="background-color: #f7f5f3">
+                <h4 class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted">Seu carrinho</span>
+                    <span class="badge badge-secondary">{{ Cart::count() }}</span>
+                </h4>
+                <table class="table table-borderless">
+                    <tbody>
+                        @foreach(Cart::content() as $item)
+                            <tr class="border-top">
+                                <th>{{$item->name}}</th>
+                                <td class="text-muted">{{$item->qty}} x {{$item->price}}</td>
+                            </tr>
+                        @endforeach
+                        <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                            <th>Total (BRL) s/ frete</th>
+                            <td class="font-weight-bold">R$ {{Cart::total()}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cupom" aria-describedby="botaoCupom">
+                        <div class="input-group-append">
+                            <button class="mdc-button mdc-button--raised general-button" id="botaoCupom" style="border-radius: 0;">
+                                <span class="mdc-button__label">Resgatar</span>
+                            </button>
+                        </div>
                     </div>
-                    <span class="text-muted">{{ $item->qty }} x R${{ $item->price }}</span>
-                </li>
-                @endforeach
-                @if(session('cupons') !== null)
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <h6 class="my-0">Cupom</h6>
-                        <small>TOGURO120</small>
-                    </div>
-                    <span class="text-success">-R$5</span>
-                </li>
-                @endif
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (BRL) s/ frete</span>
-                    <strong>R${{Cart::total()}}</strong>
-                </li>
-            </ul>
-
-            <form class="card p-2">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cupom">
-                    <div class="input-group-prepend">
-                        <button class="mdc-button mdc-button--raised general-button" style="border-radius: 0;">
-                            <span class="mdc-button__label">Resgatar</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Endereço de entrega</h4>
@@ -157,9 +149,8 @@ Checkout
                 
                 <hr>
 
-                <button type="submit"
-                    class="mdc-button mdc-button--raised general-button w-100 submitButtonAddressForm">
-                    <span class="mdc-button__label">Pronto</span>
+                <button type="submit" class="mdc-button mdc-button--raised general-button w-100 submitButtonAddressForm">
+                    <span class="mdc-button__label">Continuar</span>
                 </button>
             </form>
         </div>

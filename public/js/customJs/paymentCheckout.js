@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   $('#itensModal').on('shown.bs.modal', function(e){
 
 
@@ -7,7 +8,7 @@ $(document).ready(function(){
 
       let product = $(e.target).data('product');
       let productValue = $('.productValue'+product).text().substring(2).replace(',', '.');
-      let qty = parseInt($(e.target).val());
+      let qty = $(e.target).val();
       let productRowId = $('.productRowId'+product).text();
       let productId = $('.productId'+product).text()
   
@@ -18,7 +19,6 @@ $(document).ready(function(){
   
       let total = 0;
       $('.eachProductValue').each(function () {
-        // console.log($(this).data('value'));
         total += $(this).data('value');
         
       });
@@ -30,19 +30,24 @@ $(document).ready(function(){
       $('#modalButton').removeClass('bg-success');
       $('#modalButton').addClass('bg-warning');
       $('#modalButtonLabel').text('Processando...');
+      $('#botaoFecharModal').attr('disabled', true);
       
-      $.ajax({
+      var ajaxRequest = $.ajax({
         type: "GET",
         url: "/carrinho/" + productRowId + "/" + qty + "/" + productId,
         
         complete: function (jqXHR, textStatus){
           if(textStatus == 'success') {
             $('#modalButton').attr('disabled', false);
+            $('#botaoFecharModal').attr('disabled', false);
             $('#modalButton').removeClass('bg-warning');
             $('#modalButton').addClass('bg-success');
             $('#modalButtonLabel').text('Alterar');
           }
         }
+      });
+      $('#botaoFecharModal').click(function (){
+        ajaxRequest.abort();
       });
     });
   });
@@ -57,4 +62,5 @@ $(document).ready(function(){
     $('#valorTotalCompra').text('R$ ' + total.toFixed(2).toString().replace('.', ','));
     
   });
+
 });

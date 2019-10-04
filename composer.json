@@ -17,7 +17,7 @@
         "laravel/framework": "5.7.*",
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
-        "laravellegends/pt-br-validator": "5.1.*",
+        "laravellegends/pt-br-validator": "5.*",
         "lucascudo/laravel-pt-br-localization": "^1.0",
         "paypal/rest-api-sdk-php": "*",
         "willvincent/laravel-rateable": "^1.07"

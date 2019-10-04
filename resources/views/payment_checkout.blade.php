@@ -37,7 +37,9 @@
             </table>
             <hr>
             <p class="mb-1 text-center">Use o botão abaixo para revisar seu pedido!</p>
-            <button data-toggle="modal" data-target="#itensModal" class="btn btn-sm btn-info w-100">Revisar pedido</button>
+            <button class="mdc-button mdc-button--raised w-100" data-toggle="modal" data-target="#itensModal">
+                <span class="mdc-button__label">Revisar pedido</span>
+            </button>
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -46,11 +48,16 @@
                     </tr>
                     <tr id="dadosFrete">
                         <th id="prazoFrete">Frete <span class="">(prazo de {{session('prazoFrete')}} dias)</span></th>
-                        <td id="valorFrete" class="text-right" data-frete="{{session('valorFrete')}}">R$ {{session('valorFrete')}}</td>
+                        <td id="valorFrete" class="text-right" data-frete="{{session('valorFrete')}}">R$
+                            {{session('valorFrete')}}</td>
                     </tr>
                     <tr class="border-top">
                         <th class="align-middle">Total</th>
-                        <td id="valorTotalCompra" class="text-right w-50"></td>
+                        <td id="valorTotalCompra" class="text-right w-50">R$ 
+                            @php
+                                echo str_replace('.',',', Cart::subtotal() + str_replace(',','.', session('valorFrete')));     
+                            @endphp
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -58,7 +65,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="itensModal" tabindex="-1" role="dialog" aria-labelledby="ModalCarrinho" aria-hidden="true">
+<div class="modal fade" id="itensModal" tabindex="-1" role="dialog" aria-labelledby="ModalCarrinho" aria-hidden="true"
+    data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -82,7 +90,7 @@
                             </thead>
                             <tbody>
                                 @foreach (Cart::content() as $item)
-                                <input type="hidden" class="product_id" value="{{$item->id}}"/>
+                                <input type="hidden" class="product_id" value="{{$item->id}}" />
                                 <tr>
                                     <td class="w-50">
                                         <div class="media align-items-center">
@@ -102,9 +110,11 @@
                                         </div>
                                     </td>
                                     <td class="w-25 align-middle">
-                                        <input type="number" class="form-control inputQty" style="width:4.5rem" min="1" value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
+                                        <input type="number" class="form-control inputQty" style="width:4.5rem" min="1"
+                                            value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
                                         <a class="text-center" href="/carrinho/{{ $item->rowId }}/remove">Remover</a>
-                                        <span class="d-none {{"productValue$loop->iteration"}}">R${{$item->price}}</span>
+                                        <span
+                                            class="d-none {{"productValue$loop->iteration"}}">R${{$item->price}}</span>
                                         <span class="d-none {{"productRowId$loop->iteration"}}">{{$item->rowId}}</span>
                                         <span class="d-none {{"productId$loop->iteration"}}">{{$item->id}}</span>
                                     </td>
@@ -123,7 +133,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="mdc-button mdc-button--raised bg-danger" data-dismiss="modal">
+                <button class="mdc-button mdc-button--raised bg-danger" id="botaoFecharModal" data-dismiss="modal">
                     <span class="mdc-button__label">Cancelar</span>
                 </button>
                 <button class="mdc-button mdc-button--raised bg-success" data-dismiss="modal" id="modalButton">
@@ -137,11 +147,4 @@
 
 @section('scripts')
 <script src="{{asset('js/customJs/paymentCheckout.js')}}"></script>
-{{-- <script>
-    let valorSemFrete = "<?php echo Cart::subtotal() ?>";
-    let totalComFrete = parseFloat(parseFloat(valorSemFrete) + parseFloat("<?php echo session('valorFrete') ?>".toString().replace(',','.'))).toFixed(2);
-    $('#valorTotalCompra').text('R$ ' + totalComFrete.toString().replace('.',','));
-    console.log(valorSemFrete);
-    console.log(totalComFrete);
-</script> --}}
 @endsection
