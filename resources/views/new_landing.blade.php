@@ -79,8 +79,8 @@
                 <h2 class="mdc-typography mdc-typography--subtitle2" style="color:gray;">10x de R$2,70 sem juros</h2>
               </p>
               <div class="d-flex">
-                <a class="btn btn-primary" href="/produto/{{ $product->id }}"><h5 class="mt-1">Ver mais</h5></a>
-                <a class="ml-auto" href="/carrinho/{{ $product->id }}/add"><i class="mdc-icon-button material-icons">shopping_cart</i></a>
+                <a class="btn btn-primary" style="background-color:#76323f;" href="/produto/{{ $product->id }}"><h5 class="mt-1">Ver mais</h5></a>
+                <a class="ml-auto"style="color:#76323f;" href="/carrinho/{{ $product->id }}/add"><i class="mdc-icon-button material-icons">shopping_cart</i></a>
               </div>
             </div>
           </div>

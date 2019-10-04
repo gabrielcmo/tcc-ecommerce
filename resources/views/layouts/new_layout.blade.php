@@ -18,11 +18,11 @@
       <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
-          <span class="mdc-top-app-bar__title"><a style="color:white;" href="{{ route('landing') }}">Doomus</a></span>       
+          <span class="mdc-top-app-bar__title"><a style="" href="{{ route('landing') }}"><img width="10%" src="{{ asset('/img/logo_inteiro.png') }}" alt=""></a></span>       
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
           <div class="dropdown" id="dropdown">
-            <button class="btn btn-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-link dropdown-toggle nounderline" style="color:#565656;text-decoration:none!important;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               @auth
                 Olá {{ Auth::user()->name }}   
               @else
@@ -56,7 +56,7 @@
                     <label class="mdc-floating-label" for="password-input">Senha</label>
                     <div class="mdc-line-ripple"></div>
                   </div>
-                  <button class="btn btn-primary" type="submit">Entrar</button>
+                  <button class="btn" style="background-color:#76323f;color:white;" type="submit">Entrar</button>
                   <a class="pb-2 float-right text-dark" style="font-size: 14px" href="{{route('register')}}">Cliente novo? Cadastre-se</a> 
                   <a class="pb-2 float-right text-dark" href="{{route('loginSocial', ['provider'=>'google'])}}">
                     <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
@@ -131,12 +131,12 @@
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
     <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
-      <nav class="nav nav-underline">
-        <a class="nav-link mx-auto" href="#">Explore</a>
-        <a class="nav-link mx-auto" href="#">Ofertas Katiau</a>
-        <a class="nav-link mx-auto" href="#">Customize sua cozinha</a>
-        <a class="nav-link mx-auto" href="#">Para os que amam o luxo</a>
-        <a class="nav-link mx-auto" href="#">Seu quarto do seu jeito</a>
+      <nav class="nav nav-underline" style="background-color:white;">
+        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Explore</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Ofertas Katiau</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Customize sua cozinha</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Para os que amam o luxo</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Seu quarto do seu jeito</h5></a>
       </nav>
     </div>
   </div>

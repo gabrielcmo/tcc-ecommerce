@@ -15,15 +15,15 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('descricao');
-            $table->integer('qtd_restante');
-            $table->double('peso', 5, 1)->nullable();
-            $table->double('largura', 4, 1);
-            $table->double('comprimento', 4, 1);
-            $table->double('altura', 4, 1);
-            $table->double('diametro', 4, 1)->nullable();
-            $table->float('preco', 5, 2);
+            $table->string('name');
+            $table->string('description');
+            $table->integer('qtd_last');
+            $table->double('weight', 5, 1)->nullable();
+            $table->double('lenght', 4, 1);
+            $table->double('width', 4, 1);
+            $table->double('height', 4, 1);
+            $table->double('diameter', 4, 1)->nullable();
+            $table->float('price', 5, 2);
             $table->integer('looks')->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')
