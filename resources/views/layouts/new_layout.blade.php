@@ -14,7 +14,7 @@
   @yield('stylesheets')
 </head>
 <body style="background-color: white;">
-  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar" style="z-index: 1000; background-color: #D7CEC7;">
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar" style="z-index: 1000; background-color: #D7CEC7;">  
       <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
@@ -44,19 +44,17 @@
               @else
                 <h4 class="text-center">Login</h4>
                 <hr>
-                <form class="ml-3 mr-3 pb-2" action="{{ route('login') }}" method="post">
+                <form class="ml-3 mr-3 pb-2" action="{{ route('login') }}" method="post" id="loginDropdownForm">
                   @csrf
-                  <div class="mdc-text-field login-email w-100">
-                    <input type="text" class="mdc-text-field__input" id="email-input" name="email" required>
-                    <label class="mdc-floating-label" for="email-input">Email</label>
-                    <div class="mdc-line-ripple"></div>
+                  <div class="form-group">
+                    <input type="text" class="form-control login-email" id="email-input" name="email" placeholder="Email" required>
                   </div>
-                  <div class="mdc-text-field login-password">
-                    <input type="password" class="mdc-text-field__input" id="password-input" name="password" required minlength="6">
-                    <label class="mdc-floating-label" for="password-input">Senha</label>
-                    <div class="mdc-line-ripple"></div>
+                  <div class="form-group">
+                    <input type="password" class="form-control login-password" id="password-input" name="password" placeholder="Senha" required>
                   </div>
-                  <button class="btn btn-primary" type="submit">Entrar</button>
+                  <button class="mdc-button mdc-button--raised general-button" type="submit">
+                    <span class="mdc-button__label">Entrar</span>
+                  </button>
                   <a class="pb-2 float-right text-dark" style="font-size: 14px" href="{{route('register')}}">Cliente novo? Cadastre-se</a> 
                   <a class="pb-2 float-right text-dark" href="{{route('loginSocial', ['provider'=>'google'])}}">
                     <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
@@ -165,183 +163,6 @@
         @yield('content')
       </div>
     </main>
-  </div>
-
-  {{-- Modais --}}
-  <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="TituloModalLogin" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered " role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" id="TituloModalLogin">Login</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="{{route('login')}}" method="POST" id="loginForm">
-            @csrf
-            <div class="container-fluid">
-              <div class="row align-items-center">
-                  <img src="{{asset('img/logo_icone.png')}}" width="50%" height="50%" alt="Logo Doomus" class="img-fluid mx-auto">
-              </div>
-              <div class="row justify-content-center">
-                <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%"> 
-                  <input type="text" id="email-text-field" class="mdc-text-field__input" name="email">
-                  <div class="mdc-notched-outline">
-                    <div class="mdc-notched-outline__leading"></div>
-                    <div class="mdc-notched-outline__notch">
-                      <label for="email-text-field" class="mdc-floating-label">Email</label>
-                    </div>
-                    <div class="mdc-notched-outline__trailing"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row justify-content-center">
-                <div class="mdc-text-field mdc-text-field--outlined mt-3" style="width: 80%">
-                  <input type="password" id="password-text-field" class="mdc-text-field__input" name="password">
-                  <div class="mdc-notched-outline">
-                    <div class="mdc-notched-outline__leading"></div>
-                    <div class="mdc-notched-outline__notch">
-                      <label class="mdc-floating-label" for="password-text-field">Senha</label>
-                    </div>
-                    <div class="mdc-notched-outline__trailing"></div>
-                  </div>
-                </div>
-              </div><br>
-              <button class="mdc-button mdc-button--raised float-right" type="submit" form="loginForm">
-                <span class="mdc-button__label">Logar</span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>  
-  </div>
-
-  <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="TituloModalRegister" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" id="TituloModalRegister">Registro</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="{{route('register')}}" method="POST" id="registerForm">
-            @csrf
-            <div class="container-fluid">
-              <div class="row justify-content-center">
-                  <img src="{{asset('img/logo_icone.png')}}" width="35%" height="35%" alt="Logo Doomus" class="img-fluid mx-auto">
-              </div>
-              <div class="row justify-content-center">
-                <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%;">
-                  <input class="mdc-text-field__input" id="name-text-field" type="text" name="name">
-                  <div class="mdc-notched-outline">
-                    <div class="mdc-notched-outline__leading"></div>
-                    <div class="mdc-notched-outline__notch">
-                      <label for="name-text-field" class="mdc-floating-label">Nome</label>
-                    </div>
-                    <div class="mdc-notched-outline__trailing"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row justify-content-center mt-2">
-                <div class="mdc-text-field mdc-text-field--outlined" style="width: 80%;">
-                  <input class="mdc-text-field__input" id="email-text-field" type="email" name="email">
-                  <div class="mdc-notched-outline">
-                    <div class="mdc-notched-outline__leading"></div>
-                    <div class="mdc-notched-outline__notch">
-                      <label for="email-text-field" class="mdc-floating-label">Email</label>
-                    </div>
-                    <div class="mdc-notched-outline__trailing"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row justify-content-center mt-2">
-                <div class="mdc-text-field mdc-text-field--outlined" style="width: 40%;">
-                  <input class="mdc-text-field__input" id="password-text-field" type="password" minlength="8" name="password">
-                  <div class="mdc-notched-outline">
-                    <div class="mdc-notched-outline__leading"></div>
-                    <div class="mdc-notched-outline__notch">
-                      <label for="password-text-field" class="mdc-floating-label">Senha</label>
-                    </div>
-                    <div class="mdc-notched-outline__trailing"></div>
-                  </div>
-                </div>
-                <div class="mdc-text-field mdc-text-field--outlined ml-1" style="width: 40%;">
-                  <input class="mdc-text-field__input" id="password-confirmation-text-field" type="password" minlength="8" name="password_confirmation">
-                  <div class="mdc-notched-outline">
-                    <div class="mdc-notched-outline__leading"></div>
-                    <div class="mdc-notched-outline__notch">
-                      <label for="password-confirmation-text-field" class="mdc-floating-label">Confirme sua senha</label>
-                    </div>
-                    <div class="mdc-notched-outline__trailing"></div>
-                  </div>
-                </div>
-                <div class="row justify-content-center mt-2">
-                  <div class="col-md-12">
-                      {!! NoCaptcha::display() !!}        
-                  </div>                   
-              </div>
-              </div>
-            </div>
-          </form>
-          <button class="mdc-button mdc-button--raised float-right mt-2" type="submit" form="registerForm">
-            <span class="mdc-button__label">Registrar</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="cartModal1" tabindex="-1" role="dialog" aria-labelledby="ModalCarrinho" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" id="ModalCarrinho">Carrinho</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          @if(Cart::count() == 0)
-            <h4>Seu carrinho está vazio!</h4>
-          @else
-          <a class="btn btn-danger" href="/carrinho/delete">Limpar carrinho</a><br><br>
-          <div class="row">
-            <div class="col-md-12">
-              <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Valor unitário</th>
-                    <th scope="col">Valor total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach(Cart::content() as $item)
-                    <tr>
-                      <td>{{ $item->name }}</td>
-                      <td>{{ $item->qty }}</td>
-                      <td>{{ $item->price }}</td>
-                      <td>{{ $item->price*$item->qty }}</td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              </div>
-          </div>
-          @endif
-        </div>
-        @if(Cart::count() > 0)
-          <div class="modal-footer">
-            <a class="btn btn-success" href="/checkout/endereco">Fazer pedido</a>
-          </div>
-        @endif
-      </div>
-    </div>
   </div>
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
