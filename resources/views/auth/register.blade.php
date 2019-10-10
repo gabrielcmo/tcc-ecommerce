@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Nome') }}</label>
-                            <div class="col-md-9 col-lg-7">
+                            <div class="col-md-9 col-lg-8">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Email') }}</label>
-                            <div class="col-md-9 col-lg-7">
+                            <div class="col-md-9 col-lg-8">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="password" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Senha') }}</label>
-                            <div class="col-md-9 col-lg-7">
+                            <div class="col-md-9 col-lg-8">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Confirmar senha') }}</label>
-                            <div class="col-md-9 col-lg-7">
+                            <div class="col-md-9 col-lg-8">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                             </div>
                         </div>
@@ -71,10 +71,10 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-12 col-lg-12 offset-md-2 offset-lg-3">
-                                <button type="submit" class="mdc-button mdc-button--raised">
+                                <button type="submit" class="mdc-button mdc-button--raised" style="background-color:#76323f">
                                     <span class="mdc-button__label">Registrar</span>
                                 </button>
-                                <button class="mdc-button mdc-button--raised actionButton" data-href="{{ url('/auth/google') }}">
+                                <button class="mdc-button mdc-button--raised actionButton" data-href="{{ url('/auth/google') }}" style="background-color:#76323f">
                                     <i class="fab fa-google mr-1"></i>
                                     <span class="mdc-button__label">Google</span>
                                 </button>

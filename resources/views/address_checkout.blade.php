@@ -28,23 +28,25 @@ Checkout
                                 <td class="text-muted">{{$item->qty}} x {{$item->price}}</td>
                             </tr>
                         @endforeach
+                        <tr class="border-top d-none text-success" id="cupomTr" style="">
+                            <th>Cupom <small id="cupomText"></small></th>
+                            <td class="text-success"><div id="totalDesconto"></div></td>
+                        </tr>
                         <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
                             <th>Total (BRL) s/ frete</th>
-                            <td class="font-weight-bold">R$ {{Cart::total()}}</td>
+                            <td class="font-weight-bold" id="totalCart">R$ {{Cart::total()}}</td>
                         </tr>
                     </tbody>
                 </table>
     
-                <form>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cupom" aria-describedby="botaoCupom">
-                        <div class="input-group-append">
-                            <button class="mdc-button mdc-button--raised general-button" id="botaoCupom" style="border-radius: 0;">
-                                <span class="mdc-button__label">Resgatar</span>
-                            </button>
-                        </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cupom" aria-describedby="botaoCupom" id="cupomValue">
+                    <div class="input-group-append">
+                        <button class="mdc-button mdc-button--raised general-button" id="botaoCupom" style="border-radius: 0;">
+                            <span class="mdc-button__label">Resgatar</span>
+                        </button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         <div class="col-md-8 order-md-1">

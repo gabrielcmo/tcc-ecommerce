@@ -16,6 +16,11 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->insert([
             'name' => 'client',
         ]);
+        DB::table('cupons')->insert([
+            'name' => 'TOGURO',
+            'fornecido_por' => 'TOGURO',
+            'desconto' => 10,
+        ]);
         DB::table('roles')->insert([
             'name' => 'employee',
         ]);
