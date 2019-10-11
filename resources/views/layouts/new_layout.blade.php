@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/828f671aa2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="{{asset('css/general.css')}}">
+  <link rel="stylesheet" href="{{asset('/css/general.css')}}">
   @yield('stylesheets')
 </head>
 <body style="background-color: white;">
@@ -68,7 +68,7 @@
           <button class="mdc-button mdc-button--raised actionButton general-button" data-href="{{ route('user.cart') }}" style="background-color: #" id="cartButton">
             <i class="fas fa-shopping-cart" aria-hidden="true"></i>
             @if(Cart::count() > 0)
-              <span class="badge badge-light ml-1">{{ Cart::count() }}</span>
+              <span id="countCart" class="badge badge-light ml-1">{{ Cart::count() }}</span>
             @endif
           </button>
         </section>
