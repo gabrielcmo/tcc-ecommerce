@@ -35,12 +35,7 @@
       </div>
     </div>
   </div>
-  <div class="jumbotron jumbotron-fluid text-white mt-2" style="background-image: url({{ asset('/img/imgbanner.jpg') }});">
-    <div class="container">
-      <h1 class="display-4">As melhores ofertas</h1>
-      <p class="lead">O tempo está acabando! <a class="text-warning" href="{{route('offers')}}">Clique aqui para ver nossas promoções</a></p>
-    </div>
-  </div>
+  <div class="mt-5"></div>
   <div class="container">
     <div class="row">
         @foreach ($products as $product)

@@ -24,7 +24,7 @@
                                                                 <div class="d-flex">
                                                                     <div class="ml-2 mr-5"><strong>Situação:</strong> {{ $order->status->name }}</div>
                                                                     <div class="ml-2 mr-5"><strong>Método de pagamento: </strong> {{ $order->payment_method->name }}</div>
-                                                                    <div class="ml-5 mr-2">Frete R${{$order->frete}} <span>{{$order->prazo}} dias</span></div>
+                                                                    <div class="ml-5 mr-2">Frete R$ {{$order->frete}} <span>Prazo de {{$order->prazo}} dias</span></div>
                                                                     <div class="ml-5 mr-5"><strong>R$ {{ $order->value_total }}</strong></div>
                                                                     <div class="ml-2 mr-2">{{ $order->created_at }}</div>
                                                                 </div>
@@ -46,11 +46,11 @@
                                                                     <h5 class="col-xl-4 card-title text-left">
                                                                         {{$item->name}}
                                                                     </h5>
-                                                                    <p class="col-xl-1 card-text text-center">
-                                                                        {{$item->pivot->qty}}
+                                                                    <p class="col-xl-2 card-text text-center">
+                                                                        <strong>Quantidade</strong> <br> {{$item->pivot->qty}}
                                                                     </p>
-                                                                    <p class="col-xl-4 card-text text-center">
-                                                                        R${{$item->price}}
+                                                                    <p class="col-xl-3 card-text text-center">
+                                                                        <strong>R$ {{$item->price}}</strong>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -77,8 +77,8 @@
                                                                 <div class="d-flex">
                                                                     <div class="ml-2 mr-5"><strong>Situação: </strong>{{ $historic->status->name }}</div>
                                                                     <div class="ml-2 mr-5"><strong>Método de pagamento: </strong>{{ $historic->order->payment_method->name }}</div>
-                                                                    <div class="ml-5 mr-2">Frete R${{$order->frete}} <span>{{$order->prazo}} dias</span></div>
-                                                                    <div class="ml-5 mr-5">R$ {{ $historic->order->value_total }}</div>
+                                                                    <div class="ml-5 mr-2">Frete R$ {{$order->frete}} <span>Prazo de {{$order->prazo}} dias</span></div>
+                                                                    <div class="ml-5 mr-5"><strong>R$ {{ $historic->order->value_total }}</strong></div>
                                                                     <div class="ml-2 mr-2">{{ $historic->created_at }}</div>
                                                                 </div>
                                                             </div>
@@ -99,11 +99,11 @@
                                                                     <h5 class="col-xl-4 card-title text-left">
                                                                         {{$item->name}}
                                                                     </h5>
-                                                                    <p class="col-xl-1 card-text text-center">
-                                                                        {{$item->pivot->qty}}
+                                                                    <p class="col-xl-2 card-text text-center">
+                                                                        Quantidade <br> {{$item->pivot->qty}}
                                                                     </p>
-                                                                    <p class="col-xl-4 card-text text-center">
-                                                                        R${{$item->price}}
+                                                                    <p class="col-xl-3 card-text text-center">
+                                                                        R$ {{$item->price}}
                                                                     </p>
                                                                 </div>
                                                             </div>
