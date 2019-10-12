@@ -14,8 +14,10 @@ use Doomus\Product;
 class CartController extends Controller
 {
     public function show(){
+        Session::forget('cupom');
         return view('cart');
     }
+    
     /**
      * Add to cart
      *

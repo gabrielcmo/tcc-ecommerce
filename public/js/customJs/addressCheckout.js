@@ -229,7 +229,8 @@ $(document).ready(function () {
                     $('#cupomTr').removeClass('d-none');
                     $('#cupomText').text("("+response.cupom.name+")");
                     $('#totalDesconto').text("-"+response.cupom.desconto+"%");
-                    $('#totalCart').text("R$ "+(1 - (response.cupom.desconto / 100)) * response.cartTotal);
+                    let val = ((1 - (response.cupom.desconto / 100)) * response.cartTotal).toFixed(2);
+                    $('#totalCart').text("R$ "+ val);
                 }
                 console.log(response);
             }

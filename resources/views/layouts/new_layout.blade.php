@@ -18,9 +18,17 @@
       <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
-          <span class="mdc-top-app-bar__title"><a style="" href="{{ route('landing') }}"><img width="10%" src="{{ asset('/img/logo_inteiro.png') }}" alt=""></a></span>       
+          <span class="mdc-top-app-bar__title"><a style="" href="{{ route('landing') }}"><img src="{{ asset('/img/logo_inteiro.png') }}" width="130px" id="imgLogo" alt=""></a></span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
+          <div class="dropdown" id="searchForm" style="margin-top:16px;margin-right:500px;margin-bottom:15px">
+            <form class="form-inline">
+              <input class="form-control dropdown-toggle" size="40" id="search" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search">
+            </form>
+            <div aria-labelledby="search">
+              <ul class="mdc-list mdc-list--two-line dropdown-menu w-100" id="result"></ul>
+            </div>
+          </div>
           <div class="dropdown" id="dropdown">
             <button class="btn btn-link dropdown-toggle nounderline" style="color:#565656;text-decoration:none!important;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               @auth
@@ -171,6 +179,31 @@
 
   {{-- Custom Stylesheets --}}
   <script src="{{asset('js/customJs/layout.js')}}"></script>
+  <script>
+    $(document).ready(function(){
+      function fetch_data(query = ''){
+        $.ajax({
+          url: "{{ route('search') }}",
+          method: 'GET',
+          data: {query:query},
+          success:function(result){
+            $('#result').fadeIn();
+            $('#result').html(result);
+          }
+        });
+      }
+
+      $('#search').keyup(function(){
+        if($('#search').val() !== ""){
+          $('#result').removeClass('d-none');
+          var query = $(this).val();
+          fetch_data(query);
+        }else{
+          $('#result').addClass('d-none');
+        }
+      });
+    });
+  </script>
   @yield('scripts')
   {!! NoCaptcha::renderJs() !!}
 </body>

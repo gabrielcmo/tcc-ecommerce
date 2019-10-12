@@ -44,9 +44,19 @@ class PaymentController extends Controller
         ->setCancelUrl('http://localhost:8000/cancel-payment');
 
         // Set payment amount
-        $amount = new Amount();
-        $amount->setCurrency("BRL")
-        ->setTotal(10);
+        if(session('cupom') !== null && session('valorFrete') !== null){
+            $amount = new Amount();
+            $amount->setCurrency("BRL")
+                ->setTotal(round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2) + session('valorFrete'));
+        }elseif(session('valorFrete') !== null){
+            $amount = new Amount();
+            $amount->setCurrency("BRL")
+                ->setTotal(Cart::total() + session('valorFrete'));
+        }else{
+            $amount = new Amount();
+            $amount->setCurrency("BRL")
+                ->setTotal(Cart::total());
+        }
 
         // Set transaction object
         $transaction = new Transaction();
@@ -91,12 +101,12 @@ class PaymentController extends Controller
         $amount = new Amount();
 
         $details = new Details();
-        $details->setShipping(2.2)
-            ->setTax(1.3)
-            ->setSubtotal(17.50);
+        $details->setShipping(0)
+            ->setTax(0)
+            ->setSubtotal(Cart::subtotal());
 
         $amount->setCurrency('BRL');
-        $amount->setTotal(21);
+        $amount->setTotal(Cart::total());
         $amount->setDetails($details);
 
         $transaction->setAmount($amount);
