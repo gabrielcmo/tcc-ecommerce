@@ -97,3 +97,34 @@ $(document).ready(function(){
     window.location.href = route;
   });
 });
+$.validator.setDefaults({
+  errorClass: 'label-invalid mb-0',
+  highlight: function (element) {
+    $(element).removeClass('input-valid');
+    $(element).addClass('input-invalid');
+  },
+  unhighlight: function (element) {
+    $(element).removeClass('input-invalid');
+    $(element).addClass('input-valid');
+  }
+});
+$('#loginDropdownForm').validate({
+  rules: {
+    email: {
+      required: true,
+      email: true
+    },
+    password: {
+      required: true
+    }
+  },
+  messages: {
+    email: {
+      required: 'Esse campo é obrigatório',
+      email: 'Esse não é um endereço de email válido.'
+    },
+    password: {
+      required: 'Esse campo é obrigatório.'
+    }
+  }
+});

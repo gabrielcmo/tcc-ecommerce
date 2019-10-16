@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" id="loginForm">
                         @csrf
                         <div class="form-group row mb-0">
                             <img src="{{asset('img/logo_inteiro.png')}}" alt="Logo Doomus" class="mx-auto d-block" height="250">
@@ -61,4 +61,5 @@
 
 @section('scripts')
     {!! NoCaptcha::renderJs() !!}
+    <script src="{{asset('js/customJs/auth.js')}}"></script>
 @endsection

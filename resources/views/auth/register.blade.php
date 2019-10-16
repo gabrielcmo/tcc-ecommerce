@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Registrar') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" id="registerForm">
                         @csrf
                         <div class="form-group row mb-0">
                             <img src="{{asset('img/logo_inteiro.png')}}" class="mx-auto d-block" alt="" height="250">
@@ -52,9 +52,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Confirmar senha') }}</label>
+                            <label for="password_confirmation" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Confirmar senha') }}</label>
                             <div class="col-md-9 col-lg-8">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -90,4 +90,5 @@
 
 @section('scripts')
     {!! NoCaptcha::renderJs() !!}
+    <script src="{{asset('js/customJs/auth.js')}}"></script>
 @endsection
