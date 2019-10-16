@@ -39,7 +39,7 @@
   <div class="container">
     <div class="row">
       @foreach ($products as $product)
-        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-12 mt-1">
+        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-12 mt-2">
           <div class="mdc-card">
             <div class="mdc-card__primary-action product-card-action" tabindex="0" data-id="{{$product->id}}">
               @if(isset($product->image[0]->filename))
@@ -53,7 +53,6 @@
               @endif
               <div class="p-2 ml-2">
                 <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->name}}</h6>
-                <h3 class="mdc-typography mdc-typgraphy--subtitle2 mt-0">...</h3>
                 @php 
                   $rating = $product->ratingPercent(100);
                 @endphp
@@ -80,9 +79,9 @@
                     echo $formatted_price;
                   @endphp
                 </h4>
-                <span class="text-success">10x de  
+                <span class="text-success">6x de  
                   @php
-                    $parcel = $product->price / 10;
+                    $parcel = $product->price / 6;
                     $formatted_parcel = intval(strval($parcel * 100)) / 100;
                     echo $formatted_parcel;   
                   @endphp

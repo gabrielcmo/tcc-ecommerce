@@ -14,7 +14,7 @@
   @yield('stylesheets')
 </head>
 <body style="background-color: white;">
-  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar" style="z-index: 1000; background-color: #D7CEC7;">  
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar" style="z-index: 9999; background-color: #D7CEC7;">  
       <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
