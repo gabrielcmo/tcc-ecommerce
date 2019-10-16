@@ -13,6 +13,12 @@ $(document).ready(function(){
       let productId = $('.productId'+product).text()
   
       let newValue = (productValue*qty).toFixed(2).replace('.', ',');
+
+      var qtyTotal = 0;
+      $('.inputQty').each(function (){
+        qtyTotal += Number($(this).val());
+      });
+      $('#countCart').text(qtyTotal);
   
       $('.newProductValue'+product).data('value', parseFloat(newValue.replace(',', '.')));
       $('.newProductValue'+product).text('R$ ' + newValue);

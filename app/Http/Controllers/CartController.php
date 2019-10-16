@@ -14,8 +14,10 @@ use Doomus\Product;
 class CartController extends Controller
 {
     public function show(){
+        Session::forget('cupom');
         return view('cart');
     }
+    
     /**
      * Add to cart
      *
@@ -83,11 +85,11 @@ class CartController extends Controller
     {
         $product = Product::find($product_id);
 
-        if($qty !== null && $qty > $product->qtd_last){
+        if($qty > $product->qtd_last){
             Session::flash('status', "Desculpe, nós só temos mais $product->qtd_last restante desse produto no estoque..
                 Adicione até esse valor!");
             Session::flash('status-type', 'danger');
-            return back();
+            return response()->json(['textStatus' => 'error']);
         }
         
         Cart::update($product_rowId, $qty);

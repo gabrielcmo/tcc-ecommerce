@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/828f671aa2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="{{asset('css/general.css')}}">
+  <link rel="stylesheet" href="{{asset('/css/general.css')}}">
   @yield('stylesheets')
 </head>
 <body style="background-color: white;">
@@ -18,9 +18,17 @@
       <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
-          <span class="mdc-top-app-bar__title"><a style="" href="{{ route('landing') }}"><img width="10%" src="{{ asset('/img/logo_inteiro.png') }}" alt=""></a></span>       
+          <span class="mdc-top-app-bar__title"><a style="" href="{{ route('landing') }}"><img src="{{ asset('/img/logo_inteiro.png') }}" width="130px" id="imgLogo" alt=""></a></span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
+          <div class="dropdown" id="searchForm" style="margin-top:16px;margin-right:500px;margin-bottom:15px">
+            <form class="form-inline">
+              <input class="form-control dropdown-toggle" size="40" id="search" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search">
+            </form>
+            <div aria-labelledby="search">
+              <ul class="mdc-list mdc-list--two-line dropdown-menu w-100" id="result"></ul>
+            </div>
+          </div>
           <div class="dropdown" id="dropdown">
             <button class="btn btn-link dropdown-toggle nounderline" style="color:#565656;text-decoration:none!important;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               @auth
@@ -66,7 +74,7 @@
           <button class="mdc-button mdc-button--raised actionButton general-button" data-href="{{ route('user.cart') }}" style="background-color: #" id="cartButton">
             <i class="fas fa-shopping-cart" aria-hidden="true"></i>
             @if(Cart::count() > 0)
-              <span class="badge badge-light ml-1">{{ Cart::count() }}</span>
+              <span id="countCart" class="badge badge-light ml-1">{{ Cart::count() }}</span>
             @endif
           </button>
         </section>
@@ -172,6 +180,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
   {{-- Custom Stylesheets --}}
   <script src="{{asset('js/customJs/layout.js')}}"></script>
+  <script>
+    $(document).ready(function(){
+      function fetch_data(query = ''){
+        $.ajax({
+          url: "{{ route('search') }}",
+          method: 'GET',
+          data: {query:query},
+          success:function(result){
+            $('#result').fadeIn();
+            $('#result').html(result);
+          }
+        });
+      }
+
+      $('#search').keyup(function(){
+        if($('#search').val() !== ""){
+          $('#result').removeClass('d-none');
+          var query = $(this).val();
+          fetch_data(query);
+        }else{
+          $('#result').addClass('d-none');
+        }
+      });
+    });
+  </script>
   @yield('scripts')
   {!! NoCaptcha::renderJs() !!}
 </body>

@@ -70,7 +70,7 @@ class AdminController extends Controller
             if(is_null($procurar_cupom) || $procurar_cupom == "" || $procurar_cupom == null){
                 return response()->json(['textStatus' => 'error']);
             }else{
-                $response = $procurar_cupom;
+                Session::put('cupom', $procurar_cupom);
                 return response()->json(['textStatus' => 'success', 'cupom' => $procurar_cupom, 'cartTotal' => Cart::total()]);
             }
         }
