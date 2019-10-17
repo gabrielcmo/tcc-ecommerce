@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="{{asset('css/general.css')}}">
   @yield('stylesheets')
 </head>
-<<<<<<< HEAD
 <body style="background-color: #e9e9e9;">
         <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar">
           <div class="mdc-top-app-bar__row">
@@ -64,7 +63,8 @@
                               {{ csrf_field() }}
                           </form>
                         </li>
-                      @else
+                      @endauth
+                      @guest
                         <li class="mdc-list-item" id="loginMenu" role="menuitem">
                           <span class="mdc-list-item__text">Entrar</span>
                         </li>
@@ -76,45 +76,24 @@
                           <i class="fab fa-google" style="font-size: 20px; margin-right: 5px"></i>
                           <span class="mdc-list-item__text">Entrar com Google</span>
                         </li>
-                      @endauth
+                      @endguest
                     </ul>
                 </div>
               </div>
-              <button class="mdc-button mdc-top-app-bar__action-item" id="cartMenu">
-                <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">shopping_cart</i>
-                @if(Cart::count() > 0)
-                  <span class="badge badge-light">{{ Cart::count() }}</span>
-=======
-<body style="background-color: white;">
-  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar" style="z-index: 1000; background-color: #D7CEC7;">
-      <div class="mdc-top-app-bar__row">
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-          <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
-          <span class="mdc-top-app-bar__title"><a style="color:white;" href="{{ route('landing') }}">Doomus</a></span>       
-        </section>
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
-          <div class="dropdown" id="dropdown">
-            <button class="btn btn-link text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               @auth
-                Olá {{ Auth::user()->name }}   
-              @else
-                Entrar ou registrar
-              @endif
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              @auth
-                <a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a>
-                @if(Auth::user()->role_id == 1)
-                  <a class="dropdown-item" href="/admin">Painel de Controle</a>
->>>>>>> b7b0ab7b5723493caee13a62171b6b6812ae1840
-                @endif
-                <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
-                <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
+                <button class="mdc-button mdc-top-app-bar__action-item" id="cartMenu">
+                  <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">shopping_cart</i>
+                  @if(Cart::count() > 0)
+                    <span class="badge badge-light">{{ Cart::count() }}</span>
+                  @endif
+                  <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
+                  <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  {{ csrf_field() }}
-                </form>
-              @else
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    {{ csrf_field() }}
+                  </form>
+              @endauth
+              @guest
                 <h4 class="text-center">Login</h4>
                 <hr>
                 <form class="ml-3 mr-3 pb-2" action="{{ route('login') }}" method="post">
@@ -135,7 +114,7 @@
                     <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
                   </a>
                 </form>
-              @endif
+              @endguest
             </div>
           </div>
           <button class="mdc-button mdc-button--raised actionButton general-button" data-href="{{ route('user.cart') }}" style="background-color: #" id="cartButton">
