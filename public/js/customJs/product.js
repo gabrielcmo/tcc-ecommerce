@@ -17,16 +17,16 @@ $(document).ready(function (){
   const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
     return mdc.ripple.MDCRipple.attachTo(el);
   });
+  var domain = window.location.host;
 
   $('.product-card-action').click(function (e){
     let product_id = $(this).data('id');
-    console.log(product_id);
-    window.location.href = "http://localhost:8000/produto/" + product_id; 
+    window.location.href = "http://" + domain + "/produto/" + product_id; 
   });
 
   $('.addProductToCart').click(function(e){
     let product_id = $(this).parents('.mdc-card__actions').prev().data('id');
-    window.location.href = "http://localhost:8000/carrinho/" + product_id + "/add";
+    window.location.href = "http://" + domain + "/carrinho/" + product_id + "/add";
   });
 });
 
