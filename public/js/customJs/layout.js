@@ -55,7 +55,6 @@ $(document).ready(function(){
     $('#searchForm').addClass('d-none');
     $('#topAppBar').removeClass('mdc-top-app-bar--fixed');
     $('#topAppBar').addClass('mdc-top-app-bar--short');
-    $('#topAppBar').css('z-index', '0');
     $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '0');
     $('#cartButton').css('margin-right', '5px');
     $('#imgLogo').css('width', '100px');

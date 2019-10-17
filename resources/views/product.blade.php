@@ -7,6 +7,12 @@
 @section('title', $product->name)
 
 @section('content')
+  @php
+    $product_price_principal = $product->price;
+    $formatted_price = number_format($product->price, 2, ',', '');   
+    $formatted_parcel_6 = number_format(intval(strval(($product->price / 6) * 100)) / 100, 2, ',', '');
+    $formatted_parcel_12 = number_format(intval(strval(($product->price / 12) * 100)) / 100, 2, ',', '');
+  @endphp
   <div class="container">
     <div class="row mt-3">
       <div class="col-lg-7 mb-3">
@@ -95,36 +101,20 @@
         <div class="card mt-3">
           <h3 class="d-flex justify-content-center align-items-center mb-0 mt-2">
             <span class="font-weight-bold">
-              R$ 
-              @php
-                $formatted_price = number_format($product->price, 2, ',', '');   
-                echo $formatted_price; 
-              @endphp
+              R$ {{$formatted_price}}
             </span>
           </h3>
           <span class="d-flex justify-content-center text-success">
-            6x de 
-            @php
-              $parcel = $product->price / 6;
-              $formatted_parcel = intval(strval($parcel * 100)) / 100;
-              echo $formatted_parcel;   
-            @endphp
-            s/juros ou 
+            6x de {{$formatted_parcel_6}} s/juros ou 
           </span>
           <span class="d-flex justify-content-center text-success">
-              12x de
-            @php
-              $parcel = $product->price / 12;
-              $formatted_parcel = intval(strval($parcel * 100)) / 100;
-              echo $formatted_parcel;    
-            @endphp
-            s/juros no cartão Doomus
+            12x de {{$formatted_parcel_12}} s/juros no cartão Doomus
           </span>
           <span class="d-flex justify-content-center mt-2">
             Veja as nossas outras formas de parcelamento!
           </span>
           <span class="d-flex justify-content-center">
-            <button class="btn btn-link pt-0">Formas de parcelamento</button>
+            <button class="btn btn-link pt-0" data-toggle="modal" data-target="#payment-forms-modal">Formas de parcelamento</button>
           </span>
           <form name="addToCart" action="{{ route('cart.add') }}" method="get">
           <div class="form-group row mt-2 d-flex justify-content-center">
@@ -191,6 +181,10 @@
 
       <?php $i = 0; ?>
       @foreach(Doomus\Product::all() as $product)
+      @php
+          $formatted_price = number_format($product->price, 2, ',', '');
+          $formatted_parcel_6 = intval(strval(($product->price / 6) * 100)) / 100;
+      @endphp
       <div class="col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 mt-2">
           <div class="mdc-card">
             <div class="mdc-card__primary-action product-card-action" tabindex="0" data-id="{{$product->id}}">
@@ -225,19 +219,9 @@
                   @endif
                 @endfor
                 <h4 class="font-weight-normal mb-0">
-                  R$
-                  @php
-                    $formatted_price = number_format($product->price, 2, ',', '');   
-                    echo $formatted_price;
-                  @endphp
+                  R$ {{$formatted_price}}
                 </h4>
-                <span class="text-success">6x de  
-                  @php
-                    $parcel = $product->price / 6;
-                    $formatted_parcel = intval(strval($parcel * 100)) / 100;
-                    echo $formatted_parcel;   
-                  @endphp
-                  s/juros</span>      
+                <span class="text-success">6x de {{$formatted_parcel_6}} s/juros</span>      
               </div>
             </div>
             <div class="mdc-card__actions">
@@ -252,6 +236,92 @@
         @endif
       @endforeach
     </div>
+    <div class="modal fade" id="payment-forms-modal" tabindex="´-1" role="dialog" aria-labelledby="Formas de pagamento" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <nav class="p-1">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-credit-card-tab" data-toggle="tab" href="#nav-credit-card" role="tab" aria-controls="nav-credit-card" aria-selected="true"><i class="fas fa-credit-card"></i></a>
+              <a class="nav-item nav-link" id="nav-credit-card-doomus-tab" data-toggle="tab" href="#nav-credit-card-doomus" role="tab" aria-controls="nav-credit-card-doomus" aria-selected="false"><i class="fas fa-credit-card"> Doomus</i></a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fas fa-money-bill"> Boleto</i></a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-credit-card" role="tabpanel" aria-labelledby="nav-credit-card-tab">
+              <p class="text-center font-weight-bold mt-2">Cartão de crédito ou débito</p>
+              <hr>
+              <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
+                  @for ($i = 1; $i <= 6; $i++)
+                    <div class="mb-0">
+                      <p class="mb-0">
+                        {{$i}}x de 
+                        @php
+                          $formatted_parcel = number_format(intval(strval(($product_price_principal / $i) * 100)) / 100, 2, ',', '');
+                          echo $formatted_parcel;    
+                        @endphp
+                        s/juros
+                      </p>   
+                      <hr>
+                    </div>
+                  @endfor
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-credit-card-doomus" role="tabpanel" aria-labelledby="nav-credit-card-doomus-tab">
+              <p class="text-center font-weight-bold mt-2">Cartão de crédito Doomus</p>
+              <hr>
+              <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
+                  @for ($i = 1; $i <= 6; $i++)
+                    <div class="mb-0">
+                      <p class="mb-0">
+                        {{$i}}x de R$ 
+                        @php
+                          $formatted_parcel = number_format(intval(strval(($product_price_principal / $i) * 100)) / 100, 2, ',', '');
+                          echo $formatted_parcel;
+                        @endphp
+                        s/juros
+                      </p>
+                      <hr>
+                    </div>  	
+                  @endfor
+                </div>
+                <div class="ml-2 d-flex flex-column">
+                  @for ($i = 7; $i <= 12; $i++)
+                    <div class="mb-0">
+                      <p class="mb-0">
+                        {{$i}}x de R$ 
+                        @php
+                          $formatted_parcel = number_format(intval(strval(($product_price_principal / $i) * 100)) / 100, 2, ',', '');
+                          echo $formatted_parcel;
+                        @endphp
+                        s/juros
+                      </p>  
+                      <hr>
+                    </div>    
+                  @endfor
+                </div>
+              </div>
+            </div>  
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <p class="text-center font-weight-bold mt-2">Boleto Bancário</p>
+              <hr>
+              <p class="text-center">
+                1x de R$ 
+                @php
+                  $product_discount = $product_price_principal * 0.1;
+                  $formatted_price = number_format($product_price_principal - $product_discount, 2, ',', '');
+                  echo $formatted_price;
+                @endphp
+              </p>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('scripts')
