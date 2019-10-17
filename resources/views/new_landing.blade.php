@@ -35,52 +35,62 @@
       </div>
     </div>
   </div>
-  <div class="jumbotron jumbotron-fluid text-white mt-2" style="background-image: url({{ asset('/img/imgbanner.jpg') }});">
-    <div class="container">
-      <h1 class="display-4">As melhores ofertas</h1>
-      <p class="lead">O tempo está acabando! <a class="text-warning" href="{{route('offers')}}">Clique aqui para ver nossas promoções</a></p>
-    </div>
-  </div>
+  <div class="mt-5"></div>
   <div class="container">
     <div class="row">
-        @foreach ($products as $product)
-        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-12 mt-1">
-          <div class="card ml-2 mr-2 mt-2" style="width: 15rem;">
-            @if(isset($product->image[0]->filename))
-              <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
-                style="background-image: url(&quot;{{asset("/img/products/".$product->image[0]->filename)}}&quot;);width:100%;">
-              </div>
-            @else
-              <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square mx-auto"
-                style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;);width:80%">
-              </div>
-            @endif
-            <div class="card-body">
-              <h4 class="card-title">{{$product->name}}</h4>
-              <?php $rating = $product->ratingPercent(100); ?>
-              @for ($i = 1; $i <= 5; $i++)
-                @if($i > $rating)
-                  @if($i - 0.7 > $rating)
-                    <i class="material-icons">star_border</i>
-                  @elseif($i - 0.3 < $rating)
+      @foreach ($products as $product)
+        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-12 mt-2">
+          <div class="mdc-card">
+            <div class="mdc-card__primary-action product-card-action" tabindex="0" data-id="{{$product->id}}">
+              @if(isset($product->image[0]->filename))
+                <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
+                  style="background-image: url(&quot;{{asset("/img/products/".$product->image[0]->filename)}}&quot;);width:100%;">
+                </div>
+              @else
+                <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square mx-auto"
+                  style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;);width:80%">
+                </div>
+              @endif
+              <div class="p-2 ml-2">
+                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->name}}</h6>
+                @php 
+                  $rating = $product->ratingPercent(100);
+                @endphp
+                @for ($i = 1; $i <= 5; $i++)
+                  @if($i > $rating)
+                    @if($i - 0.7 > $rating)
+                      <i class="material-icons">star_border</i>
+                    @elseif($i - 0.3 < $rating)
+                      <i class="material-icons">star</i>
+                    @else
+                      <i class="material-icons">star_half</i>
+                    @endif
+                  @elseif($i <= $rating)
                     <i class="material-icons">star</i>
-                  @else
-                    <i class="material-icons">star_half</i>
                   @endif
-                @elseif($i <= $rating)
-                  <i class="material-icons">star</i>
-                @endif
-                @if($i == 5)
-                  ({{ $rating }})
-                @endif
-              @endfor
-              <p class="card-text">
-                <h2 class="mdc-typography mdc-typography--headline4" style="margin: 0px">R${{$product->price}}</h2>
-                <h2 class="mdc-typography mdc-typography--subtitle2" style="color:gray;">10x de R$2,70 sem juros</h2>
-              </p>
-              <div class="d-flex">
-                <a class="btn btn-primary" href="/produto/{{ $product->id }}"><h5 class="mt-1">Ver mais</h5></a>
-                <a class="ml-auto" href="/carrinho/{{ $product->id }}/add"><i class="mdc-icon-button material-icons">shopping_cart</i></a>
+                  @if($i == 5)
+                    ({{ $rating }})
+                  @endif
+                @endfor
+                <h4 class="font-weight-normal mb-0">
+                  R$
+                  @php
+                    $formatted_price = number_format($product->price, 2, ',', '');   
+                    echo $formatted_price;
+                  @endphp
+                </h4>
+                <span class="text-success">6x de  
+                  @php
+                    $parcel = $product->price / 6;
+                    $formatted_parcel = intval(strval($parcel * 100)) / 100;
+                    echo $formatted_parcel;   
+                  @endphp
+                  s/juros</span>      
+              </div>
+            </div>
+            <div class="mdc-card__actions">
+              <div class="mdc-card__action-icons">
+                <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded addProductToCart" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">shopping_cart</button>
               </div>
             </div>
           </div>

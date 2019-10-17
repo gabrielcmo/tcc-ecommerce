@@ -78,9 +78,6 @@ $(document).ready(function () {
                         }
                     }
                 });
-
-            } else {
-
             }
         }
     });
@@ -211,5 +208,32 @@ $(document).ready(function () {
                 required: 'Esse campo é obrigatório.'
             }
         }
+    });
+
+    $('#botaoCupom').click(function(){
+        var cupom = $('#cupomValue').val();
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8000/cupom/validate",
+            data: { queryCupom: cupom },
+            dataType: "JSON",
+            success: function (response) {
+                if (response.textStatus == 'success') {
+                    $('#cupomTr').removeClass('d-none');
+                    $('#cupomText').text("("+response.cupom.name+")");
+                    $('#totalDesconto').text("-"+response.cupom.desconto+"%");
+                    let val = ((1 - (response.cupom.desconto / 100)) * response.cartTotal).toFixed(2);
+                    $('#totalCart').text("R$ "+ val);
+                }
+                console.log(response);
+            }
+        });
     });
 });

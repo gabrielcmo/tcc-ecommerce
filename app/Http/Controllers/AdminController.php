@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Order;
 use Doomus\Historic;
+use Doomus\Cupom;
+use Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class AdminController extends Controller
 {
@@ -44,6 +47,33 @@ class AdminController extends Controller
 
     public function ofertaCategoriaView(){
         return view('admin.categoryDesconto')->with('category_id', $category_id);
+    }
+
+    public function cupomView(){
+        $cupons = Cupom::all();
+
+        $array[] = ['ID Cupom', 'Nome', 'Fornecido por', 'Desconto'];
+
+        foreach($cupons as $data){
+            $array[] = [$data->id, $data->name, $data->fornecido_por, "$data->desconto%"];
+        }
+
+        return view('admin.cupons')->with('cupons', json_encode($array));
+    }
+
+    public function cupomValidate(Request $request){
+
+        if($request->ajax()){
+            
+            $procurar_cupom = Cupom::where('name', $request->get('queryCupom'))->first();
+            
+            if(is_null($procurar_cupom) || $procurar_cupom == "" || $procurar_cupom == null){
+                return response()->json(['textStatus' => 'error']);
+            }else{
+                Session::put('cupom', $procurar_cupom);
+                return response()->json(['textStatus' => 'success', 'cupom' => $procurar_cupom, 'cartTotal' => Cart::total()]);
+            }
+        }
     }
 
     // Aplicar desconto a um determinado produto

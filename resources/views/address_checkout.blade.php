@@ -28,23 +28,39 @@ Checkout
                                 <td class="text-muted">{{$item->qty}} x {{$item->price}}</td>
                             </tr>
                         @endforeach
-                        <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                            <th>Total (BRL) s/ frete</th>
-                            <td class="font-weight-bold">R$ {{Cart::total()}}</td>
-                        </tr>
+                        @if(session('cupom') !== null)
+                            <tr class="border-top text-success" id="cupomTr" style="">
+                                <th>Cupom <small id="cupomText">({{session('cupom')['name']}})</small></th>
+                                <td class="text-success"><div id="totalDesconto">-{{session('cupom')['desconto']}}%</div></td>
+                            </tr>
+                        @else
+                            <tr class="border-top d-none text-success" id="cupomTr" style="">
+                                <th>Cupom <small id="cupomText"></small></th>
+                                <td class="text-success"><div id="totalDesconto"></div></td>
+                            </tr>
+                        @endif
+                        @if(session('cupom') !== null)
+                            <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                                <th>Total (BRL) s/ frete</th>
+                                <td class="font-weight-bold" id="totalCart">R$ {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2)}}</td>
+                            </tr>
+                        @else
+                            <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                                <th>Total (BRL) s/ frete</th>
+                                <td class="font-weight-bold" id="totalCart">R$ {{Cart::total()}}</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
     
-                <form>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cupom" aria-describedby="botaoCupom">
-                        <div class="input-group-append">
-                            <button class="mdc-button mdc-button--raised general-button" id="botaoCupom" style="border-radius: 0;">
-                                <span class="mdc-button__label">Resgatar</span>
-                            </button>
-                        </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cupom" aria-describedby="botaoCupom" id="cupomValue">
+                    <div class="input-group-append">
+                        <button class="mdc-button mdc-button--raised general-button" id="botaoCupom" style="border-radius: 0;">
+                            <span class="mdc-button__label">Resgatar</span>
+                        </button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         <div class="col-md-8 order-md-1">
@@ -159,7 +175,5 @@ Checkout
 @endsection
 
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
 <script src="{{asset('js/customJs/addressCheckout.js')}}"></script>
 @endsection

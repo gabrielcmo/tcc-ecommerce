@@ -50,6 +50,8 @@ Route::get('/ofertas', 'OfertasController@view')->name('offers');
 */
 Route::get('/checkout/address/cep', 'CheckoutController@checkCep')->name('checkCep');
 
+Route::get('/cupom/validate', 'AdminController@cupomValidate');
+
 /*
 *   Calcular CEP
 */
@@ -120,7 +122,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::post('/product/desconto', 'AdminController@ofertaProduto');
     
     Route::get('/category/desconto', 'AdminController@ofertaCategoriaView');
-    Route::post('/category/desconto', 'AdminController@ofertaCategoriaView');
+    Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria');
+    
+    Route::get('/cupom', 'AdminController@cupomView')->name('admin.cupons');
+    Route::get('/cupom/{id}/create', 'AdminController@cupomView');
+    Route::get('/cupom/{id}/destroy', 'AdminController@cupomView');
 
     /*
     *   Pedidos 
