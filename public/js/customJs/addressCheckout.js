@@ -1,5 +1,8 @@
 $(document).ready(function () {
-    var domain = window.location.host;
+    var domain = document.location.host;
+    if (domain == "www.doomus.com.br") {
+        domain = "www.doomus.com.br/public";
+    }
     var verifyCep, verifyCepStatus, cepData;
     $("#cep").blur(function () {
 

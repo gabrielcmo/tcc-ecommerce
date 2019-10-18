@@ -4,8 +4,12 @@ $(document).ready(function(){
     return mdc.ripple.MDCRipple.attachTo(el);
   });
   
-  var domain = window.location.host;
+  var domain = document.location.host;
   
+  if (domain == "www.doomus.com.br") {
+    domain = "www.doomus.com.br/public";
+  }
+
   $('.product-card-action').click(function (e){
     let product_id = $(this).data('id');
     window.location.href = "http://" + domain + "/produto/" + product_id; 
