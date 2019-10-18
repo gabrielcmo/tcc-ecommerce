@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\App;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +11,9 @@ use Illuminate\Support\Facades\App;
 |
 */
 
+use Illuminate\Support\Facades\App;
 
 if (App::environment('local')) {
-
-
 
     /*
     *   Cart routes
@@ -147,8 +143,7 @@ if (App::environment('local')) {
         return view('test_components');
     });
 } else {
-    Route::domain('loja.doomus.com.br')->group(function () {
-
+    Route::group(['prefix' => 'public'], function () {
         /*
     *   Cart routes
     */
