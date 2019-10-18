@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var domain = document.location.host;
-    if (domain == "www.doomus.com.br") {
+    if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
         domain = "www.doomus.com.br/public";
     }
     var verifyCep, verifyCepStatus, cepData;

@@ -17,9 +17,9 @@ $(document).ready(function (){
   const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
     return mdc.ripple.MDCRipple.attachTo(el);
   });
-  
+
   var domain = document.location.host;
-  if (domain == "www.doomus.com.br") {
+  if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
     domain = "www.doomus.com.br/public";
   }
 
