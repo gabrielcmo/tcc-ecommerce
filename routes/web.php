@@ -142,7 +142,9 @@ if (App::environment('local')) {
     Route::get('/test-components', function () {
         return view('test_components');
     });
-} else {
+}
+if (App::environment('production')) {
+    # code..
     Route::group(['prefix' => 'public'], function () {
         /*
     *   Cart routes
