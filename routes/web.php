@@ -147,7 +147,7 @@ if (App::environment('local')) {
         return view('test_components');
     });
 } else {
-    Route::domain('www.doomus.com.br/public')->group(function () {
+    Route::domain('loja.doomus.com.br')->group(function () {
 
         /*
     *   Cart routes
