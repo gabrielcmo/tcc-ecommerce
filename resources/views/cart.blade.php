@@ -34,7 +34,7 @@
                   $img = Doomus\Product::find($item->id)->image;
                   @endphp
                   @if(isset($img[0]->filename))
-                  <img src="/img/products/{{$img[0]->filename}}" )}}" class="rounded" style="height: 4.5rem; width: 4.5rem"
+                  <img src="/img/products/{{$img[0]->filename}}" class="rounded" style="height: 4.5rem; width: 4.5rem"
                     alt="...">
                   @else
                   <img src="/img/logo_icone.png" class="rounded" style="height: 4.5rem; width: 4.5rem" alt="...">
