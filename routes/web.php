@@ -77,8 +77,8 @@ Route::group(['middleware' => ['auth']], function (){
     *   Checkout
     */
     Route::group(['middleware' => ['Checkout']], function (){
-        Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');
-        Route::post('/checkout/address/data', 'CheckoutController@addressData');
+        Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('address-check');
+        Route::post('/checkout/address/data', 'CheckoutController@addressData')->name('address-data');
         Route::group(['middleware' => ['CheckoutPayment']], function (){
             Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
             Route::post('/checkout/payment/data', 'CheckoutController@paymentData');

@@ -96,7 +96,7 @@
               </div>
             </form>
             <hr>
-            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="http://localhost:8000/checkout/endereco">
+            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="{{route('address-check')}}">
               <span class="mdc-button__label">Continuar</span>
             </button>
           @endif
