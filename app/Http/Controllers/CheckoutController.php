@@ -154,13 +154,18 @@ class CheckoutController extends Controller
             Session::flash('status-type', 'danger');
             return redirect('/');
         } else {
-            $total = 0;
-
             foreach (Cart::content() as $item) {
                 ProductController::changeQtyLast($item->id, $item->qty);
                 $dataOrder['products'][] = ['id' => $item->id, 'qty' => $item->qty, 'price' => $item->price];
-                $total += $item->price;
             }
+
+            $total = Cart::total();
+
+            if(session('cupom') !== null){
+                $total *= 1 - (session('cupom')['desconto'] / 100);
+            }
+
+            $total += str_replace( ",", ".", session('valorFrete'));
 
             $dataOrder['p_method_id'] = 1;
             $dataOrder['value_total'] = $total;
