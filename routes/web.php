@@ -64,8 +64,6 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/perfil', 'UserController@showProfile')->name('perfil');
     Route::post('/perfil/update', 'UserController@updateProfile');
     Route::get('/pedidos', 'OrderController@show')->name('orders');
-    Route::get('/historico', 'HistoricController@show')->name('historic');
-
     Route::post('/avaliar', 'UserController@avaliate')->name('avaliate');
 
     /*

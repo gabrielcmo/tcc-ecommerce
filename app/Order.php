@@ -15,10 +15,6 @@ class Order extends Model
         return $this->belongsToMany('Doomus\Product')->withPivot('qty');
     }
 
-    public function historic(){
-        return $this->hasMany('Doomus\Historic');
-    }
-
     public function user(){
         return $this->belongsTo('Doomus\User');
     }

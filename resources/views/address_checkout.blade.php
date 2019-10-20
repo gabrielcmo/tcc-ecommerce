@@ -1,4 +1,4 @@
-@extends('layouts.new_layout')
+@extends('layouts.layout')
 
 @section('title')
 Checkout

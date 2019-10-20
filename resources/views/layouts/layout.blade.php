@@ -43,7 +43,7 @@
                 @if(Auth::user()->role_id == 1)
                   <a class="dropdown-item" href="/admin">Painel de Controle</a>
                 @endif
-                <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
+                <a class="dropdown-item" href="{{ route('orders') }}">Meus pedidos</a>
                 <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -112,7 +112,7 @@
           @endif
           <a class="mdc-list-item" href="{{ route('orders') }}">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-            <span class="mdc-list-item__text">Pedidos</span>
+            <span class="mdc-list-item__text">Meus pedidos</span>
           </a>
         </div>
         
@@ -149,7 +149,7 @@
 
   <div class="mdc-drawer-scrim"></div>
     <main class="main-content" id="main-content">
-      <div class="container-fluid">
+      <div class="">
         @if(Session::has('status'))
           @if(Session::has('status-type'))
             <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
