@@ -17,6 +17,7 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use Config;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PaymentController extends Controller
 {
@@ -47,7 +48,7 @@ class PaymentController extends Controller
         if(session('cupom') !== null && session('valorFrete') !== null){
             $amount = new Amount();
             $amount->setCurrency("BRL")
-                ->setTotal(round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2) + session('valorFrete'));
+                ->setTotal(round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete')));
         }elseif(session('valorFrete') !== null){
             $amount = new Amount();
             $amount->setCurrency("BRL")
