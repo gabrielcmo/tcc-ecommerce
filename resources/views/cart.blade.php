@@ -2,7 +2,7 @@
   dd(Cart::content());
 @endphp --}}
 
-@extends('layouts.new_layout')
+@extends('layouts.layout')
 
 @section('content')
   <div class="container">

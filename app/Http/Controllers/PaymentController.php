@@ -41,8 +41,10 @@ class PaymentController extends Controller
 
         // Set redirect URLs
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl('http://localhost:8000/execute-payment')
-        ->setCancelUrl('http://localhost:8000/cancel-payment');
+        $app_url = env('APP_URL');
+
+        $redirectUrls->setReturnUrl("$app_url/execute-payment")
+        ->setCancelUrl("$app_url/cancel-payment");
 
         // Set payment amount
         if(session('cupom') !== null && session('valorFrete') !== null){
