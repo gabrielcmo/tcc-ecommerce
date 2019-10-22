@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function (){
     */
     Route::get('/pedido/cancel', 'OrderController@cancel');
     Route::get('/pedido/rastrear', 'OrderController@track');
+    Route::get('/pedido/produtos', 'OrderController@showOrderProducts')->name('showOrderProducts');
 });
 
 /*

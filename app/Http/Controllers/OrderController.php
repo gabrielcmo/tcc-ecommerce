@@ -49,9 +49,13 @@ class OrderController extends Controller
     public function show()
     {
         $orders = User::getOrders();
-        dd($orders);
-        // $historic = User::getHistoric();
-        return view('user.order')->with('orders', $orders);
+        return view('user.orders')->with('orders', $orders);
+    }
+
+    public function showOrderProducts($order_id)
+    {
+        $products = OrderProduct::where('order_id', $order_id);
+        dd($products);
     }
 
     /**
