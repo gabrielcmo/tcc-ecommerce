@@ -44,7 +44,9 @@
 
             for(var i = 0; i < data.getNumberOfRows(); i++){
                 var order_id = orders[i+1][0];
-                data.setCell(i, 5, "<a href=" + "/admin/order/" + order_id + "/cancel" + "><i class='fas fa-trash'></i></a>");
+                data.setCell(i, 5, "<a href=" + "/admin/order/" + order_id + "/cancel" + ">CANCELAR</a>" + 
+                "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;" + "<a href=" + "/admin/order/" + order_id + "/despachado" + ">DESPACHADO</a>" +
+                "&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;" + "<a href=" + "/admin/order/" + order_id + "/entregue" + ">ENTREGUE</a>");
             }
             
             // for(var i = 0; i < data.getNumberOfRows(); i++){

@@ -109,7 +109,7 @@ class AdminController extends Controller
                 $i++;
             }
 
-            $array[] = [$order->id, $products, $order->user->id, true, $order->payment_method->name];
+            $array[] = [$order->id, $products, $order->user->id, $order->status->name, $order->payment_method->name];
         }
         
         return view('admin.orders')->with('orders', json_encode($array));
