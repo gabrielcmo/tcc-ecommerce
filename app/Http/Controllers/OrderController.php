@@ -6,8 +6,6 @@ use Doomus\Order;
 use Illuminate\Http\Request;
 use Doomus\Http\Controllers\UserController as User;
 use Session;
-use Doomus\Historic;
-use Doomus\HistoricStatus;
 use Doomus\OrderStatus;
 use Doomus\OrderProduct;
 

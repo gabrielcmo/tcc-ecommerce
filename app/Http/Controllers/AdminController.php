@@ -5,7 +5,6 @@ namespace Doomus\Http\Controllers;
 use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Order;
-use Doomus\Historic;
 use Doomus\Cupom;
 use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
