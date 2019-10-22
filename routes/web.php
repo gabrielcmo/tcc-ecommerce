@@ -43,7 +43,10 @@ Route::get('/find', 'SearchController@find')->name('search');
 */
 Route::get('/produto/{id}', 'ProductController@show');
 
+
+Route::get('/explore', 'OfertasController@viewExplore');
 Route::get('/ofertas', 'OfertasController@view')->name('offers');
+Route::get('/customize/quarto', 'OfertasController@viewCustomize');
 
 /*
 *   Checar CEP

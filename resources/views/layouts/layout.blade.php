@@ -138,11 +138,9 @@
   <div class="mdc-top-app-bar--fixed-adjust">
     <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
       <nav class="nav nav-underline" style="background-color:white;">
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Explore</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Ofertas Katiau</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Customize sua cozinha</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Para os que amam o luxo</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Seu quarto do seu jeito</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="/explore"><h5>Explore</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="/ofertas"><h5>Ofertas imperdíveis</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
       </nav>
     </div>
   </div>
