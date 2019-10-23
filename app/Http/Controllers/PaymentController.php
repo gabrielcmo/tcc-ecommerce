@@ -54,7 +54,7 @@ class PaymentController extends Controller
         }elseif(session('valorFrete') !== null){
             $amount = new Amount();
             $amount->setCurrency("BRL")
-                ->setTotal(Cart::total() + session('valorFrete'));
+                ->setTotal(Cart::total() + str_replace(',','.', session('valorFrete')));
         }else{
             $amount = new Amount();
             $amount->setCurrency("BRL")

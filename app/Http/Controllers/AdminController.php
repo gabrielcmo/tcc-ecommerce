@@ -5,7 +5,6 @@ namespace Doomus\Http\Controllers;
 use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Order;
-use Doomus\Historic;
 use Doomus\Cupom;
 use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -109,7 +108,7 @@ class AdminController extends Controller
                 $i++;
             }
 
-            $array[] = [$order->id, $products, $order->user->id, true, $order->payment_method->name];
+            $array[] = [$order->id, $products, $order->user->id, $order->status->name, $order->payment_method->name];
         }
         
         return view('admin.orders')->with('orders', json_encode($array));

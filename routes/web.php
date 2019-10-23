@@ -43,7 +43,10 @@ Route::get('/find', 'SearchController@find')->name('search');
 */
 Route::get('/produto/{id}', 'ProductController@show');
 
+
+Route::get('/explore', 'OfertasController@viewExplore');
 Route::get('/ofertas', 'OfertasController@view')->name('offers');
+Route::get('/customize/quarto', 'OfertasController@viewCustomize');
 
 /*
 *   Checar CEP
@@ -132,6 +135,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     */
     Route::get('/orders', 'AdminController@orders')->name('admin.orders');
     Route::get('/order/{id}/cancel', 'OrderController@cancel')->name('admin.order.cancel');
+    Route::get('/order/{id}/entregue', 'OrderController@pedidoEntregue')->name('admin.order.entregue');
+    Route::get('/order/{id}/despachado', 'OrderController@pedidoDespachado')->name('admin.order.despachado');
 });
 
 Route::get('/test-components', function(){

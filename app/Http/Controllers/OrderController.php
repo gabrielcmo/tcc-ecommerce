@@ -6,8 +6,6 @@ use Doomus\Order;
 use Illuminate\Http\Request;
 use Doomus\Http\Controllers\UserController as User;
 use Session;
-use Doomus\Historic;
-use Doomus\HistoricStatus;
 use Doomus\OrderStatus;
 use Doomus\OrderProduct;
 use Doomus\Product;
@@ -91,22 +89,41 @@ class OrderController extends Controller
     {
         $order = Order::find($order_id);
         
-        if(Historic::where('order_id', $order_id)->first() !== null){
+        if($order->status_id == 4){
             Session::flash('status', 'Esse pedido ja foi cancelado');
             Session::flash('status-type', 'danger');
             return back();
         }
-        
-        $historic = new Historic();
-        $historic->order_id = $order_id;
-        $historic->user_id = User::getUser()->id;
-        $historic->status_id = HistoricStatus::$STATUS_CANCELLED;
-        $historic->save();
 
         $order->status_id = OrderStatus::$STATUS_GUARDED;
+        $order->data_cancelado = date('Y-m-d') ." ". date("H:i:s");
         $order->save();
 
         Session::flash('status', 'Pedido cancelado');
         return back();
+    }
+
+    public function pedidoEntregue($order_id){
+        $order = Order::find($order_id);
+
+        $order->status_id = OrderStatus::$STATUS_OK;
+        $order->data_entrega = date('Y-m-d') ." ". date("H:i:s");
+        $order->save();
+
+        Session::flash('status', 'Pedido definido como entregue');
+
+        return back(); 
+    }
+
+    public function pedidoDespachado($order_id){
+        $order = Order::find($order_id);
+
+        $order->status_id = OrderStatus::$STATUS_TRANSPORT;
+        $order->data_despache = date('Y-m-d') ." ". date("H:i:s");
+        $order->save();
+
+        Session::flash('status', 'Pedido definido como em transporte');
+
+        return back(); 
     }
 }
