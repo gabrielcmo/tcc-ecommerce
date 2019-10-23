@@ -1,4 +1,4 @@
-@extends('layouts.new_layout')
+@extends('layouts.layout')
 
 @section('title')
 Checkout
@@ -23,40 +23,47 @@ Checkout
                 <table class="table table-borderless">
                     <tbody>
                         @foreach(Cart::content() as $item)
-                            <tr class="border-top">
-                                <th>{{$item->name}}</th>
-                                <td class="text-muted">{{$item->qty}} x {{$item->price}}</td>
-                            </tr>
+                        <tr class="border-top">
+                            <th>{{$item->name}}</th>
+                            <td class="text-muted">{{$item->qty}} x {{$item->price}}</td>
+                        </tr>
                         @endforeach
                         @if(session('cupom') !== null)
-                            <tr class="border-top text-success" id="cupomTr" style="">
-                                <th>Cupom <small id="cupomText">({{session('cupom')['name']}})</small></th>
-                                <td class="text-success"><div id="totalDesconto">-{{session('cupom')['desconto']}}%</div></td>
-                            </tr>
+                        <tr class="border-top text-success" id="cupomTr" style="">
+                            <th>Cupom <small id="cupomText">({{session('cupom')['name']}})</small></th>
+                            <td class="text-success">
+                                <div id="totalDesconto">-{{session('cupom')['desconto']}}%</div>
+                            </td>
+                        </tr>
                         @else
-                            <tr class="border-top d-none text-success" id="cupomTr" style="">
-                                <th>Cupom <small id="cupomText"></small></th>
-                                <td class="text-success"><div id="totalDesconto"></div></td>
-                            </tr>
+                        <tr class="border-top d-none text-success" id="cupomTr" style="">
+                            <th>Cupom <small id="cupomText"></small></th>
+                            <td class="text-success">
+                                <div id="totalDesconto"></div>
+                            </td>
+                        </tr>
                         @endif
                         @if(session('cupom') !== null)
-                            <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                                <th>Total (BRL) s/ frete</th>
-                                <td class="font-weight-bold" id="totalCart">R$ {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2)}}</td>
-                            </tr>
+                        <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                            <th>Total (BRL) s/ frete</th>
+                            <td class="font-weight-bold" id="totalCart">R$
+                                {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2)}}</td>
+                        </tr>
                         @else
-                            <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                                <th>Total (BRL) s/ frete</th>
-                                <td class="font-weight-bold" id="totalCart">R$ {{Cart::total()}}</td>
-                            </tr>
+                        <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                            <th>Total (BRL) s/ frete</th>
+                            <td class="font-weight-bold" id="totalCart">R$ {{Cart::total()}}</td>
+                        </tr>
                         @endif
                     </tbody>
                 </table>
-    
+
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cupom" aria-describedby="botaoCupom" id="cupomValue">
+                    <input type="text" class="form-control" placeholder="Cupom" aria-describedby="botaoCupom"
+                        id="cupomValue">
                     <div class="input-group-append">
-                        <button class="mdc-button mdc-button--raised general-button" id="botaoCupom" style="border-radius: 0;">
+                        <button class="mdc-button mdc-button--raised general-button" id="botaoCupom"
+                            style="border-radius: 0;">
                             <span class="mdc-button__label">Resgatar</span>
                         </button>
                     </div>
@@ -66,7 +73,7 @@ Checkout
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Endereço de entrega</h4>
             <br>
-            <form action="/checkout/address/data" method="post" id="addressCheckoutForm">
+            <form action="{{ route('address-data') }}" method="post" id="addressCheckoutForm">
                 @csrf
                 <div class="form-group col-lg-6 pl-0">
                     <input type="text" name="address" id="address" placeholder="Rua"
@@ -156,16 +163,19 @@ Checkout
 
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label for="same-address" class="custom-control-label">O endereço de entrega é o mesmo que o de pagamento</label>
+                    <label for="same-address" class="custom-control-label">O endereço de entrega é o mesmo que o de
+                        pagamento</label>
                 </div>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label for="save-info" class="custom-control-label">Salvar minhas informações para próxima compra</label>
+                    <label for="save-info" class="custom-control-label">Salvar minhas informações para próxima
+                        compra</label>
                 </div>
-                
+
                 <hr>
 
-                <button type="submit" class="mdc-button mdc-button--raised general-button w-100 submitButtonAddressForm">
+                <button type="submit"
+                    class="mdc-button mdc-button--raised general-button w-100 submitButtonAddressForm">
                     <span class="mdc-button__label">Continuar</span>
                 </button>
             </form>

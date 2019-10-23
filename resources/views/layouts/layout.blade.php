@@ -115,7 +115,7 @@
               @endguest
             </div>
           </div>
-          <button class="mdc-button mdc-button--raised actionButton general-button" data-href="{{ route('user.cart') }}" style="background-color: #" id="cartButton">
+          <button class="mdc-button mdc-button--raised actionButton general-button mr-1" data-href="{{ route('user.cart') }}" style="background-color: #" id="cartButton">
             <i class="fas fa-shopping-cart" aria-hidden="true"></i>
             @if(Cart::count() > 0)
               <span id="countCart" class="badge badge-light ml-1">{{ Cart::count() }}</span>
@@ -156,7 +156,7 @@
           @endif
           <a class="mdc-list-item" href="{{ route('orders') }}">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-            <span class="mdc-list-item__text">Pedidos</span>
+            <span class="mdc-list-item__text">Meus pedidos</span>
           </a>
         </div>
         
@@ -182,18 +182,16 @@
   <div class="mdc-top-app-bar--fixed-adjust">
     <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
       <nav class="nav nav-underline" style="background-color:white;">
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Explore</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Ofertas Katiau</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Customize sua cozinha</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Para os que amam o luxo</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="#"><h5>Seu quarto do seu jeito</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="/explore"><h5>Explore</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="/ofertas"><h5>Ofertas imperdíveis</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
       </nav>
     </div>
   </div>
 
   <div class="mdc-drawer-scrim"></div>
     <main class="main-content" id="main-content">
-      <div class="container-fluid">
+      <div class="">
         @if(Session::has('status'))
           @if(Session::has('status-type'))
             <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">

@@ -51,10 +51,6 @@ class Product extends Model
         return $this->belongsToMany('Doomus\Order');
     }
 
-    public function historics(){
-        return $this->hasMany('Doomus\Order');
-    }
-
     public function evaluations(){
         return $this->hasMany('Doomus\EvaluationText');
     }

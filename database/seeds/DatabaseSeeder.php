@@ -216,6 +216,7 @@ class DatabaseSeeder extends Seeder
             'filename' => 'placeholder-4.jpg',
             'product_id' => 4,
         ]);
+<<<<<<< HEAD
         
         DB::table('product_images')->insert([
             'filename' => 'placeholder-5.jpg',
@@ -234,11 +235,9 @@ class DatabaseSeeder extends Seeder
         DB::table('historic_statuses')->insert([
             'name' => 'recusado',
         ]);
+=======
+>>>>>>> b038bddc1ae55dacb51daced99529c25c18cd45e
 
-        DB::table('historic_statuses')->insert([
-            'name' => 'cancelado',
-        ]);
-        
         DB::table('order_statuses')->insert([
             'name' => 'em andamento',
         ]);
@@ -361,24 +360,6 @@ class DatabaseSeeder extends Seeder
             'order_id' => 5,
             'qty' => 10,
             'price' => 19.99
-        ]);
-
-        DB::table('historics')->insert([
-            'order_id' => 2,
-            'user_id' => 2,
-            'status_id' => 1
-        ]);
-        
-        DB::table('historics')->insert([
-        'order_id' => 3,
-        'user_id' => 2,
-        'status_id' => 2
-        ]);
-        
-        DB::table('historics')->insert([
-        'order_id' => 4,
-        'user_id' => 2,
-        'status_id' => 3
         ]);
         
         DB::table('products')->insert([

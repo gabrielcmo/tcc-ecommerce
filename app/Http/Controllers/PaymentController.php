@@ -17,6 +17,7 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use Config;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PaymentController extends Controller
 {
@@ -40,18 +41,20 @@ class PaymentController extends Controller
 
         // Set redirect URLs
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl('http://localhost:8000/execute-payment')
-        ->setCancelUrl('http://localhost:8000/cancel-payment');
+        $app_url = env('APP_URL');
+
+        $redirectUrls->setReturnUrl("$app_url/execute-payment")
+        ->setCancelUrl("$app_url/cancel-payment");
 
         // Set payment amount
         if(session('cupom') !== null && session('valorFrete') !== null){
             $amount = new Amount();
             $amount->setCurrency("BRL")
-                ->setTotal(round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2) + session('valorFrete'));
+                ->setTotal(round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete')));
         }elseif(session('valorFrete') !== null){
             $amount = new Amount();
             $amount->setCurrency("BRL")
-                ->setTotal(Cart::total() + session('valorFrete'));
+                ->setTotal(Cart::total() + str_replace(',','.', session('valorFrete')));
         }else{
             $amount = new Amount();
             $amount->setCurrency("BRL")

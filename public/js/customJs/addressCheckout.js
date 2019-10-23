@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    var domain = document.location.host;
+    if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
+        domain = "www.doomus.com.br/public";
+    }
     var verifyCep, verifyCepStatus, cepData;
     $("#cep").blur(function () {
 
@@ -33,7 +37,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:8000/checkout/address/cep",
+                    url: "http://" + domain + "/checkout/address/cep",
                     data: { query: verifyCep },
                     dataType: "JSON",
                     success: function (response) {
@@ -221,7 +225,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "http://localhost:8000/cupom/validate",
+            url: "http://" + domain + "/cupom/validate",
             data: { queryCupom: cupom },
             dataType: "JSON",
             success: function (response) {

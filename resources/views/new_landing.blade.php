@@ -1,4 +1,4 @@
-@extends('layouts.new_layout')
+@extends('layouts.layout')
 
 @section('content')
   <div class="row justify-content-center">
@@ -97,6 +97,10 @@
         </div>
       @endforeach
     </div>
+    <button class="mdc-fab app-fab--absolute general-button d-none" aria-label="Pesquisar produto" id="toggleSearchBarButton">
+      <span class="mdc-fab__icon material-icons">search</span>
+    </button>
+    <input type="text" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices">
   </div>
 @endsection
 

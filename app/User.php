@@ -18,10 +18,6 @@ class User extends Authenticatable
         return $this->belongsTo('Doomus\Role');
     }
 
-    public function historic(){
-        return $this->hasMany('Doomus\Historic');
-    }
-
     public function order(){
          return $this->hasMany('Doomus\Order');
     }

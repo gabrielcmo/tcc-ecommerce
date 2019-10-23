@@ -43,7 +43,10 @@ Route::get('/find', 'SearchController@find')->name('search');
 */
 Route::get('/produto/{id}', 'ProductController@show');
 
+
+Route::get('/explore', 'OfertasController@viewExplore');
 Route::get('/ofertas', 'OfertasController@view')->name('offers');
+Route::get('/customize/quarto', 'OfertasController@viewCustomize');
 
 /*
 *   Checar CEP
@@ -64,8 +67,6 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/perfil', 'UserController@showProfile')->name('perfil');
     Route::post('/perfil/update', 'UserController@updateProfile');
     Route::get('/pedidos', 'OrderController@show')->name('orders');
-    Route::get('/historico', 'HistoricController@show')->name('historic');
-
     Route::post('/avaliar', 'UserController@avaliate')->name('avaliate');
 
     /*
@@ -77,8 +78,8 @@ Route::group(['middleware' => ['auth']], function (){
     *   Checkout
     */
     Route::group(['middleware' => ['Checkout']], function (){
-        Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('adress-check');
-        Route::post('/checkout/address/data', 'CheckoutController@addressData');
+        Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('address-check');
+        Route::post('/checkout/address/data', 'CheckoutController@addressData')->name('address-data');
         Route::group(['middleware' => ['CheckoutPayment']], function (){
             Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
             Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
@@ -98,6 +99,7 @@ Route::group(['middleware' => ['auth']], function (){
     */
     Route::get('/pedido/cancel', 'OrderController@cancel');
     Route::get('/pedido/rastrear', 'OrderController@track');
+    Route::get('/pedido/produtos', 'OrderController@showOrderProducts')->name('showOrderProducts');
 });
 
 /*
@@ -133,6 +135,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     */
     Route::get('/orders', 'AdminController@orders')->name('admin.orders');
     Route::get('/order/{id}/cancel', 'OrderController@cancel')->name('admin.order.cancel');
+    Route::get('/order/{id}/entregue', 'OrderController@pedidoEntregue')->name('admin.order.entregue');
+    Route::get('/order/{id}/despachado', 'OrderController@pedidoDespachado')->name('admin.order.despachado');
 });
 
 Route::get('/test-components', function(){

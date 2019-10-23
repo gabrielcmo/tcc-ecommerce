@@ -2,7 +2,7 @@
   dd(Cart::content());
 @endphp --}}
 
-@extends('layouts.new_layout')
+@extends('layouts.layout')
 
 @section('content')
   <div class="container">
@@ -34,7 +34,7 @@
                   $img = Doomus\Product::find($item->id)->image;
                   @endphp
                   @if(isset($img[0]->filename))
-                  <img src="/img/products/{{$img[0]->filename}}" )}}" class="rounded" style="height: 4.5rem; width: 4.5rem"
+                  <img src="/img/products/{{$img[0]->filename}}" class="rounded" style="height: 4.5rem; width: 4.5rem"
                     alt="...">
                   @else
                   <img src="/img/logo_icone.png" class="rounded" style="height: 4.5rem; width: 4.5rem" alt="...">
@@ -96,7 +96,7 @@
               </div>
             </form>
             <hr>
-            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="http://localhost:8000/checkout/endereco">
+            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="{{route('address-check')}}">
               <span class="mdc-button__label">Continuar</span>
             </button>
           @endif

@@ -154,17 +154,24 @@ class CheckoutController extends Controller
             Session::flash('status-type', 'danger');
             return redirect('/');
         } else {
-            $total = 0;
-
             foreach (Cart::content() as $item) {
                 ProductController::changeQtyLast($item->id, $item->qty);
                 $dataOrder['products'][] = ['id' => $item->id, 'qty' => $item->qty, 'price' => $item->price];
-                $total += $item->price;
             }
+
+            $total = Cart::total();
+
+            if(session('cupom') !== null){
+                $total *= 1 - (session('cupom')['desconto'] / 100);
+            }
+
+            $total += str_replace( ",", ".", session('valorFrete'));
 
             $dataOrder['p_method_id'] = 1;
             $dataOrder['value_total'] = $total;
             $dataOrder['status_id'] = OrderStatus::$STATUS_PROCESSING;
+            $order->data_realizado = date('Y-m-d') ." ". date("H:i:s");
+            $order->data_aprovado = date('Y-m-d') ." ". date("H:i:s");
             $dataOrder['frete'] = session('correiosData')['valorEntrega'];
             $dataOrder['prazo'] = session('correiosData')['prazoEntrega'];
 
@@ -172,6 +179,7 @@ class CheckoutController extends Controller
 
             Session::forget('valorFrete');
             Session::forget('prazoFrete');
+            Session::forget('token-paypal');
 
             Cart::destroy();
 
