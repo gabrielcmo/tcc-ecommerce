@@ -97,7 +97,10 @@
         </div>
       @endforeach
     </div>
-    button
+    <button class="mdc-fab app-fab--absolute general-button d-none" aria-label="Pesquisar produto" id="toggleSearchBarButton">
+      <span class="mdc-fab__icon material-icons">search</span>
+    </button>
+    <input type="text" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices">
   </div>
 @endsection
 

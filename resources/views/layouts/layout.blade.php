@@ -71,7 +71,7 @@
               @endif
             </div>
           </div>
-          <button class="mdc-button mdc-button--raised actionButton general-button" data-href="{{ route('user.cart') }}" style="background-color: #" id="cartButton">
+          <button class="mdc-button mdc-button--raised actionButton general-button mr-1" data-href="{{ route('user.cart') }}" style="background-color: #" id="cartButton">
             <i class="fas fa-shopping-cart" aria-hidden="true"></i>
             @if(Cart::count() > 0)
               <span id="countCart" class="badge badge-light ml-1">{{ Cart::count() }}</span>
