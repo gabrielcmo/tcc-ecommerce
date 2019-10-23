@@ -10,6 +10,8 @@ use Doomus\Historic;
 use Doomus\HistoricStatus;
 use Doomus\OrderStatus;
 use Doomus\OrderProduct;
+use Doomus\Product;
+use Doomus\ProductImage;
 
 class OrderController extends Controller
 {
@@ -52,10 +54,31 @@ class OrderController extends Controller
         return view('user.orders')->with('orders', $orders);
     }
 
-    public function showOrderProducts($order_id)
+    public function showOrderProducts(Request $request)
     {
-        $products = OrderProduct::where('order_id', $order_id);
-        dd($products);
+        $products_id = OrderProduct::where('order_id', $request->order_id)->select('product_id')->addSelect('qty')->get();
+        foreach ($products_id as $product) {
+            $product_data = Product::where('id', $product->product_id)
+                ->addSelect('name')
+                ->addSelect('price')
+                ->get(); 
+                
+            $product_image = ProductImage::where('product_id', $product->product_id)->select('filename')->first();
+            if ($product_image == null) {
+                $product_image = 'logo_icone.png';
+            } else {
+                $product_image = $product_image->filename;
+            }
+            $response[] = [
+                'product_id'=>$product->product_id,
+                'product_name'=>$product_data[0]->name,
+                'product_qty'=>$product->qty,
+                'product_price'=>$product_data[0]->price,
+                'product_image'=>$product_image
+            ];
+        }
+
+        return response()->json($response);
     }
 
     /**
