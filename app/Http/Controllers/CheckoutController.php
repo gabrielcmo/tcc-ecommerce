@@ -170,8 +170,6 @@ class CheckoutController extends Controller
             $dataOrder['p_method_id'] = 1;
             $dataOrder['value_total'] = $total;
             $dataOrder['status_id'] = OrderStatus::$STATUS_PROCESSING;
-            $order->data_realizado = date('Y-m-d') ." ". date("H:i:s");
-            $order->data_aprovado = date('Y-m-d') ." ". date("H:i:s");
             $dataOrder['frete'] = session('correiosData')['valorEntrega'];
             $dataOrder['prazo'] = session('correiosData')['prazoEntrega'];
 

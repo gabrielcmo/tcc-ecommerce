@@ -23,6 +23,8 @@ class OrderController extends Controller
         $order = new Order();
         $order->user_id = User::getUser()->id;
         $order->payment_method_id = $request['p_method_id'];
+        $order->data_realizado = date('Y-m-d') ." ". date("H:i:s");
+        $order->data_aprovado = date('Y-m-d') ." ". date("H:i:s");
         $order->value_total = $request['value_total'];
         $order->status_id = $request['status_id'];
         $order->frete = $request['frete'];

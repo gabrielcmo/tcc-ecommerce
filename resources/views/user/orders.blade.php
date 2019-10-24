@@ -58,7 +58,16 @@
                         <div>
                           <h4 class="d-flex justify-content-between">
                             <span>Pedido de número: {{$pedido->id}}</span>
-                            <span>Realizado no dia:</span>
+                            <span>Realizado no dia: 
+                              <span class="font-weight-light">
+                                @php
+                                if (!is_null($pedido->data_realizado)) {
+                                  $data_realizado = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_realizado);
+                                  echo $data_realizado->format('d/m/Y H:i:s');
+                                }
+                                @endphp
+                              </span>
+                            </span>
                           </h4>
                           <div class="progress mt-2">
                             @switch($pedido->status_id)
@@ -83,7 +92,7 @@
                                 @case(1)
                                   <div class="badge text-wrap text-warning" style="width: 10rem">
                                     <p class="mb-0">Processando pagamento</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">{{$data_realizado->format('d/m/Y H:i:s')}}</p>
                                   </div>
                                   <div class="badge text-wrap text-muted" style="width: 10rem">
                                     <p class="mb-0">Pagamento autorizado</p>
@@ -158,13 +167,14 @@
                             @endswitch
                           </div>
                           <h5 class="mt-2">Endereço de entrega</h5>
-                          <p class="font-weight-bolder mb-1">Endereço: </p>
+                          <p class="font-weight-bolder mb-1">Endereço: <span class="font-weight-light"></span></p>
                           <p class="font-weight-bolder mb-1">Bairro: </p>
                           <p class="font-weight-bolder mb-1">Cidade: </p>
                           <p class="font-weight-bolder">Estado: </p>
                           <hr>
-                          <h6 class="mb-0">Valor do frete: </h6>
-                          <h4 class="mt-0">Valor total: </h4>
+                          <h6 class="mb-0">Valor do frete: <span class="font-weight-light">R$ {{$pedido->frete}}</span></h6>
+                          <h4>Subtotal: <span class="font-weight-light">R$ {{$pedido->value_total - $pedido->frete}}</span></h4>
+                          <h4 class="mt-0">Valor total (c/ frete): <span class="font-weight-light">R$ {{$pedido->value_total}}</span></h4>
                           <button class="mdc-button mdc-button--raised general-button showProducts mt-2" type="button" data-pedido-id="{{$pedido->id}}" data-href="{{route('showOrderProducts')}}">
                             <span class="mdc-button__label">Ver produtos</span>
                           </button>
@@ -198,7 +208,6 @@
                 <tr>
                   <th>Produtos</th>
                   <th>Quantidade/Preço</th>
-                  <th>Avaliar</th>
                 </tr>
               </thead>
               <tbody id="modalProductsBody">
@@ -207,7 +216,7 @@
             </table>
           </div>
           <div class="modal-footer">
-            <button class="mdc-button mdc-button--raised bg-danger" data-dismiss="modal">
+            <button class="mdc-button mdc-button--raised bg-danger" data-dismiss="modal" id="closeModalOrderProducts">
               <span class="mdc-button__label">Fechar</span>
             </button>
           </div>
