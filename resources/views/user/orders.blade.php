@@ -87,7 +87,7 @@
                                   <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                                     @break
                                 @case(5)
-                                  <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                  <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                                     @break
                                 @default
                                     
@@ -211,6 +211,12 @@
 
                                     @break
                                 @case(5)
+                                  <div style="width: 10rem">
+                                  </div>
+                                  <div style="width: 10rem">
+                                  </div>
+                                  <div style="width: 10rem">
+                                  </div>
                                   <div class="badge text-wrap text-danger" style="width: 10rem">
                                     <p class="mb-0">Cancelado</p>
                                     <p class="mb-0 mt-1">
