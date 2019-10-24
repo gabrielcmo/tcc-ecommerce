@@ -169,6 +169,12 @@ class CheckoutController extends Controller
 
             $dataOrder['p_method_id'] = 1;
             $dataOrder['value_total'] = $total;
+            $dataOrder['cep'] = session('userData')['cep'];
+            $dataOrder['endereco'] = session('userData')['address'];
+            $dataOrder['numero'] = session('userData')['n'];
+            $dataOrder['bairro'] = session('userData')['bairro'];
+            $dataOrder['cidade'] = session('userData')['city'];
+            $dataOrder['estado'] = session('userData')['state'];
             $dataOrder['status_id'] = OrderStatus::$STATUS_PROCESSING;
             $dataOrder['frete'] = session('correiosData')['valorEntrega'];
             $dataOrder['prazo'] = session('correiosData')['prazoEntrega'];

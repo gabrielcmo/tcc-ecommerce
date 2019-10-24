@@ -48,6 +48,9 @@
                               @case(4)
                                 <span class="text-success">Entregue</span>
                                   @break
+                              @case(5)
+                                <span class="text-danger">Cancelado</span>
+                                  @break
                               @default    
                           @endswitch
                         </span>
@@ -83,6 +86,9 @@
                                 @case(4)
                                   <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                                     @break
+                                @case(5)
+                                  <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                    @break
                                 @default
                                     
                             @endswitch
@@ -96,81 +102,135 @@
                                   </div>
                                   <div class="badge text-wrap text-muted" style="width: 10rem">
                                     <p class="mb-0">Pagamento autorizado</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1"></p>
                                   </div>
                                   <div class="badge text-wrap text-muted" style="width: 10rem">
                                     <p class="mb-0">Em transporte</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1"></p>
                                   </div>
                                   <div class="badge text-wrap text-muted" style="width: 10rem">
                                     <p class="mb-0">Entregue</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1"></p>
                                   </div>
                                     @break
                                 @case(2)
                                   <div class="badge text-wrap text-success" style="width: 10rem">
                                     <p class="mb-0">Processando pagamento</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">{{$data_realizado->format('d/m/Y H:i:s')}}</p>
                                   </div>
                                   <div class="badge text-wrap text-warning" style="width: 10rem">
                                     <p class="mb-0">Pagamento autorizado</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">
+                                      @php
+                                        if (!is_null($pedido->data_aprovado)) {
+                                          $data_aprovado = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_aprovado);
+                                          echo $data_aprovado->format('d/m/Y H:i:s');
+                                        }    
+                                      @endphp
+                                    </p>
                                   </div>
                                   <div class="badge text-wrap text-muted" style="width: 10rem">
                                     <p class="mb-0">Em transporte</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1"></p>
                                   </div>
                                   <div class="badge text-wrap text-muted" style="width: 10rem">
                                     <p class="mb-0">Entregue</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1"></p>
                                   </div>
                                     @break
                                 @case(3)
                                   <div class="badge text-wrap text-success" style="width: 10rem">
                                     <p class="mb-0">Processando pagamento</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">{{$data_realizado->format('d/m/Y H:i:s')}}</p>
                                   </div>
                                   <div class="badge text-wrap text-success" style="width: 10rem">
                                     <p class="mb-0">Pagamento autorizado</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">
+                                      @php
+                                        if (!is_null($pedido->data_aprovado)) {
+                                          $data_aprovado = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_aprovado);
+                                          echo $data_aprovado->format('d/m/Y H:i:s');
+                                        }    
+                                      @endphp
+                                    </p>
                                   </div>
                                   <div class="badge text-wrap text-warning" style="width: 10rem">
                                     <p class="mb-0">Em transporte</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">
+                                      @php
+                                        if (!is_null($pedido->data_despache)) {
+                                          $data_despache = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_despache);
+                                          echo $data_despache->format('d/m/Y H:i:s');
+                                        }    
+                                      @endphp
+                                    </p>
                                   </div>
                                   <div class="badge text-wrap text-muted" style="width: 10rem">
                                     <p class="mb-0">Entregue</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1"></p>
                                   </div>
                                     @break
                                 @case(4)
                                   <div class="badge text-wrap text-success" style="width: 10rem">
                                     <p class="mb-0">Processando pagamento</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">{{$data_realizado->format('d/m/Y H:i:s')}}</p>
                                   </div>
                                   <div class="badge text-wrap text-success" style="width: 10rem">
                                     <p class="mb-0">Pagamento autorizado</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">
+                                      @php
+                                        if (!is_null($pedido->data_aprovado)) {
+                                          $data_aprovado = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_aprovado);
+                                          echo $data_aprovado->format('d/m/Y H:i:s');
+                                        }    
+                                      @endphp
+                                    </p>
                                   </div>
                                   <div class="badge text-wrap text-success" style="width: 10rem">
                                     <p class="mb-0">Em transporte</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">
+                                      @php
+                                        if (!is_null($pedido->data_despache)) {
+                                          $data_despache = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_despache);
+                                          echo $data_despache->format('d/m/Y H:i:s');
+                                        }    
+                                      @endphp
+                                    </p>
                                   </div>
                                   <div class="badge text-wrap text-success" style="width: 10rem">
                                     <p class="mb-0">Entregue</p>
-                                    <p class="mb-0 mt-1">22/10/2019 11:10</p>
+                                    <p class="mb-0 mt-1">
+                                      @php
+                                        if (!is_null($pedido->data_entrega)) {
+                                          $data_entrega = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_entrega);
+                                          echo $data_entrega->format('d/m/Y H:i:s');
+                                        }    
+                                      @endphp
+                                    </p>
                                   </div>
 
                                     @break
+                                @case(5)
+                                  <div class="badge text-wrap text-danger" style="width: 10rem">
+                                    <p class="mb-0">Cancelado</p>
+                                    <p class="mb-0 mt-1">
+                                      @php
+                                        if (!is_null($pedido->data_cancelado)) {
+                                          $data_cancelado = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_cancelado);
+                                          echo $data_cancelado->format('d/m/Y H:i:s');
+                                        }    
+                                      @endphp
+                                    </p>
+                                  </div>
                                 @default
                                     
                             @endswitch
                           </div>
                           <h5 class="mt-2">Endereço de entrega</h5>
-                          <p class="font-weight-bolder mb-1">Endereço: <span class="font-weight-light"></span></p>
-                          <p class="font-weight-bolder mb-1">Bairro: </p>
-                          <p class="font-weight-bolder mb-1">Cidade: </p>
-                          <p class="font-weight-bolder">Estado: </p>
+                          <p class="font-weight-bolder mb-1">Endereço: <span class="font-weight-light">{{$pedido->endereco}}</span></p>
+                          <p class="font-weight-bolder mb-1">Bairro: <span class="font-weight-light">{{$pedido->bairro}}</span></p>
+                          <p class="font-weight-bolder mb-1">Cidade: <span class="font-weight-light">{{$pedido->cidade}}</span></p>
+                          <p class="font-weight-bolder">Estado: <span class="font-weight-light">{{$pedido->estado}}</span></p>
                           <hr>
                           <h6 class="mb-0">Valor do frete: <span class="font-weight-light">R$ {{$pedido->frete}}</span></h6>
                           <h4>Subtotal: <span class="font-weight-light">R$ {{$pedido->value_total - $pedido->frete}}</span></h4>

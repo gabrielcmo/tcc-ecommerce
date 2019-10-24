@@ -178,31 +178,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
   {{-- Custom Stylesheets --}}
   <script src="{{asset('js/customJs/layout.js')}}"></script>
-  <script>
-    $(document).ready(function(){
-      function fetch_data(query = ''){
-        $.ajax({
-          url: "{{ route('search') }}",
-          method: 'GET',
-          data: {query:query},
-          success:function(result){
-            $('#result').fadeIn();
-            $('#result').html(result);
-          }
-        });
-      }
-
-      $('#search').keyup(function(){
-        if($('#search').val() !== ""){
-          $('#result').removeClass('d-none');
-          var query = $(this).val();
-          fetch_data(query);
-        }else{
-          $('#result').addClass('d-none');
-        }
-      });
-    });
-  </script>
   @yield('scripts')
   {!! NoCaptcha::renderJs() !!}
 </body>
