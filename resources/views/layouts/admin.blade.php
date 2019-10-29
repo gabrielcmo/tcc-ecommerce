@@ -33,17 +33,17 @@
       </section>
     </div>
   </header>
-
+  
   <aside class="mdc-drawer mdc-drawer--modal d-none" id="admin-sidebarMenu">
     @auth
-      <div class="mdc-drawer__header">
-        <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
-        <h6 class="mdc-drawe__subtitle">{{ Auth::user()->email }}</h6>
-      </div>
+    <div class="mdc-drawer__header">
+      <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
+      <h6 class="mdc-drawe__subtitle">{{ Auth::user()->email }}</h6>
+    </div>
     @endauth
     <div class="mdc-drawer__content" style="position: relative;">
       @auth
-        <div class="mdc-list">
+      <div class="mdc-list">
           <a class="mdc-list-item mdc-list-item--activated" href="#">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
             <span class="mdc-list-item__text">Home</span>
@@ -66,13 +66,41 @@
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
     <main id="main-content">
+      <div class="mdc-tab-bar" role="tablist" id="tablist">
+        <div class="mdc-tab-scroller">
+          <div class="mdc-tab-scroller__scroll-area">
+            <div class="mdc-tab-scroller__scroll-content">
+              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                  <span class="mdc-tab__text-label">Gráfico de vendas</span>
+                </span>
+                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>
+              <button class="mdc-tab" role="tab" aria-selected="true" tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                  <span class="mdc-tab__text-label">Lista de produtos</span>
+                </span>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container">
         @if(Session::has('status'))
-          @if(Session::has('status-type'))
-            <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
-              <strong>{{ Session::get('status') }}</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+        @if(Session::has('status-type'))
+        <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
+            <strong>{{ Session::get('status') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
               </button>
             </div>
           @else
