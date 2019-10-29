@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,52 +16,80 @@
 </head>
 <body style="background-color: white;">
 
-  <aside class="mdc-drawer mdc-drawer--dismissible" id="admin-sidebarMenu">
+  <form id="logout-form" action="{{route('logout')}}" method="POST" class="d-none">
+    @csrf
+  </form>
+
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="admin-topAppBar" style="background-color: #D7CEC7;">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="admin-sidebarMenuButton">menu</button>
+        <span class="mdc-top-app-bar__title">Painel de controle</span>
+      </section>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        <button class="mdc-button mdc-button--raised general-button mr-4" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" id="logout-button">
+          <span class="mdc-button__label">Sair</span>
+        </button>
+      </section>
+    </div>
+  </header>
+
+  <aside class="mdc-drawer mdc-drawer--modal d-none" id="admin-sidebarMenu">
     @auth
       <div class="mdc-drawer__header">
-        <h3 class="mdc-drawer__title">{{Auth::user()->name}}</h3>
-        <h6 class="mdc-drawer__subtitle">{{Auth::user()->email}}</h6>
+        <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
+        <h6 class="mdc-drawe__subtitle">{{ Auth::user()->email }}</h6>
       </div>
     @endauth
-    <div class="mdc-drawer__content">
-      <nav class="mdc-list">
-        <a class="mdc-list-item mdc-list-item--activated" href="" aria-current="page">
-          <i class="material-icons mdc-list-item__graphic">show_chart</i>  
-          <span class="mdc-list-item__text">Gráficos de vendas</span>
-        </a>  
-        <a class="mdc-list-item" href="">
-          <i class="material-icons mdc-list-item"></i>
-        </a>
-      </nav>  
-    </div>  
-  </aside>
-
-  
-
-
-
-
-    @if(Session::has('status'))
-      @if(Session::has('status-type'))
-        <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
-          <strong>{{ Session::get('status') }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="mdc-drawer__content" style="position: relative;">
+      @auth
+        <div class="mdc-list">
+          <a class="mdc-list-item mdc-list-item--activated" href="#">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+            <span class="mdc-list-item__text">Home</span>
+          </a>
+          <a class="mdc-list-item" href="#">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+            <span class="mdc-list-item__text">Gráficos de vendas</span>
+          </a>
+          <a class="mdc-list-item" href="#">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+            <span class="mdc-list-item__text">Lista de produtos</span>
+          </a>
         </div>
-      @else
-        <div class="alert alert-info alert-dismissible fade show container" role="alert">
-          <strong>{{ Session::get('status') }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      @endif
-    @endif
-
-    <div class="container">
-      @yield('content')
+      @endauth
+      <button class="mdc-button mdc-button--raised general-button mr-2" style="position: absolute; bottom: 10px; right: 0;" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+        <span class="mdc-button__label">Sair</span>
+      </button>
     </div>
+  </aside>
+  <div class="mdc-drawer-scrim"></div>
+  <div class="mdc-top-app-bar--fixed-adjust">
+    <main id="main-content">
+      <div class="container">
+        @if(Session::has('status'))
+          @if(Session::has('status-type'))
+            <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
+              <strong>{{ Session::get('status') }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @else
+            <div class="alert alert-info alert-dismissible fade show container" role="alert">
+              <strong>{{ Session::get('status') }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @endif
+        @endif
+
+        @yield('content')
+      </div>
+    </main>
+  </div>
+  
 
 
     

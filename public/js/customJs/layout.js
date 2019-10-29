@@ -1,14 +1,7 @@
 const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
-const list = mdc.list.MDCList.attachTo(document.querySelector('.mdc-list'))
 const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('.mdc-top-app-bar'));
 const buttons = document.querySelectorAll('.mdc-button');
 const textsFields = document.querySelectorAll('.mdc-text-field');
-const snackbars = document.querySelectorAll('.mdc-snackbar');
-
-snackbars.forEach(snackbar => {
-  mdc.snackbar.MDCSnackbar.attachTo(snackbar);
-});
-
 
 textsFields.forEach(textField => {
   mdc.textField.MDCTextField.attachTo(textField);

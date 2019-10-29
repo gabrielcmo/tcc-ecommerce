@@ -47,7 +47,7 @@
                 <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  {{ csrf_field() }}
+                  @csrf
                 </form>
               @else
                 <h4 class="text-center">Login</h4>
@@ -142,9 +142,6 @@
         <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
       </nav>
     </div>
-  </div>
-
-  
     <main class="main-content" id="main-content">
       <div class="">
         @if(Session::has('status'))
@@ -164,11 +161,13 @@
             </div>
           @endif
         @endif
-
+  
         @yield('content')
       </div>
     </main>
   </div>
+
+  
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

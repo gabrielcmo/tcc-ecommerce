@@ -7,9 +7,9 @@ a:hover {
   cursor: pointer;
 }
 
-.mdc-button__label {
+/* .mdc-button__label {
   font-weight: 600;
-}
+} */
 
 .login-header {
   text-align: center;
@@ -77,3 +77,4 @@ button:focus {
   transform: translate(-50%, -50%);
   z-index: 1090;
 }
+
