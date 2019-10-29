@@ -7,38 +7,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
-    <!-- Bootstrap core CSS -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/828f671aa2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{asset('/css/general.css')}}">
+    @yield('stylesheets')
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ route('admin.index') }}">Doomus - Painel de controle</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.products') }}">Produtos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.orders') }}">Pedidos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.cupons') }}">Cupons</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('landing') }}">Ir para página inicial</a>
-              </li>
-            </ul>
-        </div>
-    </nav>
-    <br>
+<body style="background-color: white;">
+
+  <aside class="mdc-drawer mdc-drawer--dismissible" id="admin-sidebarMenu">
+    @auth
+      <div class="mdc-drawer__header">
+        <h3 class="mdc-drawer__title">{{Auth::user()->name}}</h3>
+        <h6 class="mdc-drawer__subtitle">{{Auth::user()->email}}</h6>
+      </div>
+    @endauth
+    <div class="mdc-drawer__content">
+      <nav class="mdc-list">
+        <a class="mdc-list-item mdc-list-item--activated" href="" aria-current="page">
+          <i class="material-icons mdc-list-item__graphic">show_chart</i>  
+          <span class="mdc-list-item__text">Gráficos de vendas</span>
+        </a>  
+        <a class="mdc-list-item" href="">
+          <i class="material-icons mdc-list-item"></i>
+        </a>
+      </nav>  
+    </div>  
+  </aside>
+
+  
+
+
+
 
     @if(Session::has('status'))
       @if(Session::has('status-type'))
@@ -59,14 +60,18 @@
     @endif
 
     <div class="container">
-        @yield('content')
+      @yield('content')
     </div>
 
+
     
-    <!-- JQuery -->
-    <script type="text/javascript" src="/js/app.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    {{-- <script type="text/javascript" src="/js/bootstrap.min.js"></script> --}}
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script src="{{asset('js/customJs/admin_layout.js')}}"></script>
     @yield('scripts')
 </body>
 </html>

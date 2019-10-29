@@ -133,7 +133,6 @@
       @endguest
     </div>
   </aside>
-
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
     <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
@@ -145,7 +144,7 @@
     </div>
   </div>
 
-  <div class="mdc-drawer-scrim"></div>
+  
     <main class="main-content" id="main-content">
       <div class="">
         @if(Session::has('status'))

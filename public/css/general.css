@@ -77,8 +77,3 @@ button:focus {
   transform: translate(-50%, -50%);
   z-index: 1090;
 }
-
-.mdc-drawer-scrim {
-  z-index: 1090 !important;
-}
-
