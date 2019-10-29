@@ -22,6 +22,28 @@ topAppBar.listen('MDCTopAppBar:nav', () => {
 });
 
 $(document).ready(function(){
+  function fetch_data(query = ''){
+    $.ajax({
+      url: "{{ route('search') }}",
+      method: 'GET',
+      data: {query:query},
+      success:function(result){
+        $('#result').fadeIn();
+        $('#result').html(result);
+      }
+    });
+  }
+
+  $('#search').keyup(function(){
+    if($('#search').val() !== ""){
+      $('#result').removeClass('d-none');
+      var query = $(this).val();
+      fetch_data(query);
+    }else{
+      $('#result').addClass('d-none');
+    }
+  });
+
   $(window).scroll(function(){
     var scroll = $(window).scrollTop();
     if ($('#topAppBar').hasClass('mdc-top-app-bar--short')) {

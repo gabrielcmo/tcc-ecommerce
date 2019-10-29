@@ -27,6 +27,12 @@ class OrderController extends Controller
         $order->data_aprovado = date('Y-m-d') ." ". date("H:i:s");
         $order->value_total = $request['value_total'];
         $order->status_id = $request['status_id'];
+        $order->cep = $request['cep'];
+        $order->endereco = $request['endereco'];
+        $order->numero = $request['numero'];
+        $order->bairro = $request['bairro'];
+        $order->cidade = $request['cidade'];
+        $order->estado = $request['estado'];
         $order->frete = $request['frete'];
         $order->prazo = $request['prazo'];
         $order->save();
@@ -97,7 +103,7 @@ class OrderController extends Controller
             return back();
         }
 
-        $order->status_id = OrderStatus::$STATUS_GUARDED;
+        $order->status_id = OrderStatus::$STATUS_CANCELLED;
         $order->data_cancelado = date('Y-m-d') ." ". date("H:i:s");
         $order->save();
 
@@ -108,11 +114,29 @@ class OrderController extends Controller
     public function pedidoEntregue($order_id){
         $order = Order::find($order_id);
 
-        $order->status_id = OrderStatus::$STATUS_OK;
+        $order->status_id = OrderStatus::$STATUS_DELIVERED;
+        if(is_null($order->data_aprovado)){
+            $order->data_entrega = date('Y-m-d') ." ". date("H:i:s");
+        }
+        if(is_null($order->data_despache)){
+            $order->data_despache = date('Y-m-d') ." ". date("H:i:s");
+        }
         $order->data_entrega = date('Y-m-d') ." ". date("H:i:s");
         $order->save();
 
         Session::flash('status', 'Pedido definido como entregue');
+
+        return back(); 
+    }
+
+    public function pedidoAprovado($order_id){
+        $order = Order::find($order_id);
+
+        $order->status_id = OrderStatus::$STATUS_APPROVED;
+        $order->data_entrega = date('Y-m-d') ." ". date("H:i:s");
+        $order->save();
+
+        Session::flash('status', 'Pedido definido como aprovado');
 
         return back(); 
     }
