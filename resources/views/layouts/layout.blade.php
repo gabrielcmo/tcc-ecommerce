@@ -89,11 +89,18 @@
                   <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
                   <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
 
+<<<<<<< HEAD
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     {{ csrf_field() }}
                   </form>
               @endauth
               @guest
+=======
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
+              @else
+>>>>>>> a09733a78aaed1eaca538a04d14dab95be531b41
                 <h4 class="text-center">Login</h4>
                 <hr>
                 <form class="ml-3 mr-3 pb-2" action="{{ route('login') }}" method="post" id="loginDropdownForm">
@@ -177,7 +184,6 @@
       @endguest
     </div>
   </aside>
-
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
     <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
@@ -187,9 +193,6 @@
         <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
       </nav>
     </div>
-  </div>
-
-  <div class="mdc-drawer-scrim"></div>
     <main class="main-content" id="main-content">
       <div class="">
         @if(Session::has('status'))
@@ -209,11 +212,13 @@
             </div>
           @endif
         @endif
-
+  
         @yield('content')
       </div>
     </main>
   </div>
+
+  
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -222,31 +227,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
   {{-- Custom Stylesheets --}}
   <script src="{{asset('js/customJs/layout.js')}}"></script>
-  <script>
-    $(document).ready(function(){
-      function fetch_data(query = ''){
-        $.ajax({
-          url: "{{ route('search') }}",
-          method: 'GET',
-          data: {query:query},
-          success:function(result){
-            $('#result').fadeIn();
-            $('#result').html(result);
-          }
-        });
-      }
-
-      $('#search').keyup(function(){
-        if($('#search').val() !== ""){
-          $('#result').removeClass('d-none');
-          var query = $(this).val();
-          fetch_data(query);
-        }else{
-          $('#result').addClass('d-none');
-        }
-      });
-    });
-  </script>
   @yield('scripts')
   {!! NoCaptcha::renderJs() !!}
 </body>

@@ -137,6 +137,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::get('/order/{id}/cancel', 'OrderController@cancel')->name('admin.order.cancel');
     Route::get('/order/{id}/entregue', 'OrderController@pedidoEntregue')->name('admin.order.entregue');
     Route::get('/order/{id}/despachado', 'OrderController@pedidoDespachado')->name('admin.order.despachado');
+    Route::get('/order/{id}/aprovado', 'OrderController@pedidoAprovado')->name('admin.order.despachado');
 });
 
 Route::get('/test-components', function(){
