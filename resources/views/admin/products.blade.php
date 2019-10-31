@@ -1,10 +1,10 @@
-@extends('layouts.admin')
-
-@section('title', 'Painel de Controle - Produtos')
-
-@section('content')
     <h2>Produtos</h2>
     <br>
+
+    @php
+        $products = Doomus\Product::all();
+    @endphp
+
     <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
     <div id="dashboard"><br>
         <div id="string_filter_div"></div>
@@ -12,9 +12,7 @@
         <div id="number_range_filter_div"></div>
     </div>
     <div style="text-align:center!important;" id="products_table"></div>
-@endsection
 
-@section('scripts')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
@@ -88,4 +86,3 @@
             dashboard.draw(data);
         }
     </script>
-@endsection

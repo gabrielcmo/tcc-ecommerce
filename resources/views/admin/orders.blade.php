@@ -1,18 +1,16 @@
-@extends('layouts.admin')
-
-@section('title', 'Painel de Controle - Pedidos')
-
-@section('content')
     <h2>Pedidos</h2>
     <br>
+
+    @php
+        $orders = Doomus\Order::all();
+    @endphp
+
     <div id="dashboard">
         <div id="string_filter_div"></div>
         <div id="string_filter_userID_div"></div>
     </div>
     <div id="orders_table"></div>
-@endsection
 
-@section('scripts')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
@@ -68,4 +66,3 @@
             dashboard.draw(data);
         }
     </script>
-@endsection

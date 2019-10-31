@@ -1,8 +1,20 @@
-@section('title', 'Painel inicial')
-
-@section('content')
     <h2>Bem-vindo ao painel de controle, {{ Auth::user()->name }}</h2>
     <br><br>
+
+    @php
+        $qtdPedidosMes_chart[] = ['Mês', 'Quantidade de pedidos', 'Esperado'];
+        for($i = 1; $i <= 6; $i++){
+            $qtdPedidosMes_chart[] = [$i, rand(20, 70), rand(10,100)];
+        }
+
+        $qtdPedidosStatus_chart[] = ['Pedidos e status', 'Quantidade de pedidos'];
+        $qtdPedidosStatus_chart[] = ['Aprovados', 220];
+        $qtdPedidosStatus_chart[] = ['Em andamento', 60];
+        $qtdPedidosStatus_chart[] = ['Recusados', 120];
+
+        $qtdPedidosMes = $qtdPedidosMes_chart;
+        $qtdPedidosStatus = $qtdPedidosStatus_chart;
+    @endphp
 
     <div class="row">
         <div class="col-md-12">
@@ -16,10 +28,6 @@
         </div>
     </div>
 
-    {{ debug(($qtdPedidosMes), $qtdPedidosStatus) }}
-@endsection
-
-@section('scripts')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
@@ -98,4 +106,3 @@ function drawLogScales() {
       chart.draw(data, options);
     }
     </script>
-@endsection
