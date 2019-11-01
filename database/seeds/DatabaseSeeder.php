@@ -384,12 +384,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'roupao1.png',
+            'filename' => 'roupao2.png',
             'product_id' => 9,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'roupao1.png',
+            'filename' => 'roupao3.png',
             'product_id' => 9,
         ]);
 

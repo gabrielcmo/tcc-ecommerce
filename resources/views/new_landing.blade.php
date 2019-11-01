@@ -14,16 +14,16 @@
           </ol>
           <div class="carousel-inner h-50" style="border-radius: 0px;">
             <div class="carousel-item active">
-              <img src="{{asset('/img/landing/banner-cama.png')}}" style="width:100%;height:auto;" class="d-block" alt="...">
+              <a href="/produto/10"><img src="{{asset('/img/landing/banner-cama.png')}}" style="width:100%;height:auto;" class="d-block" alt="..."></a>
             </div>
             <div class="carousel-item">
-              <img src="{{asset('/img/landing/banner-toalha.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
+              <a href="/produto/1"><img src="{{asset('/img/landing/banner-toalha.png')}}" style="width:100%;height:auto" class="d-block" alt="..."></a>
             </div>
             <div class="carousel-item">
-              <img src="{{asset('/img/landing/banner-roupao.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
+              <a href="/produto/9"><img src="{{asset('/img/landing/banner-roupao.png')}}" style="width:100%;height:auto" class="d-block" alt="..."></a>
             </div>
             <div class="carousel-item">
-              <img src="{{asset('/img/landing/banner-travesseiro.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
+              <a href="/produto/3"><img src="{{asset('/img/landing/banner-travesseiro.png')}}" style="width:100%;height:auto" class="d-block" alt="..."></a>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

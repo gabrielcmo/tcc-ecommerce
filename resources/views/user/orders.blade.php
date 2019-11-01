@@ -2,6 +2,10 @@
 
 @section('title', 'Histórico de compra')
 
+@section('stylesheets')
+    <link rel="stylesheet" href="/css/ratingStar.css">
+@endsection
+
 @section('content')
 <div class="container">
   @if (count($orders) == 0)
@@ -274,10 +278,11 @@
                 <tr>
                   <th>Produtos</th>
                   <th>Quantidade/Preço</th>
+                  <th>Avaliar</th>
                 </tr>
               </thead>
               <tbody id="modalProductsBody">
-                
+
               </tbody>
             </table>
           </div>

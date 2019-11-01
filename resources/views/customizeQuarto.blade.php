@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Explore - Doomus')
+@section('title', 'Doomus - Customize')
 
 @section('content')
 

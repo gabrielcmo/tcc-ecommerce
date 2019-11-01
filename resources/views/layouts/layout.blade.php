@@ -26,7 +26,7 @@
               <input class="form-control dropdown-toggle" size="40" id="search" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search">
             </form>
             <div aria-labelledby="search">
-              <ul class="mdc-list mdc-list--two-line dropdown-menu w-100" id="result"></ul>
+              <ul class="dropdown-menu w-100" id="result"></ul>
             </div>
           </div>
           <div class="dropdown" id="dropdown">
@@ -191,7 +191,6 @@
       </div>
     </main>
   </div>
-
   
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
@@ -201,6 +200,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
   {{-- Custom Stylesheets --}}
   <script src="{{asset('js/customJs/layout.js')}}"></script>
+  <script>
+    function fetch_data(query = ''){
+      $.ajax({
+        url: "{{ route('search') }}",
+        method: 'GET',
+        data: {query:query},
+        success:function(result){
+          $('#result').fadeIn();
+          $('#result').html(result);
+        }
+      });
+    }
+
+    $('#search').keyup(function(){
+      if($('#search').val() !== ""){
+        $('#result').removeClass('d-none');
+        var query = $(this).val();
+        fetch_data(query);
+      }else{
+        $('#result').addClass('d-none');
+      }
+    });
+  </script>
   @yield('scripts')
   {!! NoCaptcha::renderJs() !!}
 </body>

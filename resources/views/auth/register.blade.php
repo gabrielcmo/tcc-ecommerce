@@ -41,9 +41,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Senha') }}</label>
+                            <label for="password_register" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Senha') }}</label>
                             <div class="col-md-9 col-lg-8">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
+                                <input id="password_register" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
