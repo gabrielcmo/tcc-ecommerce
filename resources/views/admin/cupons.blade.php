@@ -1,23 +1,14 @@
-@extends('layouts.admin')
-
-@section('title', "Cupons")
-
-@section('content')
     <h2>Cupons</h2>
     <br>
     <a href="/admin/cupom/create" class="btn btn-info">Adicionar cupom</a>
-    <div id="dashboard"><br>
-        <div id="string_filter_div"></div>
-        <div id="string_filter_name_div"></div>
+    <div id="dashboardCupom"><br>
+        <div id="string_filter_div_cupom"></div>
+        <div id="string_filter_name_div_cupom"></div>
     </div>
     <div style="text-align:center!important;" id="cupons_table"></div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-        var analytics = {!! $cupons !!};
+        var analytics = {!! $dadosChart['cupons'] !!};
         google.charts.load('current', {'packages':['table', 'controls']});
         google.charts.setOnLoadCallback(drawTable);
 
@@ -25,7 +16,7 @@
             var data = new google.visualization.arrayToDataTable(analytics);
             data.addColumn('string', '');
 
-            var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboard'));
+            var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboardCupom'));
 
             function confirmDelete(){
                 event.preventDefault();
@@ -37,17 +28,17 @@
                 data.setCell(i, 4, "<a href=" + "/admin/cupom/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>");
             }
 
-            var stringFilter = new google.visualization.ControlWrapper({
+            var stringFilterCupom = new google.visualization.ControlWrapper({
                 controlType: 'StringFilter',
-                containerId: 'string_filter_div',
+                containerId: 'string_filter_div_cupom',
                 options: {
                     filterColumnIndex: 0
                 }
             });
             
-            var stringFilterName = new google.visualization.ControlWrapper({
+            var stringFilterNameCupom = new google.visualization.ControlWrapper({
                 controlType: 'StringFilter',
-                containerId: 'string_filter_name_div',
+                containerId: 'string_filter_name_div_cupom',
                 options: {
                     filterColumnIndex: 1
                 }
@@ -64,8 +55,7 @@
                 }
             });
 
-            dashboard.bind([stringFilter, stringFilterName], [table]);
+            dashboard.bind([stringFilterCupom, stringFilterNameCupom], [table]);
             dashboard.draw(data);
         }
     </script>
-@endsection

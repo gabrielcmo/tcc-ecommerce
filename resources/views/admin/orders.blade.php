@@ -1,8 +1,6 @@
-@extends('layouts.admin')
-
-@section('title', 'Painel de Controle - Pedidos')
-
-@section('content')
+    @php
+        $orders = Doomus\Order::all();
+    @endphp
     <h2>Pedidos</h2>
     <br>
     <div id="dashboard">
@@ -10,13 +8,9 @@
         <div id="string_filter_userID_div"></div>
     </div>
     <div id="orders_table"></div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-        var orders = {!! $orders !!};
+        var orders = {!! $dadosChart['orders'] !!};
         google.charts.load('current', {'packages':['table', 'controls']});
         google.charts.setOnLoadCallback(drawTable);
 
@@ -26,7 +20,7 @@
 
             var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboard'));
 
-            var stringFilter = new google.visualization.ControlWrapper({
+            var stringFilterOrders = new google.visualization.ControlWrapper({
                 controlType: 'StringFilter',
                 containerId: 'string_filter_div',
                 options: {
@@ -34,7 +28,7 @@
                 }
             });
             
-            var stringFilterUserId = new google.visualization.ControlWrapper({
+            var stringFilterUserIdOrders = new google.visualization.ControlWrapper({
                 controlType: 'StringFilter',
                 containerId: 'string_filter_userID_div',
                 options: {
@@ -64,8 +58,7 @@
                 }
             });
 
-            dashboard.bind([stringFilter, stringFilterUserId], [table]);
+            dashboard.bind([stringFilterOrders, stringFilterUserIdOrders], [table]);
             dashboard.draw(data);
         }
     </script>
-@endsection

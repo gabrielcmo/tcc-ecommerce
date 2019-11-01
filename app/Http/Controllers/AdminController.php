@@ -12,6 +12,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class AdminController extends Controller
 {
     public function index(){
+        // Gráficos
         $qtdPedidosMes_chart[] = ['Mês', 'Quantidade de pedidos', 'Esperado'];
         for($i = 1; $i <= 6; $i++){
             $qtdPedidosMes_chart[] = [$i, rand(20, 70), rand(10,100)];
@@ -25,19 +26,27 @@ class AdminController extends Controller
         $arrayqtdMes = $qtdPedidosMes_chart;
         $arrayqtdStatus = $qtdPedidosStatus_chart;
 
-        return view('layouts.admin')->with('qtdPedidosStatus', json_encode($arrayqtdStatus))->with('qtdPedidosMes', json_encode($arrayqtdMes));
+        $dadosChart = [
+            'qtdPedidosMes' => json_encode($arrayqtdMes),
+            'qtdPedidosStatus' => json_encode($arrayqtdStatus),
+            'products' => self::products(),
+            'orders' => self::orders(),
+            'cupons' => self::cupomView()
+        ];
+
+        return view('layouts.admin')->with('dadosChart', $dadosChart);
     }
 
-    public function products(){
+    public static function products(){
         $products = Product::all();
 
-        $array[] = ['ID Produto', 'Nome', 'Quantidade', 'Valor', 'Categoria'];
+        $arrayP[] = ['ID Produto', 'Nome', 'Quantidade', 'Valor', 'Categoria'];
 
         foreach($products as $data){
-            $array[] = [$data->id, $data->name, $data->qtd_last, $data->price, $data->category->name];
+            $arrayP[] = [$data->id, $data->name, $data->qtd_last, $data->price, $data->category->name];
         }
 
-        return view('admin.products')->with('products', json_encode($array));    
+        return json_encode($arrayP);    
     }
 
     public function ofertaProdutoView($product_id){
@@ -57,7 +66,7 @@ class AdminController extends Controller
             $array[] = [$data->id, $data->name, $data->fornecido_por, "$data->desconto%"];
         }
 
-        return view('admin.cupons')->with('cupons', json_encode($array));
+        return json_encode($array);
     }
 
     public function cupomValidate(Request $request){
@@ -111,6 +120,6 @@ class AdminController extends Controller
             $array[] = [$order->id, $products, $order->user->id, $order->status->name, $order->payment_method->name];
         }
         
-        return view('admin.orders')->with('orders', json_encode($array));
+        return json_encode($array);
     }
 }

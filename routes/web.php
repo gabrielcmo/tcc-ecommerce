@@ -114,7 +114,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     /*
     *   Produtos 
     */
-    Route::get('/products', 'AdminController@products')->name('admin.products');
     Route::get('/product/{product_id}/destroy', 'ProductController@destroy');
     Route::get('/product/{product_id}/edit', 'ProductController@formEdit');
     Route::post('/product/edit/data', 'ProductController@update')->name('admin.product.update');
@@ -122,8 +121,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     Route::post('/product/create/data', 'ProductController@store')->name('admin.product.store');
     Route::get('/product/{product_id}/desconto', 'AdminController@ofertaProdutoView');
     Route::post('/product/desconto', 'AdminController@ofertaProduto');
-    
-    Route::get('/category/desconto', 'AdminController@ofertaCategoriaView');
+
     Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria');
     
     Route::get('/cupom', 'AdminController@cupomView')->name('admin.cupons');
@@ -133,7 +131,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
     /*
     *   Pedidos 
     */
-    Route::get('/orders', 'AdminController@orders')->name('admin.orders');
     Route::get('/order/{id}/cancel', 'OrderController@cancel')->name('admin.order.cancel');
     Route::get('/order/{id}/entregue', 'OrderController@pedidoEntregue')->name('admin.order.entregue');
     Route::get('/order/{id}/despachado', 'OrderController@pedidoDespachado')->name('admin.order.despachado');

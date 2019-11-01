@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('payment_methods')->insert([
-            'name' => 'paypal',
+            'name' => 'Paypal',
         ]);
 
         DB::table('products')->insert([
