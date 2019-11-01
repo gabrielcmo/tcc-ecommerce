@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-10 h-50">
       <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
-        <ol class="carousel-indicators" style="z-index: 3;">
+        <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>

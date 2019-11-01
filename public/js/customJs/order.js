@@ -1,9 +1,4 @@
 $(document).ready(function() {
-
-  function isEmpty(el) {
-
-  }
-
   $('.pedidos-accordions-header').click(function(e) {
     let pedido = $(e.target).parents('.pedidos-accordions').data('pedido');
     $('#pedido' + pedido + '-accordion-collapse').collapse('toggle');
@@ -50,19 +45,21 @@ $(document).ready(function() {
             + '</td>'
           );
 
+          $('#product' + element.product_id + '-row').append(
+            '<td class="align-middle" id="avaliate-product" data-product-id=' + element.product_id + '>' +
+              '<i class="material-icons">star</i>' +
+              '<i class="material-icons">star</i>' +
+              '<i class="material-icons">star</i>' +
+              '<i class="material-icons">star</i>' +
+              '<i class="material-icons">star</i>' 
+            + '</td>'
+          );
+
         });
 
         
         $('#orderProductsModal').modal('show');
       }
     });
-  });
-
-
-
-  $('#orderProductsModal').on('hidden.bs.modal', function() {
-    if (!$('#modalProductBody').is(':empty')) {
-      $('#modalProductsBody').empty();
-    }
   });
 });

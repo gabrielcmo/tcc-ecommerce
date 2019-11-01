@@ -228,38 +228,24 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('order_statuses')->insert([
-            'name' => 'Processando pagamento',
+            'name' => 'em andamento',
         ]);
 
         DB::table('order_statuses')->insert([
-            'name' => 'Pagamento aprovado',
+            'name' => 'aprovado',
         ]);
         
         DB::table('order_statuses')->insert([
-            'name' => 'Em transporte',
+            'name' => 'em transporte',
         ]);
         
         DB::table('order_statuses')->insert([
-            'name' => 'Entregue',
-        ]);
-
-        DB::table('order_statuses')->insert([
-            'name' => 'Cancelado',
+            'name' => 'em historico',
         ]);
         
         DB::table('orders')->insert([
             'user_id' => 1,
-            'status_id' => 4,
-            'data_realizado' => date('Y-m-d')." ".date('H:i:s'),
-            'data_aprovado' => date('Y-m-d')." ".date('H:i:s'),
-            'data_despache' => date('Y-m-d')." ".date('H:i:s'),
-            'data_entrega' => date('Y-m-d')." ".date('H:i:s'),
-            'cep' => 13835000,
-            'endereco' => "Cons. Rodrigues Alves",
-            'numero' => 17,
-            'bairro' => "Centro",
-            'cidade' => "Conchal",
-            'estado' => "SP",
+            'status_id' => 1,
             'payment_method_id' => 1,
             'value_total' => 200,
             'frete' => 30.22,
@@ -269,16 +255,6 @@ class DatabaseSeeder extends Seeder
         DB::table('orders')->insert([
             'user_id' => 2,
             'status_id' => 4,
-            'data_realizado' => date('Y-m-d')." ".date('H:i:s'),
-            'data_aprovado' => date('Y-m-d')." ".date('H:i:s'),
-            'data_despache' => date('Y-m-d')." ".date('H:i:s'),
-            'data_entrega' => date('Y-m-d')." ".date('H:i:s'),
-            'cep' => 13835000,
-            'endereco' => "Cons. Rodrigues Alves",
-            'numero' => 17,
-            'bairro' => "Centro",
-            'cidade' => "Conchal",
-            'estado' => "SP",
             'payment_method_id' => 1,
             'value_total' => 200,
             'frete' => 30.22,
@@ -287,17 +263,7 @@ class DatabaseSeeder extends Seeder
         
         DB::table('orders')->insert([
             'user_id' => 2,
-            'status_id' => 5,
-            'data_realizado' => date('Y-m-d')." ".date('H:i:s'),
-            'data_aprovado' => date('Y-m-d')." ".date('H:i:s'),
-            'data_despache' => date('Y-m-d')." ".date('H:i:s'),
-            'data_cancelado' => date('Y-m-d')." ".date('H:i:s'),
-            'cep' => 13835000,
-            'endereco' => "Cons. Rodrigues Alves",
-            'numero' => 17,
-            'bairro' => "Centro",
-            'cidade' => "Conchal",
-            'estado' => "SP",
+            'status_id' => 4,
             'payment_method_id' => 1,
             'value_total' => 35,
             'frete' => 30.22,
@@ -306,15 +272,7 @@ class DatabaseSeeder extends Seeder
         
         DB::table('orders')->insert([
             'user_id' => 2,
-            'status_id' => 2,
-            'data_realizado' => date('Y-m-d')." ".date('H:i:s'),
-            'data_aprovado' => date('Y-m-d')." ".date('H:i:s'),
-            'cep' => 13835000,
-            'endereco' => "Cons. Rodrigues Alves",
-            'numero' => 17,
-            'bairro' => "Centro",
-            'cidade' => "Conchal",
-            'estado' => "SP",
+            'status_id' => 4,
             'payment_method_id' => 1,
             'value_total' => 341,
             'frete' => 30.22,
@@ -323,14 +281,7 @@ class DatabaseSeeder extends Seeder
         
         DB::table('orders')->insert([
             'user_id' => 2,
-            'status_id' => 1,
-            'data_realizado' => date('Y-m-d')." ".date('H:i:s'),
-            'cep' => 13835000,
-            'endereco' => "Cons. Rodrigues Alves",
-            'numero' => 17,
-            'bairro' => "Centro",
-            'cidade' => "Conchal",
-            'estado' => "SP",
+            'status_id' => 3,
             'payment_method_id' => 1,
             'value_total' => 75,
             'frete' => 30.22,

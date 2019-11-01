@@ -1,7 +1,14 @@
 const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
+const list = mdc.list.MDCList.attachTo(document.querySelector('.mdc-list'))
 const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(document.querySelector('.mdc-top-app-bar'));
 const buttons = document.querySelectorAll('.mdc-button');
 const textsFields = document.querySelectorAll('.mdc-text-field');
+const snackbars = document.querySelectorAll('.mdc-snackbar');
+
+snackbars.forEach(snackbar => {
+  mdc.snackbar.MDCSnackbar.attachTo(snackbar);
+});
+
 
 textsFields.forEach(textField => {
   mdc.textField.MDCTextField.attachTo(textField);
@@ -15,28 +22,6 @@ topAppBar.listen('MDCTopAppBar:nav', () => {
 });
 
 $(document).ready(function(){
-  function fetch_data(query = ''){
-    $.ajax({
-      url: "{{ route('search') }}",
-      method: 'GET',
-      data: {query:query},
-      success:function(result){
-        $('#result').fadeIn();
-        $('#result').html(result);
-      }
-    });
-  }
-
-  $('#search').keyup(function(){
-    if($('#search').val() !== ""){
-      $('#result').removeClass('d-none');
-      var query = $(this).val();
-      fetch_data(query);
-    }else{
-      $('#result').addClass('d-none');
-    }
-  });
-
   $(window).scroll(function(){
     var scroll = $(window).scrollTop();
     if ($('#topAppBar').hasClass('mdc-top-app-bar--short')) {

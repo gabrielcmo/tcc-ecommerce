@@ -1,3 +1,5 @@
+@extends('layouts.admin')
+
 @section('title', 'Painel inicial')
 
 @section('content')
