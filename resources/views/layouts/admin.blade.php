@@ -135,13 +135,13 @@
 
         <div class="tab-content">
           <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
-            @include('admin.index')
+            Gráficos
           </div>
           <div id="products" class="tab-pane fade" role="tabpanel" aria-labelledby="products-tab">
-            @include('admin.products')
+            Produtos
           </div>
           <div id="orders" class="tab-pane fade" role="tabpanel" aria-labelledby="orders-tab">
-            @include('admin.orders')
+            Pedidos
           </div>
         </div>
       </div>
