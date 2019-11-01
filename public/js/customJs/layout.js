@@ -115,19 +115,14 @@ $(document).ready(function(){
     var route = $(this).data('href');
     window.location.href = route;
   });
-
-  $('.support-form-control').blur(function(e) {
-    console.log($(e.target).next().has());
-  }); 
-
   $('.support-tab-header').click(function() {
     let height = $(this).height();
     if (height == '32') {
       $('.support-tab-content').animate({
-        height: '450px'
+        height: '430px'
       });
       $('.support-tab-header').animate({
-        height: '482px'
+        height: '462px'
       });
     } else {
       $('.support-tab-content').animate({
