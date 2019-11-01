@@ -25,7 +25,7 @@ class AdminController extends Controller
         $arrayqtdMes = $qtdPedidosMes_chart;
         $arrayqtdStatus = $qtdPedidosStatus_chart;
 
-        return view('layouts.admin')->with('qtdPedidosStatus', json_encode($arrayqtdStatus))->with('qtdPedidosMes', json_encode($arrayqtdMes));
+        return view('admin.index')->with('qtdPedidosStatus', json_encode($arrayqtdStatus))->with('qtdPedidosMes', json_encode($arrayqtdMes));
     }
 
     public function products(){
