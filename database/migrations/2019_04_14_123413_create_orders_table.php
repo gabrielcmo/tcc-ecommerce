@@ -25,6 +25,12 @@ class CreateOrdersTable extends Migration
             $table->string('data_despache')->nullable();
             $table->string('data_entrega')->nullable();
             $table->string('data_cancelado')->nullable();
+            $table->integer('cep');
+            $table->string('endereco');
+            $table->integer('numero');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('estado');
             $table->integer('prazo');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
