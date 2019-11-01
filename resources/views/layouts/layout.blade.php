@@ -13,94 +13,43 @@
   <link rel="stylesheet" href="{{asset('/css/general.css')}}">
   @yield('stylesheets')
 </head>
-<body style="background-color: #e9e9e9;">
-        <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar">
-          <div class="mdc-top-app-bar__row">
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-              <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
-              <span class="mdc-top-app-bar__title"><a style="color:white;" href="{{ route('landing') }}">Doomus</a></span>       
-            </section>
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
-              <div class="mdc-menu-surface--anchor" id="allMenu">
-                <button class="mdc-button mdc-top-app-bar__action-item" id="menuButton">
-                  <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">person</i>  
-                  @auth
-                      Olá {{ Auth::user()->name }}
-                  @else
-                    <span class="mdc-button__label">entre ou registre-se</span>
-                  @endauth
-                </button> 
-                <div class="mdc-menu mdc-menu-surface" id="menu">
-                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-                      @auth
-                        <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item" href="{{ route('perfil') }}">
-                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
-                            <span class="mdc-list-item__text">Minha conta</span>
-                          </a>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item" href="{{ route('orders') }}">
-                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
-                            <span class="mdc-list-item__text">Meus pedidos</span>
-                          </a>
-                        </li>
-                        @if(Auth::user()->role_id == 1)
-                          <li class="mdc-list-item" role="menuitem">
-                            <a class="mdc-list-item" href="{{ route('admin.index') }}">
-                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
-                              <span class="mdc-list-item__text">Painel de controle</span>
-                            </a>
-                          </li>
-                        @endif
-                        <li class="mdc-list-item" role="menuitem">
-                          <a class="mdc-list-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                              {{ __('Sair') }}
-                          </a>
-
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                              {{ csrf_field() }}
-                          </form>
-                        </li>
-                      @endauth
-                      @guest
-                        <li class="mdc-list-item" id="loginMenu" role="menuitem">
-                          <span class="mdc-list-item__text">Entrar</span>
-                        </li>
-                        <li class="mdc-list-item" id="registerMenu" role="menuitem">
-                          <span class="mdc-list-item__text">Registrar</span>
-                        </li>
-                        <li class="mdc-list-divider" role="separator"></li>
-                        <li class="mdc-list-item actionButton" role="menuitem" data-href="{{route('loginSocial', ['provider'=>'google'])}}">
-                          <i class="fab fa-google" style="font-size: 20px; margin-right: 5px"></i>
-                          <span class="mdc-list-item__text">Entrar com Google</span>
-                        </li>
-                      @endguest
-                    </ul>
-                </div>
-              </div>
+<body style="background-color: white;">
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="topAppBar" style="background-color: #D7CEC7;">  
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
+          <span class="mdc-top-app-bar__title"><a style="" href="{{ route('landing') }}"><img src="{{ asset('/img/logo_inteiro.png') }}" width="130px" id="imgLogo" alt=""></a></span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
+          <div class="dropdown" id="searchForm" style="margin-top:16px;margin-right:500px;margin-bottom:15px">
+            <form class="form-inline">
+              <input class="form-control dropdown-toggle" size="40" id="search" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search">
+            </form>
+            <div aria-labelledby="search">
+              <ul class="mdc-list mdc-list--two-line dropdown-menu w-100" id="result"></ul>
+            </div>
+          </div>
+          <div class="dropdown" id="dropdown">
+            <button class="btn btn-link dropdown-toggle nounderline" style="color:#565656;text-decoration:none!important;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               @auth
-                <button class="mdc-button mdc-top-app-bar__action-item" id="cartMenu">
-                  <i class="material-icons mdc-button__icon" aria-hidden="true" style="font-size: 22px; margin-top: -6px">shopping_cart</i>
-                  @if(Cart::count() > 0)
-                    <span class="badge badge-light">{{ Cart::count() }}</span>
-                  @endif
-                  <a class="dropdown-item" href="{{ route('orders') }}">Pedidos</a>
-                  <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
+                Olá {{ Auth::user()->name }}   
+              @else
+                Entrar ou registrar
+              @endif
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              @auth
+                <a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a>
+                @if(Auth::user()->role_id == 1)
+                  <a class="dropdown-item" href="/admin">Painel de Controle</a>
+                @endif
+                <a class="dropdown-item" href="{{ route('orders') }}">Meus pedidos</a>
+                <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
 
-<<<<<<< HEAD
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    {{ csrf_field() }}
-                  </form>
-              @endauth
-              @guest
-=======
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                   @csrf
                 </form>
               @else
->>>>>>> a09733a78aaed1eaca538a04d14dab95be531b41
                 <h4 class="text-center">Login</h4>
                 <hr>
                 <form class="ml-3 mr-3 pb-2" action="{{ route('login') }}" method="post" id="loginDropdownForm">
@@ -119,7 +68,7 @@
                     <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
                   </a>
                 </form>
-              @endguest
+              @endif
             </div>
           </div>
           <button class="mdc-button mdc-button--raised actionButton general-button mr-1" data-href="{{ route('user.cart') }}" style="background-color: #" id="cartButton">

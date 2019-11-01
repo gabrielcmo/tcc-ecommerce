@@ -10,15 +10,15 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
-        <div class="carousel-inner" style="border-radius: 0px;">
-          <div class="carousel-item active" style="">
-            <img src="{{asset('img/capa1.jpg')}}" class="d-block w-100 h-100" alt="...">
+        <div class="carousel-inner h-50" style="border-radius: 0px;">
+          <div class="carousel-item active">
+            <img src="{{asset('/img/landing/banner-cama.png')}}" style="width:100%;height:auto;" class="d-block" alt="...">
           </div>
-          <div class="carousel-item" style="">
-            <img src="{{asset('img/capa2.png')}}" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-item">
+            <img src="{{asset('/img/landing/banner-toalha.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
           </div>
-          <div class="carousel-item" style="">
-            <img src="{{asset('img/capa3.jpg')}}" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-item">
+            <img src="{{asset('/img/landing/banner-roupao.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
           </div>
           <div class="carousel-item">
             <img src="{{asset('/img/landing/banner-travesseiro.png')}}" style="width:100%;height:auto" class="d-block" alt="...">

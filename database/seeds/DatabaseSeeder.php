@@ -160,42 +160,6 @@ class DatabaseSeeder extends Seeder
             'price' => 19.99,
             'category_id' => 2,
         ]);
-        
-        DB::table('products')->insert([
-            'name' => 'Toalha de mesa',
-            'description' => 'ótima',
-            'qtd_last' => 37,
-            'lenght' => 12.0,
-            'weight' => 50.0,
-            'width' => 100.0,
-            'height' => 20.0,
-            'price' => 19.99,
-            'category_id' => 2,
-        ]);
-        
-        DB::table('products')->insert([
-            'name' => 'Balança de cozinha',
-            'description' => 'Colher ótima',
-            'qtd_last' => 37,
-            'lenght' => 12.0,
-            'weight' => 125.0,
-            'width' => 20.0,
-            'height' => 2.0,
-            'price' => 19.99,
-            'category_id' => 2,
-        ]);
-        
-        DB::table('products')->insert([
-            'name' => 'Toalha de piso',
-            'description' => 'Colher ótima',
-            'qtd_last' => 37,
-            'lenght' => 12.0,
-            'weight' => 125.0,
-            'width' => 20.0,
-            'height' => 2.0,
-            'price' => 19.99,
-            'category_id' => 2,
-        ]);
 
         DB::table('product_images')->insert([
             'filename' => 'placeholder-2.jpg',
@@ -215,16 +179,6 @@ class DatabaseSeeder extends Seeder
         DB::table('product_images')->insert([
             'filename' => 'placeholder-4.jpg',
             'product_id' => 4,
-        ]);
-    
-        DB::table('product_images')->insert([
-            'filename' => 'placeholder-5.jpg',
-            'product_id' => 5,
-        ]);
-        
-        DB::table('product_images')->insert([
-            'filename' => 'placeholder-6.jpg',
-            'product_id' => 6,
         ]);
 
         DB::table('order_statuses')->insert([
