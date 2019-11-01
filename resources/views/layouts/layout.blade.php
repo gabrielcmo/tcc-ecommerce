@@ -163,6 +163,31 @@
         @endif
   
         @yield('content')
+        <div class="support-tab rounded-top" id="support-tab">
+          <div class="support-tab-header">
+            <h6 class="d-flex justify-content-between">
+              <span class="mt-1 ml-2">Suporte ao cliente</span>
+              <span class="mt-1 mr-2"><i class="fas fa-circle text-success"></i> Disponível</span>
+            </h6>
+          </div>
+          <div class="support-tab-content">
+            <form class="card h-100 p-2" id="supportTabForm">
+              <div class="form-group mb-2">
+                <label for="contactEmail">Email de contato</label>
+                <input type="email" class="form-control support-form-control" name="contact_email" id="contactEmail">
+              </div>
+              <div class="form-group mb-2">
+                <label for="subject">Assunto</label>
+                <input type="text" class="form-control support-form-control" name="subject" id="subject">
+              </div>
+              <div class="form-group mb-2">
+                <label for="suport_message">Mensagem</label>
+                <textarea class="form-control support-form-control" name="support_message" id="support_message" rows="4"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+          </div>
+        </div>
       </div>
     </main>
   </div>

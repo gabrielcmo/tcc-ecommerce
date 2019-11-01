@@ -1,42 +1,43 @@
 @extends('layouts.layout')
 
 @section('content')
-  <div class="row justify-content-center">
-    <div class="col-lg-10 h-50">
-      <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
-        <ol class="carousel-indicators" style="z-index: 3;">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        </ol>
-        <div class="carousel-inner h-50" style="border-radius: 0px;">
-          <div class="carousel-item active">
-            <img src="{{asset('/img/landing/banner-cama.png')}}" style="width:100%;height:auto;" class="d-block" alt="...">
+
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 h-50">
+        <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
+          <ol class="carousel-indicators" style="z-index: 3;">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          </ol>
+          <div class="carousel-inner h-50" style="border-radius: 0px;">
+            <div class="carousel-item active">
+              <img src="{{asset('/img/landing/banner-cama.png')}}" style="width:100%;height:auto;" class="d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{{asset('/img/landing/banner-toalha.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{{asset('/img/landing/banner-roupao.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="{{asset('/img/landing/banner-travesseiro.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
+            </div>
           </div>
-          <div class="carousel-item">
-            <img src="{{asset('/img/landing/banner-toalha.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="{{asset('/img/landing/banner-roupao.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="{{asset('/img/landing/banner-travesseiro.png')}}" style="width:100%;height:auto" class="d-block" alt="...">
-          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
     </div>
-  </div>
-  <div class="mt-5"></div>
-  <div class="container">
+    <div class="mt-5"></div>
     <div class="row">
       @foreach ($products as $product)
         <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-12 mt-2">

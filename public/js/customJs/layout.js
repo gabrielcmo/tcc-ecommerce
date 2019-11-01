@@ -112,9 +112,31 @@ $(document).ready(function(){
   });
 
   $('.actionButton').click(function(){
-    
     var route = $(this).data('href');
     window.location.href = route;
+  });
+
+  $('.support-form-control').blur(function(e) {
+    console.log($(e.target).next().has());
+  }); 
+
+  $('.support-tab-header').click(function() {
+    let height = $(this).height();
+    if (height == '32') {
+      $('.support-tab-content').animate({
+        height: '450px'
+      });
+      $('.support-tab-header').animate({
+        height: '482px'
+      });
+    } else {
+      $('.support-tab-content').animate({
+        height: '0px'
+      });
+      $('.support-tab-header').animate({
+        height: '32px'
+      });
+    }
   });
 });
 $.validator.setDefaults({
@@ -145,6 +167,34 @@ $('#loginDropdownForm').validate({
     },
     password: {
       required: 'Esse campo é obrigatório.'
+    }
+  }
+});
+$('#supportTabForm').validate({
+  rules : {
+    contact_email: {
+      required: true,
+      email: true
+    },
+    subject: {
+      required: true
+    },
+    support_message: {
+      required: true,
+      maxlength: 250
+    }
+  },
+  messages: {
+    contact_email: {
+      required: 'Esse campo é obrigatório',
+      email: 'Esse não é um endereço de email válido.'
+    },
+    subject: {
+      required: 'Esse campo é obrigatório'
+    },
+    support_message: {
+      required: 'Esse campo é obrigatório',
+      maxlength: 'O máximo de caracteres permitido é 250'
     }
   }
 });
