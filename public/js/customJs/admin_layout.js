@@ -21,6 +21,12 @@ buttons.forEach(button => {
 $(document).ready(function () {
   var windowWidth = $(window).width();
 
+  $('.mdc-tab-scroller__scroll-content a').click(function(e) {
+    if ($(this).hasClass('active')) {
+      $(this).removeClass('active');
+    }
+  });
+
   if ((windowWidth >= 576 && windowWidth < 992) || (windowWidth < 576)) {
     $('#admin-sidebarMenuButton').removeClass('d-none');
     $('#admin-sidebarMenu').removeClass('d-none');
@@ -35,7 +41,7 @@ $(document).ready(function () {
     $('#tablist').removeClass('d-none');
   }
 
-  $(window).resize(function() {
+  $(window).resize(function () {
     let windowWidth = $(window).width();
 
     if ((windowWidth >= 576 && windowWidth < 992) || (windowWidth < 576)) {
@@ -44,7 +50,7 @@ $(document).ready(function () {
       $('#logout-button').addClass('d-none');
       $('#tablist').addClass('d-none');
     }
-  
+
     if (windowWidth >= 992) {
       $('#admin-sidebarMenuButton').addClass('d-none');
       $('#admin-sidebarMenu').addClass('d-none');
