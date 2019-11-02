@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'admin' => \Doomus\Http\Middleware\Admin::class,
         'Checkout' => \Doomus\Http\Middleware\Checkout::class,
         'CheckoutPayment' => \Doomus\Http\Middleware\CheckoutPayment::class,
+        'https' => \Doomus\Http\Middleware\HttpsProtocol::class,
     ];
 
     /**
