@@ -6,7 +6,7 @@ Checkout
 
 @section('content')
 <div class="container">
-    <div class="progress">
+    <div class="progress mt-4">
         <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0"
             aria-valuemax="100">30%</div>
     </div><br>
@@ -185,5 +185,5 @@ Checkout
 @endsection
 
 @section('scripts')
-<script src="{{asset('js/customJs/addressCheckout.js')}}"></script>
+    <script src="{{asset('js/customJs/addressCheckout.js')}}"></script>
 @endsection

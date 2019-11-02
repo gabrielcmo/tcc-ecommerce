@@ -74,9 +74,15 @@ class AdminController extends Controller
         if($request->ajax()){
             
             $procurar_cupom = Cupom::where('name', $request->get('queryCupom'))->first();
-            
+
             if(is_null($procurar_cupom) || $procurar_cupom == "" || $procurar_cupom == null){
-                return response()->json(['textStatus' => 'error']);
+                Session::flash('status', 'Esse cupom não é válido');
+                Session::flash('status-type', 'danger');
+                return back();
+            }elseif(session('cupom') == $request->get('queryCupom')){
+                Session::flash('status', 'Você já adicionou esse cupom');
+                Session::flash('status-type', 'danger');
+                return back();
             }else{
                 Session::put('cupom', $procurar_cupom);
                 return response()->json(['textStatus' => 'success', 'cupom' => $procurar_cupom, 'cartTotal' => Cart::total()]);

@@ -2,21 +2,36 @@
 
 @section('content')
 <div class="container">
-    <div class="progress">
+    <div class="progress mt-4">
         <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
             aria-valuemax="100">60%</div>
-    </div><br>
+    </div>
     <div class="row mt-3 mb-3">
-        <h3 class="ml-4">Pagamento</h3>
+        <h3 class="ml-4">Formas de pagamento</h3>
     </div>
     <div class="row mt-1">
-        <div class="col-lg-8 col-md-12 col-sm-12">
-            <form action="{{ route('create-payment') }}" method="post">
-                @csrf
-                <h4>Clique aqui para pagar com Paypal</h4><input type="image"
-                    src="https://www.paypalobjects.com/pt_BR/i/btn/btn_buynow_LG.gif" border="0"
-                    alt="PayPal - The safer, easier way to pay online!">
-            </form>
+        <div class="col-lg-8 col-md-12 col-sm-12 row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <form action="{{ route('create-payment') }}" method="post">
+                            @csrf
+                            <input type="image" class="d-flex mx-auto"
+                                src="{{asset('/img/PayPal_btn.png')}}" width="40%" border="0"
+                                alt="PayPal - The safer, easier way to pay online!">
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="text-center">O PayPal é rápido, simples e seguro.</h5>
+                        <p class="text-center">
+                            Com o PayPal, você finaliza sua compra em poucos cliques. Informe seu e-mail, sua senha, cofirme os dados do seu pagamento e pronto!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
         </div>
         <div class="col-lg-4 col-md-12 col-sm-12 p-3" style="background-color: #f7f5f3">
             <h4 class="d-flex justify-content-between align-items-center">

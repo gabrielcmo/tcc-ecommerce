@@ -84,15 +84,15 @@ Route::group(['middleware' => ['https']], function () {
                 Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
                 Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
                 Route::get('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
+
+                /*
+                *   PayPal
+                */
+                Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
+                Route::get('/execute-payment', 'PaymentController@execute');
+                Route::get('/cancel-payment', 'PaymentController@cancel');
             });
         });
-
-        /*
-        *   PayPal
-        */
-        Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
-        Route::get('/execute-payment', 'PaymentController@execute');
-        Route::get('/cancel-payment', 'PaymentController@cancel');
 
         /*
         *   Order

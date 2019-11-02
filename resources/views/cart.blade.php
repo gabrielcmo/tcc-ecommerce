@@ -75,10 +75,17 @@
                 <th>Subtotal</th>
                 <td id="totalCart" class="text-right"></td>
               </tr>
-              <tr class="d-none" id="dadosFrete">
-                <th id="prazoFrete"></th>
-                <td id="valorFrete" class="text-right"></td>
-              </tr>
+              @if (session('valorFrete') !== null && session('prazoFrete') !== null)
+                <tr>
+                  <th>Valor do frete (Prazo {{session('prazoFrete')}} dias)</th>
+                  <td class="text-right">R$ {{session('valorFrete')}}</td>
+                </tr>
+              @else
+                <tr class="d-none" id="dadosFrete">
+                  <th id="prazoFrete"></th>
+                  <td id="valorFrete" class="text-right"></td>
+                </tr>
+              @endauth
               <tr class="border-top">
                 <th class="align-middle">Total</th>
                 <td id="valorTotalCompra" class="text-right w-50"></td>
