@@ -17,7 +17,6 @@ $(document).ready(function() {
   $('.showProducts').click(function() {
     let orderId = $(this).data('pedido-id');
     let url = $(this).data('href');
-    console.log()
     $.ajax({
       type: "GET",
       url: url,
@@ -50,9 +49,17 @@ $(document).ready(function() {
             + '</td>'
           );
 
+          $('#product' + element.product_id + '-row').append(
+            '<td class="align-end rating-list">' +
+              "<i class='fa fa-star' id='star_1'></i>" +
+              "<i class='fa fa-star' id='star_2'></i>" +
+              "<i class='fa fa-star' id='star_3'></i>" +
+              "<i class='fa fa-star' id='star_4'></i>" +
+              "<i class='fa fa-star' id='star_5'></i>"
+            + '</td>'
+          );
         });
 
-        
         $('#orderProductsModal').modal('show');
       }
     });

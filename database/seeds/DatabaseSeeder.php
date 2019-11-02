@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('payment_methods')->insert([
-            'name' => 'paypal',
+            'name' => 'Paypal',
         ]);
 
         DB::table('products')->insert([
@@ -384,12 +384,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'roupao1.png',
+            'filename' => 'roupao2.png',
             'product_id' => 9,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'roupao1.png',
+            'filename' => 'roupao3.png',
             'product_id' => 9,
         ]);
 

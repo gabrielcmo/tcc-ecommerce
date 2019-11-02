@@ -46,7 +46,8 @@ $('#registerForm').validate({
     },
     password_confirmation: {
       required: true,
-      equalTo: '#password'
+      minlength: 8,
+      equalTo: '#password_register'
     }
   },
   messages: {

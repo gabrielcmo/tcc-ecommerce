@@ -49,17 +49,21 @@
     <div class="mdc-drawer__content" style="position: relative;">
       @auth
       <div class="mdc-list">
-        <a class="mdc-list-item mdc-list-item--activated" href="#">
+        <a class="mdc-list-item mdc-list-item--activated" href="#graphics">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
-          <span class="mdc-list-item__text">Home</span>
+          <span class="mdc-list-item__text">Gráfico de Vendas</span>
         </a>
-        <a class="mdc-list-item" href="#">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
-          <span class="mdc-list-item__text">Gráficos de vendas</span>
-        </a>
-        <a class="mdc-list-item" href="#">
+        <a class="mdc-list-item" href="#products">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
           <span class="mdc-list-item__text">Lista de produtos</span>
+        </a>
+        <a class="mdc-list-item" href="#orders">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+          <span class="mdc-list-item__text">Lista de pedidos</span>
+        </a>
+        <a class="mdc-list-item" href="#cupons">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+          <span class="mdc-list-item__text">Lista de cupons</span>
         </a>
       </div>
       @endauth
@@ -110,6 +114,17 @@
                 </span>
                 <span class="mdc-tab__ripple"></span>
               </a>
+              <a class="mdc-tab" id="cupons-tab" data-toggle="tab" href="#cupons" role="tab" aria-controls="cupons"
+                aria-selected="false" tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                  <span class="mdc-tab__text-label">Lista de cupons</span>
+                </span>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </a>
             </div>
           </div>
         </div>
@@ -132,16 +147,21 @@
         </div>
         @endif
         @endif
+        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         <div class="tab-content">
           <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
-            Gráficos
+            @include('admin.index')
           </div>
           <div id="products" class="tab-pane fade" role="tabpanel" aria-labelledby="products-tab">
-            Produtos
+            @include('admin.products')
           </div>
           <div id="orders" class="tab-pane fade" role="tabpanel" aria-labelledby="orders-tab">
-            Pedidos
+            @include('admin.orders')
+          </div>
+          <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
+            @include('admin.cupons')
           </div>
         </div>
       </div>

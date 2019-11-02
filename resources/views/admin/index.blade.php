@@ -1,6 +1,3 @@
-@section('title', 'Painel inicial')
-
-@section('content')
     <h2>Bem-vindo ao painel de controle, {{ Auth::user()->name }}</h2>
     <br><br>
 
@@ -16,15 +13,9 @@
         </div>
     </div>
 
-    {{ debug(($qtdPedidosMes), $qtdPedidosStatus) }}
-@endsection
-
-@section('scripts')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <script type="text/javascript">
-        var qtdPedidosMes = {!! $qtdPedidosMes !!};
-        var qtdPedidosStatus = {!! $qtdPedidosStatus !!};
+        var qtdPedidosMes = {!! $dadosChart['qtdPedidosMes'] !!};
+        var qtdPedidosStatus = {!! $dadosChart['qtdPedidosStatus'] !!};
 
         google.charts.load('current', {'packages':['line', 'corechart']});
         google.charts.setOnLoadCallback(drawChart);
@@ -98,4 +89,3 @@ function drawLogScales() {
       chart.draw(data, options);
     }
     </script>
-@endsection
