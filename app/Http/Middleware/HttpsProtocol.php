@@ -16,8 +16,10 @@ class HttpsProtocol
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->secure() && App::environment() === 'production') {
-            return redirect()->secure($request->getRequestUri());
+        if (!$request->secure() && App::environment() === 'local') {
+            $newRequestUri = str_replace('/public', '', $request->getRequestUri());
+            return redirect()->secure($newRequestUri);
+            
         }
         return $next($request);
     }
