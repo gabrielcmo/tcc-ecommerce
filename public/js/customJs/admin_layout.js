@@ -31,6 +31,7 @@ $(document).ready(function () {
     $('#admin-sidebarMenuButton').removeClass('d-none');
     $('#admin-sidebarMenu').removeClass('d-none');
     $('#logout-button').addClass('d-none');
+    $('#adminBackButton').addClass('d-none');
     $('#tablist').addClass('d-none');
   }
 
@@ -38,6 +39,7 @@ $(document).ready(function () {
     $('#admin-sidebarMenuButton').addClass('d-none');
     $('#admin-sidebarMenu').addClass('d-none');
     $('#logout-button').removeClass('d-none');
+    $('#adminBackButton').removeClass('d-none');
     $('#tablist').removeClass('d-none');
   }
 
@@ -48,6 +50,7 @@ $(document).ready(function () {
       $('#admin-sidebarMenuButton').removeClass('d-none');
       $('#admin-sidebarMenu').removeClass('d-none');
       $('#logout-button').addClass('d-none');
+      $('#adminBackButton').addClass('d-none');
       $('#tablist').addClass('d-none');
     }
 
@@ -55,6 +58,7 @@ $(document).ready(function () {
       $('#admin-sidebarMenuButton').addClass('d-none');
       $('#admin-sidebarMenu').addClass('d-none');
       $('#logout-button').removeClass('d-none');
+      $('#adminBackButton').removeClass('d-none');
       $('#tablist').removeClass('d-none');
     }
 

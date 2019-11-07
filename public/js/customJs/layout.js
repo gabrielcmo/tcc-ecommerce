@@ -97,10 +97,10 @@ $(document).ready(function(){
     let height = $(this).height();
     if (height == '32') {
       $('.support-tab-content').animate({
-        height: '430px'
+        height: '350px'
       });
       $('.support-tab-header').animate({
-        height: '462px'
+        height: '382px'
       });
     } else {
       $('.support-tab-content').animate({

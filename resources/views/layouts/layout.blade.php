@@ -171,19 +171,15 @@
             </h6>
           </div>
           <div class="support-tab-content">
-            <form class="card h-100 p-2" action="{{route('suporte')}}" method="POST" id="supportTabForm">
+            <form class="card h-100 p-2" action="{{route('suporte-armazenar')}}" method="POST" id="supportTabForm">
               @csrf
-              <div class="form-group mb-2">
-                <label for="contactEmail">Email de contato</label>
-                <input type="email" class="form-control support-form-control" name="contact_email" id="contactEmail">
-              </div>
               <div class="form-group mb-2">
                 <label for="subject">Assunto</label>
                 <input type="text" class="form-control support-form-control" name="subject" id="subject">
               </div>
               <div class="form-group mb-2">
                 <label for="suport_message">Mensagem</label>
-                <textarea class="form-control support-form-control" name="support_message" id="support_message" rows="4"></textarea>
+                <textarea class="form-control support-form-control" name="message" id="support_message" rows="4"></textarea>
               </div>
               <button type="submit" class="mdc-button mdc-button--raised general-button">
                 <span class="mdc-button__label">Enviar</span>
