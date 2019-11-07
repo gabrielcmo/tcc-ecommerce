@@ -65,6 +65,10 @@
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
           <span class="mdc-list-item__text">Lista de cupons</span>
         </a>
+        <a class="mdc-list-item" href="#suport">
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+          <span class="mdc-list-item__text">Suporte</span>
+        </a>
       </div>
       @endauth
       <button class="mdc-button mdc-button--raised general-button mr-2"
@@ -125,6 +129,16 @@
                 </span>
                 <span class="mdc-tab__ripple"></span>
               </a>
+              <a class="mdc-tab" id="suporte-tab" data-toggle="tab" href="#suporte" role="tab" aria-controls="suporte" aria-selected="false" tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                  <span class="mdc-tab__text-label">Suporte</span>
+                </span>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </a>
             </div>
           </div>
         </div>
@@ -162,6 +176,9 @@
           </div>
           <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
             @include('admin.cupons')
+          </div>
+          <div id="suporte" class="tab-pane fade" role="tabpanel" aria-labelledby="suporte-tab">
+            @include('admin.support')
           </div>
         </div>
       </div>

@@ -11,7 +11,6 @@ const path = require('path');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css', {
+mix.sass('resources/sass/my-theme.scss', 'public/css', {
       includePaths: [path.resolve(__dirname, 'node_modules')]
    });

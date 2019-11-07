@@ -101,3 +101,20 @@ button:focus {
 .support-tab-header:hover {
   cursor: pointer;
 }
+
+.mdc-tab--active .mdc-tab__text-label {
+  color: #565656;
+}
+
+.mdc-tab--active .mdc-tab__icon {
+  color: #565656;
+  fill: currentColor;
+}
+
+.mdc-tab-indicator .mdc-tab-indicator__content--underline {
+  border-color: #565656;
+}
+
+.mdc-tab {
+  --mdc-theme-primary: #D7CEC7;
+}
