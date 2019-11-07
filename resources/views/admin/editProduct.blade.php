@@ -6,11 +6,21 @@
     <h2>Editar produto</h2>
     <br>
 
-    <form action="{{ route('admin.product.update') }}" method="post">
+    <form action="{{ route('admin.product.update') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <img src="/img/products/{{$product->image[0]->filename}}" style="width:20%;" class="rounded mx-auto d-block" alt="Produto">
+            <div class="col-md-6">
+                @if (count($product->image) !== 0)
+                    <img src="/img/products/{{$product->image[0]->filename}}" style="width:20%;" class="rounded mx-auto d-block" alt="Produto">
+                @else
+                    <h5 class="text-center">Sem imagens no momento</h5>
+                @endif
+            </div>
+            <div class="form-group col-md-6">
+                <label for="name">Imagens</label>
+                <input type="file" class="form-control" name="img" id="img" multiple>
+            </div>
             <div class="form-group col-md-6">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" name="name" id="name" value="{{ $product->name }}">

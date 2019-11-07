@@ -16,50 +16,56 @@
   <div class="container">
     <div class="row mt-3">
       <div class="col-lg-7 mb-3">
-        <div class="">
-          <!--Carousel Wrapper-->
-          <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
-            <!--Indicators-->
-            <ol class="carousel-indicators">
-              @for ($i = 0; $i < count($product->image); $i++)
-                @if($i == 0)
-                  <li data-target="#carousel-example-1z" data-slide-to="{{$i}}" class="active"></li>
-                @else
-                  <li data-target="#carousel-example-1z" data-slide-to="{{$i}}"></li>
-                @endif
-              @endfor
-            </ol>
-            <!--/.Indicators-->
-            <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-              <?php $count = 0 ?>
-              @foreach($product->image as $image)
-                @if ($count == 0)
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" height="400px" src="{{asset("/img/products/".$image->filename)}}">
-                  </div>
-                @else
-                  <div class="carousel-item">
-                    <img class="d-block w-100" height="400px" src="{{asset("/img/products/".$image->filename)}}">
-                  </div>
-                @endif
-                <?php $count++; ?>
-              @endforeach
-            <!--/.Slides-->
-            </div>  
-            <!--Controls-->
-            <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-            <!--/.Controls-->
+        @if(count($product->image) == 0)
+          <div class="text-center" style="margin-top:170px">
+            <h6>Esse produto não possui imagem no momento</h6>
           </div>
-          <!--/.Carousel Wrapper-->
-        </div>
+        @else
+          <div class="">
+            <!--Carousel Wrapper-->
+            <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+              <!--Indicators-->
+              <ol class="carousel-indicators">
+                @for ($i = 0; $i < count($product->image); $i++)
+                  @if($i == 0)
+                    <li data-target="#carousel-example-1z" data-slide-to="{{$i}}" class="active"></li>
+                  @else
+                    <li data-target="#carousel-example-1z" data-slide-to="{{$i}}"></li>
+                  @endif
+                @endfor
+              </ol>
+              <!--/.Indicators-->
+              <!--Slides-->
+              <div class="carousel-inner" role="listbox">
+                <?php $count = 0 ?>
+                @foreach($product->image as $image)
+                  @if ($count == 0)
+                    <div class="carousel-item active">
+                      <img class="d-block w-100" height="400px" src="{{asset("/img/products/".$image->filename)}}">
+                    </div>
+                  @else
+                    <div class="carousel-item">
+                      <img class="d-block w-100" height="400px" src="{{asset("/img/products/".$image->filename)}}">
+                    </div>
+                  @endif
+                  <?php $count++; ?>
+                @endforeach
+              <!--/.Slides-->
+              </div>  
+              <!--Controls-->
+              <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+              <!--/.Controls-->
+            </div>
+            <!--/.Carousel Wrapper-->
+          </div>
+        @endif
       </div>
       <div class="col-lg-5">
         <h3 class="">{{ $product->name }} &nbsp;</h3>
@@ -180,7 +186,7 @@
       </div>
 
       <?php $i = 0; ?>
-      @foreach(Doomus\Product::all() as $product)
+      @foreach(Doomus\Product::where('id', '!=', $product->id)->orderBy('id', 'DESC')->get() as $product)
       @php
           $formatted_price = number_format($product->price, 2, ',', '');
           $formatted_parcel_6 = intval(strval(($product->price / 6) * 100)) / 100;

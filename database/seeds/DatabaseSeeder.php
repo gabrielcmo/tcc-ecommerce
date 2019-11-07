@@ -377,6 +377,18 @@ class DatabaseSeeder extends Seeder
             'price' => 79.98,
             'category_id' => 1,
         ]);
+        
+        DB::table('products')->insert([
+            'name' => 'Quadro',
+            'description' => 'Pintura linda',
+            'qtd_last' => 98,
+            'lenght' => 1.0,
+            'weight' => 560.0,
+            'width' => 135.0,
+            'height' => 200.0,
+            'price' => 49.99,
+            'category_id' => 1,
+        ]);
 
         DB::table('product_images')->insert([
             'filename' => 'roupao1.png',

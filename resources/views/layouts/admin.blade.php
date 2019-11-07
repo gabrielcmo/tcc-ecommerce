@@ -75,62 +75,65 @@
     </div>
   </aside>
   <div class="mdc-drawer-scrim"></div>
-  <div class="mdc-top-app-bar--fixed-adjust">
-    <main id="main-content">
-      <div class="mdc-tab-bar" role="tablist" id="tablist">
-        <div class="mdc-tab-scroller">
-          <div class="mdc-tab-scroller__scroll-area">
-            <div class="mdc-tab-scroller__scroll-content">
-              <a class="mdc-tab mdc-tab--active" id="graphics-tab" data-toggle="tab" href="#graphics" role="tab"
-                aria-controls="graphics" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
-                  <span class="mdc-tab__text-label">Gráfico de vendas</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </a>
-              <a class="mdc-tab" id="products-tab" data-toggle="tab" href="#products" role="tab"
-                aria-controls="products" aria-selected="false" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
-                  <span class="mdc-tab__text-label">Lista de produtos</span>
-                </span>
-                <span class="mdc-tab-indicator">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </a>
-              <a class="mdc-tab" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders"
-                aria-selected="false" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
-                  <span class="mdc-tab__text-label">Lista de pedidos</span>
-                </span>
-                <span class="mdc-tab-indicator">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </a>
-              <a class="mdc-tab" id="cupons-tab" data-toggle="tab" href="#cupons" role="tab" aria-controls="cupons"
-                aria-selected="false" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
-                  <span class="mdc-tab__text-label">Lista de cupons</span>
-                </span>
-                <span class="mdc-tab-indicator">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </a>
+    @if (Request::is('admin'))
+      <div class="mdc-top-app-bar--fixed-adjust">
+        <main id="main-content">
+          <div class="mdc-tab-bar" role="tablist" id="tablist">
+            <div class="mdc-tab-scroller">
+              <div class="mdc-tab-scroller__scroll-area">
+                <div class="mdc-tab-scroller__scroll-content">
+                  <a class="mdc-tab mdc-tab--active" id="graphics-tab" data-toggle="tab" href="#graphics" role="tab"
+                    aria-controls="graphics" aria-selected="true" tabindex="0">
+                    <span class="mdc-tab__content">
+                      <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                      <span class="mdc-tab__text-label">Gráfico de vendas</span>
+                    </span>
+                    <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                      <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                    </span>
+                    <span class="mdc-tab__ripple"></span>
+                  </a>
+                  <a class="mdc-tab" id="products-tab" data-toggle="tab" href="#products" role="tab"
+                    aria-controls="products" aria-selected="false" tabindex="0">
+                    <span class="mdc-tab__content">
+                      <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                      <span class="mdc-tab__text-label">Lista de produtos</span>
+                    </span>
+                    <span class="mdc-tab-indicator">
+                      <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                    </span>
+                    <span class="mdc-tab__ripple"></span>
+                  </a>
+                  <a class="mdc-tab" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders"
+                    aria-selected="false" tabindex="0">
+                    <span class="mdc-tab__content">
+                      <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                      <span class="mdc-tab__text-label">Lista de pedidos</span>
+                    </span>
+                    <span class="mdc-tab-indicator">
+                      <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                    </span>
+                    <span class="mdc-tab__ripple"></span>
+                  </a>
+                  <a class="mdc-tab" id="cupons-tab" data-toggle="tab" href="#cupons" role="tab" aria-controls="cupons"
+                    aria-selected="false" tabindex="0">
+                    <span class="mdc-tab__content">
+                      <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                      <span class="mdc-tab__text-label">Lista de cupons</span>
+                    </span>
+                    <span class="mdc-tab-indicator">
+                      <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                    </span>
+                    <span class="mdc-tab__ripple"></span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+    @endif
       <div class="container">
         @if(Session::has('status'))
+        <br>
         @if(Session::has('status-type'))
         <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
           <strong>{{ Session::get('status') }}</strong>
@@ -149,21 +152,28 @@
         @endif
         
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-        <div class="tab-content">
-          <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
-            @include('admin.index')
+        
+        @if (Request::is('admin'))
+          <div class="tab-content">
+            <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
+              @include('admin.index')
+            </div>
+            <div id="products" class="tab-pane fade" role="tabpanel" aria-labelledby="products-tab">
+              @include('admin.products')
+            </div>
+            <div id="orders" class="tab-pane fade" role="tabpanel" aria-labelledby="orders-tab">
+              @include('admin.orders')
+            </div>
+            <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
+              @include('admin.cupons')
+            </div>
           </div>
-          <div id="products" class="tab-pane fade" role="tabpanel" aria-labelledby="products-tab">
-            @include('admin.products')
-          </div>
-          <div id="orders" class="tab-pane fade" role="tabpanel" aria-labelledby="orders-tab">
-            @include('admin.orders')
-          </div>
-          <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
-            @include('admin.cupons')
-          </div>
-        </div>
+        @endif
+        @if (!Request::is('admin'))
+          <br><br><br>
+          <a href="{{ URL::previous() }}" style="decoration: none; font-size: 1.1em"><--- Voltar</a><br><br>
+          @yield('content')
+        @endif
       </div>
     </main>
   </div>
@@ -184,5 +194,4 @@
   <script src="{{asset('js/customJs/admin_layout.js')}}"></script>
   @yield('scripts')
 </body>
-
 </html>
