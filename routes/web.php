@@ -26,7 +26,7 @@ Route::group(['middleware' => ['https']], function () {
     */
     Auth::routes();
     Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('loginSocial');
-    Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+    Route::get('/public/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
     /* 
     *   Pág. inicial 
