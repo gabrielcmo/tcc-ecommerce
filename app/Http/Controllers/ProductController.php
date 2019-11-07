@@ -5,15 +5,25 @@ namespace Doomus\Http\Controllers;
 use Doomus\Product;
 use Illuminate\Http\Request;
 use Session;
+use Doomus\ProductImage;
 
 class ProductController extends Controller
 {
-    public static function addPicture($image){
-        $filename = time().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('img/products'), $filename);
+    public static function addPicture($image, $p_id){
+        $filename = rand(1, 2000) . time().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('/img/products'), $filename);
+        $imagens = ProductImage::where('product_id', $p_id)->get();
+        if (count($imagens) !== 0) {
+            foreach ($imagens as $img) {
+                $img->delete();
+            }
+        }
+
         $product_img = new ProductImage();
         $product_img->filename = $filename;
+        $product_img->product_id = $p_id;
         $product_img->save();
+        
         return;
     }
     
@@ -46,9 +56,13 @@ class ProductController extends Controller
     public function store(Request $request){
         $product = new Product();
 
-       if($request->hasFile('image')){
-            self::addPicture(request()->image);
-       }
+        if(is_array(request()->img)){
+            foreach(request()->img as $key => $image){
+                self::addPicture($image, $product->id);
+            }
+        }else{
+            self::addPicture(request()->img, $product->id);
+        }
         
         $product->name = $request->name;
         $product->description = $request->description;
@@ -78,9 +92,13 @@ class ProductController extends Controller
     public function update(Request $request){
         $product = Product::find($request->product_id);
         
-        if($request->hasFile('image')){
-            self::addPicture(request()->image);
-       }
+        if(is_array(request()->img)){
+            foreach(request()->img as $key => $image){
+                self::addPicture($image, $product->id);
+            }
+        }else{
+            self::addPicture(request()->img, $product->id);
+        }
 
         $product->name = $request->name;
         $product->description = $request->description;
@@ -94,7 +112,7 @@ class ProductController extends Controller
         $product->save();
 
         Session::flash('status', 'Produto atualizado com sucesso');
-        return redirect('/admin/products');
+        return redirect('/admin');
     }
 
     /* 

@@ -141,10 +141,10 @@
               </a>
             </div>
           </div>
-        </div>
-      </div>
+    @endif
       <div class="container">
         @if(Session::has('status'))
+        <br>
         @if(Session::has('status-type'))
         <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
           <strong>{{ Session::get('status') }}</strong>
@@ -163,24 +163,32 @@
         @endif
         
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-        <div class="tab-content">
-          <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
-            @include('admin.index')
-          </div>
-          <div id="products" class="tab-pane fade" role="tabpanel" aria-labelledby="products-tab">
-            @include('admin.products')
-          </div>
-          <div id="orders" class="tab-pane fade" role="tabpanel" aria-labelledby="orders-tab">
-            @include('admin.orders')
-          </div>
-          <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
-            @include('admin.cupons')
+        
+        @if (Request::is('admin'))
+          <div class="tab-content">
+            <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
+              @include('admin.index')
+            </div>
+            <div id="products" class="tab-pane fade" role="tabpanel" aria-labelledby="products-tab">
+              @include('admin.products')
+            </div>
+            <div id="orders" class="tab-pane fade" role="tabpanel" aria-labelledby="orders-tab">
+              @include('admin.orders')
+            </div>
+            <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
+              @include('admin.cupons')
+            </div>
           </div>
           <div id="suporte" class="tab-pane fade" role="tabpanel" aria-labelledby="suporte-tab">
             @include('admin.support')
           </div>
         </div>
+        @endif
+        @if (!Request::is('admin'))
+          <br><br><br>
+          <a href="{{ URL::previous() }}" style="decoration: none; font-size: 1.1em"><--- Voltar</a><br><br>
+          @yield('content')
+        @endif
       </div>
     </main>
   </div>
@@ -201,5 +209,4 @@
   <script src="{{asset('js/customJs/admin_layout.js')}}"></script>
   @yield('scripts')
 </body>
-
 </html>
