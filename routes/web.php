@@ -140,7 +140,14 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/order/{id}/aprovado', 'OrderController@pedidoAprovado')->name('admin.order.despachado');
     });
 
+    /*
+    *   Suporte
+    */
+    
+
+
     Route::get('/test-components', function(){
         return view('test_components');
     });
 });
+Route::get('/contato', 'SupportController@enviar')->name('suporte');
