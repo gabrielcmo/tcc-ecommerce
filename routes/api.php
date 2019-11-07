@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /*
 * Social login routes
 */
-Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('login-social');
-Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+// Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('login-social');
+// Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
