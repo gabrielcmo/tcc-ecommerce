@@ -64,7 +64,7 @@
                     <span class="mdc-button__label">Entrar</span>
                   </button>
                   <a class="pb-2 float-right text-dark" style="font-size: 14px" href="{{route('register')}}">Cliente novo? Cadastre-se</a> 
-                  <a class="pb-2 float-right text-dark" href="{{route('loginSocial', ['provider'=>'google'])}}">
+                  <a class="pb-2 float-right text-dark" href="{{route('login-social', ['provider'=>'google'])}}">
                     <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
                   </a>
                 </form>
@@ -126,7 +126,7 @@
         <button data-toggle="modal" data-target="#modalRegister" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
           <span class="mdc-button__label">Registrar</span>
         </button>
-        <button data-href="{{route('loginSocial', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
+        <button data-href="{{route('login-social', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
           <i class="mdc-button__icon fab fa-google" style="font-size: 18px; margin-right: 5px"></i>
           <span class="mdc-button__label">Entrar com Google</span>
         </button>
