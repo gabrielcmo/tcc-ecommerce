@@ -410,5 +410,16 @@ class DatabaseSeeder extends Seeder
             'product_id' => 10,
         ]);
 
+        DB::table('support')->insert([
+            'message' => 'Socorro',
+            'subject' => 'gabriel@doomus.com',
+            'user_id' => 2,
+        ]);
+
+        DB::table('support')->insert([
+            'message' => 'Me ajuda',
+            'subject' => 'geovanne@doomus.com',
+            'user_id' => 3,
+        ]);
     }
 }

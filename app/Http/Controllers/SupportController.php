@@ -5,6 +5,7 @@ namespace Doomus\Http\Controllers;
 use Doomus\Mail\SupportMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Doomus\Suporte;
 
 class SupportController extends Controller
 {
@@ -34,9 +35,15 @@ class SupportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $suporteData)
     {
-        //
+        $suporte =  new Suporte();
+        $suporte->message = $suporteData->message;
+        $suporte->subject = $suporteData->subject;
+        $suporte->user_id = Auth::user()->id;
+        $suporte->save();
+
+        return back();
     }
 
     /**
@@ -47,7 +54,7 @@ class SupportController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.supportMsg')->with('support', Suporte::find($id));
     }
 
     /**

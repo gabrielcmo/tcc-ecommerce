@@ -138,6 +138,11 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/order/{id}/entregue', 'OrderController@pedidoEntregue')->name('admin.order.entregue');
         Route::get('/order/{id}/despachado', 'OrderController@pedidoDespachado')->name('admin.order.despachado');
         Route::get('/order/{id}/aprovado', 'OrderController@pedidoAprovado')->name('admin.order.despachado');
+
+        /*
+        *   Suporte
+        */
+        Route::get('/suporte/{support_id}', 'SupportController@show')->name('admin.support');
     });
 
     /*

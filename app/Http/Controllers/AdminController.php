@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Order;
 use Doomus\Cupom;
+use Doomus\Suporte;
 use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -31,10 +32,23 @@ class AdminController extends Controller
             'qtdPedidosStatus' => json_encode($arrayqtdStatus),
             'products' => self::products(),
             'orders' => self::orders(),
-            'cupons' => self::cupomView()
+            'cupons' => self::cupomView(),
+            'suporte' => self::suporteView()
         ];
 
         return view('layouts.admin')->with('dadosChart', $dadosChart);
+    }
+
+    public function suporteView () {
+        $suporteData = Suporte::all();
+
+        $arraySuporte[] = ['ID', 'Mensagem', 'Enviado por', 'Usuário'];
+
+        foreach($suporteData as $data){
+            $arraySuporte[] = [$data->id, $data->message, $data->subject, $data->user->name];
+        }
+
+        return json_encode($arraySuporte);    
     }
 
     public static function products(){

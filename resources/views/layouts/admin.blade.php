@@ -31,6 +31,9 @@
         <span class="mdc-top-app-bar__title">Painel de controle</span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        <a class="mdc-button mdc-button--raised general-button mr-2" href="/">
+          <span class="mdc-button__label">Voltar para o site</span>
+        </a>
         <button class="mdc-button mdc-button--raised general-button mr-4"
           onclick="event.preventDefault(); document.getElementById('logout-form').submit()" id="logout-button">
           <span class="mdc-button__label">Sair</span>
@@ -79,6 +82,7 @@
     </div>
   </aside>
   <div class="mdc-drawer-scrim"></div>
+  @if (Request::is('admin'))
   <div class="mdc-top-app-bar--fixed-adjust">
     <main id="main-content">
       <div class="mdc-tab-bar" role="tablist" id="tablist">
@@ -178,11 +182,10 @@
             <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
               @include('admin.cupons')
             </div>
+            <div id="suporte" class="tab-pane fade" role="tabpanel" aria-labelledby="suporte-tab">
+              @include('admin.support')
+            </div>
           </div>
-          <div id="suporte" class="tab-pane fade" role="tabpanel" aria-labelledby="suporte-tab">
-            @include('admin.support')
-          </div>
-        </div>
         @endif
         @if (!Request::is('admin'))
           <br><br><br>

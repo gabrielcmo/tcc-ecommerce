@@ -29,7 +29,7 @@
                 var product_id = analyticsProducts[i+1][0];
                 data.setCell(i, 5, "<a href=" + "/admin/product/" + product_id + "/edit" + "><i class='fas fa-pencil-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
                 + "<a href=" + "/admin/product/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
-                + "<a href=" + "/admin/product/" + product_id + "/desconto" + " class='btn btn-info'>Aplicar desconto</a>");
+                + "<a href=" + "/admin/product/" + product_id + "/desconto" + " class='btn btn-info btn-sm'>Aplicar desconto</a>");
             }
 
 
