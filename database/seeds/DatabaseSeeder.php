@@ -411,14 +411,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('support')->insert([
+            'subject' => 'Não consigo logar',
             'message' => 'Socorro',
-            'subject' => 'gabriel@doomus.com',
             'user_id' => 2,
         ]);
 
         DB::table('support')->insert([
+            'subject' => 'Meu pedido não chegouuu!!',
             'message' => 'Me ajuda',
-            'subject' => 'geovanne@doomus.com',
             'user_id' => 3,
         ]);
     }

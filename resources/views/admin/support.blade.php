@@ -19,7 +19,7 @@
 
         for(var i = 0; i < data.getNumberOfRows(); i++){
             var suporte_id = analyticsSuporte[i+1][0];
-            data.setCell(i, 4, "<a href=" + "/admin/suporte/" + suporte_id + ">Ver mensagem</a>");
+            data.setCell(i, 4, "<a href=" + "/admin/suporte/" + suporte_id + ">Responder mensagem</a>");
         }
 
 

@@ -143,6 +143,7 @@ Route::group(['middleware' => ['https']], function () {
         *   Suporte
         */
         Route::get('/suporte/{support_id}', 'SupportController@show')->name('admin.support');
+        Route::post('/suporte/responder/data', 'SupportController@responderMsg')->name('supportResponderMsg');
     });
 
     /*

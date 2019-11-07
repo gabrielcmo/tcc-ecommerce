@@ -42,10 +42,10 @@ class AdminController extends Controller
     public function suporteView () {
         $suporteData = Suporte::all();
 
-        $arraySuporte[] = ['ID', 'Mensagem', 'Enviado por', 'Usuário'];
+        $arraySuporte[] = ['ID', 'Assunto', 'Mensagem', 'Usuário'];
 
         foreach($suporteData as $data){
-            $arraySuporte[] = [$data->id, $data->message, $data->subject, $data->user->name];
+            $arraySuporte[] = [$data->id, $data->subject, $data->message, $data->user->email];
         }
 
         return json_encode($arraySuporte);    

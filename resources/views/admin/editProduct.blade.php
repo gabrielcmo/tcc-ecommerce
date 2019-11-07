@@ -19,7 +19,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="name">Imagens</label>
-                <input type="file" class="form-control" name="img" id="img" multiple>
+                <input type="file" class="form-control" name="img[]" id="img" multiple>
             </div>
             <div class="form-group col-md-6">
                 <label for="name">Nome</label>

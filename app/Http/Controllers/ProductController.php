@@ -12,12 +12,6 @@ class ProductController extends Controller
     public static function addPicture($image, $p_id){
         $filename = rand(1, 2000) . time().'.'.$image->getClientOriginalExtension();
         $image->move(public_path('/img/products'), $filename);
-        $imagens = ProductImage::where('product_id', $p_id)->get();
-        if (count($imagens) !== 0) {
-            foreach ($imagens as $img) {
-                $img->delete();
-            }
-        }
 
         $product_img = new ProductImage();
         $product_img->filename = $filename;
@@ -56,6 +50,13 @@ class ProductController extends Controller
     public function store(Request $request){
         $product = new Product();
 
+        $imagens = ProductImage::where('product_id', $product->id)->get();
+        if (count($imagens) !== 0) {
+            foreach ($imagens as $img) {
+                $img->delete();
+            }
+        }
+
         if(is_array(request()->img)){
             foreach(request()->img as $key => $image){
                 self::addPicture($image, $product->id);
@@ -91,6 +92,13 @@ class ProductController extends Controller
     */
     public function update(Request $request){
         $product = Product::find($request->product_id);
+
+        $imagens = ProductImage::where('product_id', $product->id)->get();
+        if (count($imagens) !== 0) {
+            foreach ($imagens as $img) {
+                $img->delete();
+            }
+        }
         
         if(is_array(request()->img)){
             foreach(request()->img as $key => $image){

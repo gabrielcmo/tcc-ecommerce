@@ -46,6 +46,10 @@ class SupportController extends Controller
         return back();
     }
 
+    public function responderMsg (Request $request) {
+
+    }
+
     /**
      * Display the specified resource.
      *
