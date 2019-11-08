@@ -64,7 +64,7 @@
                     <span class="mdc-button__label">Entrar</span>
                   </button>
                   <a class="pb-2 float-right text-dark" style="font-size: 14px" href="{{route('register')}}">Cliente novo? Cadastre-se</a> 
-                  <a class="pb-2 float-right text-dark" href="{{route('login-social', ['provider'=>'google'])}}">
+                  <a class="pb-2 float-right text-dark" href="{{route('loginSocial', ['provider'=>'google'])}}">
                     <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
                   </a>
                 </form>
@@ -87,7 +87,6 @@
         <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
         <h6 class="mdc-drawer__subtitle">{{ Auth::user()->email }}</h6>
       </div>
-      <a class="btn btn-danger btn-sm mt-1 mb-2" style="" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
       
       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         {{ csrf_field() }}
@@ -107,12 +106,16 @@
           @if(Auth::user()->role_id == 1)
             <a class="mdc-list-item" href="/admin">
               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-              <span class="mdc-list-item__text">Painel de administração</span>
+            <span class="mdc-list-item__text">Painel de administração</span>
             </a>
           @endif
           <a class="mdc-list-item" href="{{ route('orders') }}">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
             <span class="mdc-list-item__text">Meus pedidos</span>
+          </a>
+          <a class="mdc-list-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">close</i>
+            <span class="mdc-list-item__text">Sair</span>
           </a>
         </div>
         
@@ -120,13 +123,13 @@
         <div class="mdc-list"></div>
       @endif
       @guest
-        <button data-toggle="modal" data-target="#modalLogin" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
+        <button data-href="{{route('login')}}" data-toggle="modal" data-target="#modalLogin" class="mdc-button mdc-button--raised actionButton general-button" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
           <span class="mdc-button__label">Entrar</span>
         </button>
-        <button data-toggle="modal" data-target="#modalRegister" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
+        <button data-href="{{route('register')}}" data-toggle="modal" data-target="#modalRegister" class="mdc-button mdc-button--raised actionButton general-button" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
           <span class="mdc-button__label">Registrar</span>
         </button>
-        <button data-href="{{route('login-social', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
+        <button data-href="{{route('loginSocial', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton general-button" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
           <i class="mdc-button__icon fab fa-google" style="font-size: 18px; margin-right: 5px"></i>
           <span class="mdc-button__label">Entrar com Google</span>
         </button>
