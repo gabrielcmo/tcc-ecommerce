@@ -16,7 +16,7 @@
                     <form method="POST" action="{{ route('register') }}" id="registerForm">
                         @csrf
                         <div class="form-group row mb-0">
-                            <img src="{{asset('img/logo_inteiro.png')}}" class="mx-auto d-block" alt="" height="250">
+                            <img src="{{asset('img/logo_inteiro.png')}}" class="mx-auto d-block" alt="" height="180px">
                         </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Nome') }}</label>

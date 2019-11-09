@@ -38,7 +38,7 @@
                     <div class="card-header pedidos-accordions-header" id="pedido{{$loop->iteration}}-accordion-header">
                       <h5 class="d-flex justify-content-between align-items-center mb-0">
                         <span class="">Número do pedido: <span class="text-weight-bold">{{$pedido->id}}</span></span>
-                        <span class="">Status: 
+                        <span class="text-right">Status: 
                           @switch($pedido->status_id)
                               @case(1)
                                 <span class="text-warning">Processando pagamento</span>

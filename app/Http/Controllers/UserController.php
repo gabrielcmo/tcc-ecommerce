@@ -35,6 +35,12 @@ class UserController extends Controller
         }
     }
 
+    public function deletarConta (Request $request) {
+        $user = Auth::user();
+        $user->delete();
+        return redirect('/');
+    }
+
     /**
      * Display the specified resource.
      *

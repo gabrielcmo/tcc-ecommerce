@@ -7,7 +7,8 @@
 @section('content')
   <div class="container">
     @if(Cart::count() == 0)
-      <h4 class="text-center mt-1">Seu carrinho está vazio!</h4>
+      <h4 class="text-center mt-4">Seu carrinho está vazio!</h4>
+      <div style="height:290px"></div>
     @else
     <div class="row mt-3">
       <h3 class="ml-4">Seu carrinho</h3>

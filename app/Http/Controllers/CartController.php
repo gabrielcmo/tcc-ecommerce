@@ -17,6 +17,20 @@ class CartController extends Controller
         Session::forget('cupom');
         return view('cart');
     }
+
+    public static function addToCartBuyNow($product_id) {
+        $product = Product::find($product_id);
+
+        if(1 > $product->qtd_last){
+            Session::flash('status', "Desculpe, nosso estoque está esgotado!");
+            Session::flash('status-type', 'danger');
+            return redirect('/');
+        }
+
+        Cart::add($product_id, $product->name, 1, $product->price)->associate('Product');
+
+        return redirect('/checkout/endereco');
+    }
     
     /**
      * Add to cart
@@ -24,7 +38,7 @@ class CartController extends Controller
      * @param $product_id
      * @return \Illuminate\Http\Response
      */
-    public function addToCart(AddToCart $request, $product_id = null)
+    public function addToCart(AddToCart $request, $product_id = null, $qty = null)
     {
         $product = $product_id !== null ? Product::find($product_id) : Product::find($request->get('product_id'));
 

@@ -46,6 +46,10 @@
                 <input type="number" class="form-control" name="width" id="width" value="{{ $product->width }}">
             </div>
             <div class="form-group col-md-6">
+                <label for="width">Comprimento</label>
+                <input type="number" class="form-control" name="lenght" id="">
+            </div>
+            <div class="form-group col-md-6">
                 <label for="height">Altura</label>
                 <input type="number" class="form-control" name="height" id="height" value="{{ $product->height }}">
             </div>
