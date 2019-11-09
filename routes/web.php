@@ -25,7 +25,7 @@ Route::group(['middleware' => ['https']], function () {
     *   Autentificação - Login - Rede Social
     */
     Auth::routes();
-    Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('loginSocial');
+    Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('login-social');
     Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
     /* 
@@ -100,6 +100,11 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/pedido/cancel', 'OrderController@cancel');
         Route::get('/pedido/rastrear', 'OrderController@track');
         Route::get('/pedido/produtos', 'OrderController@showOrderProducts')->name('showOrderProducts');
+
+        /*
+        *   Suporte
+        */
+        Route::post('/contato/armazenar','SupportController@store')->name('suporte-armazenar');
     });
 
     /*
@@ -146,14 +151,9 @@ Route::group(['middleware' => ['https']], function () {
         Route::post('/suporte/responder/data', 'SupportController@responderMsg')->name('supportResponderMsg');
     });
 
-    /*
-    *   Suporte
-    */
-    
 
 
     Route::get('/test-components', function(){
         return view('test_components');
     });
 });
-Route::get('/contato', 'SupportController@enviar')->name('suporte');

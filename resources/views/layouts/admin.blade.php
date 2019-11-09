@@ -31,7 +31,7 @@
         <span class="mdc-top-app-bar__title">Painel de controle</span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-        <a class="mdc-button mdc-button--raised general-button mr-2" href="/">
+        <a class="mdc-button mdc-button--raised general-button mr-2" href="{{route('landing')}}" id="adminBackButton">
           <span class="mdc-button__label">Voltar para o site</span>
         </a>
         <button class="mdc-button mdc-button--raised general-button mr-4"
@@ -169,7 +169,7 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         
         @if (Request::is('admin'))
-          <div class="tab-content">
+          <div class="tab-content mt-3">
             <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
               @include('admin.index')
             </div>

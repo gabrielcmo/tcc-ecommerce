@@ -6,6 +6,7 @@ use Doomus\Mail\SupportMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Doomus\Suporte;
+use Illuminate\Support\Facades\Auth;
 
 class SupportController extends Controller
 {
@@ -37,7 +38,7 @@ class SupportController extends Controller
      */
     public function store(Request $suporteData)
     {
-        $suporte =  new Suporte();
+        $suporte = new Suporte();
         $suporte->message = $suporteData->message;
         $suporte->subject = $suporteData->subject;
         $suporte->user_id = Auth::user()->id;
@@ -47,7 +48,7 @@ class SupportController extends Controller
     }
 
     public function responderMsg (Request $request) {
-
+        
     }
 
     /**
@@ -93,10 +94,5 @@ class SupportController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function enviar() 
-    {
-        Mail::to('replyto@doomus.com.br')->send(new SupportMail());
     }
 }
