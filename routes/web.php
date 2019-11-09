@@ -14,7 +14,7 @@ Route::group(['middleware' => ['https']], function () {
     /*
     *   Cart routes
     */
-    Route::get('/carrinho/{product_id}/add/', 'CartController@addToCart');
+    Route::get('/carrinho/{product_id}/add/', 'CartController@addToCart')->name('cart.fastAdd');
     Route::get('/carrinho/add/', 'CartController@addToCart')->name('cart.add');
     Route::get('/carrinho/delete', 'CartController@clearCart')->name('cart.clear');
     Route::get('/carrinho', 'CartController@show')->name('user.cart');
@@ -41,7 +41,7 @@ Route::group(['middleware' => ['https']], function () {
     /*
     *   View produto
     */
-    Route::get('/produto/{id}', 'ProductController@show');
+    Route::get('/produto/{id}', 'ProductController@show')->name('product.show');
 
 
     Route::get('/explore', 'OfertasController@viewExplore');

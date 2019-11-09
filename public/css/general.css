@@ -1,10 +1,5 @@
 a {
   text-decoration: none !important;
-  padding-left: 5px;
-}
-
-a:hover {
-  cursor: pointer;
 }
 
 .mdc-button__label {
@@ -117,4 +112,8 @@ button:focus {
 
 .mdc-tab {
   --mdc-theme-primary: #D7CEC7;
+}
+
+.cart-add-icon-button:hover {
+  color: green;
 }

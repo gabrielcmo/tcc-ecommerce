@@ -17,11 +17,6 @@ $(document).ready(function(){
     window.location.href = domain + "/produto/" + product_id; 
   });
   
-  $('.addProductToCart').click(function(e){
-    let product_id = $(this).parents('.mdc-card__actions').prev().data('id');
-    window.location.href = domain + "/carrinho/" + product_id + "/add";
-  });
-  
   let windowWidth = sessionStorage.getItem('windowWidth');
   if ((windowWidth >= 576 && windowWidth < 992) || (windowWidth < 576)) {
     $('#toggleSearchBarButton').removeClass('d-none');

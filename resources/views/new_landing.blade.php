@@ -92,7 +92,7 @@
             </div>
             <div class="mdc-card__actions">
               <div class="mdc-card__action-icons">
-                <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded addProductToCart" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">shopping_cart</button>
+                <a href="{{route('cart.fastAdd', ['product_id'=>$product->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">shopping_cart</a>
               </div>
             </div>
           </div>

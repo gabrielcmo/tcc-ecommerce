@@ -34,13 +34,16 @@
                   $img = Doomus\Product::find($item->id)->image;
                   @endphp
                   @if(isset($img[0]->filename))
-                  <img src="/img/products/{{$img[0]->filename}}" class="rounded" style="height: 4.5rem; width: 4.5rem"
+                    @php
+                      $img->filename = $img[0]->filename
+                    @endphp
+                  <img src={{asset("img/products/$img->filename")}} class="rounded" style="height: 4.5rem; width: 4.5rem"
                     alt="...">
                   @else
-                  <img src="/img/logo_icone.png" class="rounded" style="height: 4.5rem; width: 4.5rem" alt="...">
+                  <img src="{{asset('/img/logo_icone.png')}}" class="rounded" style="height: 4.5rem; width: 4.5rem" alt="...">
                   @endif
                   <div class="media-body text-break ml-2 mt-0">
-                    <a href="/produto/{{$item->id}}">{{$item->name}}</a>
+                    <a href="{{route('product.show', ['id'=>$item->id])}}">{{$item->name}}</a>
                   </div>
                 </div>
               </td>
