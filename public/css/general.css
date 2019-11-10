@@ -1,5 +1,19 @@
 a {
   text-decoration: none !important;
+  padding-left: 5px;
+}
+
+html, body {
+  height: 100%;
+}
+
+footer {
+  position: relative;
+  bottom:0;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 .mdc-button__label {

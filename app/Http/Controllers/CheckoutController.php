@@ -3,16 +3,17 @@
 namespace Doomus\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Doomus\Http\Controllers\UserController as User;
+use Doomus\Http\Controllers\UserController;
 use Canducci\ZipCode\ZipCodeUf;
 use Canducci\ZipCode\ZipCode;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Doomus\stdClass;
 use Doomus\OrderStatus;
+use Doomus\User;
 use SoapClient;
 use Doomus\Http\Controllers\ProductController;
 use Doomus\Http\Requests\Address;
 use Session;
+use Auth;
 
 class CheckoutController extends Controller
 {
@@ -43,6 +44,7 @@ class CheckoutController extends Controller
 
         Session::put('valorFrete', $result->cServico->Valor->__toString());
         Session::put('prazoFrete', $result->cServico->PrazoEntrega->__toString());
+        Session::put('cep', $request->cep);
 
         $response = array(
             'status' => 'success',
@@ -83,14 +85,14 @@ class CheckoutController extends Controller
 
     public function adressCheckout()
     {
-        return view('address_checkout')->with('user', User::getUser());
+        return view('address_checkout')->with('user', UserController::getUser());
     }
 
     public function paymentCheckout()
     {
         $valor = 0;
 
-        foreach (User::getCart() as $item) {
+        foreach (UserController::getCart() as $item) {
             $resultadoCalc = self::calcFretePrazo(
                 session('userData')['cep']
             );
@@ -141,6 +143,17 @@ class CheckoutController extends Controller
         $userData['city'] = $data->city;
         $userData['address'] = $data->address;
         $userData['n'] = $data->n;
+        
+        if ($data->saveInfo == "on" || $data->saveInfo == true) {
+            $user = Auth::user();
+            $user->cep = $data->cep;
+            $user->bairro = $data->bairro;
+            $user->estado = $data->state;
+            $user->cidade = $data->city;
+            $user->endereco = $data->address;
+            $user->numero = $data->n;
+            $user->save();
+        }
 
         $data->session()->put('userData', $userData);
 

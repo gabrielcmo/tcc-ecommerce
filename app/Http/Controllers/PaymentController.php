@@ -34,7 +34,7 @@ class PaymentController extends Controller
         );
 
         $this->_apiContext->setConfig($paypal_config['settings']);
-    }
+    }   
 
     public function create(){
         // Create new payer and method

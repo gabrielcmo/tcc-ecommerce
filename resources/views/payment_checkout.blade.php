@@ -51,8 +51,7 @@
                 </tbody>
             </table>
             <hr>
-            <p class="mb-1 text-center">Use o botão abaixo para revisar seu pedido!</p>
-            <button class="mdc-button mdc-button--raised w-100" data-toggle="modal" data-target="#itensModal">
+            <button class="mdc-button mdc-button--raised general-button w-100" data-toggle="modal" data-target="#itensModal">
                 <span class="mdc-button__label">Revisar pedido</span>
             </button>
             <table class="table table-borderless">

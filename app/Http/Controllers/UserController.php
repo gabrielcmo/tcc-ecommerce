@@ -35,6 +35,43 @@ class UserController extends Controller
         }
     }
 
+    public function deletarConta (Request $request) {
+        $user = Auth::user();
+        $user->delete();
+        return redirect('/');
+    }
+
+    public function deleteAddressSave () {
+        $user = Auth::user();
+        $user->cep = null;
+        $user->bairro = null;
+        $user->estado = null;
+        $user->cidade = null;
+        $user->endereco = null;
+        $user->numero = null;
+        $user->save();
+
+        Session::flash('status', 'Endereço excluído');
+        return back();
+    }
+
+    public function getAddressSaved () {
+        
+        $user = Auth::user();
+
+        $data = [
+            'cep' => $user->cep,
+            'bairro' => $user->bairro,
+            'estado' => $user->estado,
+            'cidade' => $user->cidade,
+            'endereco' => $user->endereco,
+            'numero' => $user->numero,
+            'textStatus' => 'success'
+        ];
+
+        return response()->json($data);
+    }
+
     /**
      * Display the specified resource.
      *

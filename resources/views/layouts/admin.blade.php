@@ -146,9 +146,9 @@
             </div>
           </div>
     @endif
+    <br><br><br>
       <div class="container">
         @if(Session::has('status'))
-        <br>
         @if(Session::has('status-type'))
         <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
           <strong>{{ Session::get('status') }}</strong>
@@ -169,7 +169,7 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         
         @if (Request::is('admin'))
-          <div class="tab-content mt-3">
+          <div class="tab-content">
             <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
               @include('admin.index')
             </div>
@@ -188,10 +188,12 @@
           </div>
         @endif
         @if (!Request::is('admin'))
-          <br><br><br>
-          <a href="{{ URL::previous() }}" style="decoration: none; font-size: 1.1em"><--- Voltar</a><br><br>
+          <a class="mdc-button mdc-button--raised general-button mt-2 mb-4" href="{{ URL::previous() }}">
+              <span class="mdc-button__label"><i class="fas fa-arrow-left"></i> Voltar</span>
+          </a>
           @yield('content')
         @endif
+        <br><br><br>
       </div>
     </main>
   </div>

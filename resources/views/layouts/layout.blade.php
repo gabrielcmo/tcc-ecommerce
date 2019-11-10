@@ -138,7 +138,7 @@
   </aside>
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
-    <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
+    <div class="nav-scroller bg-light shadow-sm mb-2 d-none" id="topAppBar2">
       <nav class="nav nav-underline" style="background-color:white;">
         <a class="nav-link mx-auto" style="color:#76323f;" href="/explore"><h5>Explore</h5></a>
         <a class="nav-link mx-auto" style="color:#76323f;" href="/ofertas"><h5>Ofertas imperdíveis</h5></a>
@@ -164,7 +164,7 @@
             </div>
           @endif
         @endif
-  
+        
         @yield('content')
         <div class="support-tab rounded-top" id="support-tab">
           <div class="support-tab-header">
@@ -192,6 +192,75 @@
         </div>
       </div>
     </main>
+    <!-- Footer -->
+<footer class="page-footer font-small blue pt-4 mt-4" style="background-color: #D7CEC7;">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+  
+      <!-- Grid row -->
+      <div class="row">
+  
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+  
+          <!-- Content -->
+          <img src="/img/logo_inteiro.png" width="20%" alt=""> <span style="color:#565660;font-size:0.9em">Por você, para você.</span>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <hr class="clearfix w-100 d-md-none pb-3">
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+  
+          <!-- Links -->
+          <h5 class="text-uppercase">Redes sociais</h5>
+  
+          <ul class="list-unstyled d-flex d-inline mx-auto text-center float-center">
+            <li>
+              <a href="https://www.facebook.com/doomus" style="font-size:1.7em"><i class="fab fa-facebook"></i></a>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li>
+              <a href="https://www.instagram.com/doomus" style="font-size:1.7em"><i class="fab fa-instagram"></i></a>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li>
+              <a href="https://www.twitter.com/doomus" style="font-size:1.7em"><i class="fab fa-twitter"></i></a>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+  
+          <!-- Links -->
+          <h5 class="text-uppercase">Dúvidas?</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a style="font-size:1.1em;" href="/docs">FAQ (Dúvidas Frequentes)</a>
+            </li>
+          </ul>
+  
+        </div>
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row -->
+  
+    </div>
+    <!-- Footer Links -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" style="background-color: #D7CEC7;">Doomus © 2019 Copyright
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
   </div>
   
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>

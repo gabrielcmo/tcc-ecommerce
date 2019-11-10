@@ -45,13 +45,13 @@ Checkout
                         @endif
                         @if(session('cupom') !== null)
                         <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                            <th>Total (BRL) s/ frete</th>
+                            <th>Total <small>(sem frete)</small></th>
                             <td class="font-weight-bold" id="totalCart">R$
                                 {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2)}}</td>
                         </tr>
                         @else
                         <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                            <th>Total (BRL) s/ frete</th>
+                            <th>Total (sem frete)</th>
                             <td class="font-weight-bold" id="totalCart">R$ {{Cart::total()}}</td>
                         </tr>
                         @endif
@@ -71,8 +71,12 @@ Checkout
             </div>
         </div>
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Endereço de entrega</h4>
-            <br>
+            <div class="d-flex d-inline mb-4">
+                <h4>Endereço de entrega</h4>
+                @if (Auth::user()->endereco !== null)
+                    &nbsp;&nbsp;&nbsp;&nbsp;<button id="useAddressSaved" class="mdc-button mdc-button--raised general-button">Usar endereço salvo</button>
+                @endif
+            </div>
             <form action="{{ route('address-data') }}" method="post" id="addressCheckoutForm">
                 @csrf
                 <div class="form-group col-lg-6 pl-0">
@@ -104,7 +108,7 @@ Checkout
                 </div>
                 <div class="form-group col-lg-6 pl-0 cep-form-group">
                     <input type="number" name="cep" id="cep" placeholder="CEP" maxlength="8" minlength="8"
-                        class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" required>
+                        class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" @if(session('cep') !== null)value="{{session('cep')}}"@endif required>
                     @if ($errors->has('cep'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$errors->first('cep')}}</strong>
@@ -162,12 +166,7 @@ Checkout
                 <hr>
 
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label for="same-address" class="custom-control-label">O endereço de entrega é o mesmo que o de
-                        pagamento</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <input type="checkbox" class="custom-control-input" id="save-info" name="saveInfo">
                     <label for="save-info" class="custom-control-label">Salvar minhas informações para próxima
                         compra</label>
                 </div>

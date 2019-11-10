@@ -35,6 +35,12 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Gabriel',
             'email' => 'gabriel'.'@doomus.com',
+            'cep' => 13835000,
+            'bairro' => 'Centro',
+            'cidade' => 'Conchal',
+            'estado' => 'SP',
+            'endereco' => 'Cons. Rodrigues Alves',
+            'numero' => 17,
             'password' => bcrypt('secret'),
             'role_id' => 1,
         ]);

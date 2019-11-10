@@ -21,6 +21,10 @@ Route::group(['middleware' => ['https']], function () {
     Route::get('/carrinho/{product_id}/remove', 'CartController@removeFromCart');
     Route::get('/carrinho/{product_rowId}/{qty}/{product_id}', 'CartController@changeQuantity');
 
+    Route::get('/docs', function () {
+        return view('docs');
+    });
+
     /* 
     *   Autentificação - Login - Rede Social
     */
@@ -60,6 +64,8 @@ Route::group(['middleware' => ['https']], function () {
     */
     Route::post('/calc/frete', 'CheckoutController@calcFrete')->name('calcFrete');
 
+    Route::post('/buy/now', 'ProductController@buyNow')->name('comprarAgora');
+
     Route::group(['middleware' => ['auth']], function (){
         /*
         *   User views
@@ -68,6 +74,12 @@ Route::group(['middleware' => ['https']], function () {
         Route::post('/perfil/update', 'UserController@updateProfile');
         Route::get('/pedidos', 'OrderController@show')->name('orders');
         Route::post('/avaliar', 'UserController@avaliate')->name('avaliate');
+
+        Route::post('/excluir/conta', 'UserController@deletarConta')->name('deletarConta');
+
+        Route::get('/delete/address', 'UserController@deleteAddressSave')->name('deleteAddressSave');
+
+        Route::get('/get/saved/address', 'UserController@getAddressSaved');
 
         /*
         *   Limpar histórico

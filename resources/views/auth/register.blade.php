@@ -16,7 +16,7 @@
                     <form method="POST" action="{{ route('register') }}" id="registerForm">
                         @csrf
                         <div class="form-group row mb-0">
-                            <img src="{{asset('img/logo_inteiro.png')}}" class="mx-auto d-block" alt="" height="250">
+                            <img src="{{asset('img/logo_inteiro.png')}}" class="mx-auto d-block" alt="" height="180px">
                         </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-2 col-lg-3 col-form-label text-md-right">{{ __('Nome') }}</label>
@@ -78,6 +78,11 @@
                                     <i class="fab fa-google mr-1"></i>
                                     <span class="mdc-button__label">Google</span>
                                 </button>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-12 col-lg-12 offset-lg-3 offset-md-2 mt-3">
+                                <a href="{{ route('login') }}">Já possui uma conta? Entre clicando aqui</a>
                             </div>
                         </div>
                     </form>
