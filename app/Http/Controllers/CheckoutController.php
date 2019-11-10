@@ -142,6 +142,20 @@ class CheckoutController extends Controller
         $userData['address'] = $data->address;
         $userData['n'] = $data->n;
 
+        if ($data->saveInfo == true ) {
+            
+            $user = User::find(Auth::user()->id);
+
+            $user->update([
+                'cep' => $data->cep,
+                'bairro' => $data->bairro,
+                'estado' => $data->state,
+                'cidade' => $data->city,
+                'endereco' => $data->address,
+                'numero' => $data->n
+            ]);
+        }
+
         $data->session()->put('userData', $userData);
 
         return redirect('/checkout/pagamento');

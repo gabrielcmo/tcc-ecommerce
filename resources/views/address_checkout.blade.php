@@ -162,12 +162,7 @@ Checkout
                 <hr>
 
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label for="same-address" class="custom-control-label">O endereço de entrega é o mesmo que o de
-                        pagamento</label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <input type="checkbox" class="custom-control-input" id="saveInfo" name="saveInfo">
                     <label for="save-info" class="custom-control-label">Salvar minhas informações para próxima
                         compra</label>
                 </div>

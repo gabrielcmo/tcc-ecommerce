@@ -77,6 +77,8 @@ Route::group(['middleware' => ['https']], function () {
 
         Route::post('/excluir/conta', 'UserController@deletarConta')->name('deletarConta');
 
+        Route::get('/delete/address', 'UserController@deleteAddressSave')->name('deleteAddressSave');
+
         /*
         *   Limpar histórico
         */

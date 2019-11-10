@@ -41,6 +41,20 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    public function deleteAddressSave () {
+        $user = User::find(Auth::user()->id);
+        $user->cep = null;
+        $user->bairro = null;
+        $user->estado = null;
+        $user->cidade = null;
+        $user->endereco = null;
+        $user->numero = null;
+        $user->save();
+
+        Session::flash('status', 'Endereço excluído');
+        return back();
+    }
+
     /**
      * Display the specified resource.
      *

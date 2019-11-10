@@ -215,7 +215,7 @@
           <!-- Links -->
           <h5 class="text-uppercase">Redes sociais</h5>
   
-          <ul class="list-unstyled">
+          <ul class="list-unstyled d-flex d-inline mx-auto text-center float-center">
             <li>
               <a href="https://www.facebook.com/doomus" style="font-size:1.7em"><i class="fab fa-facebook"></i></a>
             </li>&nbsp;&nbsp;&nbsp;
