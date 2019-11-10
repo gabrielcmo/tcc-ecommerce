@@ -79,6 +79,8 @@ Route::group(['middleware' => ['https']], function () {
 
         Route::get('/delete/address', 'UserController@deleteAddressSave')->name('deleteAddressSave');
 
+        Route::get('/get/saved/address', 'UserController@getAddressSaved');
+
         /*
         *   Limpar histórico
         */

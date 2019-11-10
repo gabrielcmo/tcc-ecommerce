@@ -92,14 +92,18 @@
             </div>
             <div class="mdc-card__actions">
               <div class="mdc-card__action-icons">
-                <form id="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
-                  {{ csrf_field() }}
-                  <input type="hidden" name="product_id" value="{{ $product->id }}">
-                </form>
-                <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementById('comprarAgora-form').submit()" href="#">
-                  <span class="mdc-button__label">Comprar agora</span>
-                </a>
-                <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded addProductToCart" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">shopping_cart</button>
+                @if($product->qtd_last == 0)
+                  <span class="bg-warning btn">Esgotado</span>
+                @else
+                  <form id="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  </form>
+                  <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementById('comprarAgora-form').submit()" href="#">
+                    <span class="mdc-button__label">Comprar agora</span>
+                  </a>
+                  <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded addProductToCart" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">shopping_cart</button>
+                @endif
               </div>
             </div>
           </div>

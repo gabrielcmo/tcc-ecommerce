@@ -42,7 +42,7 @@ class UserController extends Controller
     }
 
     public function deleteAddressSave () {
-        $user = User::find(Auth::user()->id);
+        $user = Auth::user();
         $user->cep = null;
         $user->bairro = null;
         $user->estado = null;
@@ -53,6 +53,23 @@ class UserController extends Controller
 
         Session::flash('status', 'Endereço excluído');
         return back();
+    }
+
+    public function getAddressSaved () {
+        
+        $user = Auth::user();
+
+        $data = [
+            'cep' => $user->cep,
+            'bairro' => $user->bairro,
+            'estado' => $user->estado,
+            'cidade' => $user->cidade,
+            'endereco' => $user->endereco,
+            'numero' => $user->numero,
+            'textStatus' => 'success'
+        ];
+
+        return response()->json($data);
     }
 
     /**

@@ -169,7 +169,7 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         
         @if (Request::is('admin'))
-          <div class="tab-content mt-3">
+          <div class="tab-content">
             <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
               @include('admin.index')
             </div>

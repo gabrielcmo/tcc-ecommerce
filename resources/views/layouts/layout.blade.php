@@ -120,13 +120,13 @@
         <div class="mdc-list"></div>
       @endif
       @guest
-        <button data-toggle="modal" data-target="#modalLogin" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
+        <a href="{{ route('login') }}" class="mdc-button mdc-button--raised general-button" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
           <span class="mdc-button__label">Entrar</span>
-        </button>
-        <button data-toggle="modal" data-target="#modalRegister" class="mdc-button mdc-button--raised" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
+        </a>
+        <a href="{{ route('register') }}" class="mdc-button mdc-button--raised general-button" style="position:absolute; bottom: 45px; right: 0; margin-bottom: 20px; margin-right: 10px;">
           <span class="mdc-button__label">Registrar</span>
-        </button>
-        <button data-href="{{route('login-social', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
+        </a>
+        <button data-href="{{route('login-social', ['provider'=>'google'])}}" class="mdc-button mdc-button--raised general-button actionButton" style="position:absolute; bottom: 0; width: 235px; margin-right: 10px; margin-left: 10px; margin-bottom: 20px">
           <i class="mdc-button__icon fab fa-google" style="font-size: 18px; margin-right: 5px"></i>
           <span class="mdc-button__label">Entrar com Google</span>
         </button>
@@ -135,7 +135,7 @@
   </aside>
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
-    <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
+    <div class="nav-scroller bg-light shadow-sm mb-2 d-none" id="topAppBar2">
       <nav class="nav nav-underline" style="background-color:white;">
         <a class="nav-link mx-auto" style="color:#76323f;" href="/explore"><h5>Explore</h5></a>
         <a class="nav-link mx-auto" style="color:#76323f;" href="/ofertas"><h5>Ofertas imperdíveis</h5></a>

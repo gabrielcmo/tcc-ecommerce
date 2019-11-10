@@ -4,6 +4,27 @@ $(document).ready(function () {
         domain = "www.doomus.com.br/public";
     }
     var verifyCep, verifyCepStatus, cepData;
+
+    $('#useAddressSaved').click(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://" + domain + "/get/saved/address",
+            data: null,
+            dataType: "JSON",
+            success: function (response) {
+
+                if (response.textStatus == 'success') {
+                    $('#address').val(response.endereco).addClass('input-valid');
+                    $('#bairro').val(response.bairro).addClass('input-valid');
+                    $('#state').val(response.estado).addClass('input-valid');
+                    $('#city').val(response.cidade).addClass('input-valid');
+                    $('#cep').val(response.cep).addClass('input-valid');
+                    $('#n').val(response.numero).addClass('input-valid');
+                }
+            }
+        });
+    });
+
     $("#cep").blur(function () {
 
 
