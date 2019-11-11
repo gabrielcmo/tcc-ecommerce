@@ -6,6 +6,7 @@ use Doomus\Mail\SupportMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Doomus\Ticket;
+use Doomus\Http\Controllers\UserController as User;;
 use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
@@ -17,7 +18,8 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $tickets = User::getTickets();
+        return view('user.tickets')->with('tickets', $tickets);
     }
 
     /**

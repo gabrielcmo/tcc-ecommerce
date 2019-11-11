@@ -116,6 +116,7 @@ Route::group(['middleware' => ['https']], function () {
         /*
         *   Tickets
         */
+        Route::get('/tickets', 'TicketController@index')->name('tickets');
         Route::get('/ticket/create', 'TicketController@create')->name('ticket.create');
         Route::post('/ticket/store','TicketController@store')->name('ticket.store');
     });

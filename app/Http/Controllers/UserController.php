@@ -112,6 +112,11 @@ class UserController extends Controller
         return Auth::guard()->user()->order;
     }
 
+    public static function getTickets()
+    {
+        return Auth::guard()->user()->tickets;
+    }
+
     public static function getCart()
     {
         return Cart::content();

@@ -26,7 +26,7 @@ class User extends Authenticatable
         return $this->hasMany('Doomus\EvaluationText');
     }
 
-    public function suporte() {
+    public function tickets() {
         return $this->hasMany('Doomus\Ticket');
     }
 
