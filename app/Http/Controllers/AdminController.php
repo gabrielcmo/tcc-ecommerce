@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Order;
 use Doomus\Cupom;
-use Doomus\Suporte;
+use Doomus\Ticket;
 use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -33,22 +33,22 @@ class AdminController extends Controller
             'products' => self::products(),
             'orders' => self::orders(),
             'cupons' => self::cupomView(),
-            'suporte' => self::suporteView()
+            'tickets' => self::ticketView()
         ];
 
         return view('layouts.admin')->with('dadosChart', $dadosChart);
     }
 
-    public function suporteView () {
-        $suporteData = Suporte::all();
+    public function ticketView () {
+        $ticketData = Ticket::all();
 
-        $arraySuporte[] = ['ID', 'Assunto', 'Mensagem', 'Usuário'];
+        $arrayTickets[] = ['ID', 'Assunto', 'Mensagem', 'Usuário'];
 
-        foreach($suporteData as $data){
-            $arraySuporte[] = [$data->id, $data->subject, $data->message, $data->user->email];
+        foreach($ticketData as $data){
+            $arrayTickets[] = [$data->id, $data->subject, $data->message, $data->user->email];
         }
 
-        return json_encode($arraySuporte);    
+        return json_encode($arrayTickets);    
     }
 
     public static function products(){

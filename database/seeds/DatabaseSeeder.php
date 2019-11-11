@@ -416,13 +416,13 @@ class DatabaseSeeder extends Seeder
             'product_id' => 10,
         ]);
 
-        DB::table('support')->insert([
+        DB::table('tickets')->insert([
             'subject' => 'Não consigo logar',
             'message' => 'Socorro',
             'user_id' => 2,
         ]);
 
-        DB::table('support')->insert([
+        DB::table('tickets')->insert([
             'subject' => 'Meu pedido não chegouuu!!',
             'message' => 'Me ajuda',
             'user_id' => 3,

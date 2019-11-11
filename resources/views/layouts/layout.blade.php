@@ -99,6 +99,10 @@
     <div class="mdc-drawer__content" style="position:relative">
       @auth
         <div class="mdc-list">
+          <a class="mdc-list-item mdc-list-item--activated" href="{{route('landing')}}" aria-current="page">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
+            <span class="mdc-list-item__text">Home</span>
+          </a>
           <a class="mdc-list-item" href="{{ route('perfil') }}">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
             <span class="mdc-list-item__text">Meu perfil</span>
@@ -166,101 +170,89 @@
         @endif
         
         @yield('content')
-        <div class="support-tab rounded-top" id="support-tab">
-          <div class="support-tab-header">
-            <h6 class="d-flex justify-content-between">
-              <span class="mt-1 ml-2">Suporte ao cliente</span>
-              <span class="mt-1 mr-2"><i class="fas fa-circle text-success"></i> Disponível</span>
-            </h6>
-          </div>
-          <div class="support-tab-content">
-            <form class="card h-100 p-2" action="{{route('suporte-armazenar')}}" method="POST" id="supportTabForm">
-              @csrf
-              <div class="form-group mb-2">
-                <label for="subject">Assunto</label>
-                <input type="text" class="form-control support-form-control" name="subject" id="subject">
-              </div>
-              <div class="form-group mb-2">
-                <label for="suport_message">Mensagem</label>
-                <textarea class="form-control support-form-control" name="message" id="support_message" rows="4"></textarea>
-              </div>
-              <button type="submit" class="mdc-button mdc-button--raised general-button">
-                <span class="mdc-button__label">Enviar</span>
-              </button>
-            </form>
-          </div>
-        </div>
+
+        <button class="mdc-fab general-button" id="fastMenuButton" aria-label="Menu">
+          <i class="mdc-fab__icon fas fa-bars" id="fastMenuButtonIcon"></i>
+        </button>
+ 
+        <button class="mdc-fab actionButton" data-href="{{route('ticket.create')}}" style="background-color: #D7CEC7; display: none;" id="fastSupportButton" aria-label="Suporte">
+          <span class="mdc-fab__icon material-icons">contact_support</span>
+        </button>
+
+        <button class="mdc-fab" style="background-color: #D7CEC7; display: none;" id="fastSearchButton" aria-label="Procurar">
+          <span class="mdc-fab__icon material-icons">search</span>
+        </button>
       </div>
     </main>
     <!-- Footer -->
-<footer class="page-footer font-small blue pt-4 mt-4" style="background-color: #D7CEC7;">
+    <footer class="page-footer font-small blue pt-4 mt-4" style="background-color: #D7CEC7;">
 
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-  
-      <!-- Grid row -->
-      <div class="row">
-  
-        <!-- Grid column -->
-        <div class="col-md-6 mt-md-0 mt-3">
-  
-          <!-- Content -->
-          <img src="/img/logo_inteiro.png" width="20%" alt=""> <span style="color:#565660;font-size:0.9em">Por você, para você.</span>
-  
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+      
+          <!-- Grid row -->
+          <div class="row">
+      
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
+      
+              <!-- Content -->
+              <img src="/img/logo_inteiro.png" width="20%" alt=""> <span style="color:#565660;font-size:0.9em">Por você, para você.</span>
+      
+            </div>
+            <!-- Grid column -->
+      
+            <hr class="clearfix w-100 d-md-none pb-3">
+      
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+      
+              <!-- Links -->
+              <h5 class="text-uppercase">Redes sociais</h5>
+      
+              <ul class="list-unstyled d-flex d-inline mx-auto text-center float-center">
+                <li>
+                  <a href="https://www.facebook.com/doomus" style="font-size:1.7em"><i class="fab fa-facebook"></i></a>
+                </li>&nbsp;&nbsp;&nbsp;
+                <li>
+                  <a href="https://www.instagram.com/doomus" style="font-size:1.7em"><i class="fab fa-instagram"></i></a>
+                </li>&nbsp;&nbsp;&nbsp;
+                <li>
+                  <a href="https://www.twitter.com/doomus" style="font-size:1.7em"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+      
+            </div>
+            <!-- Grid column -->
+      
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+      
+              <!-- Links -->
+              <h5 class="text-uppercase">Dúvidas?</h5>
+      
+              <ul class="list-unstyled">
+                <li>
+                  <a style="font-size:1.1em;" href="/docs">FAQ (Dúvidas Frequentes)</a>
+                </li>
+              </ul>
+      
+            </div>
+            <!-- Grid column -->
+      
+          </div>
+          <!-- Grid row -->
+      
         </div>
-        <!-- Grid column -->
-  
-        <hr class="clearfix w-100 d-md-none pb-3">
-  
-        <!-- Grid column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-  
-          <!-- Links -->
-          <h5 class="text-uppercase">Redes sociais</h5>
-  
-          <ul class="list-unstyled d-flex d-inline mx-auto text-center float-center">
-            <li>
-              <a href="https://www.facebook.com/doomus" style="font-size:1.7em"><i class="fab fa-facebook"></i></a>
-            </li>&nbsp;&nbsp;&nbsp;
-            <li>
-              <a href="https://www.instagram.com/doomus" style="font-size:1.7em"><i class="fab fa-instagram"></i></a>
-            </li>&nbsp;&nbsp;&nbsp;
-            <li>
-              <a href="https://www.twitter.com/doomus" style="font-size:1.7em"><i class="fab fa-twitter"></i></a>
-            </li>
-          </ul>
-  
+        <!-- Footer Links -->
+      
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3" style="background-color: #D7CEC7;">Doomus © 2019 Copyright
         </div>
-        <!-- Grid column -->
-  
-        <!-- Grid column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-  
-          <!-- Links -->
-          <h5 class="text-uppercase">Dúvidas?</h5>
-  
-          <ul class="list-unstyled">
-            <li>
-              <a style="font-size:1.1em;" href="/docs">FAQ (Dúvidas Frequentes)</a>
-            </li>
-          </ul>
-  
-        </div>
-        <!-- Grid column -->
-  
-      </div>
-      <!-- Grid row -->
-  
-    </div>
-    <!-- Footer Links -->
-  
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3" style="background-color: #D7CEC7;">Doomus © 2019 Copyright
-    </div>
-    <!-- Copyright -->
-  
-  </footer>
-  <!-- Footer -->
+        <!-- Copyright -->
+      
+      </footer>
+      <!-- Footer -->
   </div>
   
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>

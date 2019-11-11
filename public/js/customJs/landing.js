@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-fab';
+  const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action';
   const ripples = [].map.call(document.querySelectorAll(selector), function(el) {
     return mdc.ripple.MDCRipple.attachTo(el);
   });
@@ -16,22 +16,6 @@ $(document).ready(function(){
     let product_id = $(this).data('id');
     window.location.href = domain + "/produto/" + product_id; 
   });
-  
-  let windowWidth = sessionStorage.getItem('windowWidth');
-  if ((windowWidth >= 576 && windowWidth < 992) || (windowWidth < 576)) {
-    $('#toggleSearchBarButton').removeClass('d-none');
-  } else {
-    $('#toggleSearchBarButton').addClass('d-none');
-  }
-
-  $(window).resize(function() {
-    let width = $(window).width();
-    if ((width >= 576 && width < 992) || (width < 576)) {
-      $('#toggleSearchBarButton').removeClass('d-none');
-    } else {
-      $('#toggleSearchBarButton').addClass('d-none');
-    }
-  });
 
   $('#toggleSearchBarButton').click(function() {
     $('.input-search-sm-devices').removeClass('d-none');
@@ -39,13 +23,5 @@ $(document).ready(function(){
     $('.mdc-drawer-scrim').addClass('show');
   });
   
-  $('.mdc-drawer-scrim').click(function (e) {
-    if ($('.mdc-drawer-scrim').hasClass('show')) {
-      if ($(e.target).hasClass('mdc-drawer-scrim')) {
-        $('.mdc-drawer-scrim').hide();
-        $('.input-search-sm-devices').addClass('d-none');
-      }
-    }
-  });
 
 });

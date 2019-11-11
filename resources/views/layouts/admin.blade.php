@@ -183,7 +183,7 @@
               @include('admin.cupons')
             </div>
             <div id="suporte" class="tab-pane fade" role="tabpanel" aria-labelledby="suporte-tab">
-              @include('admin.support')
+              @include('admin.tickets')
             </div>
           </div>
         @endif

@@ -4,9 +4,9 @@ namespace Doomus;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Suporte extends Model
+class Ticket extends Model
 {
-    protected $table = 'support';
+    protected $table = 'tickets';
 
     public function user () {
         return $this->belongsTo('Doomus\User');

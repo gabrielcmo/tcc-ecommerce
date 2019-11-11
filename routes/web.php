@@ -114,9 +114,10 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/pedido/produtos', 'OrderController@showOrderProducts')->name('showOrderProducts');
 
         /*
-        *   Suporte
+        *   Tickets
         */
-        Route::post('/contato/armazenar','SupportController@store')->name('suporte-armazenar');
+        Route::get('/ticket/create', 'TicketController@create')->name('ticket.create');
+        Route::post('/ticket/store','TicketController@store')->name('ticket.store');
     });
 
     /*
@@ -157,10 +158,10 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/order/{id}/aprovado', 'OrderController@pedidoAprovado')->name('admin.order.despachado');
 
         /*
-        *   Suporte
+        *   Tickets
         */
-        Route::get('/suporte/{support_id}', 'SupportController@show')->name('admin.support');
-        Route::post('/suporte/responder/data', 'SupportController@responderMsg')->name('supportResponderMsg');
+        Route::get('/ticket/{support_id}', 'TicketController@show')->name('admin.tickets');
+        Route::post('/ticket/responder/data', 'TicketController@responderMsg')->name('ticketResponderMsg');
     });
 
 

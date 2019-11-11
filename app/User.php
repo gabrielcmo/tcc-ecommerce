@@ -27,7 +27,7 @@ class User extends Authenticatable
     }
 
     public function suporte() {
-        return $this->hasMany('Doomus\Suporte');
+        return $this->hasMany('Doomus\Ticket');
     }
 
     /**

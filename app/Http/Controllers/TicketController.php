@@ -5,10 +5,10 @@ namespace Doomus\Http\Controllers;
 use Doomus\Mail\SupportMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Doomus\Suporte;
+use Doomus\Ticket;
 use Illuminate\Support\Facades\Auth;
 
-class SupportController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class SupportController extends Controller
      */
     public function create()
     {
-        //
+        return view('tickets.create-ticket');
     }
 
     /**
@@ -36,13 +36,13 @@ class SupportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $suporteData)
+    public function store(Request $ticketData)
     {
-        $suporte = new Suporte();
-        $suporte->message = $suporteData->message;
-        $suporte->subject = $suporteData->subject;
-        $suporte->user_id = Auth::user()->id;
-        $suporte->save();
+        $ticket = new ticket();
+        $ticket->message = $ticketData->message;
+        $ticket->subject = $ticketData->subject;
+        $ticket->user_id = Auth::user()->id;
+        $ticket->save();
 
         return back();
     }
@@ -59,7 +59,7 @@ class SupportController extends Controller
      */
     public function show($id)
     {
-        return view('admin.supportMsg')->with('support', Suporte::find($id));
+        return view('admin.ticketMsg')->with('ticket', Ticket::find($id));
     }
 
     /**

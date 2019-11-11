@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSupportTable extends Migration
+class CreateTicketsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSupportTable extends Migration
      */
     public function up()
     {
-        Schema::create('support', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('message');
             $table->string('subject');
@@ -30,6 +30,6 @@ class CreateSupportTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('support');
+        Schema::dropIfExists('tickets');
     }
 }

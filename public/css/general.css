@@ -3,7 +3,7 @@ a {
   padding-left: 5px;
 }
 
-html, body {
+body {
   height: 100%;
 }
 
@@ -58,6 +58,30 @@ button:focus {
   background-color:#76323f !important;
 }
 
+#fastMenuButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+#fastCloseButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+#fastSupportButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 5rem;
+}
+
+#fastSearchButton {
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+}
+
 .input-valid {
   border-color: green;
 }
@@ -73,12 +97,6 @@ button:focus {
   border-color: orange;
 }
 
-.app-fab--absolute {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-}
-
 .input-search-sm-devices {
   top: 1rem;
   left: 50%;
@@ -87,8 +105,8 @@ button:focus {
   z-index: 1090;
 }
 
-.support-tab-header {
-  background-color: #D7CEC7;
+/* .support-tab-header {
+  background-color: #565656;
   width: 22rem;
   height: 32px;
   position: fixed;
@@ -109,10 +127,18 @@ button:focus {
 
 .support-tab-header:hover {
   cursor: pointer;
+} */
+
+.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
+  color: #565656;
 }
 
-.mdc-tab--active .mdc-tab__text-label {
+.mdc-drawer .mdc-list-item--activated .mdc-list-item__text {
   color: #565656;
+}
+
+:not(.mdc-list--non-interactive)>:not(.mdc-list-item--disabled).mdc-list-item--activated::before, :not(.mdc-list--non-interactive)>:not(.mdc-list-item--disabled).mdc-list-item--activated::after {
+  background-color: #D7CEC7;
 }
 
 .mdc-tab--active .mdc-tab__icon {
