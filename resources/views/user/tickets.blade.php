@@ -35,18 +35,27 @@
                                             <h5 class="d-flex justify-content-between align-items-center mb-0">
                                                 <span class="">Número do ticket: <span class="text-weight-bolder">{{$ticket->id}}</span></span>
                                                 <span class="text-right">Status:
-                                                    @switch($ticket->status)
-                                                        @case(1)
-                                                            
-                                                            @break
-                                                        @case(2)
-                                                            
-                                                            @break
-                                                        @default
-                                                            
-                                                    @endswitch
+
                                                 </span>
                                             </h5>
+                                        </div>
+                                        <div id="ticket{{$loop->iteration}}-accordion-collapse" class="collapse" aria-labelledy="ticket{{$loop->iteration}}-accordion-header" data-parent="#ticket{{$loop->iteration}}-accordion">
+                                            <div class="card-body">
+                                                <div>
+                                                    <h4 class="d-flex justify-content-between">
+                                                        <span>Ticket de número: {[$ticket->id}}</span>
+                                                        <span>Criado no dia:
+                                                            <span class="font-weight-light">
+
+                                                            </span>
+                                                        </span>
+                                                    </h4>
+                                                    <h5 class="mt-2">Dados do ticket</h5>
+                                                    <p class="font-weight-bolder mb-1">Assunto: <span class="font-weight-light">{{$ticket->subject}}</span></p>
+                                                    <p class="font-weight-bolder mb-1">Tipo da dúvida: <span class="font-weight-light"></span></p>
+                                                    <p class="font-weight-bolder mb-1">Mensagem: <span class="text-justify">{{$ticket->message}}</span></p>
+                                                </div>
+                                            </div>  
                                         </div>
                                     </div>
                                 </div>
