@@ -5,7 +5,6 @@
     <div id="string_filter_name_div_ticket"></div>
 </div>
 <div style="text-align:center!important;" id="ticket_table"></div>
-
 <script type="text/javascript">
     var analyticsTicket = {!! $dadosChart['tickets'] !!};
     google.charts.load('current', {'packages':['table', 'controls']});
@@ -14,12 +13,15 @@
     function drawTable() {
         var data = new google.visualization.arrayToDataTable(analyticsTicket);
         data.addColumn('string', '');
-
         var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboardTicket'));
-
         for(var i = 0; i < data.getNumberOfRows(); i++){
             var ticket_id = analyticsTicket[i+1][0];
-            data.setCell(i, 4, "<a href=" + "/admin/ticket/edit/" + ticket_id + ">Responder mensagem</a>");
+
+            if (analyticsTicket[i+1][4] === null) {
+                data.setCell(i, 8, "<a class='btn btn-link btn-sm' href=" + "/admin/ticket/edit/" + ticket_id + ">Responder mensagem</a>");
+            } else {
+                data.setCell(i, 8, '<span class="text-success">Mensagem Respondida!</span>')
+            }
         }
 
 

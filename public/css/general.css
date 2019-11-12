@@ -146,6 +146,10 @@ button:focus {
   fill: currentColor;
 }
 
+.mdc-tab--active .mdc-tab__text-label {
+  color: #565656;
+}
+
 .mdc-tab-indicator .mdc-tab-indicator__content--underline {
   border-color: #565656;
 }

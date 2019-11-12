@@ -8,6 +8,7 @@ use Doomus\Order;
 use Doomus\Cupom;
 use Doomus\Ticket;
 use Session;
+use DateTime;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class AdminController extends Controller
@@ -42,10 +43,15 @@ class AdminController extends Controller
     public function ticketView () {
         $ticketData = Ticket::all();
 
-        $arrayTickets[] = ['ID', 'Assunto', 'Mensagem', 'Usuário'];
+        $arrayTickets[] = ['ID', 'Assunto', 'Tipo', 'Mensagem', 'Resposta', 'Data de criação', 'Data de resposta', 'Usuário'];
 
         foreach($ticketData as $data){
-            $arrayTickets[] = [$data->id, $data->subject, $data->message, $data->user->email];
+
+            $creation_date = DateTime::createFromFormat('Y-m-d H:i:s', $data->creation_date);
+            if (!is_null($data->response_date)) {
+                $response_date = DateTime::createFromFormat('Y-m-d H:i:s', $data->response_date);
+            }
+            $arrayTickets[] = [$data->id, $data->subject, $data->ticket_type->name, $data->message, $data->response, $creation_date->format('d/m/Y H:i:s'), $response_date->format('d/m/Y H:i:s'), $data->user->email];
         }
 
         return json_encode($arrayTickets);    

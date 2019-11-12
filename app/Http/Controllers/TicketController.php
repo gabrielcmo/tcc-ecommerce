@@ -76,8 +76,7 @@ class TicketController extends Controller
     public function edit($id)
     {
         $ticket = Ticket::find($id);
-        $ticket_type = TicketType::find($ticket->ticket_type_id);
-        return view('admin.ticketMsg')->with('ticket', $ticket)->with('ticket_type', $ticket_type);
+        return view('admin.ticketMsg')->with('ticket', $ticket);
     }
 
     /**
@@ -89,9 +88,20 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //
     }
+    
+    public function response(Request $request) {
+        $ticket = Ticket::find($request->ticket_id);
+        $ticket->response = $request->response_message;
+        $ticket->status = 1;
+        $ticket->response_date = new DateTime();
 
+        $ticket->save();
+
+        return back();
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
