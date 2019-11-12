@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-  function isEmpty(el) {
-
-  }
-
   $('.pedidos-accordions-header').click(function(e) {
     let pedido = $(e.target).parents('.pedidos-accordions').data('pedido');
     $('#pedido' + pedido + '-accordion-collapse').collapse('toggle');

@@ -176,11 +176,11 @@
           <i class="mdc-fab__icon fas fa-bars" id="fastMenuButtonIcon"></i>
         </button>
  
-        <button class="mdc-fab actionButton" data-href="{{route('ticket.create')}}" style="background-color: #D7CEC7; display: none;" id="fastSupportButton" aria-label="Suporte">
+        <button class="mdc-fab actionButton" data-href="{{route('ticket.create')}}" style="background-color: #D7CEC7; display: none;" id="fastSupportButton" aria-label="Suporte" title="Abrir ticket de suporte">
           <span class="mdc-fab__icon material-icons">contact_support</span>
         </button>
 
-        <button class="mdc-fab" style="background-color: #D7CEC7; display: none;" id="fastSearchButton" aria-label="Procurar">
+        <button class="mdc-fab" style="background-color: #D7CEC7; display: none;" id="fastSearchButton" aria-label="Procurar" title="Pesquisar produto">
           <span class="mdc-fab__icon material-icons">search</span>
         </button>
       </div>

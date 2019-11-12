@@ -50,8 +50,11 @@ class AdminController extends Controller
             $creation_date = DateTime::createFromFormat('Y-m-d H:i:s', $data->creation_date);
             if (!is_null($data->response_date)) {
                 $response_date = DateTime::createFromFormat('Y-m-d H:i:s', $data->response_date);
+                $response_date_formatted = $response_date->format('d/m/Y H:i:s');
+            } else {
+                $response_date_formatted = '';
             }
-            $arrayTickets[] = [$data->id, $data->subject, $data->ticket_type->name, $data->message, $data->response, $creation_date->format('d/m/Y H:i:s'), $response_date->format('d/m/Y H:i:s'), $data->user->email];
+            $arrayTickets[] = [$data->id, $data->subject, $data->ticket_type->name, $data->message, $data->response, $creation_date->format('d/m/Y H:i:s'), $response_date_formatted, $data->user->email];
         }
 
         return json_encode($arrayTickets);    

@@ -16,7 +16,11 @@
         </div>
     @else
         <div class="row mt-3">
-            <h4 class="ml-2">Tickets</h4>
+            <h4 class="ml-2">Tickets
+            <button class="mdc-button mdc-button--raised general-button actionButton" data-href="{{route('ticket.create')}}">
+                    <span class="mdc-button__label">Abrir novo ticket</span>
+                </button>
+            </h4>
         </div>
         <div class="row mt-2">
             <table class="table table-borderless">
@@ -35,7 +39,11 @@
                                             <h5 class="d-flex justify-content-between align-items-center mb-0">
                                                 <span class="">Número do ticket: <span class="text-weight-bolder">{{$ticket->id}}</span></span>
                                                 <span class="text-right">Status:
-
+                                                    @if ($ticket->status == 0)
+                                                        <span class="text-warning">Em análise</span>
+                                                    @else
+                                                        <span class="text-success">Respondido</span>
+                                                    @endif
                                                 </span>
                                             </h5>
                                         </div>
@@ -43,17 +51,23 @@
                                             <div class="card-body">
                                                 <div>
                                                     <h4 class="d-flex justify-content-between">
-                                                        <span>Ticket de número: {[$ticket->id}}</span>
+                                                        <span>Ticket de número: {{$ticket->id}}</span>
                                                         <span>Criado no dia:
                                                             <span class="font-weight-light">
-
+                                                                @php
+                                                                    $creation_date_formatted = DateTime::createFromFormat('Y-m-d H:i:s', $ticket->creation_date);
+                                                                    echo $creation_date_formatted->format('d/m/Y H:i:s');
+                                                                @endphp
                                                             </span>
                                                         </span>
                                                     </h4>
                                                     <h5 class="mt-2">Dados do ticket</h5>
                                                     <p class="font-weight-bolder mb-1">Assunto: <span class="font-weight-light">{{$ticket->subject}}</span></p>
-                                                    <p class="font-weight-bolder mb-1">Tipo da dúvida: <span class="font-weight-light"></span></p>
-                                                    <p class="font-weight-bolder mb-1">Mensagem: <span class="text-justify">{{$ticket->message}}</span></p>
+                                                    <p class="font-weight-bolder mb-1">Tipo da dúvida: <span class="font-weight-light">{{$ticket->ticket_type->name}}</span></p>
+                                                    <p class="font-weight-bolder mb-1">Mensagem: <span class="text-justify text-break font-weight-light">{{$ticket->message}}</span></p>
+                                                    @if ($ticket->status == 1)
+                                                        <p class="font-weight-bolder mb-1">Resposta: <span class="text-justify text-break font-weight-light">{{$ticket->response}}</span></p>
+                                                    @endif
                                                 </div>
                                             </div>  
                                         </div>
@@ -67,4 +81,8 @@
         </div>
     @endif
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{asset('js/customJs/ticket.js')}}"></script>
 @endsection

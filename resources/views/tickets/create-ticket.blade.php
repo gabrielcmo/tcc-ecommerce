@@ -32,6 +32,9 @@
             <button class="mdc-button mdc-button--raised general-button" type="submit">
               <span class="mdc-button__label">Criar ticket</span>
             </button>
+            <button class="mdc-button mdc-button--raised general-button actionButton" type="reset" data-href="{{URL::previous()}}">
+              <span class="mdc-button__label">Cancelar</span>
+            </button>
           </form>
         </div>
       </div>

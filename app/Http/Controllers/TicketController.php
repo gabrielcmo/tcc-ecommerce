@@ -99,7 +99,7 @@ class TicketController extends Controller
 
         $ticket->save();
 
-        return back();
+        return redirect()->route('admin.index');
     }
     
     /**
