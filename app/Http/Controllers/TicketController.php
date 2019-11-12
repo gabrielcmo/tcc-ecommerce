@@ -2,11 +2,15 @@
 
 namespace Doomus\Http\Controllers;
 
+use DateTime;
 use Doomus\Mail\SupportMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Doomus\Ticket;
-use Doomus\Http\Controllers\UserController as User;;
+use Doomus\Http\Controllers\UserController as User;
+use Doomus\TicketType;
+
+;
 use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
@@ -38,19 +42,18 @@ class TicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $ticketData)
+    public function store(Request $request)
     {
-        $ticket = new ticket();
-        $ticket->message = $ticketData->message;
-        $ticket->subject = $ticketData->subject;
+        $ticket = new Ticket();
+        $ticket->message = $request->ticket_message;
+        $ticket->subject = $request->ticket_subject;
+        $ticket->ticket_type_id = $request->ticket_type;
+        $ticket->status = 0;
+        $ticket->creation_date = new DateTime();
         $ticket->user_id = Auth::user()->id;
         $ticket->save();
 
         return back();
-    }
-
-    public function responderMsg (Request $request) {
-        
     }
 
     /**
@@ -61,7 +64,7 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        return view('admin.ticketMsg')->with('ticket', Ticket::find($id));
+        
     }
 
     /**
@@ -72,7 +75,9 @@ class TicketController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        $ticket_type = TicketType::find($ticket->ticket_type_id);
+        return view('admin.ticketMsg')->with('ticket', $ticket)->with('ticket_type', $ticket_type);
     }
 
     /**
@@ -84,7 +89,7 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

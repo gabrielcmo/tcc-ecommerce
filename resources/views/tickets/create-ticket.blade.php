@@ -17,12 +17,12 @@
               <input type="text" class="form-control" id="subjectInput" name="ticket_subject" placeholder="Assunto">
             </div>
             <div class="form-group">
-              <label for="typeInput">Tipo da dúvida</label>
+              <label for="typeInput">Tipo do problema</label>
               <select class="custom-select" name="ticket_type" id="typeInput">
                 <option selected>Tipo da dúvida</option>
-                <option value="pedido">Problemas com algum pedido</option>
-                <option value="tecnico">Problemas técnicos</option>
-                <option value="compra">Problemas na confirmação da compra</option>
+                <option value="1">Problemas com algum pedido</option>
+                <option value="2">Problemas técnicos</option>
+                <option value="3">Problemas ao confirmar a compra</option>
               </select>
             </div>
             <div class="form-group">

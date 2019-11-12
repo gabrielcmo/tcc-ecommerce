@@ -11,4 +11,7 @@ class Ticket extends Model
     public function user () {
         return $this->belongsTo('Doomus\User');
     }
+    public function ticket_type () {
+        return $this->belongsTo('Doomus\TicketType');
+    }
 }

@@ -416,15 +416,33 @@ class DatabaseSeeder extends Seeder
             'product_id' => 10,
         ]);
 
+        DB::table('ticket_types')->insert([
+            'name' => 'Problemas com algum pedido'
+        ]);
+
+        DB::table('ticket_types')->insert([
+            'name' => 'Problemas técnicos'
+        ]);
+
+        DB::table('ticket_types')->insert([
+            'name' => 'Problemas ao confirmar a compra'
+        ]);
+
         DB::table('tickets')->insert([
-            'subject' => 'Não consigo logar',
-            'message' => 'Socorro',
+            'message' => 'Não consigo logar',
+            'status' => 0,
+            'ticket_type_id' => 2,
+            'creation_date' => new DateTime(),
+            'subject' => 'Socorro',
             'user_id' => 2,
         ]);
 
         DB::table('tickets')->insert([
-            'subject' => 'Meu pedido não chegouuu!!',
-            'message' => 'Me ajuda',
+            'message' => 'Meu pedido não chegouuu!!',
+            'status' => 0,
+            'ticket_type_id' => 1,
+            'creation_date' => new DateTime(),
+            'subject' => 'Me ajuda',
             'user_id' => 3,
         ]);
     }

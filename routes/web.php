@@ -161,8 +161,8 @@ Route::group(['middleware' => ['https']], function () {
         /*
         *   Tickets
         */
-        Route::get('/ticket/{support_id}', 'TicketController@show')->name('admin.tickets');
-        Route::post('/ticket/responder/data', 'TicketController@responderMsg')->name('ticketResponderMsg');
+        Route::get('/ticket/edit/{ticket_id}', 'TicketController@edit')->name('admin.ticket');
+        Route::get('/ticket/update', 'TicketController@update')->name('admin.ticket.update');
     });
 
 

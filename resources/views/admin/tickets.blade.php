@@ -1,4 +1,4 @@
-<h2>Suporte</h2>
+<h2>Ticket</h2>
 <br>
 <div id="dashboardTicket"><br>
     <div id="string_filter_div_ticket"></div>
@@ -7,19 +7,19 @@
 <div style="text-align:center!important;" id="ticket_table"></div>
 
 <script type="text/javascript">
-    var analyticsSuporte = {!! $dadosChart['tickets'] !!};
+    var analyticsTicket = {!! $dadosChart['tickets'] !!};
     google.charts.load('current', {'packages':['table', 'controls']});
     google.charts.setOnLoadCallback(drawTable);
 
     function drawTable() {
-        var data = new google.visualization.arrayToDataTable(analyticsSuporte);
+        var data = new google.visualization.arrayToDataTable(analyticsTicket);
         data.addColumn('string', '');
 
         var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboardTicket'));
 
         for(var i = 0; i < data.getNumberOfRows(); i++){
-            var suporte_id = analyticsSuporte[i+1][0];
-            data.setCell(i, 4, "<a href=" + "/admin/ticket/" + suporte_id + ">Responder mensagem</a>");
+            var ticket_id = analyticsTicket[i+1][0];
+            data.setCell(i, 4, "<a href=" + "/admin/ticket/edit/" + ticket_id + ">Responder mensagem</a>");
         }
 
 
