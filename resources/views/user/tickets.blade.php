@@ -50,7 +50,7 @@
                                         <div id="ticket{{$loop->iteration}}-accordion-collapse" class="collapse" aria-labelledy="ticket{{$loop->iteration}}-accordion-header" data-parent="#ticket{{$loop->iteration}}-accordion">
                                             <div class="card-body">
                                                 <div>
-                                                    <h4 class="d-flex justify-content-between">
+                                                    <h4 class="d-flex justify-content-between" id="ticket-data-header">
                                                         <span>Ticket de número: {{$ticket->id}}</span>
                                                         <span>Criado no dia:
                                                             <span class="font-weight-light">
@@ -66,7 +66,13 @@
                                                     <p class="font-weight-bolder mb-1">Tipo da dúvida: <span class="font-weight-light">{{$ticket->ticket_type->name}}</span></p>
                                                     <p class="font-weight-bolder mb-1">Mensagem: <span class="text-justify text-break font-weight-light">{{$ticket->message}}</span></p>
                                                     @if ($ticket->status == 1)
-                                                        <p class="font-weight-bolder mb-1">Resposta: <span class="text-justify text-break font-weight-light">{{$ticket->response}}</span></p>
+                                                        <p class="font-weight-bolder mb-1">Resposta 
+                                                            @php
+                                                                $response_date_formatted = DateTime::createFromFormat('Y-m-d H:i:s', $ticket->response_date);
+                                                                echo '(' . $response_date_formatted->format('d/m/Y H:i:s') . ') :';
+                                                            @endphp
+                                                            <span class="text-justify text-break font-weight-light">{{$ticket->response}}</span>
+                                                        </p>
                                                     @endif
                                                 </div>
                                             </div>  

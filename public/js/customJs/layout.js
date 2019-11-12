@@ -79,6 +79,7 @@ $(document).ready(function(){
       $('#imgLogo').css('width', '100px');
       $('#support-tab').addClass('d-none');
     }
+
     if ( windowWidth >= 992 ) {
       $('#sidebarMenu, #sidebarMenuButton').addClass('d-none');
       $('#sidebarMenu').removeClass('mdc-drawer--open');
@@ -89,6 +90,7 @@ $(document).ready(function(){
       $('#topAppBar').addClass('mdc-top-app-bar--fixed');
       $('#topAppBar .mdc-top-app-bar__section--align-end').css('margin-right', '5%');
       $('#support-tab').removeClass('d-none');
+
     }
   });
 
