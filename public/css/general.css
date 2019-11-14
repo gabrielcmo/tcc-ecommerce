@@ -16,6 +16,22 @@ a:hover {
   cursor: pointer;
 }
 
+.stars-rating:hover {
+  cursor: pointer;
+}
+
+.star-selected {
+  color: gold;
+}
+
+.star-selected-2 {
+  color: gold;
+}
+
+.star {
+  color: black;
+}
+
 .mdc-button__label {
   font-weight: 600;
 }

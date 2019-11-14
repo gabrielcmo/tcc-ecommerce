@@ -248,6 +248,9 @@
                           <button class="mdc-button mdc-button--raised general-button showProducts mt-2" type="button" data-pedido-id="{{$pedido->id}}" data-href="{{route('showOrderProducts')}}">
                             <span class="mdc-button__label">Ver produtos</span>
                           </button>
+                          <button class="mdc-button mdc-button--raised general-button avaliateProducts" type="button" data-href="{{route('')}}">
+                            <span class="mdc-button__label">Avaliar produtos</span>
+                          </button>
                         </div>
                       </div>
                     </div>
