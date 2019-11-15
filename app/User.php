@@ -22,8 +22,8 @@ class User extends Authenticatable
          return $this->hasMany('Doomus\Order');
     }
 
-    public function rating() {
-        return $this->hasMany('Doomus/ProductRating');
+    public function ratings() {
+        return $this->belongsToMany('Doomus\Product', 'products_ratings');
     }
 
     public function evaluations(){

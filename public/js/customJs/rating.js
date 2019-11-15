@@ -176,4 +176,42 @@ $(document).ready(function() {
       }
     }
   });
+
+  $('#selectProduct').change(function (e) {
+    let product_id = $(this).val();
+    $.ajax({
+      type: "GET",
+      url: '/product/rating',
+      data: {product_id:product_id},
+      dataType: "JSON",
+      complete: function (response) {
+        let product_rating = response.responseJSON;
+        console.log(product_rating);
+        $('#title').val(product_rating.title);
+        $('#description-text').text(product_rating.text);
+        var star_note = product_rating.note;
+        if (star_note === 1) {
+          $('.star-1').addClass('star-selected');
+        } else if (star_note === 2) {
+          $('.star-1').addClass('star-selected');
+          $('.star-2').addClass('star-selected');
+        } else if (star_note === 3) {
+          $('.star-1').addClass('star-selected');
+          $('.star-2').addClass('star-selected');
+          $('.star-3').addClass('star-selected');
+        } else if (star_note === 4) {
+          $('.star-1').addClass('star-selected');
+          $('.star-2').addClass('star-selected');
+          $('.star-3').addClass('star-selected');
+          $('.star-4').addClass('star-selected');
+        } else {
+          $('.star-1').addClass('star-selected');
+          $('.star-2').addClass('star-selected');
+          $('.star-3').addClass('star-selected');
+          $('.star-4').addClass('star-selected');
+          $('.star-5').addClass('star-selected');
+        }
+      }
+    });
+  });
 });

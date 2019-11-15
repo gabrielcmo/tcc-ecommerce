@@ -11,25 +11,6 @@ use Doomus\Http\Controllers\CartController;
 
 class ProductController extends Controller
 {
-    public static function mediaNotaAvaliacao(Product $product) 
-    {
-        $count = count($product->ratings);
-
-        if($count == 0){
-            return 0;
-        }
-
-        $soma = 0;
-        foreach($product->ratings as $rating)
-        {
-            $soma += $rating->note;
-        }
-
-        $media = $soma / $count;
-
-        return $media;
-    }
-
     public function buyNow (Request $request) {
         $product = Product::find($request->get('product_id'));
         CartController::addToCartBuyNow($request->get('product_id'));

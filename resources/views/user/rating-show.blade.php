@@ -10,20 +10,18 @@
           <span class="mdc-button__label"><i class="fas fa-arrow-left"></i> Voltar</span>
         </a>
         <div class="card mt-2">
-            <div class="card-header">Suas avaliações da compra de número: {{ $ratings[0]->order_id }}</div>
+            <div class="card-header">Suas avaliações da compra de número: {{ $order_id }}</div>
             <div class="card-body">
                 <div class="row">
                     @foreach ($ratings as $rating)
                         <div class="card col-6" style="border:none;">
-                            @foreach ($rating->products as $product)
-                                @if (count($product->image) !== 0)
-                                    <img src="/img/products/{{ $product->image[0]->filename}}" style="width:150px;" class="rounded mx-auto d-block" alt="Produto">
-                                @else
-                                    <img src="/img/doomus_logo.png" style="width:150px;" class="rounded mx-auto d-block" alt="Produto">
-                                @endif
-                            @endforeach
+                            @if (count($rating->product->image) !== 0)
+                                <img src="/img/products/{{ $rating->product->image[0]->filename}}" style="width:150px;" class="rounded mx-auto d-block" alt="Produto">
+                            @else
+                                <img src="/img/doomus_logo.png" style="width:150px;" class="rounded mx-auto d-block" alt="Produto">
+                            @endif
                             <div class="card-body">
-                                <h4 class="card-title">{{ $product->nome}}</h4>
+                                <h4 class="card-title">{{ $rating->product->nome}}</h4>
                                 <p class="card-text">
                                     <p class="font-weight-bolder">Título da avaliação: <span class="font-weight-light">{{$rating->title}}</span></p>
                                     <p class="font-weight-bolder">Descrição da avaliação: <span class="font-weight-light">{{$rating->text}}</span></p>

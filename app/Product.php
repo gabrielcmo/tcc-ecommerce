@@ -9,7 +9,6 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 class Product extends Model
 {
     use SearchableTrait;
-    use Rateable;
 
     protected $fillable = ['id', 'nome', 'descricao', 'qtd_restante', 'valor', 'peso', 'altura', 'comprimento', 'largura', 'diametro', 'qtd_visto'];
 
@@ -35,6 +34,31 @@ class Product extends Model
         ],
     ];
 
+    public function mediaNotaAvaliacao(){
+        $ratings = ProductRating::where([
+            'product_id' => $this->id
+        ])->get();
+
+        $count = count($ratings);
+
+        if($count == 0)
+        {
+            return 0;
+        }
+
+        $soma = 0;
+        $media = 0;
+        foreach($ratings as $rating)
+        {
+            $soma += $rating->note;
+        }
+
+        
+        $media = $soma / $count;
+        
+        return $media;
+    }
+
     /**
      * The Relationship
      *
@@ -52,7 +76,7 @@ class Product extends Model
     }
 
     public function ratings() {
-        return $this->belongsToMany('Doomus\ProductRating', 'products_ratings', 'product_id', 'user_id', 'order_id');
+        return $this->belongsToMany('Doomus\User', 'products_ratings');
     }
 
     public function evaluations(){

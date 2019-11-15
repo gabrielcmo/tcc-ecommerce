@@ -71,7 +71,7 @@
         <h3 class="">{{ $product->nome }} &nbsp;</h3>
         <h5>
           @php
-            $rating = $product->ratingPercent(100);
+            $rating = $product->mediaNotaAvaliacao();
           @endphp
           @for ($i = 1; $i <= 5; $i++)
             @if($i > $rating)
@@ -220,7 +220,7 @@
               <div class="p-2 ml-2">
                 <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->nome}}</h6>
                 @php 
-                  $rating = $product->ratingPercent(100);
+                  $rating = $product->mediaNotaAvaliacao();
                 @endphp
                 @for ($i = 1; $i <= 5; $i++)
                   @if($i > $rating)

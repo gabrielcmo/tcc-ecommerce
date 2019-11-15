@@ -20,6 +20,16 @@ class RatingController extends Controller
         
     }
 
+    public function productRating(Request $request) 
+    {
+        $response = ProductRating::where([
+            'user_id' => Auth::user()->id,
+            'product_id' => $request->get('product_id')
+        ])->first();
+
+        return response()->json($response);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +39,8 @@ class RatingController extends Controller
     {
         $order = Order::find($order_id);
 
-        $products = array();
+        $avaliados = array();
+        $naoAvaliados = array();
         foreach ($order->product as $product) {
             $rating = ProductRating::where([
                 'user_id' => Auth::user()->id,
@@ -37,11 +48,15 @@ class RatingController extends Controller
             ])->get();
 
             if (count($rating) == 0) {
-                $products[] = $product;
-            }   
+                $naoAvaliados[] = $product;
+            }else{
+                $avaliados[] = $product;
+            }
         }
-                     
-        return view('user.rating-products')->with('products', $products)->with('order_id', $order->id);
+
+        return view('user.rating-products')->with('produtos_avaliados', $avaliados)
+        ->with('produtos_nao_avaliados', $naoAvaliados)
+        ->with('order_id', $order->id);
     }
 
     /**
@@ -78,8 +93,8 @@ class RatingController extends Controller
             'user_id' => Auth::user()->id,
             'order_id'=> $order_id
         ])->get();
-
-        return view('user.rating-show')->with('ratings', $ratings);
+        
+        return view('user.rating-show')->with('ratings', $ratings)->with('order_id', $order_id);
     }
 
     /**

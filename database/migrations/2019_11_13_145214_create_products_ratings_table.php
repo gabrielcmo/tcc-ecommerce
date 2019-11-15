@@ -23,9 +23,15 @@ class CreateProductsRatingsTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->integer('order_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('product_id')->references('id')->on('products')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

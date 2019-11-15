@@ -22,11 +22,7 @@ class Order extends Model
     public function status(){
         return $this->belongsTo('Doomus\OrderStatus');
     }
-
-    public function ratings(){
-        return $this->belongsToMany('Doomus\ProductRating', 'products_ratings', 'product_id', 'user_id', 'order_id');
-    }
-
+    
     public function payment_method(){
         return $this->belongsTo('Doomus\PaymentMethod');
     }

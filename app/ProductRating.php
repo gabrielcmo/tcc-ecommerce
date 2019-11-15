@@ -2,19 +2,14 @@
 
 namespace Doomus;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Doomus\Product;
 
-class ProductRating extends Model
+class ProductRating extends Pivot
 {
     protected $table = 'products_ratings';
 
-    public function products() 
-    {
-        return $this->belongsToMany('Doomus\Product', 'products_ratings', 'product_id', 'user_id', 'order_id');
-    }
-
-    public function user() 
-    {
-        return $this->belongsTo('Doomus\User');
+    public function product(){
+        return $this->belongsTo('Doomus\Product');
     }
 }
