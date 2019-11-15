@@ -16,7 +16,7 @@
         </div>
     @else
         <div class="row mt-3">
-            <h4 class="ml-2">Tickets
+            <h4 class="ml-2">Tickets &nbsp;&nbsp;
             <button class="mdc-button mdc-button--raised general-button actionButton" data-href="{{route('ticket.create')}}">
                     <span class="mdc-button__label">Abrir novo ticket</span>
                 </button>

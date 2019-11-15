@@ -35,6 +35,10 @@ class UserController extends Controller
         }
     }
 
+    public function avaliateShow () {
+        return view('avaliarForm');
+    }
+
     public function deletarConta (Request $request) {
         $user = Auth::user();
         $user->delete();

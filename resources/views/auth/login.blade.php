@@ -1,10 +1,6 @@
 @extends('layouts.layout')
 
-@section('stylesheets')
-    <style>
-
-    </style>
-@endsection
+@section('title', 'Doomus - Login')
 
 @section('content')
 <div class="container pt-2">

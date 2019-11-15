@@ -110,8 +110,8 @@
           </a>
           @if(Auth::user()->role_id == 1)
             <a class="mdc-list-item" href="/admin">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-            <span class="mdc-list-item__text">Painel de administração</span>
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+            <span class="mdc-list-item__text">Painel de Controle</span>
             </a>
           @endif
           <a class="mdc-list-item" href="{{ route('orders') }}">

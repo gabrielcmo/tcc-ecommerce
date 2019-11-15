@@ -46,34 +46,43 @@
     @auth
     <div class="mdc-drawer__header">
       <h3 class="mdc-drawer__title">{{ Auth::user()->name }}</h3>
-      <h6 class="mdc-drawe__subtitle">{{ Auth::user()->email }}</h6>
+      <h6 class="mdc-drawe__subtitle mt-2">{{ Auth::user()->email }}</h6>
     </div>
     @endauth
     <div class="mdc-drawer__content" style="position: relative;">
       @auth
       <div class="mdc-list">
-        <a class="mdc-list-item mdc-list-item--activated" href="#graphics">
+        <a class="mdc-list-item mdc-list-item--activated" id="graphics-tab" data-toggle="tab" href="#graphics" role="tab"
+          aria-controls="graphics" aria-selected="false" tab-index="0">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
           <span class="mdc-list-item__text">Gráfico de Vendas</span>
         </a>
-        <a class="mdc-list-item" href="#products">
+        <a class="mdc-list-item" id="products-tab" data-toggle="tab" href="#products" role="tab"
+        aria-controls="products" aria-selected="false" tab-index="0">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
           <span class="mdc-list-item__text">Lista de produtos</span>
         </a>
-        <a class="mdc-list-item" href="#orders">
+        <a class="mdc-list-item" id="orders-tab" data-toggle="tab" href="#orders" role="tab"
+        aria-controls="orders" aria-selected="false" tab-index="0">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
           <span class="mdc-list-item__text">Lista de pedidos</span>
         </a>
-        <a class="mdc-list-item" href="#cupons">
+        <a class="mdc-list-item" id="cupons-tab" data-toggle="tab" href="#cupons" role="tab"
+        aria-controls="cupons" aria-selected="false" tab-index="0">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
           <span class="mdc-list-item__text">Lista de cupons</span>
         </a>
-        <a class="mdc-list-item" href="#suport">
+        <a class="mdc-list-item" id="suporte-tab" data-toggle="tab" href="#suporte" role="tab"
+        aria-controls="suporte" aria-selected="false" tab-index="0">
           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
           <span class="mdc-list-item__text">Tickets</span>
         </a>
       </div>
       @endauth
+      <a class="mdc-button mdc-button--raised general-button ml-3 text-left" href="/"
+        style="position:absolute;bottom:10px;">
+        <span class="mdc-button__label">Voltar ao site</span>
+      </a>
       <button class="mdc-button mdc-button--raised general-button mr-2"
         style="position: absolute; bottom: 10px; right: 0;"
         onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
@@ -145,6 +154,8 @@
               </a>
             </div>
           </div>
+        </div>
+      </div>
     @endif
     <br><br><br>
       <div class="container">

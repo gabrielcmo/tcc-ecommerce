@@ -44,16 +44,6 @@ $(document).ready(function() {
               'R$ ' + element.product_price.toString().replace('.', ',')
             + '</td>'
           );
-
-          $('#product' + element.product_id + '-row').append(
-            '<td class="align-end rating-list">' +
-              "<i class='fa fa-star' id='star_1'></i>" +
-              "<i class='fa fa-star' id='star_2'></i>" +
-              "<i class='fa fa-star' id='star_3'></i>" +
-              "<i class='fa fa-star' id='star_4'></i>" +
-              "<i class='fa fa-star' id='star_5'></i>"
-            + '</td>'
-          );
         });
 
         $('#orderProductsModal').modal('show');
@@ -61,7 +51,25 @@ $(document).ready(function() {
     });
   });
 
+  $('.showAvaliate').click(function() {
+    let orderId = $(this).data('pedido-id');
+    let url = $(this).data('href');
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: {order_id:orderId},
+      dataType: "JSON",
+      complete: function (response) {
+        let products = response.responseJSON;
+        
+        $(products).each(function (index, element) {
+          $('#optionProducts').append('<option value='+element.product_id + '>'+ element.product_name +'</option>');
+        });
 
+        $('#productAvaliateModal').modal('show');
+      }
+    });
+  });
 
   $('#orderProductsModal').on('hidden.bs.modal', function() {
     if (!$('#modalProductBody').is(':empty')) {
