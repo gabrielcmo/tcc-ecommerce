@@ -31,15 +31,13 @@ class RatingController extends Controller
 
         $products = array();
         foreach ($order->product as $product) {
-            $rating = ProductRating::where([
-                'user_id' => Auth::user()->id,
-                'product_id' => $product->id
-            ])->get();
-
+            $rating = ProductRating::where('id_user', Auth::user()->id)->where('id_product', $product['id'])->get();
             if (count($rating) == 0) {
                 $products[] = $product;
-            }   
+            }
+            
         }
+
                      
         return view('user.rating-products')->with('products', $products)->with('order_id', $order->id);
     }
@@ -57,13 +55,13 @@ class RatingController extends Controller
         $productRating->title = $request->input('title-rating');
         $productRating->text = $request->input('description-text');
         $productRating->note = $request->input('note-rating');
-        $productRating->user_id = Auth::user()->id;
-        $productRating->order_id = $request->input('order-id');
-        $productRating->product_id = $request->input('product-rating');
+        $productRating->id_user = Auth::user()->id;
+        $productRating->id_product = $request->input('product-rating');
 
         $productRating->save();
 
         return back();
+
     }
 
     /**
@@ -72,14 +70,9 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($order_id)
+    public function show($id)
     {
-        $ratings = ProductRating::where([
-            'user_id' => Auth::user()->id,
-            'order_id'=> $order_id
-        ])->get();
-
-        return view('user.rating-show')->with('ratings', $ratings);
+        //
     }
 
     /**

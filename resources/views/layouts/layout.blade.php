@@ -150,7 +150,7 @@
         <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
       </nav>
     </div>
-    <main class="main-content" id="main-content" style="position: relative;">
+    <main class="main-content" id="main-content">
       <div class="">
         @if(Session::has('status'))
           @if(Session::has('status-type'))

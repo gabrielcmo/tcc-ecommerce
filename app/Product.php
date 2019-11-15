@@ -11,7 +11,7 @@ class Product extends Model
     use SearchableTrait;
     use Rateable;
 
-    protected $fillable = ['id', 'nome', 'descricao', 'qtd_restante', 'valor', 'peso', 'altura', 'comprimento', 'largura', 'diametro', 'qtd_visto'];
+    protected $fillable = ['id', 'name', 'details', 'description', 'price'];
 
     /**
      * Searchable rules.
@@ -28,10 +28,10 @@ class Product extends Model
          */
         'columns' => [
             'products.id' => 10,
-            'products.nome' => 10,
+            'products.name' => 10,
         ],
         'joins' => [
-            'categories' => ['products.categoria_id','categories.id'],
+            'categories' => ['products.category_id','categories.id'],
         ],
     ];
 
@@ -51,8 +51,8 @@ class Product extends Model
         return $this->belongsToMany('Doomus\Order');
     }
 
-    public function ratings() {
-        return $this->belongsToMany('Doomus\ProductRating', 'products_ratings', 'product_id', 'user_id', 'order_id');
+    public function rating() {
+        return $this->hasMany('Doomus\ProductRating');
     }
 
     public function evaluations(){

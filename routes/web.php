@@ -126,7 +126,6 @@ Route::group(['middleware' => ['https']], function () {
         */
         Route::get('/rating/{order_id}', 'RatingController@create')->name('rating.create');
         Route::post('/rating/store', 'RatingController@store')->name('rating.store');
-        Route::get('/rating/{order_id}/show', 'RatingController@show')->name('rating.show');
     });
 
     /*
