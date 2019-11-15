@@ -54,7 +54,7 @@
                 </div>
               @endif
               <div class="p-2 ml-2">
-                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->nome}}</h6>
+                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->name}}</h6>
                 @php 
                   $rating = $product->mediaNotaAvaliacao();
                 @endphp
@@ -77,7 +77,7 @@
                 <h4 class="font-weight-normal mb-0">
                   R$
                   @php
-                    $formatted_price = number_format($product->valor, 2, ',', '');   
+                    $formatted_price = number_format($product->price, 2, ',', '');   
                     echo $formatted_price;
                   @endphp
                 </h4>
@@ -94,7 +94,7 @@
             </div>
             <div class="mdc-card__actions">
               <div class="mdc-card__action-icons">
-                @if($product->qtd_restante == 0)
+                @if($product->qtd_last == 0)
                 <span class="bg-warning btn">Esgotado</span>
                 @else
                 <form id="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
