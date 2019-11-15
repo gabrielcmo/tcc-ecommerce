@@ -61,7 +61,7 @@
                             <option selected value="1">Cama</option>
                             <option value="2">Mesa</option>
                             <option value="3">Banho</option>
-                        @elseif($product->category_id == 2)
+                        @elseif($product->categoria_id == 2)
                             <option value="1">Cama</option>
                             <option selected value="2">Mesa</option>
                             <option value="3">Banho</option>
