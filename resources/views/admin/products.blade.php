@@ -1,4 +1,5 @@
 <h4 class="mb-4">Produtos</h4>
+<a href="/admin/categoria/desconto" class="btn btn-info">Aplicar desconto a uma categoria</a>
 <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
 <div id="dashboardProducts"><br>
     <div id="string_filter_div_products"></div>
@@ -11,27 +12,21 @@
         var analyticsProducts = {!! $dadosChart['products'] !!};
         google.charts.load('current', {'packages':['table', 'controls']});
         google.charts.setOnLoadCallback(drawTable);
-
         function drawTable() {
             var data = new google.visualization.arrayToDataTable(analyticsProducts);
             data.addColumn('string', 'Editar');
-
             var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboardProducts'));
-
             function confirmDelete(){
                 event.preventDefault();
                             if(confirm("Você tem certeza disso?")){window.location.href = "/admin/product/analytics.id/destroy"}
             }
             console.log(data);
-
             for(var i = 0; i < data.getNumberOfRows(); i++){
                 var product_id = analyticsProducts[i+1][0];
                 data.setCell(i, 5, "<a href=" + "/admin/product/" + product_id + "/edit" + "><i class='fas fa-pencil-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
                 + "<a href=" + "/admin/product/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
                 + "<a href=" + "/admin/product/" + product_id + "/desconto" + " class='btn btn-info btn-sm'>Aplicar desconto</a>");
             }
-
-
             var stringFilterProducts = new google.visualization.ControlWrapper({
                 controlType: 'StringFilter',
                 containerId: 'string_filter_div_products',
@@ -47,7 +42,6 @@
                     filterColumnIndex: 1
                 }
             });
-
             var numberRangeFilterProducts = new google.visualization.ControlWrapper({
                 controlType: 'NumberRangeFilter',
                 containerId: 'number_range_filter_div_products',
@@ -60,7 +54,6 @@
                     }
                 }
             });
-
             var table = new google.visualization.ChartWrapper({
                 chartType: 'Table',
                 containerId: 'products_table',
@@ -71,11 +64,9 @@
                     height: '100%'
                 }
             });
-
             var formatter = new google.visualization.NumberFormat(
                 {prefix: 'R$'});
             formatter.format(data, 3);
-
             dashboard.bind([stringFilterProducts, stringFilterNameProducts, numberRangeFilterProducts], [table]);
             dashboard.draw(data);
         }

@@ -1,7 +1,5 @@
 <?php
-
 namespace Doomus\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Doomus\Product;
 use Doomus\Order;
@@ -10,12 +8,12 @@ use Doomus\Ticket;
 use Session;
 use DateTime;
 use Gloudemans\Shoppingcart\Facades\Cart;
-
 class AdminController extends Controller
 {
     public function index(){
         // Gráficos
         $qtdPedidosMes_chart[] = ['Mês', 'Quantidade de pedidos', 'Esperado'];
+
         for($i = 1; $i <= 6; $i++){
             $qtdPedidosMes_chart[] = [$i, rand(20, 70), rand(10,100)];
         }
@@ -24,10 +22,8 @@ class AdminController extends Controller
         $qtdPedidosStatus_chart[] = ['Aprovados', 220];
         $qtdPedidosStatus_chart[] = ['Em andamento', 60];
         $qtdPedidosStatus_chart[] = ['Recusados', 120];
-
         $arrayqtdMes = $qtdPedidosMes_chart;
         $arrayqtdStatus = $qtdPedidosStatus_chart;
-
         $dadosChart = [
             'qtdPedidosMes' => json_encode($arrayqtdMes),
             'qtdPedidosStatus' => json_encode($arrayqtdStatus),
@@ -36,7 +32,6 @@ class AdminController extends Controller
             'cupons' => self::cupomView(),
             'tickets' => self::ticketView()
         ];
-
         return view('layouts.admin')->with('dadosChart', $dadosChart);
     }
 
@@ -44,9 +39,8 @@ class AdminController extends Controller
         $ticketData = Ticket::all();
 
         $arrayTickets[] = ['ID', 'Assunto', 'Tipo', 'Mensagem', 'Resposta', 'Data de criação', 'Data de resposta', 'Usuário'];
-
+        
         foreach($ticketData as $data){
-
             $creation_date = DateTime::createFromFormat('Y-m-d H:i:s', $data->creation_date);
             if (!is_null($data->response_date)) {
                 $response_date = DateTime::createFromFormat('Y-m-d H:i:s', $data->response_date);
@@ -62,12 +56,11 @@ class AdminController extends Controller
 
     public static function products(){
         $products = Product::all();
-
+        
         $arrayP[] = ['ID Produto', 'Nome', 'Quantidade', 'Valor', 'Categoria'];
-
-        foreach($products as $data)
-        {
-            $arrayP[] = [$data->id, $data->nome, $data->qtd_restante, $data->valor, $data->category->name];
+        
+        foreach($products as $data){
+            $arrayP[] = [$data->id, $data->name, $data->qtd_last, $data->price, $data->category->name];
         }
 
         return json_encode($arrayP);    
@@ -78,67 +71,50 @@ class AdminController extends Controller
     }
 
     public function ofertaCategoriaView(){
-        return view('admin.categoryDesconto')->with('category_id', $category_id);
+        return view('admin.categoryDesconto');
     }
 
     public function cupomView(){
         $cupons = Cupom::all();
-
+        
         $array[] = ['ID Cupom', 'Nome', 'Fornecido por', 'Desconto'];
-
+        
         foreach($cupons as $data){
             $array[] = [$data->id, $data->name, $data->fornecido_por, "$data->desconto%"];
+        
         }
-
         return json_encode($array);
-    }
-
-    public function cupomValidate(Request $request){
-
-        if($request->ajax()){
-            
-            $procurar_cupom = Cupom::where('name', $request->get('queryCupom'))->first();
-
-            if(is_null($procurar_cupom) || $procurar_cupom == "" || $procurar_cupom == null){
-                Session::flash('status', 'Esse cupom não é válido');
-                Session::flash('status-type', 'danger');
-                return back();
-            }elseif(session('cupom') == $request->get('queryCupom')){
-                Session::flash('status', 'Você já adicionou esse cupom');
-                Session::flash('status-type', 'danger');
-                return back();
-            }else{
-                Session::put('cupom', $procurar_cupom);
-                return response()->json(['textStatus' => 'success', 'cupom' => $procurar_cupom, 'cartTotal' => Cart::total()]);
-            }
-        }
     }
 
     // Aplicar desconto a um determinado produto
     public function ofertaProduto(Request $data){
         $desconto = $data->desconto * 0.01;
+       
         $product = Product::find($data->product_id);
         $product->price = $product->price - ($product->price * $desconto);
         $product->save();
+        
         return redirect('/admin/products');
     }
 
     // Aplicar desconto a toda uma categoria
-    public function ofertaCategoria($categoria_id, $desconto){
-        $products = Product::where('category_id', $categoria_id);
-
+    public function ofertaCategoria(Request $request){
+        $products = Product::where('category_id', $request->categoria_id)->get();
+        
+        $desconto = $request->desconto * 0.01;
+        
         foreach($products as $product){
-            $product->price = $product->price - ($product->price * $desconto);
+            $product->price = ($product->price - ($product->price * $desconto));
             $product->save();
         }
-        return back();
+        Session::flash('status', 'Desconto aplicado com sucesso!');
+        return redirect('/admin');
     }
 
     public function orders(){
         $orders = Order::all();
-
         $array[] = ['ID Pedido', 'ID Produtos', 'Usuário', 'Status', 'Método de Pagamento'];
-
+        
         foreach($orders as $order){
             $products = "";
             $i = 1;
@@ -146,7 +122,6 @@ class AdminController extends Controller
                 $products .= $i == count($order->product) ? $item->id. "." : $item->id. ", ";
                 $i++;
             }
-
             $array[] = [$order->id, $products, $order->user->id, $order->status->name, $order->payment_method->name];
         }
         
