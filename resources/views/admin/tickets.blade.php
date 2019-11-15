@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <h2>Tickets</h2>
+=======
+<h2>Ticket</h2>
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
 <br>
 <div id="dashboardTicket"><br>
     <div id="string_filter_div_ticket"></div>

@@ -57,7 +57,7 @@ Route::group(['middleware' => ['https']], function () {
     */
     Route::get('/checkout/address/cep', 'CheckoutController@checkCep')->name('checkCep');
 
-    Route::get('/cupom/validate', 'CupomController@validateCupom');
+    Route::get('/cupom/validate', 'AdminController@cupomValidate');
 
     /*
     *   Calcular CEP
@@ -154,9 +154,8 @@ Route::group(['middleware' => ['https']], function () {
         Route::post('/categoria/desconto/data', 'AdminController@ofertaCategoria')->name('descontoCategoriaData');
         
         Route::get('/cupom', 'AdminController@cupomView')->name('admin.cupons');
-        Route::get('/cupom/create', 'CupomController@create');
-        Route::post('/cupom/create/data', 'CupomController@store')->name('cupomCreateData');
-        Route::get('/cupom/{id}/destroy', 'CupomController@destroy');
+        Route::get('/cupom/{id}/create', 'AdminController@cupomView');
+        Route::get('/cupom/{id}/destroy', 'AdminController@cupomView');
 
         /*
         *   Pedidos 
