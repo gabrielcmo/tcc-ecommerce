@@ -57,7 +57,7 @@ Route::group(['middleware' => ['https']], function () {
     */
     Route::get('/checkout/address/cep', 'CheckoutController@checkCep')->name('checkCep');
 
-    Route::get('/cupom/validate', 'AdminController@cupomValidate');
+    Route::get('/cupom/validate', 'CupomController@validateCupom');
 
     /*
     *   Calcular CEP
@@ -126,6 +126,7 @@ Route::group(['middleware' => ['https']], function () {
         */
         Route::get('/rating/{order_id}', 'RatingController@create')->name('rating.create');
         Route::post('/rating/store', 'RatingController@store')->name('rating.store');
+        Route::get('/rating/{order_id}/show', 'RatingController@show')->name('rating.show');
     });
 
     /*
@@ -149,12 +150,13 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/product/{product_id}/desconto', 'AdminController@ofertaProdutoView');
         Route::post('/product/desconto', 'AdminController@ofertaProduto');
         
-        Route::get('/category/desconto', 'AdminController@ofertaCategoriaView');
-        Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria');
+        Route::get('/categoria/desconto', 'AdminController@ofertaCategoriaView');
+        Route::post('/categoria/desconto/data', 'AdminController@ofertaCategoria')->name('descontoCategoriaData');
         
         Route::get('/cupom', 'AdminController@cupomView')->name('admin.cupons');
-        Route::get('/cupom/{id}/create', 'AdminController@cupomView');
-        Route::get('/cupom/{id}/destroy', 'AdminController@cupomView');
+        Route::get('/cupom/create', 'CupomController@create');
+        Route::post('/cupom/create/data', 'CupomController@store')->name('cupomCreateData');
+        Route::get('/cupom/{id}/destroy', 'CupomController@destroy');
 
         /*
         *   Pedidos 

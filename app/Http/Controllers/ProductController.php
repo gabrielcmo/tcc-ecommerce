@@ -11,6 +11,25 @@ use Doomus\Http\Controllers\CartController;
 
 class ProductController extends Controller
 {
+    public static function mediaNotaAvaliacao(Product $product) 
+    {
+        $count = count($product->ratings);
+
+        if($count == 0){
+            return 0;
+        }
+
+        $soma = 0;
+        foreach($product->ratings as $rating)
+        {
+            $soma += $rating->note;
+        }
+
+        $media = $soma / $count;
+
+        return $media;
+    }
+
     public function buyNow (Request $request) {
         $product = Product::find($request->get('product_id'));
         CartController::addToCartBuyNow($request->get('product_id'));
@@ -31,7 +50,7 @@ class ProductController extends Controller
     
     public static function changeQtyLast($product_id, $qty){
         $product = Product::find($product_id);
-        $product->qtd_last = $product->qtd_last - $qty;
+        $product->qtd_restante = $product->qtd_restante - $qty;
         $product->save();
         return back();
     }
@@ -57,15 +76,15 @@ class ProductController extends Controller
     */
     public function store(Request $request){
         $product = new Product();
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->qtd_last = $request->qtd_last;
-        $product->weight = $request->weight;
-        $product->lenght = $request->lenght;
-        $product->width = $request->width;
-        $product->height = $request->height;
-        $product->price = $request->price;
-        $product->category_id = $request->category_id;
+        $product->nome = $request->nome;
+        $product->descricao = $request->descricao;
+        $product->qtd_restante = $request->qtd_restante;
+        $product->peso = $request->peso;
+        $product->largura = $request->largura;
+        $product->comprimento = $request->comprimento;
+        $product->altura = $request->altura;
+        $product->valor = $request->valor;
+        $product->categoria_id = $request->categoria_id;
         $product->save();
 
         $imagens = ProductImage::where('product_id', $product->id)->get();
@@ -115,15 +134,15 @@ class ProductController extends Controller
             self::addPicture(request()->img, $product->id);
         }
 
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->qtd_last = $request->qtd_last;
-        $product->weight = $request->weight;
-        $product->lenght = $request->lenght;
-        $product->width = $request->width;
-        $product->height = $request->height;
-        $product->price = $request->price;
-        $product->category_id = $request->category_id;
+        $product->nome = $request->nome;
+        $product->descricao = $request->descricao;
+        $product->qtd_restante = $request->qtd_restante;
+        $product->peso = $request->peso;
+        $product->largura = $request->largura;
+        $product->comprimento = $request->comprimento;
+        $product->altura = $request->altura;
+        $product->valor = $request->valor;
+        $product->categoria_id = $request->categoria_id;
 
         $product->save();
 

@@ -77,7 +77,7 @@ class AdminController extends Controller
     }
 
     public function ofertaCategoriaView(){
-        return view('admin.categoryDesconto')->with('category_id', $category_id);
+        return view('admin.categoryDesconto');
     }
 
     public function cupomView(){
@@ -92,27 +92,6 @@ class AdminController extends Controller
         return json_encode($array);
     }
 
-    public function cupomValidate(Request $request){
-
-        if($request->ajax()){
-            
-            $procurar_cupom = Cupom::where('name', $request->get('queryCupom'))->first();
-
-            if(is_null($procurar_cupom) || $procurar_cupom == "" || $procurar_cupom == null){
-                Session::flash('status', 'Esse cupom não é válido');
-                Session::flash('status-type', 'danger');
-                return back();
-            }elseif(session('cupom') == $request->get('queryCupom')){
-                Session::flash('status', 'Você já adicionou esse cupom');
-                Session::flash('status-type', 'danger');
-                return back();
-            }else{
-                Session::put('cupom', $procurar_cupom);
-                return response()->json(['textStatus' => 'success', 'cupom' => $procurar_cupom, 'cartTotal' => Cart::total()]);
-            }
-        }
-    }
-
     // Aplicar desconto a um determinado produto
     public function ofertaProduto(Request $data){
         $desconto = $data->desconto * 0.01;
@@ -123,14 +102,18 @@ class AdminController extends Controller
     }
 
     // Aplicar desconto a toda uma categoria
-    public function ofertaCategoria($categoria_id, $desconto){
-        $products = Product::where('category_id', $categoria_id);
-
+    public function ofertaCategoria(Request $request){
+        $products = Product::where('category_id', $request->categoria_id)->get();
+        
+        $desconto = $request->desconto * 0.01;
+        
         foreach($products as $product){
-            $product->price = $product->price - ($product->price * $desconto);
+            $product->price = ($product->price - ($product->price * $desconto));
             $product->save();
         }
-        return back();
+
+        Session::flash('status', 'Desconto aplicado com sucesso!');
+        return redirect('/admin');
     }
 
     public function orders(){
