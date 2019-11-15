@@ -77,7 +77,7 @@ class AdminController extends Controller
     }
 
     public function ofertaCategoriaView(){
-        return view('admin.categoryDesconto')->with('category_id', $category_id);
+        return view('admin.categoryDesconto');
     }
 
     public function cupomView(){
@@ -102,14 +102,18 @@ class AdminController extends Controller
     }
 
     // Aplicar desconto a toda uma categoria
-    public function ofertaCategoria($categoria_id, $desconto){
-        $products = Product::where('category_id', $categoria_id);
-
+    public function ofertaCategoria(Request $request){
+        $products = Product::where('category_id', $request->categoria_id)->get();
+        
+        $desconto = $request->desconto * 0.01;
+        
         foreach($products as $product){
-            $product->price = $product->price - ($product->price * $desconto);
+            $product->price = ($product->price - ($product->price * $desconto));
             $product->save();
         }
-        return back();
+
+        Session::flash('status', 'Desconto aplicado com sucesso!');
+        return redirect('/admin');
     }
 
     public function orders(){

@@ -1,4 +1,5 @@
 <h4 class="mb-4">Produtos</h4>
+<a href="/admin/categoria/desconto" class="btn btn-info">Aplicar desconto a uma categoria</a>
 <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
 <div id="dashboardProducts"><br>
     <div id="string_filter_div_products"></div>
