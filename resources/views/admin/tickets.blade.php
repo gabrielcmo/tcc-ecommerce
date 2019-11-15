@@ -1,6 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <h2>Tickets</h2>
+=======
+<h2>Ticket</h2>
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
 =======
 <h2>Ticket</h2>
 >>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados

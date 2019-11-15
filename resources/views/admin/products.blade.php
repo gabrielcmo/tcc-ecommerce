@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <h4 class="mb-4">Produtos</h4>
 <a href="/admin/categoria/desconto" class="btn btn-info">Aplicar desconto a uma categoria</a>
 <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
@@ -12,6 +13,8 @@
 =======
 =======
 >>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
+=======
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
     <h2>Produtos</h2>
     <br>
     <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
@@ -22,6 +25,9 @@
     </div>
     <div style="text-align:center!important;" id="products_table"></div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
+=======
 >>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
 =======
 >>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
