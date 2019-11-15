@@ -14,20 +14,24 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->insert([
             'name' => 'client',
         ]);
+
         DB::table('cupons')->insert([
             'name' => 'TOGURO',
             'fornecido_por' => 'TOGURO',
             'desconto' => 10,
         ]);
+
         DB::table('roles')->insert([
             'name' => 'employee',
         ]);
+
         DB::table('users')->insert([
             'name' => 'Cliente',
             'email' => 'cliente'.'@doomus.com',
             'password' => bcrypt('secret'),
             'role_id' => 2,
         ]);
+        
         DB::table('users')->insert([
             'name' => 'Gabriel',
             'email' => 'gabriel'.'@doomus.com',
@@ -136,6 +140,7 @@ class DatabaseSeeder extends Seeder
             'valor' => 49.99,
             'categoria_id' => 3,
         ]);
+
         DB::table('products')->insert([
             'nome' => 'Cobertor Azul',
             'descricao' => 'Te aquece nas suas noites mais frias',
@@ -159,25 +164,31 @@ class DatabaseSeeder extends Seeder
             'valor' => 49.99,
             'categoria_id' => 1,
         ]);
+
         DB::table('product_images')->insert([
             'filename' => 'placeholder-2.jpg',
             'product_id' => 1,
         ]);
+
         DB::table('product_images')->insert([
             'filename' => 'placeholder-1.jpg',
             'product_id' => 2,
         ]);
+
         DB::table('product_images')->insert([
             'filename' => 'placeholder-3.jpg',
             'product_id' => 3,
         ]);
+
         DB::table('product_images')->insert([
             'filename' => 'placeholder-4.jpg',
             'product_id' => 4,
         ]);
+
         DB::table('order_statuses')->insert([
             'name' => 'Processando pagamento',
         ]);
+
         DB::table('order_statuses')->insert([
             'name' => 'Pagamento aprovado',
         ]);
@@ -189,6 +200,7 @@ class DatabaseSeeder extends Seeder
         DB::table('order_statuses')->insert([
             'name' => 'Entregue',
         ]);
+
         DB::table('order_statuses')->insert([
             'name' => 'Cancelado',
         ]);
@@ -303,67 +315,81 @@ class DatabaseSeeder extends Seeder
             'qty' => 2,
             'price' => 133
         ]);
+
         DB::table('order_product')->insert([
             'product_id' => 6,
             'order_id' => 3,
             'qty' => 1,
             'price' => 133
         ]);
+
         DB::table('order_product')->insert([
             'product_id' => 5,
             'order_id' => 3,
             'qty' => 5,
             'price' => 53
         ]);
+
         DB::table('order_product')->insert([
             'product_id' => 2,
             'order_id' => 4,
             'qty' => 7,
             'price' => 13
         ]);
+
         DB::table('order_product')->insert([
             'product_id' => 2,
             'order_id' => 3,
             'qty' => 1,
             'price' => 30
         ]);
+
         DB::table('order_product')->insert([
             'product_id' => 3,
             'order_id' => 3,
             'qty' => 1,
             'price' => 120
         ]);
+
         DB::table('order_product')->insert([
             'product_id' => 2,
             'order_id' => 5,
             'qty' => 10,
             'price' => 19.99
         ]);
+
         DB::table('product_images')->insert([
             'filename' => 'roupao1.png',
             'product_id' => 6,
         ]);
+
         DB::table('product_images')->insert([
             'filename' => 'roupao2.png',
             'product_id' => 6,
         ]);
+
         DB::table('product_images')->insert([
             'filename' => 'roupao3.png',
             'product_id' => 6,
         ]);
+
         DB::table('product_images')->insert([
             'filename' => 'cama.png',
             'product_id' => 7,
         ]);
+
         DB::table('ticket_types')->insert([
             'name' => 'Problemas com algum pedido'
         ]);
+
         DB::table('ticket_types')->insert([
             'name' => 'Problemas técnicos'
         ]);
+
         DB::table('ticket_types')->insert([
             'name' => 'Problemas ao confirmar a compra'
         ]);
+
         DB::table('tickets')->insert([
             'message' => 'Não consigo logar',
             'status' => 0,
@@ -372,6 +398,7 @@ class DatabaseSeeder extends Seeder
             'subject' => 'Socorro',
             'user_id' => 2,
         ]);
+
         DB::table('tickets')->insert([
             'message' => 'Meu pedido não chegouuu!!',
             'status' => 0,

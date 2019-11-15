@@ -65,7 +65,8 @@ class AdminController extends Controller
 
         $arrayP[] = ['ID Produto', 'Nome', 'Quantidade', 'Valor', 'Categoria'];
 
-        foreach($products as $data){
+        foreach($products as $data)
+        {
             $arrayP[] = [$data->id, $data->nome, $data->qtd_restante, $data->valor, $data->category->name];
         }
 
