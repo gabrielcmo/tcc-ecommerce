@@ -16,6 +16,9 @@
           <h5 class="text-center">Você já avaliou todos os produtos dessa compra!</h5>
           <h6 class="text-center">Caso queira ver os produtos que voê avaliou, clique no botão abaixo!</h6>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of eca738c... Tabele produtos em PT e visualização das avaliações em andamento
+=======
 >>>>>>> parent of eca738c... Tabele produtos em PT e visualização das avaliações em andamento
 =======
 >>>>>>> parent of eca738c... Tabele produtos em PT e visualização das avaliações em andamento
