@@ -9,8 +9,8 @@
 
       @if (count($products) == 0)
         <div class="card mt-2 p-2 bg-light">
-          <h5 class="text-center">Você já avaliou todos os produtos dessa compra!</h5>
-          <h6 class="text-center">Caso queira ver os produtos que voê avaliou, clique no botão abaixo!</h6>
+          <h5 class="text-center">Você já avaliou todos os produtos presentes nessa compra!</h5>
+          <h6 class="text-center">Caso queira ver os produtos que você avaliou clique no botão abaixo!</h6>
           <button class="mdc-button mdc-button--raised general-button">
             <span class="mdc-button__label">Ver avaliações</span>
           </button>

@@ -1,4 +1,4 @@
-<h2>Ticket</h2>
+<h2>Tickets</h2>
 <br>
 <div id="dashboardTicket"><br>
     <div id="string_filter_div_ticket"></div>
@@ -37,7 +37,7 @@
             controlType: 'StringFilter',
             containerId: 'string_filter_name_div_ticket',
             options: {
-                filterColumnIndex: 3
+                filterColumnIndex: 1
             }
         });
 
