@@ -21,8 +21,6 @@ $(document).ready(function(){
     $('.input-search-sm-devices').removeClass('d-none');
     $('.mdc-drawer-scrim').show();
     $('.mdc-drawer-scrim').addClass('show');
-    $('#resultSearch').show();
-    $('#resultSearch').addClass('show');
   });
   
 

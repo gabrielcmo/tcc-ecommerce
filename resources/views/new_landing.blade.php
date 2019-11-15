@@ -111,37 +111,10 @@
         </div>
       @endforeach
     </div>
-    <input type="text" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices" id="searchInput" autocomplete="off">
-    <div aria-labelledby="searchInput">
-      <ul class="dropdown-menu w-100 show" id="resultSearch"></ul>
-    </div>
+    <input type="text" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices">
   </div>
 @endsection
 
 @section('scripts')
-  <script>
-    function fetch_data(query = ''){
-      $.ajax({
-        url: "{{ route('search') }}",
-        method: 'GET',
-        data: {query:query},
-        success:function(result){
-          $('#resultSearch').fadeIn();
-          $('#resultSearch').html(result);
-        }
-      });
-    }
-
-    $('#searchInput').keyup(function(){
-      console.log($('#searchInput').val());
-      if($('#searchInput').val() !== ""){
-        $('#resultSearch').removeClass('d-none');
-        var query = $(this).val();
-        fetch_data(query);
-      }else{
-        $('#resultSearch').addClass('d-none');
-      }
-    });
-  </script>
   <script src="{{asset('js/customJs/landing.js')}}"></script>
 @endsection
