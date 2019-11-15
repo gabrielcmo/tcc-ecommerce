@@ -150,8 +150,8 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/product/{product_id}/desconto', 'AdminController@ofertaProdutoView');
         Route::post('/product/desconto', 'AdminController@ofertaProduto');
         
-        Route::get('/categoria/desconto', 'AdminController@ofertaCategoriaView');
-        Route::post('/categoria/desconto/data', 'AdminController@ofertaCategoria')->name('descontoCategoriaData');
+        Route::get('/category/desconto', 'AdminController@ofertaCategoriaView');
+        Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria');
         
         Route::get('/cupom', 'AdminController@cupomView')->name('admin.cupons');
         Route::get('/cupom/{id}/create', 'AdminController@cupomView');
