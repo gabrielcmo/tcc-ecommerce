@@ -4,14 +4,14 @@
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet"/>
 @endsection
 
-@section('title', $product->nome)
+@section('title', $product->name)
 
 @section('content')
   @php
-    $product_price_principal = $product->valor;
-    $formatted_price = number_format($product->valor, 2, ',', '');   
-    $formatted_parcel_6 = number_format(intval(strval(($product->valor / 6) * 100)) / 100, 2, ',', '');
-    $formatted_parcel_12 = number_format(intval(strval(($product->valor / 12) * 100)) / 100, 2, ',', '');
+    $product_price_principal = $product->price;
+    $formatted_price = number_format($product->price, 2, ',', '');   
+    $formatted_parcel_6 = number_format(intval(strval(($product->price / 6) * 100)) / 100, 2, ',', '');
+    $formatted_parcel_12 = number_format(intval(strval(($product->price / 12) * 100)) / 100, 2, ',', '');
   @endphp
   <div class="container">
     <div class="row mt-3">
@@ -68,7 +68,7 @@
         @endif
       </div>
       <div class="col-lg-5">
-        <h3 class="">{{ $product->nome }} &nbsp;</h3>
+        <h3 class="">{{ $product->name }} &nbsp;</h3>
         <h5>
           @php
             $rating = $product->mediaNotaAvaliacao();
@@ -93,14 +93,14 @@
             @endif  
           @endfor
         </h5>
-        @if($product->qtd_restante == 0)
+        @if($product->qtd_last == 0)
           <span class="bg-warning btn product-form-price">Esgotado</span>
           <p class="mb-0 mt-1">Infelizmente este produto está esgotado. 😥</p>
           <p>Para mais detalhes, contate-nos!</p>
-          <a href="/ticket/create" class="btn btn-info" title="Contate-nos">Contate-nos</a>
+          <a href="#" class="btn btn-info" title="Contate-nos">Contate-nos</a>
           <a href="javascript:history.back()" class="btn btn-link btn-sm" title="&larr; Ou continue comprando">&larr; Ou continue comprando</a>
-        @elseif($product->qtd_restante <= 25)
-          <span class="bg-info btn product-form-price">Restam {{ $product->qtd_restante }} unidades</span>
+        @elseif($product->qtd_last <= 25)
+          <span class="bg-info btn product-form-price">Restam {{ $product->qtd_last }} unidades</span>
         @else
           <span class="bg-success btn btn-sm product-form-price">Disponível</span>
         @endif
@@ -157,38 +157,24 @@
             <div class="card-body">
               <div class="form-group row ml-2 mt-2">
                 <label for="descricao" class="col-md-4"><h5>Descrição:</h5></label>
-                <div id="descricao" class="col-md-8">{{ $product->descricao }}</div>
+                <div id="descricao" class="col-md-8">{{ $product->description }}</div>
               </div>
-              @if ($product->peso != null)
               <div class="form-group row ml-2 mt-2">
                 <label for="peso" class="col-md-4"><h5>Peso:</h5></label>
-                <div id="peso" class="col-md-8">{{ $product->peso }} g</div>
+                <div id="peso" class="col-md-8">{{ $product->weight }} g</div>
               </div>
-              @endif
-              @if ($product->comprimento != null)
               <div class="form-group row ml-2 mt-2">
                 <label for="comprimento" class="col-md-4"><h5>Comprimento:</h5></label>
-                <div id="comprimento" class="col-md-8">{{ $product->comprimento }} cm</div>
+                <div id="comprimento" class="col-md-8">{{ $product->width }} cm</div>
               </div>
-              @endif
-              @if ($product->altura != null)
               <div class="form-group row ml-2 mt-2">
                 <label for="altura" class="col-md-4"><h5>Altura:</h5></label>
-                <div id="altura" class="col-md-8">{{ $product->altura }} cm</div>
+                <div id="altura" class="col-md-8">{{ $product->height }} cm</div>
               </div>
-              @endif
-              @if ($product->largura != null)
               <div class="form-group row ml-2 mt-2">
                 <label for="largura" class="col-md-4"><h5>Largura:</h5></label>
-                <div id="largura" class="col-md-8">{{ $product->largura }} cm</div>
+                <div id="largura" class="col-md-8">{{ $product->lenght }} cm</div>
               </div>
-              @endif
-              @if ($product->diametro != null)
-                <div class="form-group row ml-2 mt-2">
-                  <label for="largura" class="col-md-4"><h5>Diâmetro:</h5></label>
-                  <div id="largura" class="col-md-8">{{ $product->diametro }} cm</div>
-                </div>
-              @endif
             </div>
           </div>
         </div>       
@@ -202,8 +188,8 @@
       <?php $i = 0; ?>
       @foreach(Doomus\Product::where('id', '!=', $product->id)->orderBy('id', 'DESC')->get() as $product)
       @php
-          $formatted_price = number_format($product->valor, 2, ',', '');
-          $formatted_parcel_6 = intval(strval(($product->valor / 6) * 100)) / 100;
+          $formatted_price = number_format($product->price, 2, ',', '');
+          $formatted_parcel_6 = intval(strval(($product->price / 6) * 100)) / 100;
       @endphp
       <div class="col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 mt-2">
           <div class="mdc-card">
@@ -218,7 +204,7 @@
                 </div>
               @endif
               <div class="p-2 ml-2">
-                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->nome}}</h6>
+                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->name}}</h6>
                 @php 
                   $rating = $product->mediaNotaAvaliacao();
                 @endphp

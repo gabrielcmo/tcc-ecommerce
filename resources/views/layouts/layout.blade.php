@@ -110,8 +110,8 @@
           </a>
           @if(Auth::user()->role_id == 1)
             <a class="mdc-list-item" href="/admin">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
-            <span class="mdc-list-item__text">Painel de Controle</span>
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+            <span class="mdc-list-item__text">Painel de administração</span>
             </a>
           @endif
           <a class="mdc-list-item" href="{{ route('orders') }}">
@@ -150,7 +150,7 @@
         <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
       </nav>
     </div>
-    <main class="main-content" id="main-content" style="position: relative;">
+    <main class="main-content" id="main-content">
       <div class="">
         @if(Session::has('status'))
           @if(Session::has('status-type'))

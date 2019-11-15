@@ -1,7 +1,8 @@
     @php
         $orders = Doomus\Order::all();
     @endphp
-    <h4 class="mb-4">Pedidos</h4>
+    <h2>Pedidos</h2>
+    <br>
     <div id="dashboard">
         <div id="string_filter_div"></div>
         <div id="string_filter_userID_div"></div>

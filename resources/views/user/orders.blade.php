@@ -245,12 +245,12 @@
                           <h6 class="mb-0">Valor do frete: <span class="font-weight-light">R$ {{$pedido->frete}}</span></h6>
                           <h4>Subtotal: <span class="font-weight-light">R$ {{$pedido->value_total - $pedido->frete}}</span></h4>
                           <h4 class="mt-0">Valor total (c/ frete): <span class="font-weight-light">R$ {{$pedido->value_total}}</span></h4>
-                          <button class="mdc-button mdc-button--raised general-button showProducts mt-2" data-pedido-id="{{$pedido->id}}" data-href="{{route('showOrderProducts')}}">
+                          <button class="mdc-button mdc-button--raised general-button showProducts mt-2" type="button" data-pedido-id="{{$pedido->id}}" data-href="{{route('showOrderProducts')}}">
                             <span class="mdc-button__label">Ver produtos</span>
                           </button>
-                          <a class="mdc-button mdc-button--raised general-button mt-2" href="{{route('rating.create', ['order_id' => $pedido->id])}}">
-                            <span class="mdc-button__label">Avaliar</span>
-                          </a>
+                          <button class="mdc-button mdc-button--raised general-button avaliateProducts" type="button" data-href="{{route('')}}">
+                            <span class="mdc-button__label">Avaliar produtos</span>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -281,6 +281,7 @@
                 <tr>
                   <th>Produtos</th>
                   <th>Quantidade/Preço</th>
+                  <th>Avaliar</th>
                 </tr>
               </thead>
               <tbody id="modalProductsBody">

@@ -19,9 +19,8 @@ class CreateProductsRatingsTable extends Migration
             $table->string('text');
             $table->integer('note');
             
-            $table->integer('user_id')->unsigned();
-            $table->integer('product_id')->unsigned();
-            $table->integer('order_id')->unsigned();
+            $table->integer('id_user')->unsigned();
+            $table->integer('id_product')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')

@@ -31,7 +31,7 @@ class ProductController extends Controller
     
     public static function changeQtyLast($product_id, $qty){
         $product = Product::find($product_id);
-        $product->qtd_restante = $product->qtd_restante - $qty;
+        $product->qtd_last = $product->qtd_last - $qty;
         $product->save();
         return back();
     }
@@ -57,15 +57,15 @@ class ProductController extends Controller
     */
     public function store(Request $request){
         $product = new Product();
-        $product->nome = $request->nome;
-        $product->descricao = $request->descricao;
-        $product->qtd_restante = $request->qtd_restante;
-        $product->peso = $request->peso;
-        $product->largura = $request->largura;
-        $product->comprimento = $request->comprimento;
-        $product->altura = $request->altura;
-        $product->valor = $request->valor;
-        $product->categoria_id = $request->categoria_id;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->qtd_last = $request->qtd_last;
+        $product->weight = $request->weight;
+        $product->lenght = $request->lenght;
+        $product->width = $request->width;
+        $product->height = $request->height;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
         $product->save();
 
         $imagens = ProductImage::where('product_id', $product->id)->get();
@@ -115,15 +115,15 @@ class ProductController extends Controller
             self::addPicture(request()->img, $product->id);
         }
 
-        $product->nome = $request->nome;
-        $product->descricao = $request->descricao;
-        $product->qtd_restante = $request->qtd_restante;
-        $product->peso = $request->peso;
-        $product->largura = $request->largura;
-        $product->comprimento = $request->comprimento;
-        $product->altura = $request->altura;
-        $product->valor = $request->valor;
-        $product->categoria_id = $request->categoria_id;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->qtd_last = $request->qtd_last;
+        $product->weight = $request->weight;
+        $product->lenght = $request->lenght;
+        $product->width = $request->width;
+        $product->height = $request->height;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
 
         $product->save();
 

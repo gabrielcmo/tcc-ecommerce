@@ -1,5 +1,7 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 <h4 class="mb-4">Produtos</h4>
-<a href="/admin/categoria/desconto" class="btn btn-info">Aplicar desconto a uma categoria</a>
 <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
 <div id="dashboardProducts"><br>
     <div id="string_filter_div_products"></div>
@@ -7,6 +9,27 @@
     <div id="number_range_filter_div_products"></div>
 </div>
 <div style="text-align:center!important;" id="products_table"></div>
+=======
+=======
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
+=======
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
+    <h2>Produtos</h2>
+    <br>
+    <a href="/admin/product/create" class="btn btn-info">Adicionar um produto</a>
+    <div id="dashboardProducts"><br>
+        <div id="string_filter_div_products"></div>
+        <div id="string_filter_name_div_products"></div>
+        <div id="number_range_filter_div_products"></div>
+    </div>
+    <div style="text-align:center!important;" id="products_table"></div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
+=======
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
+=======
+>>>>>>> parent of 14b811b... Formulários P. de Controle em portugues e estilizados
 
     <script type="text/javascript">
         var analyticsProducts = {!! $dadosChart['products'] !!};
