@@ -3,6 +3,7 @@
 namespace Doomus\Http\Controllers;
 
 use Doomus\Order;
+use Doomus\Product;
 use Doomus\ProductRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,18 @@ class RatingController extends Controller
     public function create($order_id)
     {
         $order = Order::find($order_id);
-        
-        return view('user.rating-products')->with('products', $order->product)->with('order_id', $order->id);
+
+        $products = array();
+        foreach ($order->product as $product) {
+            $rating = ProductRating::where('id_user', Auth::user()->id)->where('id_product', $product['id'])->get();
+            if (count($rating) == 0) {
+                $products[] = $product;
+            }
+            
+        }
+
+                     
+        return view('user.rating-products')->with('products', $products)->with('order_id', $order->id);
     }
 
     /**
