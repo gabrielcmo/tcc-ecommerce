@@ -42,7 +42,7 @@ class RatingController extends Controller
         $avaliados = array();
         $naoAvaliados = array();
         foreach ($order->product as $product) {
-            $rating = ProductRating::where('id_user', Auth::user()->id)->where('id_product', $product['id'])->get();
+            $rating = ProductRating::where('user_id', Auth::user()->id)->where('product_id', $product['id'])->get();
             if (count($rating) == 0) {
                 $naoAvaliados[] = $product;
             }else{
@@ -68,8 +68,9 @@ class RatingController extends Controller
         $productRating->title = $request->input('title-rating');
         $productRating->text = $request->input('description-text');
         $productRating->note = $request->input('note-rating');
-        $productRating->id_user = Auth::user()->id;
-        $productRating->id_product = $request->input('product-rating');
+        $productRating->user_id = Auth::user()->id;
+        $productRating->order_id = $request->input('order-id');
+        $productRating->product_id = $request->input('product-rating');
 
         $productRating->save();
 
