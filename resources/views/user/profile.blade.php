@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <form method="post" action="/perfil/update" enctype="multipart/form-data">
+<div class="container mt-5">
+    <form method="post" action="/perfil/update">
         @csrf
             <div class="row">
                 <div class="col-6">

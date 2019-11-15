@@ -69,102 +69,102 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'name' => 'Toalha de rosto',
-            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
-            'qtd_last' => 4,
-            'lenght' => 12.0,
-            'weight' => 20.3,
-            'width' => 50.0,
-            'height' => 20.0,
-            'diameter' => 80.0,
-            'price' => 4.99,
-            'category_id' => 3,
+            'nome' => 'Toalha de rosto',
+            'descricao' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_restante' => 4,
+            'largura' => 12.0,
+            'peso' => 20.3,
+            'comprimento' => 50.0,
+            'altura' => 20.0,
+            'diametro' => 80.0,
+            'valor' => 4.99,
+            'categoria_id' => 3,
         ]);
         
         DB::table('products')->insert([
-            'name' => 'Edredom',
-            'description' => 'Com ótimo material, é excelente para esquentar sua noite',
-            'qtd_last' => 33,
-            'lenght' => 12.0,
-            'weight' => 466.2,
-            'width' => 200.0,
-            'height' => 150.0,
-            'diameter' => 80.0,
-            'price' => 79.99,
-            'category_id' => 1,
+            'nome' => 'Edredom',
+            'descricao' => 'Com ótimo material, é excelente para esquentar sua noite',
+            'qtd_restante' => 33,
+            'largura' => 12.0,
+            'peso' => 466.2,
+            'comprimento' => 200.0,
+            'altura' => 150.0,
+            'diametro' => 80.0,
+            'valor' => 79.99,
+            'categoria_id' => 1,
         ]);
         
         DB::table('products')->insert([
-            'name' => 'Travesseiro',
-            'description' => 'Grande e maravilhoso',
-            'qtd_last' => 1,
-            'lenght' => 12.0,
-            'weight' => 250.0,
-            'width' => 45.0,
-            'height' => 25.0,
-            'diameter' => 80.0,
-            'price' => 39.98,
-            'category_id' => 1,
+            'nome' => 'Travesseiro',
+            'descricao' => 'Grande e maravilhoso',
+            'qtd_restante' => 1,
+            'largura' => 12.0,
+            'peso' => 250.0,
+            'comprimento' => 45.0,
+            'altura' => 25.0,
+            'diametro' => 80.0,
+            'valor' => 39.98,
+            'categoria_id' => 1,
+        ]);
+
+        DB::table('products')->insert([
+            'nome' => 'Tapete',
+            'descricao' => 'ótimo',
+            'qtd_restante' => 37,
+            'largura' => 12.0,
+            'peso' => 125.0,
+            'comprimento' => 20.0,
+            'altura' => 2.0,
+            'valor' => 19.99,
+            'categoria_id' => 2,
         ]);
         
         DB::table('products')->insert([
-            'name' => 'Colher de silicone',
-            'description' => 'Colher ótima',
-            'qtd_last' => 37,
-            'lenght' => 12.0,
-            'weight' => 125.0,
-            'width' => 20.0,
-            'height' => 2.0,
-            'price' => 19.99,
-            'category_id' => 2,
+            'nome' => 'Cortina',
+            'descricao' => 'ótimo',
+            'qtd_restante' => 37,
+            'largura' => 12.0,
+            'peso' => 125.0,
+            'comprimento' => 20.0,
+            'altura' => 2.0,
+            'valor' => 19.99,
+            'categoria_id' => 2,
         ]);
         
         DB::table('products')->insert([
-            'name' => 'Colher de pau',
-            'description' => 'Colher ótima',
-            'qtd_last' => 37,
-            'lenght' => 12.0,
-            'weight' => 125.0,
-            'width' => 20.0,
-            'height' => 2.0,
-            'price' => 19.99,
-            'category_id' => 2,
+            'nome' => 'Roupão',
+            'descricao' => 'Longo e sedoso para te aquecer/secar após o banho',
+            'qtd_restante' => 60,
+            'largura' => 50.0,
+            'peso' => 750.0,
+            'comprimento' => 30.0,
+            'altura' => 120.0,
+            'valor' => 49.99,
+            'categoria_id' => 3,
+        ]);
+
+        DB::table('products')->insert([
+            'nome' => 'Cobertor Azul',
+            'descricao' => 'Te aquece nas suas noites mais frias',
+            'qtd_restante' => 98,
+            'largura' => 1.0,
+            'peso' => 560.0,
+            'comprimento' => 135.0,
+            'altura' => 200.0,
+            'valor' => 79.98,
+            'categoria_id' => 1,
         ]);
         
         DB::table('products')->insert([
-            'name' => 'Tapete',
-            'description' => 'ótimo',
-            'qtd_last' => 37,
-            'lenght' => 12.0,
-            'weight' => 125.0,
-            'width' => 20.0,
-            'height' => 2.0,
-            'price' => 19.99,
-            'category_id' => 2,
-        ]);
-        
-        DB::table('products')->insert([
-            'name' => 'Cortina',
-            'description' => 'ótimo',
-            'qtd_last' => 37,
-            'lenght' => 12.0,
-            'weight' => 125.0,
-            'width' => 20.0,
-            'height' => 2.0,
-            'price' => 19.99,
-            'category_id' => 2,
-        ]);
-        
-        DB::table('products')->insert([
-            'name' => 'Conjunto talheres',
-            'description' => 'ótimo',
-            'qtd_last' => 37,
-            'lenght' => 12.0,
-            'weight' => 125.0,
-            'width' => 20.0,
-            'height' => 2.0,
-            'price' => 19.99,
-            'category_id' => 2,
+            'nome' => 'Quadro',
+            'descricao' => 'Pintura linda',
+            'qtd_restante' => 98,
+            'largura' => 1.0,
+            'peso' => 560.0,
+            'comprimento' => 135.0,
+            'altura' => 200.0,
+            'valor' => 49.99,
+            'categoria_id' => 1,
         ]);
 
         DB::table('product_images')->insert([
@@ -319,14 +319,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('order_product')->insert([
-            'product_id' => 7,
+            'product_id' => 6,
             'order_id' => 3,
             'qty' => 1,
             'price' => 133
         ]);
 
         DB::table('order_product')->insert([
-            'product_id' => 6,
+            'product_id' => 5,
             'order_id' => 3,
             'qty' => 5,
             'price' => 53
@@ -340,7 +340,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('order_product')->insert([
-            'product_id' => 5,
+            'product_id' => 2,
             'order_id' => 3,
             'qty' => 1,
             'price' => 30
@@ -354,66 +354,30 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('order_product')->insert([
-            'product_id' => 8,
+            'product_id' => 2,
             'order_id' => 5,
             'qty' => 10,
             'price' => 19.99
         ]);
-        
-        DB::table('products')->insert([
-            'name' => 'Roupão',
-            'description' => 'Longo e sedoso para te aquecer/secar após o banho',
-            'qtd_last' => 60,
-            'lenght' => 50.0,
-            'weight' => 750.0,
-            'width' => 30.0,
-            'height' => 120.0,
-            'price' => 49.99,
-            'category_id' => 3,
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Cobertor Azul',
-            'description' => 'Te aquece nas suas noites mais frias',
-            'qtd_last' => 98,
-            'lenght' => 1.0,
-            'weight' => 560.0,
-            'width' => 135.0,
-            'height' => 200.0,
-            'price' => 79.98,
-            'category_id' => 1,
-        ]);
-        
-        DB::table('products')->insert([
-            'name' => 'Quadro',
-            'description' => 'Pintura linda',
-            'qtd_last' => 98,
-            'lenght' => 1.0,
-            'weight' => 560.0,
-            'width' => 135.0,
-            'height' => 200.0,
-            'price' => 49.99,
-            'category_id' => 1,
-        ]);
 
         DB::table('product_images')->insert([
             'filename' => 'roupao1.png',
-            'product_id' => 9,
+            'product_id' => 6,
         ]);
 
         DB::table('product_images')->insert([
             'filename' => 'roupao2.png',
-            'product_id' => 9,
+            'product_id' => 6,
         ]);
 
         DB::table('product_images')->insert([
             'filename' => 'roupao3.png',
-            'product_id' => 9,
+            'product_id' => 6,
         ]);
 
         DB::table('product_images')->insert([
             'filename' => 'cama.png',
-            'product_id' => 10,
+            'product_id' => 7,
         ]);
 
         DB::table('ticket_types')->insert([

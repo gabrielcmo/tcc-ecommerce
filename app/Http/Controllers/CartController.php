@@ -21,13 +21,13 @@ class CartController extends Controller
     public static function addToCartBuyNow($product_id) {
         $product = Product::find($product_id);
 
-        if(1 > $product->qtd_last){
+        if(1 > $product->qtd_restante){
             Session::flash('status', "Desculpe, nosso estoque está esgotado!");
             Session::flash('status-type', 'danger');
             return redirect('/');
         }
 
-        Cart::add($product_id, $product->name, 1, $product->price)->associate('Product');
+        Cart::add($product_id, $product->nome, 1, $product->valor)->associate('Product');
 
         return redirect('/checkout/endereco');
     }
@@ -42,8 +42,8 @@ class CartController extends Controller
     {
         $product = $product_id !== null ? Product::find($product_id) : Product::find($request->get('product_id'));
 
-        if($request->get('qty') !== null && $request->get('qty') > $product->qtd_last){
-            Session::flash('status', "Desculpe, nós só temos mais $product->qtd_last restante desse produto no estoque..
+        if($request->get('qty') !== null && $request->get('qty') > $product->qtd_restante){
+            Session::flash('status', "Desculpe, nós só temos mais $product->qtd_restante restante desse produto no estoque..
                 Adicione até esse valor!");
             Session::flash('status-type', 'danger');
             return back();
@@ -51,9 +51,9 @@ class CartController extends Controller
 
         if($product_id !== null){
 
-            $name = $product->name;
+            $name = $product->nome;
             $qtd = 1;
-            $price = $product->price;
+            $price = $product->valor;
 
             Cart::add($product_id, $name, $qtd, $price)->associate('Product');
 
@@ -64,8 +64,8 @@ class CartController extends Controller
 
         $qtd = $request->get('qty');
 
-        $name = $product->name;
-        $price = $product->price;
+        $name = $product->nome;
+        $price = $product->valor;
 
         Cart::add($request->get('product_id'), $name, $qtd, $price)->associate('Product');
 
@@ -99,8 +99,8 @@ class CartController extends Controller
     {
         $product = Product::find($product_id);
 
-        if($qty > $product->qtd_last){
-            Session::flash('status', "Desculpe, nós só temos mais $product->qtd_last restante desse produto no estoque..
+        if($qty > $product->qtd_restante){
+            Session::flash('status', "Desculpe, nós só temos mais $product->qtd_restante restante desse produto no estoque..
                 Adicione até esse valor!");
             Session::flash('status-type', 'danger');
             return response()->json(['textStatus' => 'error']);

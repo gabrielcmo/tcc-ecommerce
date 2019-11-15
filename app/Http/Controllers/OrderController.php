@@ -65,8 +65,8 @@ class OrderController extends Controller
         $products_id = OrderProduct::where('order_id', $request->order_id)->select('product_id')->addSelect('qty')->get();
         foreach ($products_id as $product) {
             $product_data = Product::where('id', $product->product_id)
-                ->addSelect('name')
-                ->addSelect('price')
+                ->addSelect('nome')
+                ->addSelect('valor')
                 ->get(); 
                 
             $product_image = ProductImage::where('product_id', $product->product_id)->select('filename')->first();
@@ -77,9 +77,9 @@ class OrderController extends Controller
             }
             $response[] = [
                 'product_id'=>$product->product_id,
-                'product_name'=>$product_data[0]->name,
+                'product_name'=>$product_data[0]->nome,
                 'product_qty'=>$product->qty,
-                'product_price'=>$product_data[0]->price,
+                'product_price'=>$product_data[0]->valor,
                 'product_image'=>$product_image
             ];
         }

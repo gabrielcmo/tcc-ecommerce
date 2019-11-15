@@ -2,8 +2,11 @@ $(document).ready(function() {
 
   var star_note;
 
+  var domain = document.location.host;
+  if (domain == 'www.doomus.com.br' || domain == 'doomus.com.br') {
+    domain = 'www.doomus.com.br/public';
+  }
 
-  
   $('.star-1').mouseenter(function() {
     if ($(this).hasClass('star-clicked')) {
       $(this).removeClass('star-clicked');
@@ -103,9 +106,6 @@ $(document).ready(function() {
     }
   });
   
-  
-
-  
   $('.star-1').click(function() {
     $(this).addClass('star-selected');
     $(this).addClass('star-clicked');
@@ -150,7 +150,6 @@ $(document).ready(function() {
     $('#note-rating').val(5);
     star_note = 5;
   });
-
 
   $('.stars-rating').mouseleave(function () {
     if (star_note !== undefined) {

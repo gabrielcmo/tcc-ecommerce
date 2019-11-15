@@ -6,28 +6,27 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-12">
-
       @if (count($products) == 0)
         <div class="card mt-2 p-2 bg-light">
           <h5 class="text-center">Você já avaliou todos os produtos dessa compra!</h5>
-          <h6 class="text-center">Caso queira ver os produtos que voê avaliou, clique no botão abaixo!</h6>
-          <button class="mdc-button mdc-button--raised general-button">
+          <h6 class="text-center">Caso queira ver os produtos que você avaliou, clique no botão abaixo!</h6>
+          <a class="mdc-button mdc-button--raised general-button" href="{{ route('rating.show', ['order_id' => $order_id]) }}">
             <span class="mdc-button__label">Ver avaliações</span>
-          </button>
+          </a>
         </div>
+        <div style="height: 280px;"></div>
       @else
         <div class="card mt-2">
           <div class="card-header">Avaliar produtos da compra de número: {{$order_id}}</div>
           <div class="card-body">
             <form action="{{route('rating.store')}}" method="POST">
               @csrf
-
               <div class="form-group">
                 <label for="selectProduct">Produtos</label>
                 <select name="product-rating" id="selectProduct" class="form-control">
                   <option selected>Escolha o produto a ser avaliado</option>
                   @foreach ($products as $product)
-                  <option value="{{$product->id}}">{{$product->name}}</option>
+                  <option value="{{$product->id}}">{{$product->nome}}</option>
                   @endforeach
                 </select>
               </div>
@@ -50,6 +49,7 @@
                   <i class="material-icons stars-rating star-5" style="font-size: 2.5rem">star</i>
                 </div>
                 <input type="hidden" name="note-rating" id="note-rating">
+                <input type="hidden" name="order-id" value="{{ $order_id }}" id="order-id">
               </div>
               
               <button class="mdc-button mdc-button--raised general-button" type="submit">
