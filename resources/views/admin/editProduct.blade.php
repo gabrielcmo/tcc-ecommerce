@@ -24,40 +24,40 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome" id="nome" value="{{ $product->name }}" required>
+                    <input type="text" class="form-control" name="nome" id="nome" value="{{ $product->nome }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="descricao">Descrição</label>
-                    <textarea type="text" class="form-control" name="descricao" id="descricao" value="{{ $product->description }}" required></textarea>
+                    <textarea type="text" class="form-control" name="descricao" id="descricao" value="{{ $product->descricao }}" required></textarea>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="qtd_restante">Quantidade em estoque</label>
-                    <input type="number" class="form-control" name="qtd_restante" id="qtd_restante" value="{{ $product->qtd_last }}" required>
+                    <input type="number" class="form-control" name="qtd_restante" id="qtd_restante" value="{{ $product->qtd_restante }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="peso">Peso</label>
-                    <input type="number" class="form-control" name="peso" id="peso" value="{{ $product->weight }}" required>
+                    <input type="number" class="form-control" name="peso" id="peso" value="{{ $product->peso }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="largura">Largura</label>
-                    <input type="number" class="form-control" name="largura" id="largura" value="{{ $product->width }}" required>
+                    <input type="number" class="form-control" name="largura" id="largura" value="{{ $product->largura }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="comprimento">Comprimento</label>
-                    <input type="number" class="form-control" name="comprimento" id="comprimento" value="" required>
+                    <input type="number" class="form-control" name="comprimento" id="comprimento" value="{{ $product->comprimento }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="altura">Altura</label>
-                    <input type="number" class="form-control" name="altura" id="altura" value="{{ $product->height }}" required>
+                    <input type="number" class="form-control" name="altura" id="altura" value="{{ $product->altura }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="valor">Preço</label>
-                    <input type="number" class="form-control" name="valor" id="valor" value="{{ $product->price }}" required>
+                    <input type="number" step="0.01" class="form-control" name="valor" id="valor" value="{{ $product->valor }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="categoria">Selecione uma categoria</label>
                     <select name="categoria_id" class="form-control" id="categoria" required>
-                        @if($product->category_id == 1)
+                        @if($product->categoria_id == 1)
                             <option selected value="1">Cama</option>
                             <option value="2">Mesa</option>
                             <option value="3">Banho</option>
