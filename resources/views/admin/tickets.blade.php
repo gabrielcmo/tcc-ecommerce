@@ -1,5 +1,4 @@
-<h2>Ticket</h2>
-<br>
+<h4 class="mb-4">Ticket</h4>
 <div id="dashboardTicket"><br>
     <div id="string_filter_div_ticket"></div>
     <div id="string_filter_name_div_ticket"></div>

@@ -23,12 +23,12 @@
     @csrf
   </form>
 
-  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="admin-topAppBar" style="background-color: #D7CEC7;">
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="admin-topAppBar" style="background-color: #D7CEC7;position: relative;">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none"
           id="admin-sidebarMenuButton">menu</button>
-        <span class="mdc-top-app-bar__title">Painel de controle</span>
+        <span class="mdc-top-app-bar__title"><a style="color:white;" href="/admin">Painel de controle</a></span>
       </section>
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
         <a class="mdc-button mdc-button--raised general-button mr-2" href="{{route('landing')}}" id="adminBackButton">
@@ -92,7 +92,7 @@
   </aside>
   <div class="mdc-drawer-scrim"></div>
   @if (Request::is('admin'))
-  <div class="mdc-top-app-bar--fixed-adjust">
+  <div class="mdc-top-app-bar--fixed">
     <main id="main-content">
       <div class="mdc-tab-bar" role="tablist" id="tablist">
         <div class="mdc-tab-scroller">
@@ -157,72 +157,67 @@
         </div>
       </div>
     @endif
-    <br><br><br>
-      <div class="container">
-        @if(Session::has('status'))
+    <div class="container mt-4">
+      @if(Session::has('status'))
         @if(Session::has('status-type'))
-        <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
-          <strong>{{ Session::get('status') }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+          <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
+            <strong>{{ Session::get('status') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         @else
-        <div class="alert alert-info alert-dismissible fade show container" role="alert">
-          <strong>{{ Session::get('status') }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        @endif
-        @endif
-        
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        
-        @if (Request::is('admin'))
-          <div class="tab-content">
-            <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
-              @include('admin.index')
-            </div>
-            <div id="products" class="tab-pane fade" role="tabpanel" aria-labelledby="products-tab">
-              @include('admin.products')
-            </div>
-            <div id="orders" class="tab-pane fade" role="tabpanel" aria-labelledby="orders-tab">
-              @include('admin.orders')
-            </div>
-            <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
-              @include('admin.cupons')
-            </div>
-            <div id="suporte" class="tab-pane fade" role="tabpanel" aria-labelledby="suporte-tab">
-              @include('admin.tickets')
-            </div>
+          <div class="alert alert-info alert-dismissible fade show container" role="alert">
+            <strong>{{ Session::get('status') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         @endif
-        @if (!Request::is('admin'))
-          <a class="mdc-button mdc-button--raised general-button mt-2 mb-4" href="{{ URL::previous() }}">
-              <span class="mdc-button__label"><i class="fas fa-arrow-left"></i> Voltar</span>
-          </a>
-          @yield('content')
-        @endif
-        <br><br><br>
-      </div>
-    </main>
-  </div>
+      @endif
+        
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
+      @if (Request::is('admin'))
+        <div class="tab-content">
+          <div id="graphics" class="tab-pane fade show active" role="tabpanel" aria-labelledby="graphics-tab">
+            @include('admin.index')
+          </div>
+          <div id="products" class="tab-pane fade" role="tabpanel" aria-labelledby="products-tab">
+            @include('admin.products')
+          </div>
+          <div id="orders" class="tab-pane fade" role="tabpanel" aria-labelledby="orders-tab">
+            @include('admin.orders')
+          </div>
+          <div id="cupons" class="tab-pane fade" role="tabpanel" aria-labelledby="cupons-tab">
+            @include('admin.cupons')
+          </div>
+          <div id="suporte" class="tab-pane fade" role="tabpanel" aria-labelledby="suporte-tab">
+            @include('admin.tickets')
+          </div>
+        </div>
+      @endif
+      @if (!Request::is('admin'))
+        <a class="mdc-button mdc-button--raised general-button mb-4" href="{{ URL::previous() }}">
+          <span class="mdc-button__label"><i class="fas fa-arrow-left"></i> Voltar</span>
+        </a>
+        @yield('content')
+      @endif
+    </div>
+  </main>
+</div>
 
-
-
-
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-  <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
-  <script src="{{asset('js/customJs/admin_layout.js')}}"></script>
-  @yield('scripts')
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+<script src="{{asset('js/customJs/admin_layout.js')}}"></script>
+@yield('scripts')
 </body>
 </html>
