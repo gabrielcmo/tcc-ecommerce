@@ -45,6 +45,7 @@
                 @endif
                 <a class="dropdown-item" href="{{ route('orders') }}">Meus pedidos</a>
                 <a class="dropdown-item" href="{{ route('tickets') }}">Meus tickets</a>
+              <a class="dropdown-item" href="{{ route('rating.index') }}">Minhas avaliações</a>
                 <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
                 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -117,6 +118,10 @@
           <a class="mdc-list-item" href="{{ route('orders') }}">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
             <span class="mdc-list-item__text">Meus pedidos</span>
+          </a>
+          <a class="mdc-list-item" href="{{ route('rating.index') }}">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+            <span class="mdc-list-item__text">Minhas avaliações</span>
           </a>
           <a class="mdc-list-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">close</i>

@@ -124,10 +124,12 @@ Route::group(['middleware' => ['https']], function () {
         /*
         * Product Ratings
         */
-        Route::get('/rating/{order_id}', 'RatingController@create')->name('rating.create');
+        Route::get('/rating/index', 'RatingController@index')->name('rating.index');
+        Route::get('/rating/create', 'RatingController@create')->name('rating.create');
         Route::post('/rating/store', 'RatingController@store')->name('rating.store');
-        Route::get('/rating/{order_id}/show', 'RatingController@show')->name('rating.show');
-
+        Route::get('/rating/edit/{rating_id}', 'RatingController@edit')->name('rating.edit');
+        Route::post('/rating/update', 'RatingController@update')->name('rating.update');
+        route::get('/rating/destroy/{rating_id}', 'RatingController@destroy')->name('rating.destroy');
         Route::get('/product/rating', 'RatingController@productRating');
     });
 

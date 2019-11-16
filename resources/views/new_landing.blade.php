@@ -77,14 +77,14 @@
                 <h4 class="font-weight-normal mb-0">
                   R$
                   @php
-                    $formatted_price = number_format($product->valor, 2, ',', '');   
+                    $formatted_price = number_format($product->price, 2, ',', '');   
                     echo $formatted_price;
                   @endphp
                 </h4>
-                @if ($product->valor > 30)
+                @if ($product->price > 30)
                   <span class="text-success">6x de  
                     @php
-                      $parcel = $product->valor / 6;
+                      $parcel = $product->price / 6;
                       $formatted_parcel = intval(strval($parcel * 100)) / 100;
                       echo $formatted_parcel;   
                     @endphp
@@ -94,7 +94,7 @@
             </div>
             <div class="mdc-card__actions">
               <div class="mdc-card__action-icons">
-                @if($product->qtd_restante == 0)
+                @if($product->qtd_last == 0)
                 <span class="bg-warning btn">Esgotado</span>
                 @else
                 <form id="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">

@@ -23,7 +23,7 @@ class User extends Authenticatable
     }
 
     public function ratings() {
-        return $this->belongsToMany('Doomus\Product', 'products_ratings');
+        return $this->hasMany('Doomus\ProductRating');
     }
 
     public function evaluations(){

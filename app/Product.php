@@ -68,7 +68,7 @@ class Product extends Model
     }
 
     public function category(){
-        return $this->belongsTo('Doomus\Category', 'categoria_id');
+        return $this->belongsTo('Doomus\Category', 'category_id');
     }
 
     public function orders(){
@@ -76,7 +76,7 @@ class Product extends Model
     }
 
     public function ratings() {
-        return $this->belongsToMany('Doomus\User', 'products_ratings');
+        return $this->hasMany('Doomus\ProductRating');
     }
 
     public function evaluations(){

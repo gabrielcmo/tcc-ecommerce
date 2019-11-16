@@ -7,6 +7,7 @@ use Doomus\Product;
 use Doomus\ProductRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class RatingController extends Controller
 {
@@ -17,17 +18,10 @@ class RatingController extends Controller
      */
     public function index()
     {
-        
-    }
+        $ratings = Auth::user()->ratings;
 
-    public function productRating(Request $request) 
-    {
-        $response = ProductRating::where([
-            'user_id' => Auth::user()->id,
-            'product_id' => $request->get('product_id')
-        ])->first();
 
-        return response()->json($response);
+        return view('user.ratings')->with('ratings', $ratings);
     }
 
     /**
@@ -35,24 +29,30 @@ class RatingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($order_id)
+    public function create()
     {
-        $order = Order::find($order_id);
-
-        $avaliados = array();
-        $naoAvaliados = array();
-        foreach ($order->product as $product) {
-            $rating = ProductRating::where('id_user', Auth::user()->id)->where('id_product', $product['id'])->get();
-            if (count($rating) == 0) {
-                $naoAvaliados[] = $product;
-            }else{
-                $avaliados[] = $product;
+        $orders = Auth::user()->order;
+    
+        foreach ($orders as $order) {
+            if ($order->status_id === 4) {
+                $order_products[] = $order->product;
+            } else {
+                continue;
+            }  
+        }
+    
+        $products_data = array();
+        foreach ($order_products as $products) {
+            foreach ($products as $product) {
+                $rating = ProductRating::where('user_id', Auth::user()->id)->where('product_id', $product->id)->get();
+                if (count($rating) == 0) {
+                    array_push($products_data, ['product_id'=>$product->id, 'product_name' => $product->name]);
+                }
             }
         }
-
-        return view('user.rating-products')->with('produtos_avaliados', $avaliados)
-        ->with('produtos_nao_avaliados', $naoAvaliados)
-        ->with('order_id', $order->id);
+        $response = array_unique($products_data, SORT_REGULAR);
+    
+        return view('user.rating-create')->with('products', $response);
     }
 
     /**
@@ -68,12 +68,13 @@ class RatingController extends Controller
         $productRating->title = $request->input('title-rating');
         $productRating->text = $request->input('description-text');
         $productRating->note = $request->input('note-rating');
-        $productRating->id_user = Auth::user()->id;
-        $productRating->id_product = $request->input('product-rating');
+        $productRating->user_id = Auth::user()->id;
+        $productRating->product_id = $request->input('product-id');
 
         $productRating->save();
 
-        return back();
+        Session::flash('status', 'Produto avaliado com sucesso');
+        return redirect()->route('rating.index');
 
     }
 
@@ -85,12 +86,7 @@ class RatingController extends Controller
      */
     public function show($id)
     {
-        $ratings = ProductRating::where([
-            'user_id' => Auth::user()->id,
-            'order_id'=> $order_id
-        ])->get();
-        
-        return view('user.rating-show')->with('ratings', $ratings)->with('order_id', $order_id);
+
     }
 
     /**
@@ -99,9 +95,11 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($rating_id)
     {
-        //
+        $rating = ProductRating::find($rating_id);
+
+        return view('user.rating-edit')->with('rating', $rating);
     }
 
     /**
@@ -111,9 +109,18 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rating = ProductRating::find($request->input('rating-id'));
+
+        $rating->title = $request->input('new-title');
+        $rating->text = $request->input('new-text');
+        $rating->note = $request->input('new-note');
+
+        $rating->save();
+
+        Session::flash('status', 'Avaliação atualizada com sucesso');
+        return redirect()->route('rating.index');
     }
 
     /**
@@ -122,8 +129,11 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($rating_id)
     {
-        //
+        ProductRating::destroy($rating_id);
+
+        Session::flash('status', 'Avaliação excluída com sucesso');
+        return back();
     }
 }

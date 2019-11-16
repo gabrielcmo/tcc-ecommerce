@@ -67,7 +67,7 @@ class AdminController extends Controller
 
         foreach($products as $data)
         {
-            $arrayP[] = [$data->id, $data->nome, $data->qtd_restante, $data->valor, $data->category->name];
+            $arrayP[] = [$data->id, $data->name, $data->qtd_last, $data->price, $data->category->name];
         }
 
         return json_encode($arrayP);    

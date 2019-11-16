@@ -15,22 +15,16 @@ class CreateProductsRatingsTable extends Migration
     {
         Schema::create('products_ratings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('text');
+            $table->string('title', 100);
+            $table->string('text', 250);
             $table->integer('note');
             
-            $table->integer('id_user')->unsigned();
-            $table->integer('id_product')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('product_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreign('product_id')->references('id')->on('products')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->foreign('order_id')->references('id')->on('orders')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
