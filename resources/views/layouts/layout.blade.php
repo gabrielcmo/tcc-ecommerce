@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -148,117 +148,65 @@
   </aside>
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
-    <div class="nav-scroller bg-light shadow-sm mb-2 d-none" id="topAppBar2">
+    {{-- <div class="nav-scroller bg-light shadow-sm mb-2 d-none w-100" id="topAppBar2">
       <nav class="nav nav-underline" style="background-color:white;">
         <a class="nav-link mx-auto" style="color:#76323f;" href="/explore"><h5>Explore</h5></a>
         <a class="nav-link mx-auto" style="color:#76323f;" href="/ofertas"><h5>Ofertas imperdíveis</h5></a>
         <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
       </nav>
-    </div>
+    </div> --}}
     <main class="main-content" id="main-content">
-      <div class="">
-        @if(Session::has('status'))
-          @if(Session::has('status-type'))
-            <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
-              <strong>{{ Session::get('status') }}</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          @else
-            <div class="alert alert-info alert-dismissible fade show container" role="alert">
-              <strong>{{ Session::get('status') }}</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          @endif
-        @endif
-        
-        @yield('content')
-
-        <button class="mdc-fab general-button" id="fastMenuButton" aria-label="Menu">
-          <i class="mdc-fab__icon fas fa-bars" id="fastMenuButtonIcon"></i>
-        </button>
- 
-        <button class="mdc-fab actionButton" data-href="{{route('ticket.create')}}" style="background-color: #D7CEC7; display: none;" id="fastSupportButton" aria-label="Suporte" title="Abrir ticket de suporte">
-          <span class="mdc-fab__icon material-icons">contact_support</span>
-        </button>
-
-        <button class="mdc-fab" style="background-color: #D7CEC7; display: none;" id="fastSearchButton" aria-label="Procurar" title="Pesquisar produto">
-          <span class="mdc-fab__icon material-icons">search</span>
-        </button>
-      </div>
-    </main>
-    <!-- Footer -->
-    <footer class="page-footer font-small blue pt-4 mt-4" style="background-color: #D7CEC7;">
-
-        <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left">
-      
-          <!-- Grid row -->
-          <div class="row">
-      
-            <!-- Grid column -->
-            <div class="col-md-6 mt-md-0 mt-3">
-      
-              <!-- Content -->
-              <img src="/img/logo_inteiro.png" width="20%" alt=""> <span style="color:#565660;font-size:0.9em">Por você, para você.</span>
-      
-            </div>
-            <!-- Grid column -->
-      
-            <hr class="clearfix w-100 d-md-none pb-3">
-      
-            <!-- Grid column -->
-            <div class="col-md-3 mb-md-0 mb-3">
-      
-              <!-- Links -->
-              <h5 class="text-uppercase">Redes sociais</h5>
-      
-              <ul class="list-unstyled d-flex d-inline mx-auto text-center float-center">
-                <li>
-                  <a href="https://www.facebook.com/doomus" style="font-size:1.7em"><i class="fab fa-facebook"></i></a>
-                </li>&nbsp;&nbsp;&nbsp;
-                <li>
-                  <a href="https://www.instagram.com/doomus" style="font-size:1.7em"><i class="fab fa-instagram"></i></a>
-                </li>&nbsp;&nbsp;&nbsp;
-                <li>
-                  <a href="https://www.twitter.com/doomus" style="font-size:1.7em"><i class="fab fa-twitter"></i></a>
-                </li>
-              </ul>
-      
-            </div>
-            <!-- Grid column -->
-      
-            <!-- Grid column -->
-            <div class="col-md-3 mb-md-0 mb-3">
-      
-              <!-- Links -->
-              <h5 class="text-uppercase">Dúvidas?</h5>
-      
-              <ul class="list-unstyled">
-                <li>
-                  <a style="font-size:1.1em;" href="/docs">FAQ (Dúvidas Frequentes)</a>
-                </li>
-              </ul>
-      
-            </div>
-            <!-- Grid column -->
-      
+      @if(Session::has('status'))
+        @if(Session::has('status-type'))
+          <div class="alert alert-{{Session::get('status-type')}} alert-dismissible fade show container" role="alert">
+            <strong>{{ Session::get('status') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <!-- Grid row -->
+        @else
+          <div class="alert alert-info alert-dismissible fade show container" role="alert">
+            <strong>{{ Session::get('status') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
+      @endif
       
-        </div>
-        <!-- Footer Links -->
-      
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3" style="background-color: #D7CEC7;">Doomus © 2019 Copyright
-        </div>
-        <!-- Copyright -->
-      
-      </footer>
-      <!-- Footer -->
+      @yield('content')
+
+      <button class="mdc-fab general-button" id="fastMenuButton" aria-label="Menu">
+        <i class="mdc-fab__icon fas fa-bars" id="fastMenuButtonIcon"></i>
+      </button>
+
+      <button class="mdc-fab actionButton" data-href="{{route('ticket.create')}}" style="background-color: #D7CEC7; display: none;" id="fastSupportButton" aria-label="Suporte" title="Abrir ticket de suporte">
+        <span class="mdc-fab__icon material-icons">contact_support</span>
+      </button>
+
+      <button class="mdc-fab" style="background-color: #D7CEC7; display: none;" id="fastSearchButton" aria-label="Procurar" title="Pesquisar produto">
+        <span class="mdc-fab__icon material-icons">search</span>
+      </button>
+    </main>
+    <footer class="row align-items-center p-3" style="background-color: #D7CEC7;">
+      <div class="col-lg-3">
+          <img src="{{asset('img/logo_inteiro.png')}}" class="img-fluid h-25 mx-auto d-block" width="200px" alt="Logo doomus">
+      </div>
+      <div class="col-lg-6">
+          <p class="text-center mb-1">
+            <a href="#" style="color: black;"><i class="fab fa-facebook-square footer-social-icons" style="font-size: 40px"></i></a>
+            <a href="#" style="color: black;"><i class="fab fa-twitter-square footer-social-icons" style="font-size: 40px"></i></a>
+            <a href="#" style="color: black;"><i class="fab fa-instagram footer-social-icons" style="font-size: 40px"></i></a>
+          </p>
+          <p class="text-center mb-0">Todos os direitos reservados aos criadores do website Doomus</p>
+          <p class="text-center font-weight-bolder">&copy; Copyright 2019</p>
+      </div>
+      <div class="col-lg-3">
+        <p class="mb-0 text-center font-weight-bolder">Contato</p>
+        <p class="mb-0 text-center">suporte@doomus.com.br</p>
+      </div>
+      </div>
+    </footer>
   </div>
   
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>

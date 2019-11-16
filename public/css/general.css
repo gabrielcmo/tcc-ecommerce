@@ -1,15 +1,27 @@
 a {
   text-decoration: none !important;
-  padding-left: 5px;
+  /* padding-left: 5px; */
 }
 
-body {
+html {
   height: 100%;
 }
 
-footer {
-  position: relative;
-  bottom:0;
+body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  height: 18vh;
+}
+
+.footer-social-icons:hover {
+  color: #3578E5;
+  cursor: pointer;
 }
 
 a:hover {
@@ -121,30 +133,6 @@ button:focus {
   z-index: 1090;
 }
 
-/* .support-tab-header {
-  background-color: #565656;
-  width: 22rem;
-  height: 32px;
-  position: fixed;
-  bottom: 0;
-  right: 1rem;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.support-tab-content {
-  background-color: #D7CEC7;
-  width: 22rem;
-  height: 0px;
-  position: fixed;
-  bottom: 0;
-  right: 1rem;
-}
-
-.support-tab-header:hover {
-  cursor: pointer;
-} */
-
 .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
   color: #565656;
 }
@@ -177,3 +165,4 @@ button:focus {
 .cart-add-icon-button:hover {
   color: green;
 }
+

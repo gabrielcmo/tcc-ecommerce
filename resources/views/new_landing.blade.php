@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-12 h-50">
+      <div class="col-lg-12 col-md-12 col-sm-12 h-100">
         <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
           <ol class="carousel-indicators" style="z-index: 3;">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -41,8 +41,8 @@
     <div class="mt-5"></div>
     <div class="row">
       @foreach ($products as $product)
-        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-12 mt-2">
-          <div class="mdc-card mb-4">
+        <div class="col-lg-4 col-xl-3 col-md-6 col-sm-12 col-xs-12 mt-2">
+          <div class="mdc-card mb-3">
             <div class="mdc-card__primary-action product-card-action" tabindex="0" data-id="{{$product->id}}">
               @if(isset($product->image[0]->filename))
                 <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
@@ -104,7 +104,7 @@
                   <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementById('comprarAgora-form').submit()" href="#">
                       <span class="mdc-button__label">Comprar agora</span>
                   </a>
-                  <a href="{{route('cart.fastAdd', ['product_id'=>$product->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">shopping_cart</a>
+                  <a href="{{route('cart.fastAdd', ['product_id'=>$product->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">add_shopping_cart</a>
                 @endif
               </div>
             </div>
