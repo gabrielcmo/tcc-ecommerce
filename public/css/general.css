@@ -7,6 +7,11 @@ html {
   height: 100%;
 }
 
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 body {
   min-height: 100%;
   display: grid;
@@ -16,7 +21,6 @@ body {
 .footer {
   grid-row-start: 2;
   grid-row-end: 3;
-  height: 18vh;
 }
 
 .footer-social-icons:hover {

@@ -148,13 +148,13 @@
   </aside>
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
-    {{-- <div class="nav-scroller bg-light shadow-sm mb-2 d-none w-100" id="topAppBar2">
+    <div class="nav-scroller bg-light shadow-sm mb-2 d-none w-100" id="topAppBar2">
       <nav class="nav nav-underline" style="background-color:white;">
         <a class="nav-link mx-auto" style="color:#76323f;" href="/explore"><h5>Explore</h5></a>
         <a class="nav-link mx-auto" style="color:#76323f;" href="/ofertas"><h5>Ofertas imperdíveis</h5></a>
         <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
       </nav>
-    </div> --}}
+    </div>
     <main class="main-content" id="main-content">
       @if(Session::has('status'))
         @if(Session::has('status-type'))
@@ -188,26 +188,26 @@
         <span class="mdc-fab__icon material-icons">search</span>
       </button>
     </main>
-    <footer class="row align-items-center p-3" style="background-color: #D7CEC7;">
-      <div class="col-lg-3">
-          <img src="{{asset('img/logo_inteiro.png')}}" class="img-fluid h-25 mx-auto d-block" width="200px" alt="Logo doomus">
-      </div>
-      <div class="col-lg-6">
-          <p class="text-center mb-1">
-            <a href="#" style="color: black;"><i class="fab fa-facebook-square footer-social-icons" style="font-size: 40px"></i></a>
-            <a href="#" style="color: black;"><i class="fab fa-twitter-square footer-social-icons" style="font-size: 40px"></i></a>
-            <a href="#" style="color: black;"><i class="fab fa-instagram footer-social-icons" style="font-size: 40px"></i></a>
-          </p>
-          <p class="text-center mb-0">Todos os direitos reservados aos criadores do website Doomus</p>
-          <p class="text-center font-weight-bolder">&copy; Copyright 2019</p>
-      </div>
-      <div class="col-lg-3">
-        <p class="mb-0 text-center font-weight-bolder">Contato</p>
-        <p class="mb-0 text-center">suporte@doomus.com.br</p>
-      </div>
-      </div>
-    </footer>
   </div>
+
+  <footer class="row footer align-items-center p-3" style="background-color: #D7CEC7;">
+    <div class="col-lg-3">
+        <img src="{{asset('img/logo_inteiro.png')}}" class="img-fluid h-25 mx-auto d-block" width="200px" alt="Logo doomus">
+    </div>
+    <div class="col-lg-6">
+        <p class="text-center mb-1">
+          <a href="#" style="color: black;"><i class="fab fa-facebook-square footer-social-icons" style="font-size: 40px"></i></a>
+          <a href="#" style="color: black;"><i class="fab fa-twitter-square footer-social-icons" style="font-size: 40px"></i></a>
+          <a href="#" style="color: black;"><i class="fab fa-instagram footer-social-icons" style="font-size: 40px"></i></a>
+        </p>
+        <p class="text-center mb-0">Todos os direitos reservados aos criadores do website Doomus</p>
+        <p class="text-center font-weight-bolder">&copy; Copyright 2019</p>
+    </div>
+    <div class="col-lg-3">
+      <p class="mb-0 text-center font-weight-bolder">Contato</p>
+      <p class="mb-0 text-center">suporte@doomus.com.br</p>
+    </div>
+  </footer>
   
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script src="{{asset('/js/jquery-3.4.1.min.js')}}"></script>
