@@ -23,7 +23,7 @@
     @csrf
   </form>
 
-  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="admin-topAppBar" style="background-color: #D7CEC7;position: relative;">
+  <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="admin-topAppBar" style="background-color: #D7CEC7;">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none"
@@ -92,7 +92,7 @@
   </aside>
   <div class="mdc-drawer-scrim"></div>
   @if (Request::is('admin'))
-  <div class="mdc-top-app-bar--fixed">
+  <div class="mdc-top-app-bar--fixed-adjust">
     <main id="main-content">
       <div class="mdc-tab-bar" role="tablist" id="tablist">
         <div class="mdc-tab-scroller">
