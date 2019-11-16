@@ -278,7 +278,6 @@
                 <tr>
                   <th>Produtos</th>
                   <th>Quantidade/Preço</th>
-                  <th>Avaliar</th>
                 </tr>
               </thead>
               <tbody id="modalProductsBody">
