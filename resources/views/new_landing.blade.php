@@ -6,14 +6,14 @@
 <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-12 col-md-12 col-sm-12 h-100">
-        <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
+        <div id="carouselExampleIndicators" class="banner-carousel-main-slide carousel slide h-100" data-ride="carousel">
           <ol class="carousel-indicators" style="z-index: 3;">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
           </ol>
-          <div class="carousel-inner h-50" style="border-radius: 0px;">
+          <div class="banner-carousel-inner carousel-inner h-50" style="border-radius: 0px;">
             <div class="carousel-item active">
               <a href="/produto/10"><img src="{{asset('/img/landing/banner-cama.png')}}" style="width:100%;height:auto;" class="d-block" alt="..."></a>
             </div>
@@ -38,8 +38,70 @@
         </div>
       </div>
     </div>
-    <div class="mt-5"></div>
-    <div class="row">
+    <div class="row mt-4">
+      <div id="teste"></div>
+      <div id="card-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row cards-row1">
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row cards-row2">
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row cards-row3">
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#card-carousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#card-carousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="row mt-4">
       @foreach ($products as $product)
         <div class="col-lg-4 col-xl-3 col-md-6 col-sm-12 col-xs-12 mt-2">
           <div class="mdc-card mb-3">

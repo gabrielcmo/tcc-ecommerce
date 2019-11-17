@@ -41,7 +41,7 @@
               @auth
                 <a class="dropdown-item" href="{{ route('perfil') }}">Meu perfil</a>
                 @if(Auth::user()->role_id == 1)
-                  <a class="dropdown-item" href="/admin">Painel de Controle</a>
+                  <a class="dropdown-item" href="{{route('admin.index')}}">Painel de Controle</a>
                 @endif
                 <a class="dropdown-item" href="{{ route('orders') }}">Meus pedidos</a>
                 <a class="dropdown-item" href="{{ route('tickets') }}">Meus tickets</a>
