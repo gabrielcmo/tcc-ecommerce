@@ -152,7 +152,7 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/product/create', 'ProductController@create')->name('admin.createProduct');
         Route::post('/product/create/data', 'ProductController@store')->name('admin.product.store');
         Route::get('/product/{product_id}/desconto', 'AdminController@ofertaProdutoView');
-        Route::post('/product/desconto', 'AdminController@ofertaProduto');
+        Route::post('/product/desconto', 'AdminController@ofertaProduto')->name('product.discount');
         
         Route::get('/category/desconto', 'AdminController@ofertaCategoriaView');
         Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria');

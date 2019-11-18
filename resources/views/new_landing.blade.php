@@ -2,6 +2,12 @@
 
 @section('title', 'Página inicial - Doomus')
 
+@section('stylesheets')
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"></script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -38,67 +44,85 @@
         </div>
       </div>
     </div>
-    <div class="row mt-4">
-      <div id="teste"></div>
-      <div id="card-carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row cards-row1">
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
+    <div class="mt-4">
+      <div class="uk-position-relative uk-visible-toggle uk-dark" tabindex="-1" uk-slider="sets: true" id="card-slider">
+        <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-grid">
+          @foreach ($products_with_discount as $product_with_discount)
+            <li>
+              <div class="uk-panel">
+                <div class="mdc-card mb-3">
+                  <div class="mdc-card__primary-action product-card-action" tabindex="0" data-id="{{$product_with_discount->id}}">
+                    @if(isset($product_with_discount->image[0]->filename))
+                      <div class="img-fluid mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
+                        style="background-image: url(&quot;{{asset("/img/products/".$product_with_discount->image[0]->filename)}}&quot;)">
+                      </div>
+                    @else
+                      <div class="img-fluid mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
+                        style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;)">
+                      </div>
+                    @endif
+                    <div class="p-2 ml-2">
+                      <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product_with_discount->name}}</h6>
+                      @php 
+                        $rating = $product_with_discount->mediaNotaAvaliacao();
+                      @endphp
+                      @for ($i = 1; $i <= 5; $i++)
+                        @if($i > $rating)
+                          @if($i - 0.7 > $rating)
+                            <i class="material-icons">star_border</i>
+                          @elseif($i - 0.3 < $rating)
+                            <i class="material-icons">star</i>
+                          @else
+                            <i class="material-icons">star_half</i>
+                          @endif
+                        @elseif($i <= $rating)
+                          <i class="material-icons">star</i>
+                        @endif
+                        @if($i == 5)
+                          ({{ $rating }})
+                        @endif
+                      @endfor
+                      <h4 class="font-weight-normal mb-0">
+                        R$
+                        @php
+                          $formatted_price = number_format($product_with_discount->price, 2, ',', '');   
+                          echo $formatted_price;
+                        @endphp
+                      </h4>
+                      @if ($product_with_discount->price > 30)
+                        <span class="text-success">6x de  
+                          @php
+                            $parcel = $product_with_discount->price / 6;
+                            $formatted_parcel = intval(strval($parcel * 100)) / 100;
+                            echo $formatted_parcel;   
+                          @endphp
+                          s/juros</span>
+                      @endif
+                    </div>
+                  </div>
+                  <div class="mdc-card__actions">
+                    <div class="mdc-card__action-icons">
+                      @if($product_with_discount->qtd_last == 0)
+                      <span class="bg-warning btn">Esgotado</span>
+                      @else
+                      <form class="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
+                          {{ csrf_field() }}
+                          <input type="hidden" name="product_id" value="{{ $product_with_discount->id }}">
+                        </form>
+                        <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementsByClassName('comprarAgora-form').submit()" href="#">
+                            <span class="mdc-button__label">Comprar agora</span>
+                        </a>
+                        <a href="{{route('cart.fastAdd', ['product_id'=>$product_with_discount->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">add_shopping_cart</a>
+                      @endif
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row cards-row2">
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row cards-row3">
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="{{asset('/img/landing/banner-cama.png')}}" alt=""> 
-              </div>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#card-carousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#card-carousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+            </li>
+          @endforeach
+        </ul>
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
       </div>
     </div>
     <div class="row mt-4">
@@ -111,7 +135,7 @@
                   style="background-image: url(&quot;{{asset("/img/products/".$product->image[0]->filename)}}&quot;);width:100%;">
                 </div>
               @else
-                <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square mx-auto"
+                <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
                   style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;);width:80%">
                 </div>
               @endif
@@ -159,11 +183,11 @@
                 @if($product->qtd_last == 0)
                 <span class="bg-warning btn">Esgotado</span>
                 @else
-                <form id="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
+                <form class="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
                     {{ csrf_field() }}
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                   </form>
-                  <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementById('comprarAgora-form').submit()" href="#">
+                  <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementsByClassName('comprarAgora-form').submit()" href="#">
                       <span class="mdc-button__label">Comprar agora</span>
                   </a>
                   <a href="{{route('cart.fastAdd', ['product_id'=>$product->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">add_shopping_cart</a>
@@ -179,5 +203,6 @@
 @endsection
 
 @section('scripts')
+  
   <script src="{{asset('js/customJs/landing.js')}}"></script>
 @endsection

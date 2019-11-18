@@ -45,7 +45,7 @@
                 @endif
                 <a class="dropdown-item" href="{{ route('orders') }}">Meus pedidos</a>
                 <a class="dropdown-item" href="{{ route('tickets') }}">Meus tickets</a>
-              <a class="dropdown-item" href="{{ route('rating.index') }}">Minhas avaliações</a>
+                <a class="dropdown-item" href="{{ route('rating.index') }}">Minhas avaliações</a>
                 <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
                 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

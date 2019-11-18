@@ -28,11 +28,15 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::all()->where('discount', '==', null);
+        $products_with_discount = Product::all()->where('discount', '!=', null);
         $categories = Category::all();
 
         return view('new_landing')
             ->with('products', $products)
-            ->with('categories', $categories);
+            ->with('categories', $categories)
+            ->with('products_with_discount', $products_with_discount);
+
+            
     }
 }

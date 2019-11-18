@@ -57,11 +57,11 @@ class AdminController extends Controller
     public static function products(){
         $products = Product::all();
         
-        $arrayP[] = ['ID Produto', 'Nome', 'Quantidade', 'Valor', 'Categoria'];
+        $arrayP[] = ['ID Produto', 'Nome', 'Quantidade', 'Valor', 'Desconto', 'Categoria'];
 
         foreach($products as $data)
         {
-            $arrayP[] = [$data->id, $data->name, $data->qtd_last, $data->price, $data->category->name];
+            $arrayP[] = [$data->id, $data->name, $data->qtd_last, $data->price, $data->discount, $data->category->name];
         }
 
         return json_encode($arrayP);    
@@ -92,10 +92,11 @@ class AdminController extends Controller
         $desconto = $data->desconto * 0.01;
        
         $product = Product::find($data->product_id);
-        $product->price = $product->price - ($product->price * $desconto);
+        $product->discount = $desconto;
         $product->save();
         
-        return redirect('/admin/products');
+        Session::flash('status', 'Desconto no produto aplicado com sucesso!');
+        return redirect()->route('admin.index');
     }
 
     // Aplicar desconto a toda uma categoria
@@ -108,8 +109,8 @@ class AdminController extends Controller
             $product->price = ($product->price - ($product->price * $desconto));
             $product->save();
         }
-        Session::flash('status', 'Desconto aplicado com sucesso!');
-        return redirect('/admin');
+        Session::flash('status', 'Desconto aplicado na categoria selecionada com sucesso!');
+        return redirect()->route('admin.index');
     }
 
     public function orders(){

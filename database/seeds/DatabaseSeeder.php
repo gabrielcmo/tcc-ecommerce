@@ -401,6 +401,162 @@ class DatabaseSeeder extends Seeder
             'price' => 79.98,
             'category_id' => 1,
         ]);
+
+        DB::table('products')->insert([
+            'name' => 'Moldura',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.5,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Almofada NASA',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.5,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Estante',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.5,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Sofá',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.5,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Piso SU.PER',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.4,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Quadro ESC',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.4,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Televisão',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.4,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Fogão',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.4,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Pia AGUA',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.1,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Torneira',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.1,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Conjunto de panelas',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.1,
+            'category_Id' => 1
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Toalha MANIACA',
+            'description' => 'Uma moldura de qualidade para sua pintura',
+            'qtd_last' => 30,
+            'lenght' => 1.5,
+            'weight' => 500,
+            'width' => 150,
+            'height' => 210,
+            'price' => 50,
+            'discount' => 0.1,
+            'category_Id' => 1
+        ]);
         
         DB::table('products')->insert([
             'name' => 'Quadro',

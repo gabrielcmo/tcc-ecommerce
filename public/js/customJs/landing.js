@@ -33,6 +33,9 @@ $(document).ready(function(){
 
   if ((windowWidth >= 576 && windowWidth < 768) || (windowWidth < 576)) {
     // SM e XS
+
+    $('#card-slider').addClass('d-none');
+
     $('.cards-row1 div:nth-child(4)').addClass('d-none');
     $('.cards-row1 div:nth-child(3)').addClass('d-none');
     $('.cards-row1 div:nth-child(2)').addClass('d-none');
@@ -68,6 +71,9 @@ $(document).ready(function(){
 
     if ((windowWidth >= 576 && windowWidth < 768) || (windowWidth < 576)) {
       // SM e XS
+
+    $('#card-slider').addClass('d-none');
+
     $('.cards-row1 div:nth-child(4)').addClass('d-none');
     $('.cards-row1 div:nth-child(3)').addClass('d-none');
     $('.cards-row1 div:nth-child(2)').addClass('d-none');
@@ -81,6 +87,8 @@ $(document).ready(function(){
     $('.cards-row3 div:nth-child(2)').addClass('d-none');
     } else if (windowWidth >= 768 && windowWidth < 992) {
       // MD
+      $('#card-slider').removeClass('d-none');
+
     $('.cards-row1 div:nth-child(4)').addClass('d-none');
     $('.cards-row1 div:nth-child(3)').addClass('d-none');
     $('.cards-row1 div:nth-child(2)').removeClass('d-none');
