@@ -54,7 +54,7 @@
                   <i class="material-icons stars-rating star-4" style="font-size: 2.5rem">star</i>
                   <i class="material-icons stars-rating star-5" style="font-size: 2.5rem">star</i>
                 </div>
-                <input type="hidden" name="note_rating" id="note-rating">
+                <input type="hidden" name="note_rating" id="note-rating" required>
               </div>
               
               <button class="mdc-button mdc-button--raised general-button" type="submit">

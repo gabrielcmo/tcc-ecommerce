@@ -9,7 +9,7 @@
       <div class="card">
         <div class="card-header">Criar ticket de suporte</div>
         <div class="card-body">
-          <form action="{{route('ticket.store')}}" method="POST">
+          <form action="{{route('ticket.store')}}" method="POST" id="ticketForm">
             @csrf
 
             <div class="form-group">
@@ -19,7 +19,7 @@
             <div class="form-group">
               <label for="typeInput">Tipo do problema</label>
               <select class="custom-select" name="ticket_type" id="typeInput">
-                <option selected>Tipo da dúvida</option>
+                <option selected value="">Tipo da dúvida</option>
                 <option value="1">Problemas com algum pedido</option>
                 <option value="2">Problemas técnicos</option>
                 <option value="3">Problemas ao confirmar a compra</option>
@@ -41,4 +41,8 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{asset('js/customJs/ticketCreate.js')}}"></script>
 @endsection
