@@ -8,10 +8,18 @@
 
 @section('content')
   @php
-    $product_price_principal = $product->price;
-    $formatted_price = number_format($product->price, 2, ',', '');   
-    $formatted_parcel_6 = number_format(intval(strval(($product->price / 6) * 100)) / 100, 2, ',', '');
-    $formatted_parcel_12 = number_format(intval(strval(($product->price / 12) * 100)) / 100, 2, ',', '');
+
+    if ($product->discount !== null) {
+      $product_price_principal = $product->price - ($product->price * $product->discount);
+      $formatted_price = number_format($product->price, 2, ',', '');   
+      $formatted_parcel_6 = number_format(intval(strval(($product->price / 6) * 100)) / 100, 2, ',', '');
+      $formatted_parcel_12 = number_format(intval(strval(($product->price / 12) * 100)) / 100, 2, ',', '');
+    } else {
+      $product_price_principal = $product->price;
+      $formatted_price = number_format($product->price, 2, ',', '');   
+      $formatted_parcel_6 = number_format(intval(strval(($product->price / 6) * 100)) / 100, 2, ',', '');
+      $formatted_parcel_12 = number_format(intval(strval(($product->price / 12) * 100)) / 100, 2, ',', '');
+    }
   @endphp
   <div class="container">
     <div class="row mt-3">

@@ -62,7 +62,7 @@
                       </div>
                     @endif
                     <div class="p-2 ml-2">
-                      <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product_with_discount->name}}</h6>
+                      <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold" style="font-size: 1rem">{{$product_with_discount->name}}</h6>
                       @php 
                         $rating = $product_with_discount->mediaNotaAvaliacao();
                       @endphp
@@ -82,17 +82,19 @@
                           ({{ $rating }})
                         @endif
                       @endfor
-                      <h4 class="font-weight-normal mb-0">
+                      <span class="d-block badge badge-success w-25">-{{$product_with_discount->discount * 100}}%</span>
+                      <h4 class="font-weight-normal mb-0 mt-3">
                         R$
                         @php
-                          $formatted_price = number_format($product_with_discount->price, 2, ',', '');   
+                          $price = $product_with_discount->price - ($product_with_discount->price * $product_with_discount->discount);
+                          $formatted_price = number_format($price, 2, ',', '');   
                           echo $formatted_price;
                         @endphp
                       </h4>
                       @if ($product_with_discount->price > 30)
-                        <span class="text-success">6x de  
+                        <span class="text-success">6x de R$ 
                           @php
-                            $parcel = $product_with_discount->price / 6;
+                            $parcel = $price / 6;
                             $formatted_parcel = intval(strval($parcel * 100)) / 100;
                             echo $formatted_parcel;   
                           @endphp
@@ -136,11 +138,11 @@
                 </div>
               @else
                 <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
-                  style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;);width:80%">
+                  style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;)">
                 </div>
               @endif
-              <div class="p-2 ml-2">
-                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->name}}</h6>
+              <div class="p-2 ml-2" style="height: 140px">
+                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold" style="font-size: 1rem">{{$product->name}}</h6>
                 @php 
                   $rating = $product->mediaNotaAvaliacao();
                 @endphp
@@ -160,7 +162,7 @@
                     ({{ $rating }})
                   @endif
                 @endfor
-                <h4 class="font-weight-normal mb-0">
+                <h4 class="font-weight-normal mb-0 mt-3">
                   R$
                   @php
                     $formatted_price = number_format($product->price, 2, ',', '');   

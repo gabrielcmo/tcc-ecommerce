@@ -1,6 +1,3 @@
-{{-- @php
-  dd(Cart::content());
-@endphp --}}
 
 @extends('layouts.layout')
 
@@ -51,7 +48,7 @@
                 <input type="number" class="form-control inputQty" style="width:4.5rem" min="1"
                   value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
                 <a class="text-center" href="/carrinho/{{ $item->rowId }}/remove">Remover</a>
-                <span class="d-none {{"productValue$loop->iteration"}}">R${{$item->price}}</span>
+                <span class="d-none {{"productValue$loop->iteration"}}">R$ {{$item->price}}</span>
                 <span class="d-none {{"productRowId$loop->iteration"}}">{{$item->rowId}}</span>
                 <span class="d-none {{"productId$loop->iteration"}}">{{$item->id}}</span>
               </td>
@@ -78,17 +75,10 @@
                 <th>Subtotal</th>
                 <td id="totalCart" class="text-right"></td>
               </tr>
-              @if (session('valorFrete') !== null && session('prazoFrete') !== null)
-                <tr>
-                  <th>Valor do frete (Prazo {{session('prazoFrete')}} dias)</th>
-                  <td class="text-right">R$ {{session('valorFrete')}}</td>
-                </tr>
-              @else
-                <tr class="d-none" id="dadosFrete">
-                  <th id="prazoFrete"></th>
-                  <td id="valorFrete" class="text-right"></td>
-                </tr>
-              @endauth
+              <tr class="d-none" id="dadosFrete">
+                <th id="prazoFrete"></th>
+                <td id="valorFrete" class="text-right"></td>
+              </tr>
               <tr class="border-top">
                 <th class="align-middle">Total</th>
                 <td id="valorTotalCompra" class="text-right w-50"></td>

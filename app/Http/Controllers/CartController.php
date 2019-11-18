@@ -49,8 +49,20 @@ class CartController extends Controller
             return back();
         }
 
-        if($product_id !== null){
+        if($product_id !== null && $product->discount !== null){
 
+            $name = $product->name;
+            $qtd = 1;
+            $price = $product->price - ($product->price * $product->discount);
+
+            Cart::add($product_id, $name, $qtd, $price)->associate('Product');
+
+            Session::flash('status', 'Produto adicionado ao carrinho!');
+
+            return back();    
+        }
+
+        if ($product_id !== null) {
             $name = $product->name;
             $qtd = 1;
             $price = $product->price;
@@ -62,15 +74,30 @@ class CartController extends Controller
             return back();    
         }
 
-        $qtd = $request->get('qty');
+        if ($product->discount !== null) {
+            $qtd = $request->get('qty');
 
-        $name = $product->name;
-        $price = $product->price;
+            $name = $product->name;
+            $price = $product->price - ($product->price * $product->discount);
+    
+            Cart::add($request->get('product_id'), $name, $qtd, $price)->associate('Product');
+    
+            Session::flash('status', 'Produto adicionado ao carrinho!');
+            return back();
+        } 
+        
+        if ($product->discount === null) {
+            $qtd = $request->get('qty');
+    
+            $name = $product->name;
+            $price = $product->price;
+    
+            Cart::add($request->get('product_id'), $name, $qtd, $price)->associate('Product');
+    
+            Session::flash('status', 'Produto adicionado ao carrinho!');
+            return back();
+        }
 
-        Cart::add($request->get('product_id'), $name, $qtd, $price)->associate('Product');
-
-        Session::flash('status', 'Produto adicionado ao carrinho!');
-        return back();
     }
     
     /**

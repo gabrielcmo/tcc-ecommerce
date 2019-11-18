@@ -30,6 +30,23 @@ $(document).ready(function(){
       total += $(this).data('value');
       
     });
+
+    $('#totalCart').data('valor-total', total);
+
+    if (!$('#dadosFrete').hasClass('d-none')) {
+      let sub_total, valor_frete, novo_total;
+
+      sub_total = parseFloat($('#totalCart').data('valor-total'));
+      valor_frete = parseFloat($('#valorFrete').data('valor-frete'));
+
+      novo_total = sub_total + valor_frete;
+      console.log(novo_total);
+
+      $('#valorTotalCompra').text('R$ ' + novo_total.toFixed(2).replace('.', ','));
+    }
+
+    
+
     $('#totalCart').text("R$"+total.toFixed(2).replace('.',','));
     
     $.ajax({
@@ -60,9 +77,11 @@ $(document).ready(function(){
         $('#dadosFrete').removeClass('d-none');
         $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
         $('#valorFrete').text('R$ ' + response.valorFrete);
+        $('#valorFrete').data('valor-frete', response.valorFrete);
 
         let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
         let totalComFrete = (valorSemFrete + parseFloat(response.valorFrete)).toFixed(2);
+
         $('#valorTotalCompra').text('R$ ' + totalComFrete.toString().replace('.',','));
       }
     });
