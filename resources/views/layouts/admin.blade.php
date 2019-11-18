@@ -59,22 +59,22 @@
         </a>
         <a class="mdc-list-item" id="products-tab" data-toggle="tab" href="#products" role="tab"
         aria-controls="products" aria-selected="false" tab-index="0">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">format_list_numbered</i>
           <span class="mdc-list-item__text">Lista de produtos</span>
         </a>
         <a class="mdc-list-item" id="orders-tab" data-toggle="tab" href="#orders" role="tab"
         aria-controls="orders" aria-selected="false" tab-index="0">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">format_list_numbered</i>
           <span class="mdc-list-item__text">Lista de pedidos</span>
         </a>
         <a class="mdc-list-item" id="cupons-tab" data-toggle="tab" href="#cupons" role="tab"
         aria-controls="cupons" aria-selected="false" tab-index="0">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">format_list_numbered</i>
           <span class="mdc-list-item__text">Lista de cupons</span>
         </a>
         <a class="mdc-list-item" id="suporte-tab" data-toggle="tab" href="#suporte" role="tab"
         aria-controls="suporte" aria-selected="false" tab-index="0">
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">format_list_numbered</i>
           <span class="mdc-list-item__text">Tickets</span>
         </a>
       </div>
@@ -112,7 +112,7 @@
               <a class="mdc-tab" id="products-tab" data-toggle="tab" href="#products" role="tab"
                 aria-controls="products" aria-selected="false" tabindex="0">
                 <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                  <span class="mdc-tab__icon material-icons" aria-hidden="true">format_list_numbered</span>
                   <span class="mdc-tab__text-label">Lista de produtos</span>
                 </span>
                 <span class="mdc-tab-indicator">
@@ -123,7 +123,7 @@
               <a class="mdc-tab" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders"
                 aria-selected="false" tabindex="0">
                 <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                  <span class="mdc-tab__icon material-icons" aria-hidden="true">format_list_numbered</span>
                   <span class="mdc-tab__text-label">Lista de pedidos</span>
                 </span>
                 <span class="mdc-tab-indicator">
@@ -134,7 +134,7 @@
               <a class="mdc-tab" id="cupons-tab" data-toggle="tab" href="#cupons" role="tab" aria-controls="cupons"
                 aria-selected="false" tabindex="0">
                 <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                  <span class="mdc-tab__icon material-icons" aria-hidden="true">format_list_numbered</span>
                   <span class="mdc-tab__text-label">Lista de cupons</span>
                 </span>
                 <span class="mdc-tab-indicator">
@@ -144,7 +144,7 @@
               </a>
               <a class="mdc-tab" id="suporte-tab" data-toggle="tab" href="#suporte" role="tab" aria-controls="suporte" aria-selected="false" tabindex="0">
                 <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true">show_chart</span>
+                  <span class="mdc-tab__icon material-icons" aria-hidden="true">format_list_numbered</span>
                   <span class="mdc-tab__text-label">Tickets</span>
                 </span>
                 <span class="mdc-tab-indicator">

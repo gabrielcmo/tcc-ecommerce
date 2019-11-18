@@ -45,7 +45,7 @@
                 @endif
                 <a class="dropdown-item" href="{{ route('orders') }}">Meus pedidos</a>
                 <a class="dropdown-item" href="{{ route('tickets') }}">Meus tickets</a>
-              <a class="dropdown-item" href="{{ route('rating.index') }}">Minhas avaliações</a>
+                <a class="dropdown-item" href="{{ route('rating.index') }}">Minhas avaliações</a>
                 <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" href="#">Sair</a>
                 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -101,6 +101,7 @@
     <div class="mdc-drawer__content" style="position:relative">
       @auth
         <div class="mdc-list">
+          <input type="text" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices">
           <a class="mdc-list-item mdc-list-item--activated" href="{{route('landing')}}" aria-current="page">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
             <span class="mdc-list-item__text">Home</span>
@@ -111,7 +112,7 @@
           </a>
           @if(Auth::user()->role_id == 1)
             <a class="mdc-list-item" href="/admin">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">show_chart</i>
             <span class="mdc-list-item__text">Painel de administração</span>
             </a>
           @endif
@@ -119,8 +120,12 @@
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
             <span class="mdc-list-item__text">Meus pedidos</span>
           </a>
+          <a class="mdc-list-item" href="{{ route('tickets') }}">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">contact_support</i>
+            <span class="mdc-list-item__text">Meus tickets</span>
+          </a>
           <a class="mdc-list-item" href="{{ route('rating.index') }}">
-            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">tag_faces</i>
             <span class="mdc-list-item__text">Minhas avaliações</span>
           </a>
           <a class="mdc-list-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
