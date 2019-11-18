@@ -1,5 +1,44 @@
 $(document).ready(function() {
 
+  $.validator.setDefaults({
+    errorClass: 'label-invalid mb-0',
+    highlight: function (element) {
+        $(element).removeClass('input-valid');
+        $(element).addClass('input-invalid');
+    },
+    unhighlight: function (element) {
+        $(element).removeClass('input-invalid');
+        $(element).addClass('input-valid');
+    }
+  });
+
+  $('#ratingForm').validate({
+    rules: {
+      product_id: {
+        required: true,
+      },
+      title_rating: {
+        required: true
+      },
+      description_text: {
+        required: true,
+        maxlength: 200
+      }
+    },
+    messages: {
+      product_id: {
+        required: 'Esse campo é obrigatório.'
+      },
+      title_rating: {
+        required: 'Esse campo é obrigatório.'
+      },
+      description_text: {
+        required: 'Esse campo é obrigatório.',
+        maxlength: 'Você ultrapassou o limite de 200 caracteres.'
+      }
+    }
+  });
+
   var star_note;
 
 

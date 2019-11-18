@@ -16,7 +16,7 @@ class CreateProductsRatingsTable extends Migration
         Schema::create('products_ratings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 100);
-            $table->string('text', 250);
+            $table->string('text', 200);
             $table->integer('note');
             
             $table->integer('user_id')->unsigned();

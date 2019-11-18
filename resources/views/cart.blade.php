@@ -106,6 +106,6 @@
   </div>
 @endsection
 
-  @section('scripts')
-  <script src="{{asset('js/customJs/cart.js')}}"></script>
-  @endsection
+@section('scripts')
+<script src="{{asset('js/customJs/cart.js')}}"></script>
+@endsection

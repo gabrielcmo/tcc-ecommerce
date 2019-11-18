@@ -24,13 +24,13 @@
         <div class="card mt-2">
           <div class="card-header">Avaliar produtos entregues</div>
           <div class="card-body">
-            <form action="{{route('rating.store')}}" method="POST">
+            <form action="{{route('rating.store')}}" method="POST" id="ratingForm">
               @csrf
 
               <div class="form-group">
                 <label for="selectProduct">Produtos</label>
-                <select name="product-id" id="selectProduct" class="form-control">
-                  <option selected>Escolha o produto a ser avaliado</option>
+                <select name="product_id" id="selectProduct" class="form-control">
+                  <option selected value="">Escolha o produto a ser avaliado</option>
                   @foreach ($products as $product)
                     <option value="{{$product['product_id']}}">{{$product['product_name']}}</option>
                   @endforeach
@@ -38,15 +38,15 @@
               </div>
               <div class="form-group">
                 <label for="title">Título da avaliação</label>
-                <input type="text" class="form-control" id="title" name="title-rating">
+                <input type="text" class="form-control" id="title" name="title_rating">
               </div>
               <div class="form-group">
                 <label for="description-text">Descrição da avaliação</label>
-                <textarea name="description-text" id="description-text" rows="5" class="form-control"></textarea>
+                <textarea name="description_text" id="description-text" rows="5" class="form-control"></textarea>
               </div>
 
               <div class="form-group">
-                <label for="star-rate">Nota</label>
+                <label for="star-rate">Nota <span></span></label>
                 <div id="star-rate" class="d-flex">
                   <i class="material-icons stars-rating star-1" style="font-size: 2.5rem">star</i>
                   <i class="material-icons stars-rating star-2" style="font-size: 2.5rem">star</i>
@@ -54,7 +54,7 @@
                   <i class="material-icons stars-rating star-4" style="font-size: 2.5rem">star</i>
                   <i class="material-icons stars-rating star-5" style="font-size: 2.5rem">star</i>
                 </div>
-                <input type="hidden" name="note-rating" id="note-rating">
+                <input type="hidden" name="note_rating" id="note-rating">
               </div>
               
               <button class="mdc-button mdc-button--raised general-button" type="submit">
