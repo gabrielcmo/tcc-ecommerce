@@ -6,7 +6,7 @@
     <h3>Mensagem ID {{$ticket->id}}</h3>
     <br>
     <div class="row">
-    <form action="{{ route('admin.ticket.update') }}" method="post" class="w-100">
+    <form action="{{ route('admin.ticket.update') }}" method="post" class="w-100" id="ticketResponseForm">
 
         @csrf
 
@@ -25,4 +25,8 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+<script src="{{asset('js/customJs/admin.js')}}"></script>
 @endsection

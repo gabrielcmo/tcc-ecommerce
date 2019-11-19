@@ -44,8 +44,11 @@
         </div>
       </div>
     </div>
-    <div class="mt-4">
-      <div class="uk-position-relative uk-visible-toggle uk-dark" tabindex="-1" uk-slider="sets: true" id="card-slider">
+    <div class="row mt-3" id="card-slider">
+      <div class="w-100 align-items-center justify-content-center mb-3 p-2" style="background-color: rgba(215, 206, 199, .2)">
+        <h3 class="text-center mb-0 font-weight-bold">Produtos em promoção</h3>
+      </div>
+      <div class="uk-position-relative uk-visible-toggle uk-dark" tabindex="-1" uk-slider="sets: true">
         <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-grid">
           @foreach ($products_with_discount as $product_with_discount)
             <li>
@@ -127,7 +130,10 @@
         <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
       </div>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-3">
+      <div class="w-100 align-items-center justify-content-center mb-3 p-2" style="background-color: rgba(215, 206, 199, .2)">
+        <h3 class="text-center mb-0 font-weight-bold">Produtos diversos</h3>
+      </div>
       @foreach ($products as $product)
         <div class="col-lg-4 col-xl-3 col-md-6 col-sm-12 col-xs-12 mt-2">
           <div class="mdc-card mb-3">

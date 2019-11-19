@@ -11,9 +11,9 @@
 
     if ($product->discount !== null) {
       $product_price_principal = $product->price - ($product->price * $product->discount);
-      $formatted_price = number_format($product->price, 2, ',', '');   
-      $formatted_parcel_6 = number_format(intval(strval(($product->price / 6) * 100)) / 100, 2, ',', '');
-      $formatted_parcel_12 = number_format(intval(strval(($product->price / 12) * 100)) / 100, 2, ',', '');
+      $formatted_price = number_format($product_price_principal, 2, ',', '');   
+      $formatted_parcel_6 = number_format(intval(strval(($product_price_principal / 6) * 100)) / 100, 2, ',', '');
+      $formatted_parcel_12 = number_format(intval(strval(($product_price_principal / 12) * 100)) / 100, 2, ',', '');
     } else {
       $product_price_principal = $product->price;
       $formatted_price = number_format($product->price, 2, ',', '');   
@@ -119,10 +119,10 @@
             </span>
           </h3>
           <span class="d-flex justify-content-center text-success">
-            6x de {{$formatted_parcel_6}} s/juros ou 
+            6x de R$ {{$formatted_parcel_6}} s/juros ou 
           </span>
           <span class="d-flex justify-content-center text-success">
-            12x de {{$formatted_parcel_12}} s/juros no cartão Doomus
+            12x de R$ {{$formatted_parcel_12}} s/juros no cartão Doomus
           </span>
           <span class="d-flex justify-content-center mt-2">
             Veja as nossas outras formas de parcelamento!

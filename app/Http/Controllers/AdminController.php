@@ -131,7 +131,7 @@ class AdminController extends Controller
         $desconto = $request->desconto * 0.01;
         
         foreach($products as $product){
-            $product->price = ($product->price - ($product->price * $desconto));
+            $product->discount = $desconto;
             $product->save();
         }
         Session::flash('status', 'Desconto aplicado na categoria selecionada com sucesso!');

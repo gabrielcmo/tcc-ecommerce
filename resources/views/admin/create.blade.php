@@ -7,7 +7,7 @@
   <div class="card-body">
     <h4 class="card-title">Criar produto</h4>
     <p class="card-text">
-        <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data" id="productAddForm">
             @csrf
             <div class="row">
                 <div class="form-group col-md-6">
@@ -54,6 +54,7 @@
                 <div class="form-group col-md-6">
                     <label for="categoria">Selecione uma categoria</label>
                     <select name="categoria_id" class="form-control" id="categoria" required>
+                        <option selected value="">Escolha uma categoria</option>
                         <option value="1">Cama</option>
                         <option value="2">Mesa</option>
                         <option value="3">Banho</option>
@@ -65,4 +66,8 @@
     </p>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{asset('js/customJs/admin.js')}}"></script>
 @endsection
