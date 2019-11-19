@@ -112,6 +112,28 @@ class AdminController extends Controller
         return json_encode($array);
     }
 
+    public function cupomCreate() {
+        return view('admin.create-cupom');
+    }
+
+    public function cupomStore(Request $request) {
+        $cupom = new Cupom();
+        $cupom->name = $request->cupom_name;
+        $cupom->fornecido_por = $request->cupom_provider;
+        $cupom->desconto = $request->cupom_discount;
+
+        $cupom->save();
+
+        Session::flash('status', 'Cupom criado com sucesso');
+        return redirect()->route('admin.index');
+    }
+
+    public function cupomDestroy($cupom_id) {
+        Cupom::destroy($cupom_id);
+        Session::flash('status', 'Cupom deletado com sucesso');
+        return redirect()->route('admin.index');
+    }
+
     // Aplicar desconto a um determinado produto
     public function ofertaProduto(Request $data){
         $desconto = $data->desconto * 0.01;

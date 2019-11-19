@@ -158,8 +158,9 @@ Route::group(['middleware' => ['https']], function () {
         Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria');
         
         Route::get('/cupom', 'AdminController@cupomView')->name('admin.cupons');
-        Route::get('/cupom/{id}/create', 'AdminController@cupomView');
-        Route::get('/cupom/{id}/destroy', 'AdminController@cupomView');
+        Route::get('/cupom/create', 'AdminController@cupomCreate')->name('admin.cupom.create');
+        Route::post('/cupom/store', 'AdminController@cupomStore')->name('admin.cupom.store');
+        Route::get('/cupom/destroy/{cupom_id}', 'AdminController@cupomDestroy')->name('admin.cupom.destroy');
 
         /*
         *   Pedidos 

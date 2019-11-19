@@ -98,24 +98,7 @@ $(document).ready(function(){
     var route = $(this).data('href');
     window.location.href = route;
   });
-  $('.support-tab-header').click(function() {
-    let height = $(this).height();
-    if (height == '32') {
-      $('.support-tab-content').animate({
-        height: '350px'
-      });
-      $('.support-tab-header').animate({
-        height: '382px'
-      });
-    } else {
-      $('.support-tab-content').animate({
-        height: '0px'
-      });
-      $('.support-tab-header').animate({
-        height: '32px'
-      });
-    }
-  });
+
   $('#fastMenuButton').click(function() {
     $('#fastSupportButton').fadeToggle('fast', 'linear');
     $('#fastSearchButton').fadeToggle('fast', 'linear');

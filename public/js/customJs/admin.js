@@ -88,4 +88,33 @@ $(document).ready(function() {
       }
     }
   });
+
+  $('#cupomAddForm').validate({
+    rules: {
+      cupom_name: {
+        required: true
+      },
+      cupom_provider: {
+        required: true,
+        maxlength: 50
+      },
+      cupom_discount: {
+        required: true,
+        max: 100
+      }
+    },
+    messages: {
+      cupom_name: {
+        required: 'Esse campo é obrigatório.'
+      },
+      cupom_provider: {
+        required: 'Esse campo é obrigatório.',
+        maxlength: 'Você ultrapassou o limite de 50 caracteres.'
+      },
+      cupom_discount: {
+        required: 'Esse campo é obrigatório.',
+        max: 'Por favor, digite um número abaixo ou igual a 100'
+      }
+    }
+  });
 }); 

@@ -1,6 +1,6 @@
     <h2>Cupons</h2>
     <br>
-    <a href="/admin/cupom/create" class="btn btn-info">Adicionar cupom</a>
+    <a href="{{route('admin.cupom.create')}}" class="btn btn-info">Adicionar cupom</a>
     <div id="dashboardCupom"><br>
         <div id="string_filter_div_cupom"></div>
         <div id="string_filter_name_div_cupom"></div>
@@ -18,14 +18,17 @@
 
             var dashboard = new google.visualization.Dashboard(document.querySelector('#dashboardCupom'));
 
-            function confirmDelete(){
-                event.preventDefault();
-                            if(confirm("Você tem certeza disso?")){window.location.href = "/admin/cupom/analytics.id/destroy"}
+            var domain = document.location.host;
+
+            if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
+            domain = "https://www.doomus.com.br/public/admin";
+            } else {
+            domain = 'http://localhost:8000/admin';
             }
 
             for(var i = 0; i < data.getNumberOfRows(); i++){
                 var product_id = analytics[i+1][0];
-                data.setCell(i, 4, "<a href=" + "/admin/cupom/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>");
+                data.setCell(i, 4, "<a href=" + domain + "/cupom/destroy/" + product_id + "><i class='fas fa-trash-alt'></i></a>");
             }
 
             var stringFilterCupom = new google.visualization.ControlWrapper({
