@@ -17,43 +17,43 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="nome">Nome</label>
-                  <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required>
+                  <input type="text" name="name" id="nome" class="form-control" placeholder="Nome" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="descricao">Descrição</label>
-                    <textarea type="text" class="form-control" name="descricao" id="descricao" placeholder="Descrição" required></textarea>
+                    <textarea type="text" class="form-control" name="description" id="descricao" placeholder="Descrição" required></textarea>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="qtd_restante">Quantidade em estoque</label>
-                    <input type="number" class="form-control" name="qtd_restante" id="qtd_restante" min="1" placeholder="Quantidade em estoque" required>
+                    <input type="number" class="form-control" name="qtd_last" id="qtd_restante" min="1" placeholder="Quantidade em estoque" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="peso">Peso</label>
-                    <input type="number" class="form-control" name="peso" id="peso" placeholder="Peso" aria-describedby="help3" required>
+                    <input type="number" class="form-control" name="weight" id="peso" placeholder="Peso" aria-describedby="help3" required>
                     <small id="help3" class="text-muted">Adicione o peso em gramas</small>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="comprimento">Comprimento</label>
-                    <input type="number" class="form-control" name="comprimento" id="comprimento" placeholder="Comprimento" aria-describedby="help4" required>
+                    <input type="number" class="form-control" name="width" id="comprimento" placeholder="Comprimento" aria-describedby="help4" required>
                     <small id="help4" class="text-muted">Adicione o comprimento em centímetros</small>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="largura">Largura</label>
-                    <input type="number" class="form-control" name="largura" id="largura" placeholder="Largura" aria-describedby="help5" required>
+                    <input type="number" class="form-control" name="lenght" id="largura" placeholder="Largura" aria-describedby="help5" required>
                     <small id="help5" class="text-muted">Adicione a largura em centímetros</small>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="altura">Altura</label>
-                    <input type="number" class="form-control" name="altura" id="altura" placeholder="Altura" aria-describedby="help6" required>
+                    <input type="number" class="form-control" name="height" id="altura" placeholder="Altura" aria-describedby="help6" required>
                     <small id="help6" class="text-muted">Adicione a altura em centímetros</small>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="valor">Preço (BRL)</label>
-                    <input type="number" step="0.01" class="form-control" name="valor" id="valor" placeholder="20.99" required>
+                    <input type="number" step="0.01" class="form-control" name="price" id="valor" placeholder="20.99" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="categoria">Selecione uma categoria</label>
-                    <select name="categoria_id" class="form-control" id="categoria" required>
+                    <select name="category_id" class="form-control" id="categoria" required>
                         <option selected value="">Escolha uma categoria</option>
                         <option value="1">Cama</option>
                         <option value="2">Mesa</option>
