@@ -90,28 +90,7 @@ class CheckoutController extends Controller
 
     public function paymentCheckout()
     {
-        $valor = 0;
-
-        foreach (UserController::getCart() as $item) {
-            $resultadoCalc = self::calcFretePrazo(
-                session('userData')['cep']
-            );
-
-            $valor += $resultadoCalc->Valor;
-        }
-
-        $prazo = $resultadoCalc->PrazoEntrega->__toString();
-        $obs = $resultadoCalc->obsFim->__toString();
-
-        $resultadoCalc = [
-            'valorEntrega' => $valor,
-            'prazoEntrega' => $prazo,
-            'obs' => $obs
-        ];
-
-        session()->put('correiosData', $resultadoCalc);
-
-        return view('payment_checkout')->with('calcFretePrazo', $resultadoCalc);
+        return view('payment_checkout');
     }
 
     public function checkCep(Request $request)
@@ -189,8 +168,10 @@ class CheckoutController extends Controller
             $dataOrder['cidade'] = session('userData')['city'];
             $dataOrder['estado'] = session('userData')['state'];
             $dataOrder['status_id'] = OrderStatus::$STATUS_PROCESSING;
-            $dataOrder['frete'] = session('correiosData')['valorEntrega'];
-            $dataOrder['prazo'] = session('correiosData')['prazoEntrega'];
+            $dataOrder['frete'] = session('valorFrete');
+            $dataOrder['prazo'] = session('prazoFrete');
+
+            dd(session('correiosData')['valorEntrega'], Cart::total(), session('valorFrete'));
 
             OrderController::store($dataOrder);
 

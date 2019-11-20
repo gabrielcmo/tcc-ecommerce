@@ -17,7 +17,5 @@
         <h4 class="mx-auto text-center m-5">Seu pagamento foi realizado e está sendo processado. Acompanhe acessando: <a href="{{route('orders')}}">Meus Pedidos</a></h4>
     </div>
 
-    <meta http-equiv="refresh" content="5; url=http://localhost:8000/" />
-
     <div style="height:200px"></div>
 @endsection

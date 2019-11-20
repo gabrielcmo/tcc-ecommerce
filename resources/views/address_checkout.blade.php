@@ -28,13 +28,20 @@ Checkout
                             <td class="text-muted">{{$item->qty}} x {{$item->price}}</td>
                         </tr>
                         @endforeach
+                        @if(session('cep') !== null)
+                            <tr id="dadosFrete">
+                                <th id="prazoFrete">Frete <span class="">(prazo de {{session('prazoFrete')}} dias)</span></th>
+                                <td id="valorFrete" class="text-right" data-frete="{{session('valorFrete')}}">R$
+                                    {{session('valorFrete')}}</td>
+                            </tr>
+                        @else
                         @if(session('cupom') !== null)
-                        <tr class="border-top text-success" id="cupomTr" style="">
-                            <th>Cupom <small id="cupomText">({{session('cupom')['name']}})</small></th>
-                            <td class="text-success">
-                                <div id="totalDesconto">-{{session('cupom')['desconto']}}%</div>
-                            </td>
-                        </tr>
+                            <tr class="border-top text-success" id="cupomTr" style="">
+                                <th>Cupom <small id="cupomText">({{session('cupom')['name']}})</small></th>
+                                <td class="text-success">
+                                    <div id="totalDesconto">-{{session('cupom')['desconto']}}%</div>
+                                </td>
+                            </tr>
                         @else
                         <tr class="border-top d-none text-success" id="cupomTr" style="">
                             <th>Cupom <small id="cupomText"></small></th>
@@ -43,17 +50,32 @@ Checkout
                             </td>
                         </tr>
                         @endif
-                        @if(session('cupom') !== null)
-                        <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                            <th>Total <small>(sem frete)</small></th>
-                            <td class="font-weight-bold" id="totalCart">R$
-                                {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2)}}</td>
-                        </tr>
+                        @if (session('cep') !== null)
+                            @if(session('cupom') !== null)
+                                <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                                    <th>Total</th>
+                                    <td class="font-weight-bold" id="totalCart">R$
+                                        {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete'))}}</td>
+                                </tr>
+                            @else
+                                <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                                    <th>Total</th>
+                                    <td class="font-weight-bold" id="totalCart">R$ {{Cart::total() + str_replace(',','.', session('valorFrete'))}}</td>
+                                </tr>
+                            @endif
                         @else
-                        <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                            <th>Total (sem frete)</th>
-                            <td class="font-weight-bold" id="totalCart">R$ {{Cart::total()}}</td>
-                        </tr>
+                            @if(session('cupom') !== null)
+                                <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                                    <th>Total <small>(s/ frete)</small></th>
+                                    <td class="font-weight-bold" id="totalCart">R$
+                                        {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2)}}</td>
+                                </tr>
+                            @else
+                                <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                                    <th>Total (s/ frete)</th>
+                                    <td class="font-weight-bold" id="totalCart">R$ {{Cart::total()}}</td>
+                                </tr>
+                            @endif
                         @endif
                     </tbody>
                 </table>
