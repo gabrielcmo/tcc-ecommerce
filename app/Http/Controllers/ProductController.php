@@ -68,19 +68,15 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->save();
 
-        $imagens = ProductImage::where('product_id', $product->id)->get();
-        if (count($imagens) !== 0) {
-            foreach ($imagens as $img) {
-                $img->delete();
+        if (request()->img !== null)
+        {
+            if(is_array(request()->img)){
+                foreach(request()->img as $key => $image){
+                    self::addPicture($image, $product->id);
+                }
+            }else{
+                self::addPicture(request()->img, $product->id);
             }
-        }
-
-        if(is_array(request()->img)){
-            foreach(request()->img as $key => $image){
-                self::addPicture($image, $product->id);
-            }
-        }else{
-            self::addPicture(request()->img, $product->id);
         }
 
         Session::flash('status', 'Produto criado com sucesso');
@@ -109,7 +105,7 @@ class ProductController extends Controller
                     $img->delete();
                 }
             }
-            
+
             if(is_array(request()->img)){
                 foreach(request()->img as $key => $image){
                     self::addPicture($image, $product->id);

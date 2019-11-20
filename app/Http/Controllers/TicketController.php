@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Mail;
 use Doomus\Ticket;
 use Doomus\Http\Controllers\UserController as User;
 use Doomus\TicketType;
+use Session;
 
-;
 use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
@@ -52,6 +52,8 @@ class TicketController extends Controller
         $ticket->creation_date = new DateTime();
         $ticket->user_id = Auth::user()->id;
         $ticket->save();
+
+        Session::flash('status', 'Ticket criado com sucesso!');
 
         return back();
     }
@@ -98,6 +100,8 @@ class TicketController extends Controller
         $ticket->response_date = new DateTime();
 
         $ticket->save();
+
+        Session::flash('status', 'Ticket respondido com sucesso!');
 
         return redirect()->route('admin.index');
     }
