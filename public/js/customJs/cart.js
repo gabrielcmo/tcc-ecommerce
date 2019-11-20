@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
   function totalCart() {
     var total = 0;
@@ -74,15 +75,19 @@ $(document).ready(function(){
       data: {cep:cep},
       dataType: "JSON",
       success: function (response) {
-        $('#dadosFrete').removeClass('d-none');
-        $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
-        $('#valorFrete').text('R$ ' + response.valorFrete);
-        $('#valorFrete').data('valor-frete', response.valorFrete);
+        if(response.cep !== null)
+        {
+          console.log(response.cep)
+          $('#dadosFrete').removeClass('d-none');
+          $('#prazoFrete').text('Frete '+ response.cep +' (prazo de ' + response.prazoFrete + ' dias)');
+          $('#valorFrete').text('R$ ' + response.valorFrete);
+          $('#valorFrete').data('valor-frete', response.valorFrete);
 
-        let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
-        let totalComFrete = (valorSemFrete + parseFloat(response.valorFrete)).toFixed(2);
+          let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
+          let totalComFrete = (valorSemFrete + parseFloat(response.valorFrete)).toFixed(2);
 
-        $('#valorTotalCompra').text('R$ ' + totalComFrete.toString().replace('.',','));
+          $('#valorTotalCompra').text('R$ ' + totalComFrete.toString().replace('.',','));
+        }
       }
     });
     
