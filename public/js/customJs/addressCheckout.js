@@ -1,14 +1,16 @@
 $(document).ready(function () {
     var domain = document.location.host;
     if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
-        domain = "www.doomus.com.br/public";
+        domain = "https://www.doomus.com.br/public";
+    } else {
+        domain = "http://localhost:8000";
     }
     var verifyCep, verifyCepStatus, cepData;
 
     $('#useAddressSaved').click(function () {
         $.ajax({
             type: "GET",
-            url: "http://" + domain + "/get/saved/address",
+            url: domain + "/get/saved/address",
             data: null,
             dataType: "JSON",
             success: function (response) {

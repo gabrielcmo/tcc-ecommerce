@@ -1,5 +1,13 @@
 
 $(document).ready(function(){
+
+  var domain = document.location.host;
+  if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
+      domain = "https://www.doomus.com.br/public";
+  } else {
+      domain = "http://localhost:8000";
+  }
+
   function totalCart() {
     var total = 0;
     $('.eachProductValue').each(function () {
@@ -57,7 +65,7 @@ $(document).ready(function(){
     
     $.ajax({
       method: 'GET',
-      url : "/carrinho/" + productRowId + "/" + qty + "/" + productId,
+      url : domain +"/carrinho/" + productRowId + "/" + qty + "/" + productId,
       success: function (response) {
         if (response.status == 'success') {
           $('#botaoContinuarCarrinhoLabel').remove();
