@@ -159,7 +159,8 @@ class CheckoutController extends Controller
                 $total *= 1 - (session('cupom')['desconto'] / 100);
             }
 
-            $total += str_replace( ",", ".", session('valorFrete'));
+            $frete = str_replace( ",", ".", session('valorFrete'));
+            $total += $frete;
 
             $dataOrder['p_method_id'] = 1;
             $dataOrder['value_total'] = $total;
@@ -170,10 +171,8 @@ class CheckoutController extends Controller
             $dataOrder['cidade'] = session('userData')['city'];
             $dataOrder['estado'] = session('userData')['state'];
             $dataOrder['status_id'] = OrderStatus::$STATUS_PROCESSING;
-            $dataOrder['frete'] = session('valorFrete');
+            $dataOrder['frete'] = $frete;
             $dataOrder['prazo'] = session('prazoFrete');
-
-            dd(session('correiosData')['valorEntrega'], Cart::total(), session('valorFrete'));
 
             OrderController::store($dataOrder);
 

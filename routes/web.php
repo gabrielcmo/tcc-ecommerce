@@ -23,7 +23,7 @@ Route::group(['middleware' => ['https']], function () {
 
     Route::get('/docs', function () {
         return view('docs');
-    });
+    })->name('docs');
 
     /* 
     *   Autentificação - Login - Rede Social

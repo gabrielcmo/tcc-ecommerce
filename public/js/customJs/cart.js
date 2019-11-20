@@ -1,5 +1,4 @@
 
-
 $(document).ready(function(){
   function totalCart() {
     var total = 0;

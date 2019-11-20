@@ -23,7 +23,7 @@ Checkout
                 <table class="table table-borderless">
                     <tbody>
                         @foreach(Cart::content() as $item)
-                        <tr class="border-top">
+                        <tr class="" style="background-color:white;">
                             <th>{{$item->name}}</th>
                             <td class="text-muted">{{$item->qty}} x {{$item->price}}</td>
                         </tr>
@@ -34,7 +34,7 @@ Checkout
                                 <td id="valorFrete" class="text-right" data-frete="{{session('valorFrete')}}">R$
                                     {{session('valorFrete')}}</td>
                             </tr>
-                        @else
+                        @endif
                         @if(session('cupom') !== null)
                             <tr class="border-top text-success" id="cupomTr" style="">
                                 <th>Cupom <small id="cupomText">({{session('cupom')['name']}})</small></th>
@@ -132,9 +132,9 @@ Checkout
                     <input type="number" name="cep" id="cep" placeholder="CEP" maxlength="8" minlength="8"
                         class="form-control {{$errors->has('cep') ? 'is-invalid' : ''}}" @if(session('cep') !== null)value="{{session('cep')}}"@endif required>
                     @if ($errors->has('cep'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$errors->first('cep')}}</strong>
-                    </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$errors->first('cep')}}</strong>
+                        </span>
                     @endif
                 </div>
                 <div class="form-group col-lg-6 pl-0">
@@ -170,18 +170,18 @@ Checkout
                         <option value="TO">Tocantins</option>
                     </select>
                     @if ($errors->has('state'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$errors->first('state')}}</strong>
-                    </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$errors->first('state')}}</strong>
+                        </span>
                     @endif
                 </div>
                 <div class="form-group col-lg-6 pl-0">
                     <input type="text" name="city" id="city" placeholder="Cidade"
                         class="form-control {{$errors->has('city') ? 'is-invalid' : ''}}" required>
                     @if ($errors->has('state'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$errors->first('city')}}</strong>
-                    </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$errors->first('city')}}</strong>
+                        </span>
                     @endif
                 </div>
 
