@@ -13,55 +13,55 @@
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <div class="col-md-6">
                     @if (count($product->image) !== 0)
-                        <img src="/img/products/{{$product->image[0]->filename}}" style="width:20%;" class="rounded mx-auto d-block" alt="Produto">
+                        <img src="/img/products/{{$product->image[0]->filename}}" style="width:20%;" class="rounded mx-auto d-block" alt="Imagem principal">
                     @else
                         <h5 class="text-center">Sem imagens no momento</h5>
                     @endif
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="name">Imagens</label>
+                    <label for="img">Imagens</label>
                     <input type="file" class="form-control" name="img[]" id="img" multiple>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome" id="nome" value="{{ $product->nome }}" required>
+                    <label for="name">Nome</label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{ $product->name }}" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="descricao">Descrição</label>
-                    <textarea type="text" class="form-control" name="descricao" id="descricao" value="{{ $product->descricao }}" required></textarea>
+                    <label for="description">Descrição</label>
+                    <textarea type="text" class="form-control" name="description" id="description" required>{{ $product->description }}</textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="qtd_restante">Quantidade em estoque</label>
-                    <input type="number" class="form-control" name="qtd_restante" id="qtd_restante" value="{{ $product->qtd_restante }}" required>
+                    <label for="qtd_last">Quantidade em estoque</label>
+                    <input type="number" class="form-control" name="qtd_last" id="qtd_last" value="{{ $product->qtd_last }}" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="peso">Peso</label>
-                    <input type="number" class="form-control" name="peso" id="peso" value="{{ $product->peso }}" required>
+                    <label for="weight">Peso</label>
+                    <input type="number" class="form-control" name="weight" id="weight" value="{{ $product->weight }}" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="largura">Largura</label>
-                    <input type="number" class="form-control" name="largura" id="largura" value="{{ $product->largura }}" required>
+                    <label for="lenght">Largura</label>
+                    <input type="number" class="form-control" name="lenght" id="lenght" value="{{ $product->lenght }}" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="comprimento">Comprimento</label>
-                    <input type="number" class="form-control" name="comprimento" id="comprimento" value="{{ $product->comprimento }}" required>
+                    <label for="width">Comprimento</label>
+                    <input type="number" class="form-control" name="width" id="width" value="{{ $product->width }}" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="altura">Altura</label>
-                    <input type="number" class="form-control" name="altura" id="altura" value="{{ $product->altura }}" required>
+                    <label for="height">Altura</label>
+                    <input type="number" class="form-control" name="height" id="height" value="{{ $product->height }}" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="valor">Preço</label>
-                    <input type="number" step="0.01" class="form-control" name="valor" id="valor" value="{{ $product->valor }}" required>
+                    <label for="price">Preço</label>
+                    <input type="number" step="0.01" class="form-control" name="price" id="price" value="{{ $product->price }}" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="categoria">Selecione uma categoria</label>
-                    <select name="categoria_id" class="form-control" id="categoria" required>
-                        @if($product->categoria_id == 1)
+                    <label for="category">Selecione uma categoria</label>
+                    <select name="category_id" class="form-control" id="category" required>
+                        @if($product->category_id == 1)
                             <option selected value="1">Cama</option>
                             <option value="2">Mesa</option>
                             <option value="3">Banho</option>
-                        @elseif($product->categoria_id == 2)
+                        @elseif($product->category_id == 2)
                             <option value="1">Cama</option>
                             <option selected value="2">Mesa</option>
                             <option value="3">Banho</option>

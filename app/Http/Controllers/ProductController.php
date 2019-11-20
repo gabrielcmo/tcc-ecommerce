@@ -99,20 +99,24 @@ class ProductController extends Controller
     */
     public function update(Request $request){
         $product = Product::find($request->product_id);
-
-        $imagens = ProductImage::where('product_id', $product->id)->get();
-        if (count($imagens) !== 0) {
-            foreach ($imagens as $img) {
-                $img->delete();
-            }
-        }
         
-        if(is_array(request()->img)){
-            foreach(request()->img as $key => $image){
-                self::addPicture($image, $product->id);
+        if (request()->img !== null) 
+        {
+            $imagens = ProductImage::where('product_id', $product->id)->get();
+        
+            if (count($imagens) !== 0) {
+                foreach ($imagens as $img) {
+                    $img->delete();
+                }
             }
-        }else{
-            self::addPicture(request()->img, $product->id);
+            
+            if(is_array(request()->img)){
+                foreach(request()->img as $key => $image){
+                    self::addPicture($image, $product->id);
+                }
+            }else{
+                self::addPicture(request()->img, $product->id);
+            }
         }
 
         $product->name = $request->name;
