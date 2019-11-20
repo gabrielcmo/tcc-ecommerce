@@ -65,11 +65,11 @@ class RatingController extends Controller
     {
         $productRating = new ProductRating();
 
-        $productRating->title = $request->input('title-rating');
-        $productRating->text = $request->input('description-text');
-        $productRating->note = $request->input('note-rating');
+        $productRating->title = $request->input('title_rating');
+        $productRating->text = $request->input('description_text');
+        $productRating->note = $request->input('note_rating');
         $productRating->user_id = Auth::user()->id;
-        $productRating->product_id = $request->input('product-id');
+        $productRating->product_id = $request->input('product_id');
 
         $productRating->save();
 
