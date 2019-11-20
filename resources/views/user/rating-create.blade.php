@@ -39,10 +39,20 @@
               <div class="form-group">
                 <label for="title">Título da avaliação</label>
                 <input type="text" class="form-control" id="title" name="title_rating">
+                @if ($errors->has('title_rating'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('title_rating') }}</strong>
+                  </span>
+                @endif
               </div>
               <div class="form-group">
                 <label for="description-text">Descrição da avaliação</label>
                 <textarea name="description_text" id="description-text" rows="5" class="form-control"></textarea>
+                @if ($errors->has('description_text'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('description_text') }}</strong>
+                  </span>
+                @endif
               </div>
 
               <div class="form-group">
@@ -55,6 +65,11 @@
                   <i class="material-icons stars-rating star-5" style="font-size: 2.5rem">star</i>
                 </div>
                 <input type="hidden" name="note_rating" id="note-rating" required>
+                @if ($errors->has('note_rating'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('note_rating') }}</strong>
+                  </span>
+                @endif
               </div>
               
               <button class="mdc-button mdc-button--raised general-button" type="submit">

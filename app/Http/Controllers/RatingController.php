@@ -6,6 +6,7 @@ use Doomus\Order;
 use Doomus\Product;
 use Doomus\ProductRating;
 use Illuminate\Http\Request;
+use Doomus\Http\Requests\Avaliacao;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
@@ -61,7 +62,7 @@ class RatingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Avaliacao $request)
     {
         $productRating = new ProductRating();
 
@@ -74,8 +75,8 @@ class RatingController extends Controller
         $productRating->save();
 
         Session::flash('status', 'Produto avaliado com sucesso');
-        return redirect()->route('rating.index');
 
+        return redirect()->route('rating.index');
     }
 
     /**
@@ -109,13 +110,13 @@ class RatingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Avaliacao $request)
     {
         $rating = ProductRating::find($request->input('rating-id'));
 
-        $rating->title = $request->input('new-title');
-        $rating->text = $request->input('new-text');
-        $rating->note = $request->input('new-note');
+        $rating->title = $request->input('title_rating');
+        $rating->text = $request->input('description_text');
+        $rating->note = $request->input('note_rating');
 
         $rating->save();
 
