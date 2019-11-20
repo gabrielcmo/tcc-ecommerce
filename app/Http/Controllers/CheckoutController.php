@@ -41,14 +41,16 @@ class CheckoutController extends Controller
         $url .= "&nIndicaCalculo=3";
 
         $result = simplexml_load_file($url);
+        $valorFrete = str_replace(',', '.', $result->cServico->Valor->__toString());
 
-        Session::put('valorFrete', $result->cServico->Valor->__toString());
+        Session::put('valorFrete', $valorFrete);
         Session::put('prazoFrete', $result->cServico->PrazoEntrega->__toString());
         Session::put('cep', $request->cep);
+        
 
         $response = array(
             'status' => 'success',
-            'valorFrete' => $result->cServico->Valor->__toString(),
+            'valorFrete' => (float) $valorFrete,
             'prazoFrete' => $result->cServico->PrazoEntrega->__toString()
         );
 

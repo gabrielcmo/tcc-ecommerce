@@ -122,20 +122,44 @@ class CartController extends Controller
      * @param Product $qty
      * @return \Illuminate\Http\Response
      */
-    public function changeQuantity($product_rowId, $qty, $product_id)
+    public function changeQuantity(Request $request, $product_rowId, $qty, $product_id)
     {
         $product = Product::find($product_id);
 
         if($qty > $product->qtd_last){
+            if ($request->ajax()) {
+                $response = array(
+                    'status' => 'error',
+                    'message' => "Desculpe, nós só temos mais $product->qtd_last restante desse produto no estoque..
+                    Adicione até esse valor!"
+                );
+
+                return response()->json($response);
+            }
+
             Session::flash('status', "Desculpe, nós só temos mais $product->qtd_last restante desse produto no estoque..
                 Adicione até esse valor!");
             Session::flash('status-type', 'danger');
-            return response()->json(['textStatus' => 'error']);
+
+            
+            return back();
+        }
+
+        if ($request->ajax()) {
+            $response = array(
+                'status' => 'success',
+                'message' => 'Quantidade atualizada com successo'
+            );
+
+            Cart::update($product_rowId, $qty);
+    
+            return response()->json($response);
+        } else {
+            Cart::update($product_rowId, $qty);
+    
+            return back();
         }
         
-        Cart::update($product_rowId, $qty);
-
-        return back();
     }
 
     public function clearCart(){

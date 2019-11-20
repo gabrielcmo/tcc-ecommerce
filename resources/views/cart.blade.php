@@ -3,6 +3,7 @@
 
 @section('content')
   <div class="container">
+    <div class="alert alert-danger d-none" id="qtyAlert" role="alert"></div>
     @if(Cart::count() == 0)
       <h4 class="text-center mt-4">Seu carrinho está vazio!</h4>
     @else
@@ -77,8 +78,8 @@
               </tr>
               @if (session('valorFrete') !== null && session('prazoFrete') !== null)
                 <tr id="dadosFrete">
-                  <th id="prazoFrete">Frete {{ session('cep') }} (prazo de {{ session('prazoFrete') }} dias)</th>
-                  <td id="valorFrete" class="text-right">{{ session('valorFrete') }}</td>
+                  <th id="prazoFrete" data-cep={{session('cep')}}>Frete (prazo de {{ session('prazoFrete') }} dias)</th>
+                  <td id="valorFrete" class="text-right" data-valor-frete="{{session('valorFrete')}}">R$ {{ session('valorFrete') }}</td>
                 </tr>
               @else
                 <tr id="dadosFrete">
@@ -88,23 +89,27 @@
               @endif
               <tr class="border-top">
                 <th class="align-middle">Total</th>
-                <td id="valorTotalCompra" class="text-right w-50"></td>
+                @if (session('valorFrete') !== null && session('prazoFrete') !== null)
+                  <td id="valorTotalCompra" class="text-right w-50">R$ {{Cart::total() + session('valorFrete')}}</td>
+                @else
+                  <td id="valorTotalCompra" class="text-right w-50">--</td>
+                @endif
               </tr>
             </tbody>
           </table>
           <hr>
           <p class="p-1 mb-1">Calcule o frete e o prazo (opcional)</p>
           <form action="{{route('calcFrete')}}" method="post" id="formCalcularFrete" style="border-top-color: #d7cec7">
-            <div class="input-group">
+            <div class="input-group" id="inputBotaoCalcularFrete">
               <input type="number" class="form-control" name="cep" aria-label="CEP" placeholder="CEP" aria-describedby="botao-cep">
                 <button class="mdc-button mdc-button--raised general-button" id="botaoCalcularFrete" style="border-radius: 0;" data-href="{{route('calcFrete')}}">
-                  <span class="mdc-button__label">Calcular</span>
+                  <span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>
                 </button>
               </div>
             </form>
             <hr>
-            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="{{route('address-check')}}">
-              <span class="mdc-button__label">Continuar</span>
+            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="{{route('address-check')}}" id="botaoContinuarCarrinho">
+              <span class="mdc-button__label" id="botaoContinuarCarrinhoLabel">Continuar</span>
             </button>
           @endif
         </div>
