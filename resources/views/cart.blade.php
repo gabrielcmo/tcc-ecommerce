@@ -81,19 +81,11 @@
                   <th id="prazoFrete" data-cep={{session('cep')}}>Frete (prazo de {{ session('prazoFrete') }} dias)</th>
                   <td id="valorFrete" class="text-right" data-valor-frete="{{session('valorFrete')}}">R$ {{ session('valorFrete') }}</td>
                 </tr>
-                <tr class="border-top">
-                  <th class="align-middle">Total</th>
-                  <td id="" class="text-right w-50">R${{ Cart::total() + str_replace(',','.', session('valorFrete'))}}</td>
-                </tr>
               @else
                 <tr class="d-none" id="dadosFrete">
                   <th id="prazoFrete"></th>
                   <td id="valorFrete" class="text-right"></td>
                 </tr>
-                <tr class="border-top">
-                    <th class="align-middle">Total</th>
-                    <td id="valorTotalCompra" class="text-right w-50"></td>
-                  </tr>
               @endif
               <tr class="border-top">
                 <th class="align-middle">Total</th>
