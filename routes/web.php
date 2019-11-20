@@ -18,7 +18,7 @@ Route::group(['middleware' => ['https']], function () {
     Route::get('/carrinho/add/', 'CartController@addToCart')->name('cart.add');
     Route::get('/carrinho/delete', 'CartController@clearCart')->name('cart.clear');
     Route::get('/carrinho', 'CartController@show')->name('user.cart');
-    Route::get('/carrinho/{product_id}/remove', 'CartController@removeFromCart');
+    Route::get('/carrinho/{product_id}/remove', 'CartController@removeFromCart')->name('cart.remove');
     Route::get('/carrinho/{product_rowId}/{qty}/{product_id}', 'CartController@changeQuantity');
 
     Route::get('/docs', function () {

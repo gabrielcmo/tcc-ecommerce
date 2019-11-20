@@ -48,7 +48,7 @@
               <td class="w-25 align-middle">
                 <input type="number" class="form-control inputQty" style="width:4.5rem" min="1"
                   value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
-                <a class="text-center" href="/carrinho/{{ $item->rowId }}/remove">Remover</a>
+                <a class="text-center" href="{{route('cart.remove', ['product_id'=>$item->rowId])}}">Remover</a>
                 <span class="d-none {{"productValue$loop->iteration"}}">R$ {{$item->price}}</span>
                 <span class="d-none {{"productRowId$loop->iteration"}}">{{$item->rowId}}</span>
                 <span class="d-none {{"productId$loop->iteration"}}">{{$item->id}}</span>
