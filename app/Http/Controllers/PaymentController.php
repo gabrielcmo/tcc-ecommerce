@@ -52,7 +52,7 @@ class PaymentController extends Controller
         if(session('cupom') !== null && session('valorFrete') !== null){
             $amount = new Amount();
             $amount->setCurrency("BRL")
-                ->setTotal(round((1 - (session('cupom')[0]['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete')));
+                ->setTotal(round(Cart::total(), 2) + str_replace(',','.', session('valorFrete')));
         }elseif(session('valorFrete') !== null){
             $amount = new Amount();
             $amount->setCurrency("BRL")
