@@ -85,15 +85,22 @@
                           ({{ $rating }})
                         @endif
                       @endfor
-                      <span class="d-block badge badge-success w-25">-{{$product_with_discount->discount * 100}}%</span>
-                      <h4 class="font-weight-normal mb-0 mt-3">
-                        R$
-                        @php
-                          $price = $product_with_discount->price - ($product_with_discount->price * $product_with_discount->discount);
-                          $formatted_price = number_format($price, 2, ',', '');   
-                          echo $formatted_price;
-                        @endphp
-                      </h4>
+                      @php
+                        $price = $product_with_discount->price - ($product_with_discount->price * $product_with_discount->discount);
+                        $formatted_price = number_format($price, 2, ',', ''); 
+                        $formatted_price_without_discount = number_format($product_with_discount->price, 2, ',', ''); 
+                      @endphp
+                      @if ($product_with_discount->discount !== null)
+                        <h6 class="font-weight-normal mb-0 text-muted mt-2 d-flex align-items-center">
+                          <span style="text-decoration: line-through">R$ {{$formatted_price_without_discount}}</span> 
+                          <span class="badge badge-success w-25 h-50 ml-1"><i class="fas fa-arrow-down"></i> {{$product_with_discount->discount * 100}}%</span>
+                        </h6>
+                        <h4 class="mt-1 mb-3">R$ {{$formatted_price}}</h4>   
+                      @else
+                        <h4 class="font-weight-normal mb-0 mt-1">
+                          R$ {{$formatted_price}}
+                        </h4>    
+                      @endif
                       @if ($product_with_discount->price > 30)
                         <span class="text-success">6x de R$ 
                           @php
@@ -110,13 +117,13 @@
                       @if($product_with_discount->qtd_last == 0)
                       <span class="bg-warning btn">Esgotado</span>
                       @else
-                      <form class="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
+                        {{-- <form id="comprarAgora-form{{$loop->iteration}}" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
                           {{ csrf_field() }}
                           <input type="hidden" name="product_id" value="{{ $product_with_discount->id }}">
                         </form>
-                        <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementsByClassName('comprarAgora-form').submit()" href="#">
+                        <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementById('comprarAgora-form{{$loop->iteration}}').submit()">
                             <span class="mdc-button__label">Comprar agora</span>
-                        </a>
+                        </a> --}}
                         <a href="{{route('cart.fastAdd', ['product_id'=>$product_with_discount->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">add_shopping_cart</a>
                       @endif
                     </div>
@@ -168,7 +175,7 @@
                     ({{ $rating }})
                   @endif
                 @endfor
-                <h4 class="font-weight-normal mb-0 mt-3">
+                <h4 class="font-weight-normal mb-0 mt-1">
                   R$
                   @php
                     $formatted_price = number_format($product->price, 2, ',', '');   
@@ -176,7 +183,7 @@
                   @endphp
                 </h4>
                 @if ($product->price > 30)
-                  <span class="text-success">6x de  
+                  <span class="text-success">6x de R$  
                     @php
                       $parcel = $product->price / 6;
                       $formatted_parcel = intval(strval($parcel * 100)) / 100;
@@ -186,18 +193,18 @@
                 @endif
               </div>
             </div>
-            <div class="mdc-card__actions">
+            <div class="mdc-card__actions" style="height: 64px">
               <div class="mdc-card__action-icons">
                 @if($product->qtd_last == 0)
                 <span class="bg-warning btn">Esgotado</span>
                 @else
-                <form class="comprarAgora-form" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
+                {{-- <form id="comprarAgora-form{{$loop->iteration}}" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
                     {{ csrf_field() }}
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                   </form>
-                  <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementsByClassName('comprarAgora-form').submit()" href="#">
+                  <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementById('comprarAgora-form{{$loop->iteration}}').submit()">
                       <span class="mdc-button__label">Comprar agora</span>
-                  </a>
+                  </a> --}}
                   <a href="{{route('cart.fastAdd', ['product_id'=>$product->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">add_shopping_cart</a>
                 @endif
               </div>

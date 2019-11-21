@@ -63,7 +63,7 @@ $(document).ready(function(){
       total += $(this).data('value');
     });
 
-    total += parseFloat($('#valorFrete').data('frete').replace(',', '.'));
+    total += parseFloat($('#valorFrete').data('frete'));
 
     $('#valorTotalCompra').text('R$ ' + total.toFixed(2).toString().replace('.', ','));
     

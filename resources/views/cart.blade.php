@@ -79,7 +79,12 @@
               @if (session('valorFrete') !== null && session('prazoFrete') !== null)
                 <tr id="dadosFrete">
                   <th id="prazoFrete" data-cep={{session('cep')}}>Frete (prazo de {{ session('prazoFrete') }} dias)</th>
-                  <td id="valorFrete" class="text-right" data-valor-frete="{{session('valorFrete')}}">R$ {{ session('valorFrete') }}</td>
+                  <td id="valorFrete" class="text-right" data-valor-frete="{{session('valorFrete')}}">R$ 
+                    @php
+                      $valor_frete = (string) session('valorFrete');
+                      echo str_replace('.', ',', $valor_frete);
+                    @endphp
+                  </td>
                 </tr>
               @else
                 <tr class="d-none" id="dadosFrete">
@@ -90,7 +95,14 @@
               <tr class="border-top">
                 <th class="align-middle">Total</th>
                 @if (session('valorFrete') !== null && session('prazoFrete') !== null)
-                  <td id="valorTotalCompra" class="text-right w-50">R$ {{Cart::total() + session('valorFrete')}}</td>
+                  <td id="valorTotalCompra" class="text-right w-50">R$ 
+                    @php
+                      $total = (string) Cart::total() + session('valorFrete');
+                      // $total_formatted = number_format();
+                      echo str_replace('.', ',', $total);
+                    @endphp
+                    
+                  </td>
                 @else
                   <td id="valorTotalCompra" class="text-right w-50">--</td>
                 @endif

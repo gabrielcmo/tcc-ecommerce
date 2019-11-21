@@ -14,6 +14,8 @@ use Doomus\Http\Controllers\ProductController;
 use Doomus\Http\Requests\Address;
 use Session;
 use Auth;
+use Doomus\Cupom;
+use SebastianBergmann\Environment\Console;
 
 class CheckoutController extends Controller
 {
@@ -102,10 +104,16 @@ class CheckoutController extends Controller
             $cep = $request->get('query');
             $zipcodeinfo = zipcode($cep);
             if (is_null($zipcodeinfo)) {
+                $request->session()->forget('valorFrete');
+                $request->session()->forget('prazoFrete');
                 return response()->json(['textStatus' => 'error']);
             } else {
                 $response = $zipcodeinfo->getArray();
                 $response['textStatus'] = 'success';
+                if (session('valorFrete') == null && session('prazoFrete') == null) {
+                    Session::put('valorFrete', $request->cServico->Valor->__toString());
+                    Session::put('prazoFrete', $request->cServico->PrazoEntrega->__toString());
+                }
                 return response()->json($response);
             }
         } else {
@@ -141,6 +149,37 @@ class CheckoutController extends Controller
         return redirect('/checkout/pagamento');
     }
 
+    public function cupomValidate(Request $request, $cupom_name)
+    {
+        $cupom = Cupom::where('name', $cupom_name)->get();
+
+        if (!count($cupom) == 0) {
+            $cupom_discount = $cupom[0]->desconto / 100;
+            $cart_discount = Cart::total() * $cupom_discount;
+            $new_cart_total = round(Cart::total() - $cart_discount, 2);
+            $request->session()->put('cupom', $cupom);
+            
+            $response = array(
+                'status' => 'success',
+                'cupom_name' => $cupom[0]->name,
+                'cart_discount' => $cupom_discount,
+                'cart_total' => round((float) Cart::total(), 2),
+                'new_cart_total' => $new_cart_total,
+                'message' => 'Cupom aplicado com sucesso'
+            );
+
+            return response()->json($response);
+        } else {
+            $request->session()->forget('cupom');
+            $response = array(
+                'status' => 'error',
+                'message' => 'O cupom inserido é inválido, por favor, insira um outro cupom'
+            );
+
+            return response()->json($response);
+        }
+    }
+
     public function paymentSuccess()
     {
         if (session('token-paypal') == null) {
@@ -156,7 +195,7 @@ class CheckoutController extends Controller
             $total = Cart::total();
 
             if(session('cupom') !== null){
-                $total *= 1 - (session('cupom')['desconto'] / 100);
+                $total *= 1 - (session('cupom')[0]['desconto'] / 100);
             }
 
             $frete = str_replace( ",", ".", session('valorFrete'));

@@ -60,11 +60,10 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: "GET",
-                    url: "http://" + domain + "/checkout/address/cep",
+                    url: domain + "/checkout/address/cep",
                     data: { query: verifyCep },
                     dataType: "JSON",
                     success: function (response) {
-
                         if (response.textStatus == 'error') {
                             verifyCepStatus = 'error';
                         } else {
@@ -238,29 +237,40 @@ $(document).ready(function () {
     });
 
     $('#botaoCupom').click(function(){
-        var cupom = $('#cupomValue').val();
-        
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        var cupom_name = $('#cupomValue').val().toUpperCase();
 
         $.ajax({
             type: "GET",
-            url: "http://" + domain + "/cupom/validate",
-            data: { queryCupom: cupom },
+            url: domain + "/cupom/validate/" + cupom_name,
             dataType: "JSON",
+            
             success: function (response) {
-                if (response.textStatus == 'success') {
-                    $('#cupomTr').removeClass('d-none');
-                    $('#cupomText').text("("+response.cupom.name+")");
-                    $('#totalDesconto').text("-"+response.cupom.desconto+"%");
-                    let val = ((1 - (response.cupom.desconto / 100)) * response.cartTotal).toFixed(2);
-                    $('#totalCart').text("R$ "+ val);
+                if (response.status == 'success') {
+                    $('.cupomTr').removeClass('d-none');
+                    $('#cupomText').text("(" + response.cupom_name + ")");
+                    $('#totalDesconto').text("- " + (response.cart_discount * 100) + "%");
+                    $('#descontoTotal').text("(R$ " + (response.cart_total - response.new_cart_total).toFixed(2) + ")")
+                    $('#novo_total').text("R$ "+ (response.new_cart_total).toString().replace('.', ','));
+
+                    $('#alertSuccess').removeClass('d-none');
+                    $('#alertSuccess').text(response.message);
+
+                    setTimeout(() => {
+                        $('#alertSuccess').addClass('d-none');
+                    }, 5000);
+                } 
+                if(response.status == 'error') {
+                    $('.cupomTr').addClass('d-none');
+                    $('#alertError').removeClass('d-none');
+                    $('#alertError').text(response.message);
+
+                    setTimeout(() => {
+                        $('#alertError').addClass('d-none');
+                    }, 5000);
+                    
                 }
-                console.log(response);
             }
         });
     });
+    
 });

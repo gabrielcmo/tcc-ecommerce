@@ -29,7 +29,7 @@ class IndexController extends Controller
     public function index()
     {
         $products = Product::all()->where('discount', '==', null);
-        $products_with_discount = Product::all()->where('discount', '!=', null)->take(12);
+        $products_with_discount = Product::all()->where('discount', '!=', null)->sort()->take(12);
         $categories = Category::all();
 
         return view('new_landing')

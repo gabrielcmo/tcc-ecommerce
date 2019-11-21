@@ -54,7 +54,6 @@ $(document).ready(function(){
       valor_frete = $('#valorFrete').data('valor-frete');
 
       novo_total = sub_total + valor_frete;
-      console.log(novo_total, sub_total, valor_frete);
 
       $('#valorTotalCompra').text('R$ ' + novo_total.toFixed(2).replace('.', ','));
     }
@@ -120,13 +119,13 @@ $(document).ready(function(){
       success: function (response) {
         $('#dadosFrete').removeClass('d-none');
         $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
-        $('#valorFrete').text('R$ ' + response.valorFrete);
+        $('#valorFrete').text('R$ ' + (response.valorFrete).toString().replace('.', ','));
         $('#valorFrete').data('valor-frete', response.valorFrete);
 
         let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
         let totalComFrete = (valorSemFrete + response.valorFrete);
 
-        $('#valorTotalCompra').text('R$ ' + totalComFrete.toString().replace('.',','));
+        $('#valorTotalCompra').text('R$ ' + totalComFrete.toFixed(2).toString().replace('.',','));
 
         $('#botaoCalcularFreteLabel').remove();
 

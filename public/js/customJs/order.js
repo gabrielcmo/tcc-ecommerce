@@ -38,22 +38,22 @@ $(document).ready(function() {
             + '</td>'); 
           }
 
-          $('#product' + element.product_id + '-row').append(
-            '<td class="align-middle">' +
-              element.product_qty + 'x de ' +
-              'R$ ' + element.product_price.toString().replace('.', ',')
-            + '</td>'
-          );
-
-          $('#product' + element.product_id + '-row').append(
-            '<td class="align-end rating-list">' +
-              "<i class='fa fa-star' id='star_1'></i>" +
-              "<i class='fa fa-star' id='star_2'></i>" +
-              "<i class='fa fa-star' id='star_3'></i>" +
-              "<i class='fa fa-star' id='star_4'></i>" +
-              "<i class='fa fa-star' id='star_5'></i>"
-            + '</td>'
-          );
+          if (element.product_discount === null) {
+            $('#product' + element.product_id + '-row').append(
+              '<td class="align-middle">' +
+                element.product_qty + 'x de ' +
+                'R$ ' + element.product_price.toString().replace('.', ',')
+              + '</td>'
+            );    
+          } else {
+            var price = element.product_price - (element.product_price * element.product_discount);
+            $('#product' + element.product_id + '-row').append(
+              '<td class="align-middle">' +
+                element.product_qty + 'x de ' +
+                'R$ ' + price.toFixed(2).toString().replace('.', ',')
+              + '</td>'
+            );
+          }
         });
 
         $('#orderProductsModal').modal('show');

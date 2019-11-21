@@ -67,6 +67,7 @@ class OrderController extends Controller
             $product_data = Product::where('id', $product->product_id)
                 ->addSelect('name')
                 ->addSelect('price')
+                ->addSelect('discount')
                 ->get(); 
                 
             $product_image = ProductImage::where('product_id', $product->product_id)->select('filename')->first();
@@ -75,11 +76,18 @@ class OrderController extends Controller
             } else {
                 $product_image = $product_image->filename;
             }
+
+            $product_discount = null;
+            if ($product_data[0]->discount !== null) {
+                $product_discount = $product_data[0]->discount;
+            }
+
             $response[] = [
                 'product_id'=>$product->product_id,
                 'product_name'=>$product_data[0]->name,
                 'product_qty'=>$product->qty,
                 'product_price'=>$product_data[0]->price,
+                'product_discount' => $product_discount,
                 'product_image'=>$product_image
             ];
         }

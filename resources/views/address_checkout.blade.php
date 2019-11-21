@@ -9,7 +9,9 @@ Checkout
     <div class="progress mt-4">
         <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0"
             aria-valuemax="100">30%</div>
-    </div><br>
+    </div>
+    <div class="mt-2 alert alert-danger d-none" id="alertError"></div>
+    <div class="mt-2 alert alert-success d-none" id="alertSuccess"></div>
 
     <h2>Olá, {{ $user->name }}!</h2><br>
 
@@ -25,9 +27,38 @@ Checkout
                         @foreach(Cart::content() as $item)
                         <tr class="" style="background-color:white;">
                             <th>{{$item->name}}</th>
-                            <td class="text-muted">{{$item->qty}} x {{$item->price}}</td>
+                            <td class="text-muted">{{$item->qty}} x R$ {{$item->price}}</td>
                         </tr>
                         @endforeach
+                        @if(session('cupom') !== null)
+                            <tr class="border-top text-success cupomTr">
+                                <th>Cupom <small id="cupomText">({{session('cupom')[0]['name']}})</small></th>
+                                <td class="text-success text-right">
+                                    <div id="totalDesconto">-{{session('cupom')[0]['desconto']}}%</div>
+                                    <span>(R$ {{str_replace('.', ',', number_format(Cart::total() * (session('cupom')[0]['desconto'] / 100), 2))}})</span>
+                                </td>
+                            </tr>
+                            <tr class="border-top cupomTr">
+                                <th>Total (c/ cupom)</th>
+                                <td id="novo_total" class="text-right">
+                                   R$ {{str_replace('.', ',', round((1 - (session('cupom')[0]['desconto'] / 100)) * Cart::total(), 2))}}
+                                </td>
+                            </tr>
+                        @else
+                        <tr class="border-top d-none text-success cupomTr">
+                            <th>Cupom <small id="cupomText"></small></th>
+                            <td class="text-success text-right">     
+                                <div id="totalDesconto"></div>
+                                <span id="descontoTotal"></span>
+                            </td>
+                        </tr>
+                        <tr class="border-top d-none cupomTr">
+                            <th>Total (c/ cupom)</th>
+                            <td id="novo_total">
+
+                            </td>
+                        </tr>
+                        @endif
                         @if(session('cep') !== null)
                             <tr id="dadosFrete">
                                 <th id="prazoFrete">Frete <span class="">(prazo de {{session('prazoFrete')}} dias)</span></th>
@@ -35,40 +66,28 @@ Checkout
                                     {{session('valorFrete')}}</td>
                             </tr>
                         @endif
-                        @if(session('cupom') !== null)
-                            <tr class="border-top text-success" id="cupomTr" style="">
-                                <th>Cupom <small id="cupomText">({{session('cupom')['name']}})</small></th>
-                                <td class="text-success">
-                                    <div id="totalDesconto">-{{session('cupom')['desconto']}}%</div>
-                                </td>
-                            </tr>
-                        @else
-                        <tr class="border-top d-none text-success" id="cupomTr" style="">
-                            <th>Cupom <small id="cupomText"></small></th>
-                            <td class="text-success">
-                                <div id="totalDesconto"></div>
-                            </td>
-                        </tr>
-                        @endif
+
                         @if (session('cep') !== null)
                             @if(session('cupom') !== null)
                                 <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                                    <th>Total</th>
+                                    <th>Total (c/ cupom + frete)</th>
                                     <td class="font-weight-bold" id="totalCart">R$
-                                        {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete'))}}</td>
+                                        {{round((1 - (session('cupom')[0]['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete'))}}</td>
                                 </tr>
                             @else
                                 <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                                    <th>Total</th>
+                                    <th>Total (c/ frete)</th>
                                     <td class="font-weight-bold" id="totalCart">R$ {{Cart::total() + str_replace(',','.', session('valorFrete'))}}</td>
                                 </tr>
                             @endif
+
                         @else
+
                             @if(session('cupom') !== null)
                                 <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
                                     <th>Total <small>(s/ frete)</small></th>
                                     <td class="font-weight-bold" id="totalCart">R$
-                                        {{round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2)}}</td>
+                                        {{round((1 - (session('cupom')[0]['desconto'] / 100)) * Cart::total(), 2)}}</td>
                                 </tr>
                             @else
                                 <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">

@@ -67,8 +67,8 @@
                     </tr>
                     @if(session('cupom') !== null)
                         <tr class="text-success" id="cupomTr" style="">
-                            <th>Cupom <small id="cupomText">({{session('cupom')['name']}})</small></th>
-                            <td class="text-success text-right font-weight-bold"><div id="totalDesconto">-{{session('cupom')['desconto']}}%</div></td>
+                            <th>Cupom <small id="cupomText">({{session('cupom')[0]['name']}})</small></th>
+                            <td class="text-success text-right font-weight-bold"><div id="totalDesconto">-{{session('cupom')[0]['desconto']}}%</div></td>
                         </tr>
                     @endif
                     <tr class="border-top">
@@ -76,7 +76,7 @@
                         @if(session('cupom') !== null)
                             <td id="valorTotalCompra" class="text-right w-50">R$ 
                                 @php
-                                    echo str_replace('.',',', round((1 - (session('cupom')['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete')));     
+                                    echo str_replace('.',',', round((1 - (session('cupom')[0]['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete')));     
                                 @endphp
                             </td>
                         @else

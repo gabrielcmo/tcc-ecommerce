@@ -196,8 +196,14 @@
       <?php $i = 0; ?>
       @foreach(Doomus\Product::where('id', '!=', $product->id)->orderBy('id', 'DESC')->get() as $product)
       @php
+        if ($product->discount !== null) {
+          $formatted_price_without_discount = number_format($product->price, 2, ',', '');
+          $formatted_price = number_format($product->price - ($product->price * $product->discount), 2, ',', '');
+          $formatted_parcel_6 = intval(strval(($product->price / 6) * 100)) / 100;
+        } else {
           $formatted_price = number_format($product->price, 2, ',', '');
           $formatted_parcel_6 = intval(strval(($product->price / 6) * 100)) / 100;
+        }
       @endphp
       <div class="col-lg-4 col-xl-4 col-md-6 col-sm-12 col-xs-12 mt-2">
           <div class="mdc-card">
@@ -211,8 +217,8 @@
                   style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;);width:80%">
                 </div>
               @endif
-              <div class="p-2 ml-2">
-                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->nome}}</h6>
+              <div class="p-2 ml-2" style="height: 180px;">
+                <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold">{{$product->name}}</h6>
                 @php 
                   $rating = $product->mediaNotaAvaliacao();
                 @endphp
@@ -232,15 +238,25 @@
                     ({{ $rating }})
                   @endif
                 @endfor
-                <h4 class="font-weight-normal mb-0">
-                  R$ {{$formatted_price}}
-                </h4>
-                <span class="text-success">6x de {{$formatted_parcel_6}} s/juros</span>      
+                @if ($product->discount !== null)
+                  <h6 class="font-weight-normal mb-0 h-25 text-muted mt-2 d-flex align-items-center">
+                    <span style="text-decoration: line-through">R$ {{$formatted_price_without_discount}}</span> 
+                    <span class="badge badge-success w-25 h-50 ml-1"><i class="fas fa-arrow-down"></i> {{$product->discount * 100}}%</span>
+                  </h6>
+                  <h4 class="">R$ {{$formatted_price}}</h4>
+                  
+                  <span class="text-success">6x de R$ {{$formatted_parcel_6}} s/juros</span>    
+                @else
+                  <h4 class="font-weight-normal mb-0 mt-2">
+                    R$ {{$formatted_price}}
+                  </h4>
+                  <span class="text-success">6x de R$ {{$formatted_parcel_6}} s/juros</span>      
+                @endif
               </div>
             </div>
             <div class="mdc-card__actions">
               <div class="mdc-card__action-icons">
-                <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded addProductToCart" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">shopping_cart</button>
+                <a href="{{route('cart.fastAdd', ['product_id'=>$product->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">add_shopping_cart</a>
               </div>
             </div>
           </div>

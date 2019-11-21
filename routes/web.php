@@ -56,8 +56,13 @@ Route::group(['middleware' => ['https']], function () {
     *   Checar CEP
     */
     Route::get('/checkout/address/cep', 'CheckoutController@checkCep')->name('checkCep');
+    Route::get('/cupom/validate/{cupom_name}', 'CheckoutController@cupomValidate');
 
-    Route::get('/cupom/validate', 'AdminController@cupomValidate');
+
+    /*
+    *   Novo total do checkout
+    */
+    Route::get('/checkout/novototal/{opcao}', 'CheckoutController@novoTotal');
 
     /*
     *   Calcular CEP
