@@ -27,6 +27,13 @@ $(document).ready(function () {
         });
     });
 
+    setTimeout(() => {
+        let cep = sessionStorage.getItem('cep');
+        if (cep.length == 8) {
+            
+        }
+    }, 2000);
+        
     $("#cep").blur(function () {
 
 

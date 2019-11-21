@@ -226,4 +226,5 @@ Checkout
 
 @section('scripts')
     <script src="{{asset('js/customJs/addressCheckout.js')}}"></script>
+    
 @endsection

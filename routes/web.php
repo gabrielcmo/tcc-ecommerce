@@ -59,10 +59,7 @@ Route::group(['middleware' => ['https']], function () {
     Route::get('/cupom/validate/{cupom_name}', 'CheckoutController@cupomValidate');
 
 
-    /*
-    *   Novo total do checkout
-    */
-    Route::get('/checkout/novototal/{opcao}', 'CheckoutController@novoTotal');
+   
 
     /*
     *   Calcular CEP

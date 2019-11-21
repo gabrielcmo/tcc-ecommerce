@@ -117,24 +117,76 @@ $(document).ready(function(){
       data: {cep:cep},
       dataType: "JSON",
       success: function (response) {
-        $('#dadosFrete').removeClass('d-none');
-        $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
-        $('#valorFrete').text('R$ ' + (response.valorFrete).toString().replace('.', ','));
-        $('#valorFrete').data('valor-frete', response.valorFrete);
+        console.log(response);
 
-        let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
-        let totalComFrete = (valorSemFrete + response.valorFrete);
+        if (response.status == 'success') {
+          $('#dadosFrete').removeClass('d-none');
+          $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
+          $('#valorFrete').text('R$ ' + (response.valorFrete).toString().replace('.', ','));
+          $('#valorFrete').data('valor-frete', response.valorFrete);
+  
+          let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
+          let totalComFrete = (valorSemFrete + response.valorFrete);
+  
+          $('#valorTotalCompra').text('R$ ' + totalComFrete.toFixed(2).toString().replace('.',','));
+  
+          $('#botaoCalcularFreteLabel').remove();
+  
+          $('#botaoCalcularFrete').attr('disabled', false);
+  
+          $('#botaoCalcularFrete').html('<span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>');
+        }
+        if (response.status == 'error') {
+          $('#cepErro').removeClass('d-none');
+          $('#cepErro').text(response.message);
 
-        $('#valorTotalCompra').text('R$ ' + totalComFrete.toFixed(2).toString().replace('.',','));
+          $('#botaoCalcularFrete').attr('disabled', false);
+  
+          $('#botaoCalcularFrete').html('<span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>');
 
-        $('#botaoCalcularFreteLabel').remove();
-
-        $('#botaoCalcularFrete').attr('disabled', false);
-
-        $('#botaoCalcularFrete').html('<span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>')
-
+          setTimeout(() => {
+            $('#cepErro').addClass('d-none');
+          }, 5000);
+        }
       }
     });
     
   });
+
+  $('#formDescobrirCep').submit(function(e) {
+    e.preventDefault();
+
+    let rua, cidade, estado;
+
+    rua = $('#rua').val();
+    cidade = $('#cidade').val();
+    estado = $('#estado').val();
+
+    let url = 'https://viacep.com.br/ws/' + estado + '/' + cidade + '/' + rua + '/json';
+
+    $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "JSON",
+      success: function (response) {
+        if (response[0] !== undefined) {
+          $('#cepSuccess').removeClass('d-none');
+          $('#cepSuccess').text('Conseguimos achar seu CEP, aqui está ' + response[0].cep + ', não se preocupe, já guardamos ele paras as próximas etapas!');
+
+          setTimeout(() => {
+            $('#cepSuccess').addClass('d-none');
+          }, 7000);
+        }
+
+        if (response.length == 0) {
+          $('#cepError').removeClass('d-none');
+          $('#cepError').text('Infelizmente não conseguimos achar o seu CEP, por favor, verifique se seus dados estão corretos');
+
+          setTimeout(() => {
+            $('#cepError').addClass('d-none');
+          }, 7000);
+        }
+      }
+    });
+  })
 });

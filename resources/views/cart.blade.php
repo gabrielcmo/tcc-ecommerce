@@ -118,14 +118,98 @@
                   <span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>
                 </button>
               </div>
+              <p class="text-danger d-none" id="cepErro"></p>
+              <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modalConsultarCep">
+                <span class="mdc-button__label">Não sei meu cep</span>
+              </a>
             </form>
             <hr>
-            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" data-href="{{route('address-check')}}" id="botaoContinuarCarrinho">
+            <button class="mdc-button mdc-button--raised general-button w-100 actionButton" id="botaoContinuarCarrinho" data-href="{{route('address-check')}}">
               <span class="mdc-button__label" id="botaoContinuarCarrinhoLabel">Continuar</span>
             </button>
           @endif
         </div>
       </div> 
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalConsultarCep" tabindex="-1" role="dialog" aria-labelledby="DescobrirCep" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="DescobrirCep">Descobrir seu CEP</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="GET" id="formDescobrirCep">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="rua">Endereço</label>
+                  <input type="text" class="form-control" name="rua" id="rua" aria-describedby="ruaHelp" placeholder="Endereço">
+                  <small id="emailHelp" class="form-text text-muted">Digite apenas o endereço da sua rua, sem o nrº da casa.</small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="cidade">Cidade</label>
+                  <input type="text" name="cidade" id="cidade" class="form-control">
+                </div>
+              </div>  
+            </div>
+            <div class="row">              
+              <div class="col">
+                <div class="form-group">
+                  <label for="estado">Estado</label>
+                  <select name="estado" id="estado" class="form-control">
+                    <option selected value="">Escolha o estado da sua cidade</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="mdc-button mdc-button--raised general-button ml-2">
+              <span class="mdc-button__label">Descobrir CEP</span>
+            </button>
+            <div class="alert alert-success d-none mt-2" role="alert" id="cepSuccess"></div>
+            <div class="alert alert-danger d-none mt-2" role="alert" id="cepError"></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-success">Ok!</button>
+        </div>
+      </div>
     </div>
   </div>
 @endsection
