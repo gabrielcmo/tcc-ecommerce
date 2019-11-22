@@ -23,6 +23,20 @@ $(document).ready(function(){
     $('.mdc-drawer-scrim').addClass('show');
   });
 
+  $('#searchInput').keyup(function() {
+    let query = this.value;
+    
+    $.ajax({
+      url: '/find',
+      method: 'GET',
+      data: {query:query},
+      success:function(response){
+        $('#searchResult').fadeIn();
+        $('#searchResult').html(response);
+      }
+    });
+  });
+
   console.log($('.cards-row1').children().length)
   var carousel_deleted_col_row1 = new Array(), carousel_deleted_col_row2 = new Array(), carousel_deleted_col_row3 = new Array();
 
