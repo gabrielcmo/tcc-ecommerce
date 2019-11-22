@@ -80,7 +80,6 @@ Checkout
                                     <td class="font-weight-bold" id="totalCart">R$ {{Cart::total() + str_replace(',','.', session('valorFrete'))}}</td>
                                 </tr>
                             @endif
-
                         @else
 
                             @if(session('cupom') !== null)

@@ -76,36 +76,13 @@
                 <th>Subtotal</th>
                 <td id="totalCart" class="text-right"></td>
               </tr>
-              @if (session('valorFrete') !== null && session('prazoFrete') !== null)
-                <tr id="dadosFrete">
-                  <th id="prazoFrete" data-cep={{session('cep')}}>Frete (prazo de {{ session('prazoFrete') }} dias)</th>
-                  <td id="valorFrete" class="text-right" data-valor-frete="{{session('valorFrete')}}">R$ 
-                    @php
-                      $valor_frete = (string) session('valorFrete');
-                      echo str_replace('.', ',', $valor_frete);
-                    @endphp
-                  </td>
-                </tr>
-              @else
-                <tr class="d-none" id="dadosFrete">
-                  <th id="prazoFrete"></th>
-                  <td id="valorFrete" class="text-right"></td>
-                </tr>
-              @endif
+              <tr class="d-none" id="dadosFrete">
+                <th id="prazoFrete"></th>
+                <td id="valorFrete" class="text-right"></td>
+              </tr>
               <tr class="border-top">
                 <th class="align-middle">Total</th>
-                @if (session('valorFrete') !== null && session('prazoFrete') !== null)
-                  <td id="valorTotalCompra" class="text-right w-50">R$ 
-                    @php
-                      $total = (string) Cart::total() + session('valorFrete');
-                      // $total_formatted = number_format();
-                      echo str_replace('.', ',', $total);
-                    @endphp
-                    
-                  </td>
-                @else
-                  <td id="valorTotalCompra" class="text-right w-50">--</td>
-                @endif
+                <td id="valorTotalCompra" class="text-right w-50"></td>
               </tr>
             </tbody>
           </table>
@@ -114,7 +91,7 @@
           <form action="{{route('calcFrete')}}" method="post" id="formCalcularFrete" style="border-top-color: #d7cec7">
             <div class="input-group" id="inputBotaoCalcularFrete">
               <input type="number" class="form-control" name="cep" id="cep" aria-label="CEP" placeholder="CEP" aria-describedby="botao-cep">
-                <button class="mdc-button mdc-button--raised general-button d-none" id="botaoCalcularFrete" style="border-radius: 0;">
+                <button class="mdc-button mdc-button--raised general-button d-none" id="botaoCalcularFrete" style="border-radius: 0;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Agora clique aqui para calcular o frete e o prazo!">
                   <span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>
                 </button>
               </div>

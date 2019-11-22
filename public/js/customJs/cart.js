@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-
   var domain = document.location.host;
   if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
       domain = "https://www.doomus.com.br/public";
@@ -18,6 +17,23 @@ $(document).ready(function(){
   }
   
   totalCart();
+
+  let valorFrete = parseFloat(sessionStorage.getItem('valorFrete'));
+  let prazoFrete = sessionStorage.getItem('prazoFrete');
+  if (valorFrete != "null" && prazoFrete != "null") {
+    $('#dadosFrete').removeClass('d-none');
+    $('#prazoFrete').text('Frete (prazo de ' + prazoFrete + ' dias)');
+    $('#valorFrete').text('R$ ' + valorFrete.toString().replace('.', ','));
+
+    let carrinho = $('#totalCart').data('valor-total');
+
+    let total_carrinho = carrinho + valorFrete;
+    $('#valorTotalCompra').text('R$ ' + total_carrinho.toString().replace('.', ','));
+  } else {
+    let carrinho = $('#totalCart').data('valor-total');
+    $('#valorTotalCompra').text('R$ ' + carrinho.toFixed(2).toString().replace('.', ','));
+  }
+
 
   $('.inputQty').blur(function (e) { 
     e.preventDefault();
@@ -49,19 +65,19 @@ $(document).ready(function(){
     $('#totalCart').data('valor-total', total);
 
     let sub_total, valor_frete, novo_total;
-    if ($('#dadosFrete').hasClass('d-none')) {
 
-      sub_total = parseFloat($('#totalCart').data('valor-total'));
-      valor_frete = sessionStorage.getItem('valorFrete');
+    if (!$('#dadosFrete').hasClass('d-none')) {
 
-      novo_total = sub_total;
-
-      $('#valorTotalCompra').text('R$ ' + novo_total.toFixed(2).replace('.', ','));
-    } else {
       sub_total = parseFloat($('#totalCart').data('valor-total'));
       valor_frete = parseFloat(sessionStorage.getItem('valorFrete'));
 
       novo_total = sub_total + valor_frete;
+
+      $('#valorTotalCompra').text('R$ ' + novo_total.toFixed(2).replace('.', ','));
+    } else {
+      sub_total = parseFloat($('#totalCart').data('valor-total'));
+
+      novo_total = sub_total;
 
       $('#valorTotalCompra').text('R$ ' + novo_total.toFixed(2).replace('.', ','));
     }
@@ -112,6 +128,7 @@ $(document).ready(function(){
   $('#formCalcularFrete').submit(function (e) {
     e.preventDefault();
     
+    $('#botaoCalcularFrete').popover('hide');
     $('#botaoCalcularFreteLabel').remove();
     
     $('#botaoCalcularFrete').attr('disabled', true);
@@ -180,7 +197,7 @@ $(document).ready(function(){
             $('#dadosFrete').addClass('d-none');
 
             let total_sem_frete = $('#totalCart').data('valor-total');
-            $('#valorTotalCompra').text('R$ ' + total_sem_frete);
+            $('#valorTotalCompra').text('R$ ' + total_sem_frete.toFixed(2).toString().replace('.', ','));
 
             $('#botaoCalcularFrete').attr('disabled', false);
     
@@ -219,7 +236,6 @@ $(document).ready(function(){
       url: url,
       dataType: "JSON",
       success: function (response) {
-        console.log(response[0]);
         if (response[0] !== undefined) {
           $('#cepSuccess').removeClass('d-none');
           $('#cepSuccess').text('Conseguimos achar seu CEP, aqui está ' + response[0].cep + ', não se preocupe, já guardamos ele paras as próximas etapas!');
@@ -229,7 +245,13 @@ $(document).ready(function(){
           $('#botaoCalcularFrete').removeClass('d-none');
           setTimeout(() => {
             $('#cepSuccess').addClass('d-none');
-          }, 7000);
+            $('#modalConsultarCep').modal('hide');
+          }, 2000);
+
+          setTimeout(() => {
+            $('#botaoCalcularFrete').popover('show');
+          }, 2000);
+
         }
 
         if (response.length == 0) {
@@ -238,8 +260,7 @@ $(document).ready(function(){
 
           setTimeout(() => {
             $('#cepError').addClass('d-none');
-            $('#modalConsultarCep').modal('hide');
-          }, 10000);
+          }, 5000);
         }
       }
     });
