@@ -113,8 +113,8 @@
           <p class="p-1 mb-1">Calcule o frete e o prazo (opcional)</p>
           <form action="{{route('calcFrete')}}" method="post" id="formCalcularFrete" style="border-top-color: #d7cec7">
             <div class="input-group" id="inputBotaoCalcularFrete">
-              <input type="number" class="form-control" name="cep" aria-label="CEP" placeholder="CEP" aria-describedby="botao-cep">
-                <button class="mdc-button mdc-button--raised general-button" id="botaoCalcularFrete" style="border-radius: 0;" data-href="{{route('calcFrete')}}">
+              <input type="number" class="form-control" name="cep" id="cep" aria-label="CEP" placeholder="CEP" aria-describedby="botao-cep">
+                <button class="mdc-button mdc-button--raised general-button d-none" id="botaoCalcularFrete" style="border-radius: 0;">
                   <span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>
                 </button>
               </div>

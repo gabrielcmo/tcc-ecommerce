@@ -13,7 +13,8 @@ $(document).ready(function(){
     $('.eachProductValue').each(function () {
       total += $(this).data('value');
     });
-    $('#totalCart').text("R$"+total.toFixed(2).replace('.',','));
+    $('#totalCart').text("R$ "+total.toFixed(2).replace('.',','));
+    $('#totalCart').data('valor-total', total);
   }
   
   totalCart();
@@ -47,11 +48,18 @@ $(document).ready(function(){
 
     $('#totalCart').data('valor-total', total);
 
-    if (!$('#dadosFrete').hasClass('d-none')) {
-      let sub_total, valor_frete, novo_total;
+    let sub_total, valor_frete, novo_total;
+    if ($('#dadosFrete').hasClass('d-none')) {
 
       sub_total = parseFloat($('#totalCart').data('valor-total'));
-      valor_frete = $('#valorFrete').data('valor-frete');
+      valor_frete = sessionStorage.getItem('valorFrete');
+
+      novo_total = sub_total;
+
+      $('#valorTotalCompra').text('R$ ' + novo_total.toFixed(2).replace('.', ','));
+    } else {
+      sub_total = parseFloat($('#totalCart').data('valor-total'));
+      valor_frete = parseFloat(sessionStorage.getItem('valorFrete'));
 
       novo_total = sub_total + valor_frete;
 
@@ -93,6 +101,14 @@ $(document).ready(function(){
 
   });
 
+  $('#cep').change(function (e) { 
+    if ($(this).val().length == 8) {
+      $('#botaoCalcularFrete').removeClass('d-none');
+    } else {
+      $('#botaoCalcularFrete').addClass('d-none');
+    }
+  });
+
   $('#formCalcularFrete').submit(function (e) {
     e.preventDefault();
     
@@ -104,51 +120,85 @@ $(document).ready(function(){
     
     let form = $(this),
       cep = form.find("input[name='cep']").val(),
-      url = form.attr('action');
+      url = 'https://viacep.com.br/ws/' + cep + '/json'
+      
+      var xhr = $.ajax({
+        type: "GET",
+        url: url,
+        data: {cep:cep},
+        dataType: "JSON",
+        success: function (response) {
+          if (response.erro != true) {
+            sessionStorage.setItem('cep', response.cep);
 
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: {cep:cep},
-      dataType: "JSON",
-      success: function (response) {
-        console.log(response);
+            if (response.localidade !== "" && response.uf !== "") {
+              sessionStorage.setItem('localidade', response.localidade);
+              sessionStorage.setItem('uf', response.uf);
+              sessionStorage.setItem('logradouro', null);1
+              sessionStorage.setItem('bairro', null);
+            }
+            if (response.logradouro !== "" && response.uf !== "") {
+              sessionStorage.setItem('localidade', response.localidade);
+              sessionStorage.setItem('uf', response.uf);
+              sessionStorage.setItem('logradouro', response.logradouro);
+              sessionStorage.setItem('bairro', response.bairro);
+            }
 
-        if (response.status == 'success') {
-          $('#dadosFrete').removeClass('d-none');
-          $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
-          $('#valorFrete').text('R$ ' + (response.valorFrete).toString().replace('.', ','));
-          $('#valorFrete').data('valor-frete', response.valorFrete);
-  
-          let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
-          let totalComFrete = (valorSemFrete + response.valorFrete);
-  
-          $('#valorTotalCompra').text('R$ ' + totalComFrete.toFixed(2).toString().replace('.',','));
-  
-          $('#botaoCalcularFreteLabel').remove();
-  
-          $('#botaoCalcularFrete').attr('disabled', false);
-  
-          $('#botaoCalcularFrete').html('<span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>');
+            $.ajax({
+              type: "GET",
+              url: domain + '/calc/frete',
+              data: {cep: cep},
+              dataType: "JSON",
+              success: function (response) {
+                $('#dadosFrete').removeClass('d-none');
+                $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
+                $('#valorFrete').text('R$ ' + (response.valorFrete).toString().replace('.', ','));
+                $('#valorFrete').data('valor-frete', response.valorFrete);
+
+                sessionStorage.setItem('valorFrete', response.valorFrete);
+                sessionStorage.setItem('prazoFrete', response.prazoFrete);
+
+                let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
+                let totalComFrete = (valorSemFrete + response.valorFrete);
+
+        
+                $('#valorTotalCompra').text('R$ ' + totalComFrete.toFixed(2).toString().replace('.',','));
+        
+                $('#botaoCalcularFreteLabel').remove();
+        
+                $('#botaoCalcularFrete').attr('disabled', false);
+        
+                $('#botaoCalcularFrete').html('<span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>');
+
+                xhr.abort();
+              }
+            });
+          }
+          if (response.erro == true) {
+            $('#cepErro').removeClass('d-none');
+            $('#cepErro').text('Puts, parece que esse CEP não existe, porque não tenta colocar outro?');
+            $('#dadosFrete').addClass('d-none');
+
+            let total_sem_frete = $('#totalCart').data('valor-total');
+            $('#valorTotalCompra').text('R$ ' + total_sem_frete);
+
+            $('#botaoCalcularFrete').attr('disabled', false);
+    
+            $('#botaoCalcularFrete').html('<span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>');
+
+              sessionStorage.setItem('localidade', null);
+              sessionStorage.setItem('uf', null);
+              sessionStorage.setItem('logradouro', null);
+              sessionStorage.setItem('bairro', null);
+              sessionStorage.setItem('valorFrete', null);
+              sessionStorage.setItem('prazoFrete', null);
+              sessionStorage.setItem('cep', null);
+
+            setTimeout(() => {
+              $('#cepErro').addClass('d-none');
+            }, 5000);
+          }
         }
-        if (response.status == 'error') {
-          $('#cepErro').removeClass('d-none');
-          $('#cepErro').text(response.message);
-
-          $('#botaoCalcularFrete').attr('disabled', false);
-  
-          $('#botaoCalcularFrete').html('<span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>');
-
-          setTimeout(() => {
-            $('#cepErro').addClass('d-none');
-          }, 5000);
-        }
-      }
     });
     
   });
@@ -169,10 +219,14 @@ $(document).ready(function(){
       url: url,
       dataType: "JSON",
       success: function (response) {
+        console.log(response[0]);
         if (response[0] !== undefined) {
           $('#cepSuccess').removeClass('d-none');
           $('#cepSuccess').text('Conseguimos achar seu CEP, aqui está ' + response[0].cep + ', não se preocupe, já guardamos ele paras as próximas etapas!');
-
+          
+          sessionStorage.setItem('cep', (response[0].cep).replace('-', ''));
+          $('#cep').val((response[0].cep).replace('-', ''));
+          $('#botaoCalcularFrete').removeClass('d-none');
           setTimeout(() => {
             $('#cepSuccess').addClass('d-none');
           }, 7000);
@@ -184,9 +238,10 @@ $(document).ready(function(){
 
           setTimeout(() => {
             $('#cepError').addClass('d-none');
-          }, 7000);
+            $('#modalConsultarCep').modal('hide');
+          }, 10000);
         }
       }
     });
-  })
+  });
 });
