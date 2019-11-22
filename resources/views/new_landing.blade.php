@@ -213,11 +213,13 @@
         </div>
       @endforeach
     </div>
-    <input type="text" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices">
+    <input type="text" id="searchInput" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices" autocomplete="none">
+    <div class="" aria-labelledby="searchInput">
+      <ul class="dropdown-menu" id="searchResult"></ul>
+    </div>
   </div>
 @endsection
 
 @section('scripts')
-  
-  <script src="{{asset('js/customJs/landing.js')}}"></script>
+  <script src="{{asset('/js/customJs/landing.js')}}"></script>
 @endsection
