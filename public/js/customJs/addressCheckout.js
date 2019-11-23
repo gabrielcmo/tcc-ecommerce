@@ -1,4 +1,68 @@
 $(document).ready(function () {
+
+    sessionStorage.setItem('cupomDesconto', null);
+    sessionStorage.setItem('cupomNome', null);
+
+    let cep, localidade, uf, logradouro, bairro, valorFrete, prazoFrete, cupomNome, cupomDesconto, total_carrinho;
+
+    cep = sessionStorage.getItem('cep');
+    localidade = sessionStorage.getItem('localidade');
+    uf = sessionStorage.getItem('uf');
+    logradouro = sessionStorage.getItem('logradouro');
+    bairro = sessionStorage.getItem('bairro');
+    valorFrete = sessionStorage.getItem('valorFrete');
+    prazoFrete = sessionStorage.getItem('prazoFrete');
+    cupomNome = sessionStorage.getItem('cupomNome');
+    cupomDesconto = parseFloat(sessionStorage.getItem('cupomDesconto'));
+    total_carrinho = parseFloat($('#totalCart').data('total-carrinho'));
+
+    if (valorFrete != "null" && prazoFrete != "null") {
+        $('#dadosFrete').removeClass('d-none');
+        $('#prazoFrete').text('Frete (prazo de ' + prazoFrete + ' dias)');
+        $('#valorFrete').text('R$ ' + valorFrete.toString().replace('.', ','));
+    }
+
+    if (cupomNome != "null" && cupomDesconto != "null") {
+        $('.cupomTr').removeClass('d-none');
+        $('#cupomText').text('(' + cupomNome + ')');
+        $('#descontoPorcentagem').text('- '+ cupomDesconto*100 + '%');
+        let descontoValor = (1 - cupomDesconto) * total_carrinho;
+        let valor_final = total_carrinho - descontoValor;
+        $('#descontoValor').text('(R$ ' + valor_final.toFixed(2).toString().replace('.', ',') + ')');
+    }
+
+    if (cep != "null") {
+        if (localidade != "null" && uf != "null") {
+            $('#cep').val(cep.replace('-', '')).data('check', 'valid').addClass('input-valid');
+            $('#city').val(localidade).addClass('input-valid');
+            $('#state').val(uf).addClass('input-valid');
+        }
+        if (logradouro != "null" && bairro != "null") {
+            $('#cep').val(cep.replace('-', '')).data('check', 'valid').addClass('input-valid');
+            $('#address').val(logradouro).addClass('input-valid');
+            $('#bairro').val(bairro).addClass('input-valid');
+            $('#city').val(localidade).addClass('input-valid');
+            $('#state').val(uf).addClass('input-valid');
+        }
+    }
+
+    // if (valorFrete == "null" && cupomDesconto == "null") {
+    //     $('#totalOpcao').text('Total');
+
+    //     // $('#totalCart').text('R$ ' + total_carrinho);
+    // }
+    if (valorFrete != "null" && cupomDesconto == "null") {
+        $('#totalOpcao').text('Total (c/ frete)');
+        let total_com_frete = valorFrete + total_carrinho;
+        $('#totalCart').text('R$ ' + total_com_frete);
+    }
+
+    if (valorFrete == "null" && cupomDesconto != "null") {
+        $('#totalOpcao').text('Total (c/ cupom)');
+        let descontoValor = (1 - cupomDesconto) * total_carrinho;
+        let valor_com_cupom = total_carrinho - descontoValor;
+        $('#totalCart').text('R$ ' + valor_com_cupom);
+    }
     var domain = document.location.host;
     if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
         domain = "https://www.doomus.com.br/public";
@@ -20,19 +84,12 @@ $(document).ready(function () {
                     $('#bairro').val(response.bairro).addClass('input-valid');
                     $('#state').val(response.estado).addClass('input-valid');
                     $('#city').val(response.cidade).addClass('input-valid');
-                    $('#cep').val(response.cep).addClass('input-valid');
+                    $('#cep').val(response.cep).addClass('input-valid').data('check', 'valid');
                     $('#n').val(response.numero).addClass('input-valid');
                 }
             }
         });
     });
-
-    setTimeout(() => {
-        let cep = sessionStorage.getItem('cep');
-        if (cep.length == 8) {
-            
-        }
-    }, 2000);
         
     $("#cep").blur(function () {
 
@@ -246,12 +303,18 @@ $(document).ready(function () {
     $('#botaoCupom').click(function(){
         var cupom_name = $('#cupomValue').val().toUpperCase();
 
+        $('#botaoCupomLabel').remove();
+        $('#botaoCupom').attr('disabled', true);
+    
+        $('#botaoCupom').html('<div class="spinner-border text-light" id="botaoCupomLabel" role="status"><span class="sr-only">Calculando...</span></div>')
+
         $.ajax({
             type: "GET",
             url: domain + "/cupom/validate/" + cupom_name,
             dataType: "JSON",
             
             success: function (response) {
+                console.log(response);
                 if (response.status == 'success') {
                     $('.cupomTr').removeClass('d-none');
                     $('#cupomText').text("(" + response.cupom_name + ")");
@@ -259,9 +322,17 @@ $(document).ready(function () {
                     $('#descontoTotal').text("(R$ " + (response.cart_total - response.new_cart_total).toFixed(2) + ")")
                     $('#novo_total').text("R$ "+ (response.new_cart_total).toString().replace('.', ','));
 
+                    sessionStorage.setItem('cupomDesconto', response.cart_discount);
+                    sessionStorage.setItem('cupomNome', response.cupom_name);
+
                     $('#alertSuccess').removeClass('d-none');
                     $('#alertSuccess').text(response.message);
 
+                    $('#botaoCupomLabel').remove();
+                    $('#botaoCupom').attr('disabled', false);
+    
+                    $('#botaoCupom').html('<span class="mdc-button__label" id="botaoCupomLabel">Calcular</span>');
+            
                     setTimeout(() => {
                         $('#alertSuccess').addClass('d-none');
                     }, 5000);
@@ -270,6 +341,14 @@ $(document).ready(function () {
                     $('.cupomTr').addClass('d-none');
                     $('#alertError').removeClass('d-none');
                     $('#alertError').text(response.message);
+
+                    sessionStorage.setItem('cupomDesconto', null);
+                    sessionStorage.setItem('cupomNome', null);
+
+                    $('#botaoCupomLabel').remove();
+                    $('#botaoCupom').attr('disabled', false);
+    
+                    $('#botaoCupom').html('<span class="mdc-button__label" id="botaoCupomLabel">Calcular</span>');
 
                     setTimeout(() => {
                         $('#alertError').addClass('d-none');

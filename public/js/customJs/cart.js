@@ -1,5 +1,14 @@
 
 $(document).ready(function(){
+
+  sessionStorage.setItem('localidade', null);
+  sessionStorage.setItem('uf', null);
+  sessionStorage.setItem('logradouro', null);
+  sessionStorage.setItem('bairro', null);
+  sessionStorage.setItem('valorFrete', null);
+  sessionStorage.setItem('prazoFrete', null);
+  sessionStorage.setItem('cep', null);
+  
   var domain = document.location.host;
   if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
       domain = "https://www.doomus.com.br/public";
@@ -151,7 +160,7 @@ $(document).ready(function(){
             if (response.localidade !== "" && response.uf !== "") {
               sessionStorage.setItem('localidade', response.localidade);
               sessionStorage.setItem('uf', response.uf);
-              sessionStorage.setItem('logradouro', null);1
+              sessionStorage.setItem('logradouro', null);
               sessionStorage.setItem('bairro', null);
             }
             if (response.logradouro !== "" && response.uf !== "") {
