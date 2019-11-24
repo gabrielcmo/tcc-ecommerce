@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container">
-    <form method="post" action="/perfil/update" enctype="multipart/form-data">
+    <form method="post" action="{{ route('perfilUpdate') }}" enctype="multipart/form-data">
         @csrf
             <div class="row">
                 <div class="col-6">
