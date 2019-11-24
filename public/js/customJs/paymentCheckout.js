@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+  var domain = document.location.host;
+  if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
+      domain = "https://www.doomus.com.br/public";
+  } else {
+      domain = "http://localhost:8000";
+  }
+
   $('#itensModal').on('shown.bs.modal', function(e){
 
 
@@ -40,7 +47,7 @@ $(document).ready(function(){
       
       var ajaxRequest = $.ajax({
         type: "GET",
-        url: "/carrinho/" + productRowId + "/" + qty + "/" + productId,
+        url: domain + "/carrinho/" + productRowId + "/" + qty + "/" + productId,
         
         complete: function (jqXHR, textStatus){
           if(textStatus == 'success') {

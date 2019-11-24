@@ -9,6 +9,13 @@
 <div style="text-align:center!important;" id="products_table"></div>
 
     <script type="text/javascript">
+    
+        var domain = document.location.host;
+        if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
+            domain = "https://www.doomus.com.br/public";
+        } else {
+            domain = "http://localhost:8000";
+        }
         var analyticsProducts = {!! $dadosChart['products'] !!};
         google.charts.load('current', {'packages':['table', 'controls']});
         google.charts.setOnLoadCallback(drawTable);
@@ -23,9 +30,9 @@
             console.log(data);
             for(var i = 0; i < data.getNumberOfRows(); i++){
                 var product_id = analyticsProducts[i+1][0];
-                data.setCell(i, 5, "<a href=" + "/admin/product/" + product_id + "/edit" + "><i class='fas fa-pencil-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
-                + "<a href=" + "/admin/product/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
-                + "<a href=" + "/admin/product/" + product_id + "/desconto" + " class='btn btn-info btn-sm'>Aplicar desconto</a>");
+                data.setCell(i, 5, "<a href=" + domain + "/admin/product/" + product_id + "/edit" + "><i class='fas fa-pencil-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
+                + "<a href=" + domain + "/admin/product/" + product_id + "/destroy" + "><i class='fas fa-trash-alt'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;"
+                + "<a href=" + domain + "/admin/product/" + product_id + "/desconto" + " class='btn btn-info btn-sm'>Aplicar desconto</a>");
             }
             var stringFilterProducts = new google.visualization.ControlWrapper({
                 controlType: 'StringFilter',

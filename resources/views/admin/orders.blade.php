@@ -10,6 +10,13 @@
     <div id="orders_table"></div>
 
     <script type="text/javascript">
+
+        var domain = document.location.host;
+        if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
+            domain = "https://www.doomus.com.br/public";
+        } else {
+            domain = "http://localhost:8000";
+        }
         var orders = {!! $dadosChart['orders'] !!};
         google.charts.load('current', {'packages':['table', 'controls']});
         google.charts.setOnLoadCallback(drawTable);
@@ -38,10 +45,10 @@
 
             for(var i = 0; i < data.getNumberOfRows(); i++){
                 var order_id = orders[i+1][0];
-                data.setCell(i, 5, "<a class='btn btn-danger btn-sm' type='button' href=" + "/admin/order/" + order_id + "/cancel" + ">CANCELAR</a>" + 
-                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<a class='btn btn-success btn-sm' type='button' href=" + "/admin/order/" + order_id + "/despachado" + ">DESPACHADO</a>" +
-                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<a class='btn btn-success btn-sm' type='button' href=" + "/admin/order/" + order_id + "/aprovado" + ">APROVADO</a>" +
-                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<a class='btn btn-success btn-sm' type='button' href=" + "/admin/order/" + order_id + "/entregue" + ">ENTREGUE</a>");
+                data.setCell(i, 5, "<a class='btn btn-danger btn-sm' type='button' href=" + domain + "/admin/order/" + order_id + "/cancel" + ">CANCELAR</a>" + 
+                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<a class='btn btn-success btn-sm' type='button' href=" + domain + "/admin/order/" + order_id + "/despachado" + ">DESPACHADO</a>" +
+                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<a class='btn btn-success btn-sm' type='button' href=" + domain + "/admin/order/" + order_id + "/aprovado" + ">APROVADO</a>" +
+                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<a class='btn btn-success btn-sm' type='button' href=" + domain + "/admin/order/" + order_id + "/entregue" + ">ENTREGUE</a>");
             }
             
             // for(var i = 0; i < data.getNumberOfRows(); i++){

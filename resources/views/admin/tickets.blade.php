@@ -5,6 +5,13 @@
 </div>
 <div style="text-align:center!important;" id="ticket_table"></div>
 <script type="text/javascript">
+
+    var domain = document.location.host;
+    if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
+        domain = "https://www.doomus.com.br/public";
+    } else {
+        domain = "http://localhost:8000";
+    }
     var analyticsTicket = {!! $dadosChart['tickets'] !!};
     google.charts.load('current', {'packages':['table', 'controls']});
     google.charts.setOnLoadCallback(drawTable);
@@ -17,7 +24,7 @@
             var ticket_id = analyticsTicket[i+1][0];
 
             if (analyticsTicket[i+1][4] === null) {
-                data.setCell(i, 8, "<a class='btn btn-link btn-sm' href=" + "/admin/ticket/edit/" + ticket_id + ">Responder mensagem</a>");
+                data.setCell(i, 8, "<a class='btn btn-link btn-sm' href=" + domain + "/admin/ticket/edit/" + ticket_id + ">Responder mensagem</a>");
             } else {
                 data.setCell(i, 8, '<span class="text-success">Mensagem Respondida!</span>')
             }

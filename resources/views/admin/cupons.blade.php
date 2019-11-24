@@ -21,14 +21,14 @@
             var domain = document.location.host;
 
             if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
-            domain = "https://www.doomus.com.br/public/admin";
+            domain = "https://www.doomus.com.br/public";
             } else {
-            domain = 'http://localhost:8000/admin';
+            domain = 'http://localhost:8000';
             }
 
             for(var i = 0; i < data.getNumberOfRows(); i++){
                 var product_id = analytics[i+1][0];
-                data.setCell(i, 4, "<a href=" + domain + "/cupom/destroy/" + product_id + "><i class='fas fa-trash-alt'></i></a>");
+                data.setCell(i, 4, "<a href=" + domain + "/admin/cupom/destroy/" + product_id + "><i class='fas fa-trash-alt'></i></a>");
             }
 
             var stringFilterCupom = new google.visualization.ControlWrapper({
