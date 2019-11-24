@@ -29,73 +29,23 @@ Checkout
                             <th>{{$item->name}}</th>
                             <td class="text-muted">{{$item->qty}} x R$ {{$item->price}}</td>
                         </tr>
-                        @endforeach
-                        @if(session('cupom') !== null)
-                            <tr class="border-top text-success cupomTr">
-                                <th>Cupom <small id="cupomText">({{session('cupom')[0]['name']}})</small></th>
-                                <td class="text-success text-right">
-                                    <div id="totalDesconto">-{{session('cupom')[0]['desconto']}}%</div>
-                                    <span>(R$ {{str_replace('.', ',', number_format(Cart::total() * (session('cupom')[0]['desconto'] / 100), 2))}})</span>
-                                </td>
-                            </tr>
-                            <tr class="border-top cupomTr">
-                                <th>Total (c/ cupom)</th>
-                                <td id="novo_total" class="text-right">
-                                   R$ {{str_replace('.', ',', round((1 - (session('cupom')[0]['desconto'] / 100)) * Cart::total(), 2))}}
-                                </td>
-                            </tr>
-                        @else
+                        @endforeach  
                         <tr class="border-top d-none text-success cupomTr">
                             <th>Cupom <small id="cupomText"></small></th>
                             <td class="text-success text-right">     
-                                <div id="totalDesconto"></div>
-                                <span id="descontoTotal"></span>
+                                <div id="descontoPorcentagem"></div>
+                                <span id="descontoValor"></span>
                             </td>
                         </tr>
-                        <tr class="border-top d-none cupomTr">
-                            <th>Total (c/ cupom)</th>
-                            <td id="novo_total">
-
-                            </td>
+                        <tr id="dadosFrete" class="d-none">
+                            <th id="prazoFrete"></th>
+                            <td id="valorFrete" class="text-right"></td>
                         </tr>
-                        @endif
-                        @if(session('cep') !== null)
-                            <tr id="dadosFrete">
-                                <th id="prazoFrete">Frete <span class="">(prazo de {{session('prazoFrete')}} dias)</span></th>
-                                <td id="valorFrete" class="text-right" data-frete="{{session('valorFrete')}}">R$
-                                    {{session('valorFrete')}}</td>
-                            </tr>
-                        @endif
-
-                        @if (session('cep') !== null)
-                            @if(session('cupom') !== null)
-                                <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                                    <th>Total (c/ cupom + frete)</th>
-                                    <td class="font-weight-bold" id="totalCart">R$
-                                        {{round((1 - (session('cupom')[0]['desconto'] / 100)) * Cart::total(), 2) + str_replace(',','.', session('valorFrete'))}}</td>
-                                </tr>
-                            @else
-                                <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                                    <th>Total (c/ frete)</th>
-                                    <td class="font-weight-bold" id="totalCart">R$ {{Cart::total() + str_replace(',','.', session('valorFrete'))}}</td>
-                                </tr>
-                            @endif
-
-                        @else
-
-                            @if(session('cupom') !== null)
-                                <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                                    <th>Total <small>(s/ frete)</small></th>
-                                    <td class="font-weight-bold" id="totalCart">R$
-                                        {{round((1 - (session('cupom')[0]['desconto'] / 100)) * Cart::total(), 2)}}</td>
-                                </tr>
-                            @else
-                                <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                                    <th>Total (s/ frete)</th>
-                                    <td class="font-weight-bold" id="totalCart">R$ {{Cart::total()}}</td>
-                                </tr>
-                            @endif
-                        @endif
+                        
+                        <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
+                            <th id="totalOpcao">Total</th>
+                            <td class="font-weight-bold" id="totalCart" data-total-carrinho="{{Cart::total()}}"></td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -105,7 +55,7 @@ Checkout
                     <div class="input-group-append">
                         <button class="mdc-button mdc-button--raised general-button" id="botaoCupom"
                             style="border-radius: 0;">
-                            <span class="mdc-button__label">Resgatar</span>
+                            <span class="mdc-button__label" id="botaoCupomLabel">Resgatar</span>
                         </button>
                     </div>
                 </div>

@@ -47,23 +47,15 @@ class CheckoutController extends Controller
         
         $valorFrete = str_replace(',', '.', $result->cServico->Valor->__toString());
 
-        if ($valorFrete == '0.00') {
-            $response = array(
-                'status' => 'error',
-                'message' => 'CEP inválido, por favor, digite outro.'
-            );
-            return response()->json($response);
-        } else {
-            Session::put('valorFrete', $valorFrete);
-            Session::put('prazoFrete', $result->cServico->PrazoEntrega->__toString());
-            Session::put('cep', $request->cep);
-            $response = array(
-                'status' => 'success',
-                'valorFrete' => (float) $valorFrete,
-                'prazoFrete' => $result->cServico->PrazoEntrega->__toString()
-            );
-            return response()->json($response);
-        }
+        Session::put('valorFrete', $valorFrete);
+        Session::put('prazoFrete', $result->cServico->PrazoEntrega->__toString());
+        Session::put('cep', $request->cep);
+        $response = array(
+            'status' => 'success',
+            'valorFrete' => (float) $valorFrete,
+            'prazoFrete' => $result->cServico->PrazoEntrega->__toString()
+        );
+        return response()->json($response);
         
     }
 
