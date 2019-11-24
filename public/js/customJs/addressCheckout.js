@@ -1,9 +1,16 @@
 $(document).ready(function () {
 
-    sessionStorage.setItem('cupomDesconto', null);
-    sessionStorage.setItem('cupomNome', null);
+  if (sessionStorage.getItem('primeiro-acesso-endereco') != 'false') {
+    sessionStorage.setItem('primeiro-acesso-endereco', true); 
+  }
 
-    let cep, localidade, uf, logradouro, bairro, valorFrete, prazoFrete, cupomNome, cupomDesconto, total_carrinho;
+  if (sessionStorage.getItem('primeiro-acesso-endereco') == 'true') {      
+      sessionStorage.setItem('cupomDesconto', null);
+      sessionStorage.setItem('cupomNome', null);
+      sessionStorage.setItem('primeiro-acesso-endereco', false); 
+  }
+
+    var cep, localidade, uf, logradouro, bairro, valorFrete, prazoFrete, cupomNome, cupomDesconto, total_carrinho;
 
     cep = sessionStorage.getItem('cep');
     localidade = sessionStorage.getItem('localidade');
@@ -71,6 +78,15 @@ $(document).ready(function () {
     }
     var verifyCep, verifyCepStatus, cepData;
 
+
+    if (cep != "null") {
+        verifyCep = cep.replace('-', '');
+    }
+
+    if ($('#cep').data('variavel-escape') == 'true') {
+        verifyCep = $('#cep').data('variavel-escape');
+    }
+
     $('#useAddressSaved').click(function () {
         $.ajax({
             type: "GET",
@@ -84,7 +100,7 @@ $(document).ready(function () {
                     $('#bairro').val(response.bairro).addClass('input-valid');
                     $('#state').val(response.estado).addClass('input-valid');
                     $('#city').val(response.cidade).addClass('input-valid');
-                    $('#cep').val(response.cep).addClass('input-valid').data('check', 'valid');
+                    $('#cep').val(response.cep).addClass('input-valid').data('check', 'valid').data('variavel-escape', true);
                     $('#n').val(response.numero).addClass('input-valid');
                 }
             }
@@ -104,6 +120,9 @@ $(document).ready(function () {
             }
 
             if (verifyCep !== $(this).val()) {
+
+
+
 
                 $('label#cep-error').remove();
                 $('#cep').addClass('input-process');
@@ -138,6 +157,15 @@ $(document).ready(function () {
                     complete: function (jqXHR, textStatus) {
 
                         if (verifyCepStatus == 'success') {
+                            $.ajax({
+                                type: "GET",
+                                url: domain + '/calc/frete',
+                                data: {cep: $('#cep').val()},
+                                dataType: "JSON",
+                                success: function (response) {
+                                    
+                                }
+                            });
                             validarCep(true);
                             mostrarDadosCep(cepData);
                             $('.submitButtonAddressForm').attr('disabled', false);

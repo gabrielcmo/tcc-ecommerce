@@ -91,7 +91,7 @@
           <form action="{{route('calcFrete')}}" method="post" id="formCalcularFrete" style="border-top-color: #d7cec7">
             <div class="input-group" id="inputBotaoCalcularFrete">
               <input type="number" class="form-control" name="cep" id="cep" aria-label="CEP" placeholder="CEP" aria-describedby="botao-cep">
-                <button class="mdc-button mdc-button--raised general-button d-none" id="botaoCalcularFrete" style="border-radius: 0;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Agora clique aqui para calcular o frete e o prazo!">
+                <button class="mdc-button mdc-button--raised general-button" id="botaoCalcularFrete" style="border-radius: 0;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Agora clique aqui para calcular o frete e o prazo!">
                   <span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>
                 </button>
               </div>
@@ -184,7 +184,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-success">Ok!</button>
         </div>
       </div>
     </div>
