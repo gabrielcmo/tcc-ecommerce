@@ -48,9 +48,9 @@ Route::group(['middleware' => ['https']], function () {
     Route::get('/produto/{id}', 'ProductController@show')->name('product.show');
 
 
-    Route::get('/explore', 'OfertasController@viewExplore');
+    Route::get('/explore', 'OfertasController@viewExplore')->name('explore');
     Route::get('/ofertas', 'OfertasController@view')->name('offers');
-    Route::get('/customize/quarto', 'OfertasController@viewCustomize');
+    Route::get('/customize/quarto', 'OfertasController@viewCustomize')->name('customizeQuarto');
 
     /*
     *   Checar CEP
@@ -73,7 +73,7 @@ Route::group(['middleware' => ['https']], function () {
         *   User views
         */
         Route::get('/perfil', 'UserController@showProfile')->name('perfil');
-        Route::post('/perfil/update', 'UserController@updateProfile');
+        Route::post('/perfil/update', 'UserController@updateProfile')->name('perfilUpdate');
         Route::get('/pedidos', 'OrderController@show')->name('orders');
         Route::post('/avaliar', 'UserController@avaliate')->name('avaliate');
 

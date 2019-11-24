@@ -154,10 +154,10 @@
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
     <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
-      <nav class="nav nav-underline" style="background-color:white;">
-        <a class="nav-link mx-auto" style="color:#76323f;" href="/explore"><h5>Explore</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="/ofertas"><h5>Ofertas imperdíveis</h5></a>
-        <a class="nav-link mx-auto" style="color:#76323f;" href="/customize/quarto"><h5>Customize seu quarto</h5></a>
+      <nav class="nav nav-underline d-none" style="background-color:white;">
+        <a class="nav-link mx-auto" style="color:#76323f;" href="{{ route('explore') }}"><h5>Explore</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="{{ route('offers') }}"><h5>Ofertas imperdíveis</h5></a>
+        <a class="nav-link mx-auto" style="color:#76323f;" href="{{ route('customizeQuarto') }}"><h5>Customize seu quarto</h5></a>
       </nav>
     </div>
     <main class="main-content" id="main-content">
