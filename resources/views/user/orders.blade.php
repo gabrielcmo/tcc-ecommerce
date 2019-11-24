@@ -248,6 +248,11 @@
                           <button class="mdc-button mdc-button--raised general-button showProducts mt-2" type="button" data-pedido-id="{{$pedido->id}}" data-href="{{route('showOrderProducts')}}">
                             <span class="mdc-button__label">Ver produtos</span>
                           </button>
+                          @if ($pedido->status_id == 1 || $pedido->status_id == 2)
+                            <button class="mdc-button mdc-button--raised bg-danger cancelOrder mt-2" type="button" data-pedido-id="{{$pedido->id}}" data-href="{{route('order.cancel')}}">
+                              <span class="mdc-button__label">Cancelar pedido</span>
+                            </button>
+                          @endif
                         </div>
                       </div>
                     </div>

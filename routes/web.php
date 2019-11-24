@@ -111,7 +111,7 @@ Route::group(['middleware' => ['https']], function () {
         /*
         *   Order
         */
-        Route::get('/pedido/cancel', 'OrderController@cancel');
+        Route::get('/pedido/cancel/{order_id}', 'OrderController@cancel')->name('order.cancel');
         Route::get('/pedido/rastrear', 'OrderController@track');
         Route::get('/pedido/produtos', 'OrderController@showOrderProducts')->name('showOrderProducts');
 
@@ -156,8 +156,8 @@ Route::group(['middleware' => ['https']], function () {
         Route::get('/product/{product_id}/desconto', 'AdminController@ofertaProdutoView');
         Route::post('/product/desconto', 'AdminController@ofertaProduto')->name('product.discount');
         
-        Route::get('/category/desconto', 'AdminController@ofertaCategoriaView');
-        Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria');
+        Route::get('/category/desconto', 'AdminController@ofertaCategoriaView')->name('category.discount.show');
+        Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria')->name('category.discount.apply');
         
         Route::get('/cupom', 'AdminController@cupomView')->name('admin.cupons');
         Route::get('/cupom/create', 'AdminController@cupomCreate')->name('admin.cupom.create');

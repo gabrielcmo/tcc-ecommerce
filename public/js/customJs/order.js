@@ -7,8 +7,16 @@ $(document).ready(function() {
 
   var domain = document.location.host;
   if (domain == 'www.doomus.com.br' || domain == 'doomus.com.br') {
-    domain = 'www.doomus.com.br/public';
+    domain = 'https://www.doomus.com.br/public';
+  } else {
+    domain = 'http://localhost:8000';
   }
+
+  $('#cancelOrder').click(function() {
+    let pedido_id = $(this).data('pedido-id');
+
+    window.location.href = domain + '/pedido/cancel/' + pedido_id; 
+  });
 
   $('.showProducts').click(function() {
     let orderId = $(this).data('pedido-id');
@@ -27,13 +35,13 @@ $(document).ready(function() {
           if (element.product_image == 'logo_icone.png') {
             $('#product' + element.product_id + '-row').append(
               '<td>' +
-                '<img src="http://' + domain + '/img/' + element.product_image + '" alt="' + element.product_name + ' imagem" width="80px" height="80px">' +
+                '<img src=' + domain + '/img/' + element.product_image + '" alt="' + element.product_name + ' imagem" width="80px" height="80px">' +
                 '<span class="font-weight-bolder ml-1">' + element.product_name + '</span>'
             + '</td>'); 
           } else {
             $('#product' + element.product_id + '-row').append(
               '<td>' +
-                '<img src="http://' + domain + '/img/products/' + element.product_image + '" alt="' + element.product_name + ' imagem" width="80px" height="80px">' +
+                '<img src=' + domain + '/img/products/' + element.product_image + '" alt="' + element.product_name + ' imagem" width="80px" height="80px">' +
                 '<span class="font-weight-bolder ml-1">' + element.product_name + '</span>'
             + '</td>'); 
           }
