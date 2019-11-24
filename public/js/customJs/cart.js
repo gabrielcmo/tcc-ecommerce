@@ -38,12 +38,15 @@ $(document).ready(function(){
 
   let valorFrete = parseFloat(sessionStorage.getItem('valorFrete'));
   let prazoFrete = sessionStorage.getItem('prazoFrete');
+  let cep = sessionStorage.getItem('cep');
   if (valorFrete != "null" && prazoFrete != "null") {
     $('#dadosFrete').removeClass('d-none');
     $('#prazoFrete').text('Frete (prazo de ' + prazoFrete + ' dias)');
     $('#valorFrete').text('R$ ' + valorFrete.toString().replace('.', ','));
 
     let carrinho = $('#totalCart').data('valor-total');
+
+    $('#cep').val(cep.replace('-', ''));
 
     let total_carrinho = carrinho + valorFrete;
     $('#valorTotalCompra').text('R$ ' + total_carrinho.toString().replace('.', ','));
@@ -197,7 +200,14 @@ $(document).ready(function(){
                   let valorSemFrete = parseFloat($('#totalCart').text().substring(2).replace(',','.'));
                   let totalComFrete = (valorSemFrete + response.valorFrete);
   
-          
+                  $('#cepSucesso').removeClass('d-none');
+
+                  $('#cepSucesso').text('Maravilha! Calculamos o frete e o prazo para você!');
+
+                  setTimeout(() => {
+                    $('#cepSucesso').addClass('d-none');
+                  }, 5000);
+
                   $('#valorTotalCompra').text('R$ ' + totalComFrete.toFixed(2).toString().replace('.',','));
           
                   $('#botaoCalcularFreteLabel').remove();

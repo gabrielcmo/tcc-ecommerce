@@ -43,8 +43,8 @@ Checkout
                         </tr>
                         
                         <tr class="border-top" style="border-top-color: (0, 0, 0, 0.1)">
-                            <th id="totalOpcao">Total</th>
-                            <td class="font-weight-bold" id="totalCart" data-total-carrinho="{{Cart::total()}}"></td>
+                            <th id="totalOpcao"></th>
+                            <td class="font-weight-bold text-right" id="totalCart" data-total-carrinho="{{Cart::total()}}"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -176,5 +176,4 @@ Checkout
 
 @section('scripts')
     <script src="{{asset('js/customJs/addressCheckout.js')}}"></script>
-    
 @endsection

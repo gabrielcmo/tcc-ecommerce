@@ -61,7 +61,7 @@
             @endforeach
           </tbody>
         </table>
-        <a class="float-right mr-2" href="/">Continuar comprando</a>
+        <a class="float-right mr-2" href="{{route('landing')}}">Continuar comprando</a>
       </div>
       <div class="col-lg-4 col-md-12 col-sm-12 p-3">
         <div class="p-3" style="background-color: #f7f5f3">
@@ -95,6 +95,7 @@
                   <span class="mdc-button__label" id="botaoCalcularFreteLabel">Calcular</span>
                 </button>
               </div>
+              <p class="text-success d-none" id="cepSucesso"></p>
               <p class="text-danger d-none" id="cepErro"></p>
               <a href="#" class="btn btn-link" data-toggle="modal" data-target="#modalConsultarCep">
                 <span class="mdc-button__label">Não sei meu cep</span>

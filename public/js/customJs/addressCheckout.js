@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
   if (sessionStorage.getItem('primeiro-acesso-endereco') != 'false') {
     sessionStorage.setItem('primeiro-acesso-endereco', true); 
   }
@@ -20,8 +21,8 @@ $(document).ready(function () {
     valorFrete = sessionStorage.getItem('valorFrete');
     prazoFrete = sessionStorage.getItem('prazoFrete');
     cupomNome = sessionStorage.getItem('cupomNome');
-    cupomDesconto = parseFloat(sessionStorage.getItem('cupomDesconto'));
-    total_carrinho = parseFloat($('#totalCart').data('total-carrinho'));
+    cupomDesconto = sessionStorage.getItem('cupomDesconto');
+    total_carrinho = $('#totalCart').data('total-carrinho');
 
     if (valorFrete != "null" && prazoFrete != "null") {
         $('#dadosFrete').removeClass('d-none');
@@ -53,22 +54,27 @@ $(document).ready(function () {
         }
     }
 
-    // if (valorFrete == "null" && cupomDesconto == "null") {
-    //     $('#totalOpcao').text('Total');
+    if (valorFrete == "null" && cupomDesconto == "null") {
+        $('#totalOpcao').text('Total');
 
-    //     // $('#totalCart').text('R$ ' + total_carrinho);
-    // }
+        $('#totalCart').text('R$ ' + total_carrinho);
+    }
     if (valorFrete != "null" && cupomDesconto == "null") {
         $('#totalOpcao').text('Total (c/ frete)');
-        let total_com_frete = valorFrete + total_carrinho;
-        $('#totalCart').text('R$ ' + total_com_frete);
+        let total_com_frete = parseFloat(valorFrete) + parseFloat(total_carrinho);
+        $('#totalCart').text('R$ ' + total_com_frete.toFixed(2).toString().replace('.', ','));
     }
 
     if (valorFrete == "null" && cupomDesconto != "null") {
-        $('#totalOpcao').text('Total (c/ cupom)');
+        $('#totalOpcao').text('Total (c/ desconto)');
         let descontoValor = (1 - cupomDesconto) * total_carrinho;
         let valor_com_cupom = total_carrinho - descontoValor;
         $('#totalCart').text('R$ ' + valor_com_cupom);
+    }
+    if (valorFrete != "null" && cupomDesconto != "null") {
+        $('#totalOpcao').text('Total (c/ frete e desconto)');
+        let total = parseFloat(total_carrinho) - (parseFloat(total_carrinho) * cupomDesconto);
+        $('#totalCart').text('R$ ' + (total + parseFloat(valorFrete)).toFixed(2).toString().replace('.', ','));
     }
     var domain = document.location.host;
     if (domain == "www.doomus.com.br" || domain == "doomus.com.br") {
@@ -121,9 +127,6 @@ $(document).ready(function () {
 
             if (verifyCep !== $(this).val()) {
 
-
-
-
                 $('label#cep-error').remove();
                 $('#cep').addClass('input-process');
 
@@ -135,19 +138,12 @@ $(document).ready(function () {
 
                 verifyCep = $(this).val();
 
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
                 $.ajax({
                     type: "GET",
-                    url: domain + "/checkout/address/cep",
-                    data: { query: verifyCep },
+                    url: 'https://viacep.com.br/ws/' + verifyCep + '/json',
                     dataType: "JSON",
                     success: function (response) {
-                        if (response.textStatus == 'error') {
+                        if (response.erro == true) {
                             verifyCepStatus = 'error';
                         } else {
                             verifyCepStatus = 'success';
@@ -163,12 +159,34 @@ $(document).ready(function () {
                                 data: {cep: $('#cep').val()},
                                 dataType: "JSON",
                                 success: function (response) {
-                                    
+
+                                    sessionStorage.setItem('valorFrete', response.valorFrete);
+                                    sessionStorage.setItem('prazoFrete', response.prazoFrete);
+
+                                    cupomDesconto = sessionStorage.getItem('cupomDesconto');
+
+                                    if ($('#dadosFrete').hasClass('d-none')) {
+                                        $('#dadosFrete').removeClass('d-none');
+                                        $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
+                                        $('#valorFrete').text('R$ ' + (response.valorFrete).toString().replace('.', ','));
+                                    } else {
+                                        $('#prazoFrete').text('Frete (prazo de ' + response.prazoFrete + ' dias)');
+                                        $('#valorFrete').text('R$ ' + (response.valorFrete).toString().replace('.', ','));
+                                    }
+
+                                    if (cupomDesconto != 'null') {
+                                        $('#totalOpcao').text('Total (c/ frete e desconto)');
+                                        let desconto = parseFloat(total_carrinho) * cupomDesconto;
+                                        $('#totalCart').text('R$ ' + ((parseFloat(total_carrinho) - desconto) + response.valorFrete).toFixed(2).toString().replace('.', ','));
+                                    } else {
+                                        $('#totalOpcao').text('Total (c/ frete)');
+                                        $('#totalCart').text('R$ ' + (parseFloat(total_carrinho) + response.valorFrete).toFixed(2).toString().replace('.', ','));
+                                    }
+                                    validarCep(true);
+                                    mostrarDadosCep(cepData);
+                                    $('.submitButtonAddressForm').attr('disabled', false);
                                 }
                             });
-                            validarCep(true);
-                            mostrarDadosCep(cepData);
-                            $('.submitButtonAddressForm').attr('disabled', false);
                         } else {
                             validarCep(false);
                             $('#address').attr('disabled', false);
@@ -342,16 +360,26 @@ $(document).ready(function () {
             dataType: "JSON",
             
             success: function (response) {
-                console.log(response);
                 if (response.status == 'success') {
                     $('.cupomTr').removeClass('d-none');
                     $('#cupomText').text("(" + response.cupom_name + ")");
-                    $('#totalDesconto').text("- " + (response.cart_discount * 100) + "%");
-                    $('#descontoTotal').text("(R$ " + (response.cart_total - response.new_cart_total).toFixed(2) + ")")
-                    $('#novo_total').text("R$ "+ (response.new_cart_total).toString().replace('.', ','));
+                    $('#descontoPorcentagem').text("- " + (response.cart_discount * 100) + "%");
+                    $('#descontoValor').text("(R$ " + (response.cart_total - response.new_cart_total).toFixed(2) + ")");
 
                     sessionStorage.setItem('cupomDesconto', response.cart_discount);
                     sessionStorage.setItem('cupomNome', response.cupom_name);
+
+                    valorFrete = sessionStorage.getItem('valorFrete');
+
+                    if (valorFrete == 'null') {
+                        $('#totalOpcao').text('Total (c/ desconto)');
+                        let desconto = parseFloat(total_carrinho) * response.cart_discount;
+                        $('#totalCart').text('R$ ' + (parseFloat(total_carrinho) - desconto).toFixed(2).toString().replace('.', ','));
+                    } else {
+                        $('#totalOpcao').text('Total (c/ frete e desconto)');
+                        let desconto = parseFloat(total_carrinho) * response.cart_discount;
+                        $('#totalCart').text('R$ ' + ((parseFloat(total_carrinho) - desconto) + parseFloat(valorFrete)).toFixed(2).toString().replace('.', ','));
+                    }
 
                     $('#alertSuccess').removeClass('d-none');
                     $('#alertSuccess').text(response.message);

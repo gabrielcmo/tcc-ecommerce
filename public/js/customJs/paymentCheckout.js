@@ -63,6 +63,11 @@ $(document).ready(function(){
       total += $(this).data('value');
     });
 
+    let desconto = sessionStorage.getItem('cupomDesconto');
+
+    desconto *= total;
+
+    total -= desconto;
     total += parseFloat($('#valorFrete').data('frete'));
 
     $('#valorTotalCompra').text('R$ ' + total.toFixed(2).toString().replace('.', ','));
