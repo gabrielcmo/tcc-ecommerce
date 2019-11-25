@@ -65,7 +65,7 @@
                   <button class="mdc-button mdc-button--raised" style="background-color:#76323f" type="submit">
                     <span class="mdc-button__label">Entrar</span>
                   </button>
-                  <a class="pb-2 float-right text-dark" style="font-size: 14px" href="{{route('register')}}">Cliente novo? Cadastre-se</a> 
+                  <a class="pb-2 float-right text-dark" style="font-size: 14px" href="{{route('register')}}">Cliente novo? Cadastre-se aqui</a> 
                   <a class="pb-2 float-right text-dark" href="{{route('loginSocial', ['provider'=>'google'])}}">
                     <i class="fab fa-google" style="font-size: 14px; margin-right: 10px"></i>Entrar com Google
                   </a>

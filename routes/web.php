@@ -37,6 +37,16 @@ Route::group(['middleware' => ['https']], function () {
     */
     Route::get('/', 'IndexController@index')->name('landing');
 
+    /*
+    *   Suporte
+    */
+    Route::group(['prefix' => 'support'], function () {
+        Route::get('/index', function() {
+            return view('support.index');
+        })->name('support.index');
+    });
+
+
     /* 
     *   Barra de pesquisa de produtos
     */

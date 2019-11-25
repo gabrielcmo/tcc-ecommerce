@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-12 col-lg-12 offset-lg-3 offset-md-2 mt-3">
-                                <a href="{{ route('register') }}">Não possui uma conta? Cadastre-se aqui</a>
+                                <a href="{{ route('register') }}">Cliente novo? Cadastre-se aqui</a>
                             </div>
                         </div>
                     </form>
