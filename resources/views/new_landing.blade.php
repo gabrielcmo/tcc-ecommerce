@@ -64,7 +64,7 @@
                         style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;)">
                       </div>
                     @endif
-                    <div class="p-2 ml-2">
+                    <div class="p-2 ml-2" style="height: 177px">
                       <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold" style="font-size: 1rem">{{$product_with_discount->name}}</h6>
                       @php 
                         $rating = $product_with_discount->mediaNotaAvaliacao();
