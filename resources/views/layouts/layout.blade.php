@@ -212,6 +212,7 @@
       <p class="mb-0 text-center font-weight-bolder">Contato</p>
       <p class="mb-0 text-center">suporte@doomus.com.br</p>
       <p class="mb-0 mt-2 text-center"><a href="{{ route('docs') }}">FAQ (Dúvidas Frequentes)</a></p>
+      <p class="mb-0 mt-2 text-center"><a href="{{ route('support.index') }}">Página de ajuda</a></p>
     </div>
   </footer>
   
