@@ -96,6 +96,12 @@ button:focus {
   right: 1rem;
 }
 
+#supportButtonPc {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
 #fastCloseButton {
   position: fixed;
   bottom: 1rem;

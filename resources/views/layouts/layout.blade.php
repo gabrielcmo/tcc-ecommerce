@@ -19,16 +19,16 @@
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
           <button class="material-icons mdc-icon-button mdc-top-app-bar__navigation-icon d-none" id="sidebarMenuButton">menu</button>
           <span class="mdc-top-app-bar__title"><a style="" href="{{ route('landing') }}"><img src="{{ asset('/img/logo_inteiro.png') }}" width="130px" id="imgLogo" alt=""></a></span>
-        </section>
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
-          <div class="dropdown" id="searchForm" style="margin-top:16px;margin-right:500px;margin-bottom:15px">
+          <div class="dropdown ml-md-3 ml-sm-3 ml-lg-5" id="searchFormPc">
             <form class="form-inline">
-              <input class="form-control dropdown-toggle" size="40" id="search" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search">
+              <input class="form-control dropdown-toggle" size="40" id="searchPc" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search">
             </form>
             <div aria-labelledby="search">
-              <ul class="dropdown-menu w-100" id="result"></ul>
+              <ul class="dropdown-menu w-100" id="resultPc"></ul>
             </div>
           </div>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar" style="margin-right: 5%;">
           <div class="dropdown" id="dropdown">
             <button class="btn btn-link dropdown-toggle nounderline" style="color:#565656;text-decoration:none!important;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               @auth
@@ -101,7 +101,6 @@
     <div class="mdc-drawer__content" style="position:relative">
       @auth
         <div class="mdc-list">
-          <input type="text" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices">
           <a class="mdc-list-item mdc-list-item--activated" href="{{route('landing')}}" aria-current="page">
             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
             <span class="mdc-list-item__text">Home</span>
@@ -135,7 +134,12 @@
         </div>
         
       @else
-        <div class="mdc-list"></div>
+        <div class="mdc-list">
+          <a class="mdc-list-item mdc-list-item--activated" href="{{route('landing')}}" aria-current="page">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
+            <span class="mdc-list-item__text">Home</span>
+          </a>
+        </div>
       @endif
       @guest
         <button data-href="{{route('login')}}" data-toggle="modal" data-target="#modalLogin" class="mdc-button mdc-button--raised actionButton general-button" style="position:absolute; bottom: 45px; left: 0; margin-bottom: 20px; margin-left: 10px;">
@@ -153,6 +157,14 @@
   </aside>
   <div class="mdc-drawer-scrim"></div>
   <div class="mdc-top-app-bar--fixed-adjust">
+    <div class="dropdown w-100 mb-5 d-none" id="searchFormCellphone">
+      <form class="form-inline">
+        <input class="form-control dropdown-toggle" size="40" id="searchCellphone" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search" style="border-radius: 0;">
+      </form>
+      <div aria-labelledby="search">
+        <ul class="dropdown-menu w-100" id="resultCellphone"></ul>
+      </div>
+    </div>
     <div class="nav-scroller bg-light shadow-sm mb-2" id="topAppBar2">
       <nav class="nav nav-underline d-none" style="background-color:white;">
         <a class="nav-link mx-auto" style="color:#76323f;" href="{{ route('explore') }}"><h5>Explore</h5></a>
@@ -181,15 +193,19 @@
       
       @yield('content')
 
-      <button class="mdc-fab general-button" id="fastMenuButton" aria-label="Menu">
+      <button class="mdc-fab general-button actionButton" data-href="{{route('ticket.create')}}" id="supportButtonPc" aria-label="Criar ticket" title="Criar ticket suporte">
+        <i class="mdc-fab__icon material-icons">contact_support</i>
+      </button>
+
+      <button class="mdc-fab general-button d-none" id="fastMenuButton" aria-label="Menu">
         <i class="mdc-fab__icon fas fa-bars" id="fastMenuButtonIcon"></i>
       </button>
 
-      <button class="mdc-fab actionButton" data-href="{{route('ticket.create')}}" style="background-color: #D7CEC7; display: none;" id="fastSupportButton" aria-label="Suporte" title="Abrir ticket de suporte">
+      <button class="mdc-fab general-button actionButton d-none" data-href="{{route('ticket.create')}}" style="display: none;" id="fastSupportButton" aria-label="Suporte" title="Criar ticket de suporte">
         <span class="mdc-fab__icon material-icons">contact_support</span>
       </button>
 
-      <button class="mdc-fab" style="background-color: #D7CEC7; display: none;" id="fastSearchButton" aria-label="Procurar" title="Pesquisar produto">
+      <button class="mdc-fab general-button d-none" style="display: none;" id="fastSearchButton" aria-label="Procurar" title="Pesquisar produto">
         <span class="mdc-fab__icon material-icons">search</span>
       </button>
     </main>
@@ -225,25 +241,40 @@
   {{-- Custom Stylesheets --}}
   <script src="{{asset('js/customJs/layout.js')}}"></script>
   <script>
-    function fetch_data(query = ''){
+    function fetch_data(query = '', device = ''){
       $.ajax({
         url: "{{ route('search') }}",
         method: 'GET',
         data: {query:query},
         success:function(result){
-          $('#result').fadeIn();
-          $('#result').html(result);
+          if (device == 'PC') {
+            $('#resultPc').fadeIn();
+            $('#resultPc').html(result);
+            
+          } else {
+            $('#resultCellphone').fadeIn();
+            $('#resultCellphone').html(result);
+          }
         }
       });
     }
 
-    $('#search').keyup(function(){
-      if($('#search').val() !== ""){
-        $('#result').removeClass('d-none');
+    $('#searchPc').keyup(function(){
+      if($('#searchPc').val() !== ""){
+        $('#resultPc').removeClass('d-none');
         var query = $(this).val();
-        fetch_data(query);
+        fetch_data(query, 'PC');
       }else{
-        $('#result').addClass('d-none');
+        $('#resultPc').addClass('d-none');
+      }
+    });
+    $('#searchCellphone').keyup(function(){
+      if($('#searchCellphone').val() !== ""){
+        $('#resultCellphone').removeClass('d-none');
+        var query = $(this).val();
+        fetch_data(query, 'CELL');
+      }else{
+        $('#resultCellphone').addClass('d-none');
       }
     });
   </script>
