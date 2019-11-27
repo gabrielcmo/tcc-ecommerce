@@ -34,6 +34,7 @@ class RatingController extends Controller
     {
         $orders = Auth::user()->order;
     
+        $order_products = array();
         foreach ($orders as $order) {
             if ($order->status_id === 4) {
                 $order_products[] = $order->product;

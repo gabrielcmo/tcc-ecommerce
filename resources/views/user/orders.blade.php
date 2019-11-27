@@ -10,7 +10,7 @@
 <div class="container">
   @if (count($orders) == 0)
     <div class="row justify-content-center">
-      <div class="card p-2 bg-light">
+      <div class="card p-2 bg-normal">
         <h5 class="text-center">Você não possui nenhum pedido ainda!</h5>
         <h6 class="text-center">Para ver nossa lista de produtos clique no botão abaixo</h6>
         <button class="mdc-button mdc-button--raised general-button actionButton" data-href="{{route('landing')}}">
@@ -20,7 +20,11 @@
     </div>
   @else
     <div class="row mt-3">
-      <h4 class="ml-2">Histórico de compras</h4>
+      <h4 class="ml-2">Histórico de compras 
+        <button class="mdc-button mdc-button--raised general-button actionButton" data-href="{{route('rating.create')}}">
+          <span class="mdc-button__label">Avaliar produtos</span>
+        </button>
+      </h4>
     </div>
     <div class="row mt-2">
       <table class="table table-borderless">
@@ -66,7 +70,7 @@
                           <h4 class="d-flex justify-content-between">
                             <span>Pedido de número: {{$pedido->id}}</span>
                             <span>Realizado no dia: 
-                              <span class="font-weight-light">
+                              <span class="font-weight-normal">
                                 @php
                                 if (!is_null($pedido->data_realizado)) {
                                   $data_realizado = DateTime::createFromFormat('Y-m-d H:i:s', $pedido->data_realizado);
@@ -237,14 +241,14 @@
                             @endswitch
                           </div>
                           <h5 class="mt-2">Endereço de entrega</h5>
-                          <p class="font-weight-bolder mb-1">Endereço: <span class="font-weight-light">{{$pedido->endereco}}</span></p>
-                          <p class="font-weight-bolder mb-1">Bairro: <span class="font-weight-light">{{$pedido->bairro}}</span></p>
-                          <p class="font-weight-bolder mb-1">Cidade: <span class="font-weight-light">{{$pedido->cidade}}</span></p>
-                          <p class="font-weight-bolder">Estado: <span class="font-weight-light">{{$pedido->estado}}</span></p>
+                          <p class="font-weight-bolder mb-1">Endereço: <span class="font-weight-normal">{{$pedido->endereco}}</span></p>
+                          <p class="font-weight-bolder mb-1">Bairro: <span class="font-weight-normal">{{$pedido->bairro}}</span></p>
+                          <p class="font-weight-bolder mb-1">Cidade: <span class="font-weight-normal">{{$pedido->cidade}}</span></p>
+                          <p class="font-weight-bolder">Estado: <span class="font-weight-normal">{{$pedido->estado}}</span></p>
                           <hr>
-                          <h6 class="mb-0">Valor do frete: <span class="font-weight-light">R$ {{$pedido->frete}}</span></h6>
-                          <h4>Subtotal: <span class="font-weight-light">R$ {{$pedido->value_total - $pedido->frete}}</span></h4>
-                          <h4 class="mt-0">Valor total (c/ frete): <span class="font-weight-light">R$ {{$pedido->value_total}}</span></h4>
+                          <h5 class="mb-0">Valor do frete: <span class="font-weight-normal">R$ {{$pedido->frete}}</span></h5>
+                          <h5 class="mb-0">Subtotal: <span class="font-weight-normal">R$ {{$pedido->value_total - $pedido->frete}}</span></h5>
+                          <h4 class="mt-0">Valor total (c/ frete): <span class="font-weight-normal">R$ {{$pedido->value_total}}</span></h4>
                           <button class="mdc-button mdc-button--raised general-button showProducts mt-2" type="button" data-pedido-id="{{$pedido->id}}" data-href="{{route('showOrderProducts')}}">
                             <span class="mdc-button__label">Ver produtos</span>
                           </button>
@@ -259,7 +263,7 @@
                   </div>
                 </div>  
               </td>
-              <td class="pedido{{$loop->iteration}}-products bg-light" style="display: none">
+              <td class="pedido{{$loop->iteration}}-products bg-normal" style="display: none">
               Produtos 
               </td>  
             </tr>    

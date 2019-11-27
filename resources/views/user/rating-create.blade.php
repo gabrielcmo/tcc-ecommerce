@@ -65,6 +65,7 @@
                   <i class="material-icons stars-rating star-5" style="font-size: 2.5rem">star</i>
                 </div>
                 <input type="hidden" name="note_rating" id="note-rating" required>
+                <p class="text-danger d-none" id="starNull"></p>
                 @if ($errors->has('note_rating'))
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('note_rating') }}</strong>

@@ -11,7 +11,7 @@
           Atualizar avaliação do produto: {{$rating->product->name}}
         </div>
         <div class="card-body">
-          <form action="{{route('rating.update')}}" method="post">
+          <form action="{{route('rating.update')}}" method="post" id="ratingEditForm">
             @csrf
 
             <input type="hidden" name="rating-id" value="{{$rating->id}}">
@@ -19,7 +19,7 @@
             <div class="form-group">
 
               <label for="new-title">Novo título</label>
-              <input type="text" name="title_rating" id="new-title" class="form-control" placeholder="{{$rating->title}}">
+              <input type="text" name="title_rating" id="new-title" class="form-control" placeholder="{{$rating->title}}" value="{{$rating->title}}">
               @if ($errors->has('title_rating'))
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $errors->first('title_rating') }}</strong>
@@ -29,7 +29,7 @@
   
             <div class="form-group">
               <label for="new-text">Nova descrição</label>
-              <textarea name="description_text" id="new-text" class="form-control" rows="5" placeholder="{{$rating->text}}"></textarea>
+              <textarea name="description_text" id="new-text" class="form-control" rows="5" placeholder="{{$rating->text}}">{{$rating->text}}</textarea>
               @if ($errors->has('description_text'))
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $errors->first('description_text') }}</strong>
@@ -46,7 +46,7 @@
                 <i class="material-icons stars-rating star-4" style="font-size: 2.5rem">star</i>
                 <i class="material-icons stars-rating star-5" style="font-size: 2.5rem">star</i>
               </div>
-              <input type="hidden" name="note_rating" id="new-note">
+              <input type="hidden" name="note_rating" id="new-note" value="{{$rating->note}}">
               @if ($errors->has('note_rating'))
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $errors->first('note_rating') }}</strong>

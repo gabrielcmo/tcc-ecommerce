@@ -1,8 +1,64 @@
 $(document).ready(function() {
 
+  $.validator.setDefaults({
+    errorClass: 'label-invalid mb-0',
+    highlight: function (element) {
+        $(element).removeClass('input-valid');
+        $(element).addClass('input-invalid');
+    },
+    unhighlight: function (element) {
+        $(element).removeClass('input-invalid');
+        $(element).addClass('input-valid');
+    }
+  });
+
+  $('#ratingEditForm').validate({
+    rules: {
+      title_rating: {
+        maxlength: 50,
+        minlength: 20
+      },
+      description_text: {
+        maxlength: 200,
+        minlength: 100
+      }
+    },
+    messages: {
+      title_rating: {
+        maxlength: 'Você ultrapassou o limite de 50 caracteres.',
+        minlength: 'Insira pelo menos 20 caracteres.'
+      },
+      description_text: {
+        maxlength: 'Você ultrapassou o limite de 200 caracteres.',
+        minlength: 'Insira pelo menos 100 caracteres.'
+      }
+    }
+  });
+
+
+  var note = $('#new-note').val();
+
+  switch (note) {
+    case '1':
+      $('.star-1').css('color', 'gold');
+      break;
+    case '2':
+      $('.star-1, .star-2').css('color', 'gold');
+      break;
+    case '3':
+      $('.star-1, .star-2, .star-3').css('color', 'gold');
+        break;
+    case '4':
+      $('.star-1, .star-2, .star-3, .star-4').css('color', 'gold');
+        break;
+    case '5':
+      $('.star-1, .star-2, .star-3, .star-4, .star-5').css('color', 'gold');
+        break;
+    default:
+      break;
+  }
+
   var star_note;
-
-
   
   $('.star-1').mouseenter(function() {
     if ($(this).hasClass('star-clicked')) {

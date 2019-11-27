@@ -152,7 +152,7 @@
       </div>
       </form>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-2">
       <div class="w-100" id="info-accordion">
         <div class="card">
           <div class="card-header" id="info-accordion-header">
@@ -187,6 +187,70 @@
           </div>
         </div>       
       </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-12">
+        <h3>Avaliações</h3>
+      </div>
+      @foreach ($product->ratings as $rating)
+        <div class="col-md-6 col-sm-12">
+          <div class="card w-100 h-100">
+            <div class="card-body">
+              <h5 class="mb-3 text-justify">Usuário: {{$rating->user->name}}</h5>
+              <p class="mb-1 text-break text-justify"><span class="font-weight-bold">Título:</span> {{$rating->title}}</p>
+              <p class="mb-1 text-break text-justify"><span class="font-weight-bold">Descrição:</span> {{$rating->text}}</p>
+              <p class="mb-1 font-weight-bold">Nota: </p>
+              <p class="mb-0">
+                @switch($rating->note)
+                    @case(1)
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                        @break
+                    @case(2)
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                        @break
+                    @case(3)
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                        @break
+                    @case(4)
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem">star</i>
+                        @break
+                    @case(5)
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                      <i class="material-icons stars-rating" style="font-size: 2rem; color: gold">star</i>
+                        @break
+                    @default
+                        
+                @endswitch
+              </p>
+              <p style="position: absolute; bottom: 1rem; right: 1rem" class="text-right mb-0"><span class="font-weight-bold">Última alteração:</span>
+                @php
+                  $data_alteracao = DateTime::createFromFormat('Y-m-d H:i:s', $rating->updated_at);
+                  echo $data_alteracao->format('d/m/Y H:i:s');
+                @endphp
+              </p>
+            </div>
+          </div>
+        </div>
+      @endforeach
     </div>
     <div class="row mt-2 mb-2">
       <div class="col-md-12">

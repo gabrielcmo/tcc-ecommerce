@@ -13,15 +13,33 @@ $(document).ready(function() {
   });
 
   $('#ratingForm').validate({
+
+    submitHandler: function(form) {
+
+      if ($('#note-rating').val() == '') {
+        $('#starNull').removeClass('d-none');
+        $('#starNull').text('Por favor, informe uma nota para o produto!');
+
+        setTimeout(() => {
+          $('#starNull').addClass('d-none');
+        }, 5000);
+      } else {
+        form.submit();
+      }
+
+    },
     rules: {
       product_id: {
         required: true,
       },
       title_rating: {
-        required: true
+        required: true,
+        maxlength: 50,
+        minlength: 20
       },
       description_text: {
         required: true,
+        minlength: 100,
         maxlength: 200
       }
     },
@@ -30,10 +48,13 @@ $(document).ready(function() {
         required: 'Esse campo é obrigatório.'
       },
       title_rating: {
-        required: 'Esse campo é obrigatório.'
+        required: 'Esse campo é obrigatório.',
+        maxlength: 'Você ultrapassou o limite de 50 caracteres.',
+        minlength: 'Insira pelo menos 20 caracteres.'
       },
       description_text: {
         required: 'Esse campo é obrigatório.',
+        minlength: 'Insira pelo menos 100 caracteres.',
         maxlength: 'Você ultrapassou o limite de 200 caracteres.'
       }
     }

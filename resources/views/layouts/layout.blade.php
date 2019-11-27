@@ -193,21 +193,10 @@
       
       @yield('content')
 
-      <button class="mdc-fab general-button actionButton" data-href="{{route('ticket.create')}}" id="supportButtonPc" aria-label="Criar ticket" title="Criar ticket suporte">
+      <button class="mdc-fab general-button actionButton" data-href="{{route('ticket.create')}}" id="supportButton" aria-label="Criar ticket" title="Criar ticket suporte">
         <i class="mdc-fab__icon material-icons">contact_support</i>
       </button>
 
-      <button class="mdc-fab general-button d-none" id="fastMenuButton" aria-label="Menu">
-        <i class="mdc-fab__icon fas fa-bars" id="fastMenuButtonIcon"></i>
-      </button>
-
-      <button class="mdc-fab general-button actionButton d-none" data-href="{{route('ticket.create')}}" style="display: none;" id="fastSupportButton" aria-label="Suporte" title="Criar ticket de suporte">
-        <span class="mdc-fab__icon material-icons">contact_support</span>
-      </button>
-
-      <button class="mdc-fab general-button d-none" style="display: none;" id="fastSearchButton" aria-label="Procurar" title="Pesquisar produto">
-        <span class="mdc-fab__icon material-icons">search</span>
-      </button>
     </main>
   </div>
 
