@@ -13,7 +13,7 @@ class SearchController extends Controller
      */
     public function find(Request $search)
     {
-        $domain = config('app.name');
+        $domain = env('APP_URL');
         if ($search->ajax()) {
             $query = $search->get('query');
             if ($query !== '') {
