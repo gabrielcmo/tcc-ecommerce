@@ -27,7 +27,11 @@ Checkout
                         @foreach(Cart::content() as $item)
                         <tr class="" style="background-color:white;">
                             <th>{{$item->name}}</th>
-                            <td class="text-muted">{{$item->qty}} x R$ {{$item->price}}</td>
+                            <td class="text-muted">{{$item->qty}} x R$
+                                @php
+                                    echo number_format($item->price, 2, ',', '');
+                                @endphp
+                            </td>
                         </tr>
                         @endforeach  
                         <tr class="border-top d-none text-success cupomTr">

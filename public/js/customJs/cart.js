@@ -30,7 +30,7 @@ $(document).ready(function(){
     $('.eachProductValue').each(function () {
       total += parseFloat($(this).data('value'));
     });
-    $('#totalCart').text("R$ "+total.toFixed(2).replace('.',','));
+    $('#totalCart').text("R$ "+total.toFixed(2).toString().replace('.',','));
     $('#totalCart').data('valor-total', total);
   }
   

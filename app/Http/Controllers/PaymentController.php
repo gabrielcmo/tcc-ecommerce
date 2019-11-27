@@ -20,6 +20,7 @@ use Config;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\App;
 
 class PaymentController extends Controller
 {
@@ -43,7 +44,12 @@ class PaymentController extends Controller
 
         // Set redirect URLs
         $redirectUrls = new RedirectUrls();
-        $app_url = env('APP_URL');
+
+        if (App::environment() == 'production') {
+            $app_url = "https://doomus.com.br/public";
+        } else {
+            $app_url = "http://localhost:8000";
+        }
 
         $redirectUrls->setReturnUrl("$app_url/execute-payment")
         ->setCancelUrl("$app_url/cancel-payment");
