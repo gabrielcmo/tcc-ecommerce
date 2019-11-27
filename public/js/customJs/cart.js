@@ -28,7 +28,7 @@ $(document).ready(function(){
   function totalCart() {
     var total = 0;
     $('.eachProductValue').each(function () {
-      total += $(this).data('value');
+      total += parseFloat($(this).data('value'));
     });
     $('#totalCart').text("R$ "+total.toFixed(2).replace('.',','));
     $('#totalCart').data('valor-total', total);

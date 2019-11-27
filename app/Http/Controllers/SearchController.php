@@ -13,11 +13,11 @@ class SearchController extends Controller
      */
     public function find(Request $search)
     {
-        $domain = url()->current();
-        if ($domain == "www.doomus.com.br" || $domain == "doomus.com.br") {
-            $domain = "www.doomus.com.br/public";
+        $domain = Config::get('APP_URL');
+        if ($domain == "https://www.doomus.com.br" || $domain == "https://doomus.com.br") {
+            $domain = "https://www.doomus.com.br/public";
         } else {
-            $domain = "localhost:8000";
+            $domain = "http://localhost:8000";
         }
 
         if ($search->ajax()) {
