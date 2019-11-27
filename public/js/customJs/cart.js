@@ -185,8 +185,7 @@ $(document).ready(function(){
   
               $.ajax({
                 type: "GET",
-                url: domain + '/calc/frete',
-                data: {cep: cep},
+                url: domain + '/calc/frete/' + cep,
                 dataType: "JSON",
                 success: function (response) {
                   $('#dadosFrete').removeClass('d-none');
