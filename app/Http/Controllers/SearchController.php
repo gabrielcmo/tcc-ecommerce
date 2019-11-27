@@ -13,7 +13,7 @@ class SearchController extends Controller
      */
     public function find(Request $search)
     {
-        $domain = Request::url();
+        $domain = url()->current();
         if ($domain == "www.doomus.com.br" || $domain == "doomus.com.br") {
             $domain = "www.doomus.com.br/public";
         } else {
