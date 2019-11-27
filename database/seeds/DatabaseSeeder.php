@@ -574,334 +574,334 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/cesto_de_roupa.jpg',
+            'filename' => 'cesto_de_roupa.jpg',
             'product_id' => 1,
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/cesto_de_roupa2.jpg',
+            'filename' => 'cesto_de_roupa2.jpg',
             'product_id' => 1,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/chuveiro.jpg',
+            'filename' => 'chuveiro.jpg',
             'product_id' => 2,
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/chuveiro2.jpg',
+            'filename' => 'chuveiro2.jpg',
             'product_id' => 2,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/torneira.jpg',
+            'filename' => 'torneira.jpg',
             'product_id' => 3,
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/torneira2.jpg',
+            'filename' => 'torneira2.jpg',
             'product_id' => 3,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/lixo.jpg',
+            'filename' => 'lixo.jpg',
             'product_id' => 4,
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/lixo2.jpg',
+            'filename' => 'lixo2.jpg',
             'product_id' => 4,
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/lixo3.jpg',
+            'filename' => 'lixo3.jpg',
             'product_id' => 4,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/armario_banheiro.jpg',
+            'filename' => 'armario_banheiro.jpg',
             'product_id' => 5,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/saboneteira.jpg',
+            'filename' => 'saboneteira.jpg',
             'product_id' => 6
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/saboneteira2.jpg',
+            'filename' => 'saboneteira2.jpg',
             'product_id' => 6
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/suporte_de_toalha.jpg',
+            'filename' => 'suporte_de_toalha.jpg',
             'product_id' => 7
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/pia.jpg',
+            'filename' => 'pia.jpg',
             'product_id' => 8
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'banheiro/pia2.jpg',
+            'filename' => 'pia2.jpg',
             'product_id' => 8
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/jogo_de_copos.jpg',
+            'filename' => 'jogo_de_copos.jpg',
             'product_id' => 9
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/jogo_de_copos2.jpg',
+            'filename' => 'jogo_de_copos2.jpg',
             'product_id' => 9
         ]);
         
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/kit_de_panelas.jpg',
+            'filename' => 'kit_de_panelas.jpg',
             'product_id' => 10
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/kit_de_panelas2.jpg',
+            'filename' => 'kit_de_panelas2.jpg',
             'product_id' => 10
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/torradeira.jpg',
+            'filename' => 'torradeira.jpg',
             'product_id' => 11
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/torradeira2.jpg',
+            'filename' => 'torradeira2.jpg',
             'product_id' => 11
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/tabua_de_corte.jpg',
+            'filename' => 'tabua_de_corte.jpg',
             'product_id' => 12
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/tabua_de_corte2.jpg',
+            'filename' => 'tabua_de_corte2.jpg',
             'product_id' => 12
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/kit_de_tacas.jpg',
+            'filename' => 'kit_de_tacas.jpg',
             'product_id' => 13
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/kit_de_tacas2.jpg',
+            'filename' => 'kit_de_tacas2.jpg',
             'product_id' => 13
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/coifa.jpg',
+            'filename' => 'coifa.jpg',
             'product_id' => 14
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/coifa2.jpg',
+            'filename' => 'coifa2.jpg',
             'product_id' => 14
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/cooktop.jpg',
+            'filename' => 'cooktop.jpg',
             'product_id' => 15
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/cooktop2.jpg',
+            'filename' => 'cooktop2.jpg',
             'product_id' => 15
         ]);
         
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/geladeira.jpg',
+            'filename' => 'geladeira.jpg',
             'product_id' => 16
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'cozinha/geladeira2.jpg',
+            'filename' => 'geladeira2.jpg',
             'product_id' => 16
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/regador.jpg',
+            'filename' => 'regador.jpg',
             'product_id' => 17
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/regador2.jpg',
+            'filename' => 'regador2.jpg',
             'product_id' => 17
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/vaso.jpg',
+            'filename' => 'vaso.jpg',
             'product_id' => 18
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/vaso2.jpg',
+            'filename' => 'vaso2.jpg',
             'product_id' => 18
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/kit_horta.jpg',
+            'filename' => 'kit_horta.jpg',
             'product_id' => 19
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/kit_horta2.jpg',
+            'filename' => 'kit_horta2.jpg',
             'product_id' => 19
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/serrote.jpg',
+            'filename' => 'serrote.jpg',
             'product_id' => 20
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/luvas.jpg',
+            'filename' => 'luvas.jpg',
             'product_id' => 21
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/luvas2.jpg',
+            'filename' => 'luvas2.jpg',
             'product_id' => 21
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/kit_de_jardinagem.jpg',
+            'filename' => 'kit_de_jardinagem.jpg',
             'product_id' => 22
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/pulverizador.jpg',
+            'filename' => 'pulverizador.jpg',
             'product_id' => 23
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/pulverizador2.jpg',
+            'filename' => 'pulverizador2.jpg',
             'product_id' => 23
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/vassoura.jpg',
+            'filename' => 'vassoura.jpg',
             'product_id' => 24
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'jardinagem/vassoura2.jpg',
+            'filename' => 'vassoura2.jpg',
             'product_id' => 24 
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'quarto/ar_condicionado.jpg',
+            'filename' => 'ar_condicionado.jpg',
             'product_id' => 25
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'quarto/ar_condicionado2.jpg',
+            'filename' => 'ar_condicionado2.jpg',
             'product_id' => 25
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'quarto/tv.jpg',
+            'filename' => 'tv.jpg',
             'product_id' => 26
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'quarto/tv2.jpg',
+            'filename' => 'tv2.jpg',
             'product_id' => 26
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'quarto/cobertor.jpg',
+            'filename' => 'cobertor.jpg',
             'product_id' => 27
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'quarto/edredom.jpg',
+            'filename' => 'edredom.jpg',
             'product_id' => 28
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'quarto/edredom2.jpg',
+            'filename' => 'edredom2.jpg',
             'product_id' => 28
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'quarto/travesseiro.jpg',
+            'filename' => 'travesseiro.jpg',
             'product_id' => 29
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'quarto/travesseiro2.jpg',
+            'filename' => 'travesseiro2.jpg',
             'product_id' => 29
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'quarto/cama.jpg',
+            'filename' => 'cama.jpg',
             'product_id' => 30
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'quarto/cama2.jpg',
+            'filename' => 'cama2.jpg',
             'product_id' => 30
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'quarto/guarda_roupa.jpg',
+            'filename' => 'guarda_roupa.jpg',
             'product_id' => 31
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'quarto/guarda_roupa2.jpg',
+            'filename' => 'guarda_roupa2.jpg',
             'product_id' => 31
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'quarto/armario_quarto.jpg',
+            'filename' => 'armario_quarto.jpg',
             'product_id' => 32
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'quarto/armario2_quarto.jpg',
+            'filename' => 'armario2_quarto.jpg',
             'product_id' => 32
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'sala/espelho.jpg',
+            'filename' => 'espelho.jpg',
             'product_id' => 33
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'sala/espelho2.jpg',
+            'filename' => 'espelho2.jpg',
             'product_id' => 33
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'sala/quadro.jpg',
+            'filename' => 'quadro.jpg',
             'product_id' => 34
         ]);
         
         DB::table('product_images')->insert([
-            'filename' => 'sala/tapete.jpg',
+            'filename' => 'tapete.jpg',
             'product_id' => 35
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'sala/estante_de_livros.jpg',
+            'filename' => 'estante_de_livros.jpg',
             'product_id' => 36
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'sala/estante_de_livros2.jpg',
+            'filename' => 'estante_de_livros2.jpg',
             'product_id' => 36
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'sala/poltrona.jpg',
+            'filename' => 'poltrona.jpg',
             'product_id' => 37 
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'sala/poltrona2.jpg',
+            'filename' => 'poltrona2.jpg',
             'product_id' => 37
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'sala/mesa_de_apoio.jpg',
+            'filename' => 'mesa_de_apoio.jpg',
             'product_id' => 38
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'sala/mesa_de_centro.jpg',
+            'filename' => 'mesa_de_centro.jpg',
             'product_id' => 39
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'sala/mesa_de_centro2.jpg',
+            'filename' => 'mesa_de_centro2.jpg',
             'product_id' => 39
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'sala/sofa.jpg',
+            'filename' => 'sofa.jpg',
             'product_id' => 40
         ]);
         DB::table('product_images')->insert([
-            'filename' => 'sala/sofa2.jpg',
+            'filename' => 'sofa2.jpg',
             'product_id' => 40
         ]);
 
