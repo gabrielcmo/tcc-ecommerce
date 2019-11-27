@@ -55,7 +55,7 @@ class TicketController extends Controller
 
         Session::flash('status', 'Ticket criado com sucesso!');
 
-        return back();
+        return redirect()->route('tickets');
     }
 
     /**

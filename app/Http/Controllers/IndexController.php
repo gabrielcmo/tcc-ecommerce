@@ -28,7 +28,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $products = Product::all()->where('discount', '==', null);
+        $products = Product::paginate(12);
         $products_with_discount = Product::all()->where('discount', '!=', null)->sort()->take(12);
         $categories = Category::all();
 

@@ -19,3 +19,11 @@
 
     <div style="height:200px"></div>
 @endsection
+
+@section('scripts')
+    <script>
+        sessionStorage.setItem('cupomDesconto', null);
+        sessionStorage.setItem('cupomNome', null);
+
+    </script>
+@endsection

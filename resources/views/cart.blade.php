@@ -55,7 +55,10 @@
               </td>
               <td class="{{"newProductValue$loop->iteration"}} w-25 align-middle eachProductValue"
                 data-value={{$item->price*$item->qty}}>
-                R${{$item->price*$item->qty}}
+                R$
+                @php
+                  echo number_format(($item->price*$item->qty), 2, ',', '');
+                @endphp
               </td>
             </tr>
             @endforeach

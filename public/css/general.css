@@ -3,6 +3,21 @@ a {
   /* padding-left: 5px; */
 }
 
+a.page-link {
+  background-color: #76323f;
+  color: white;
+}
+
+a.page-link:hover {
+  background-color: #D7CEC7;
+  color: black;
+}
+.page-item.active .page-link {
+  background-color: #D7CEC7;
+  color: black;
+  border-color: #D7CEC7;
+}
+
 html {
   height: 100%;
 }

@@ -132,7 +132,7 @@
           </span>
           <form name="addToCart" action="{{ route('cart.add') }}" method="get">
           <div class="form-group row mt-2 d-flex justify-content-center">
-            <label for="Quantity" class="col-lg-3 col-sm-3 col-md-3 form-control-label mt-2">Quantidade:</label>
+            <label for="Quantity" class="col-lg-4 col-sm-3 col-md-3 form-control-label mt-2 ml-2">Quantidade:</label>
             <div class="col-lg-3 col-sm-2 col-md-2">
               <input type="number" class="form-control{{ $errors->has('qty') ? ' is-invalid' : '' }}" name="qty" min='1' max="100" value="1">
             </div>
@@ -192,6 +192,9 @@
       <div class="col-12">
         <h3>Avaliações</h3>
       </div>
+      @if (count($product->ratings) == 0)
+        <h6 class="ml-2">Esse produto não possui nenhuma avaliação</h6>
+      @endif
       @foreach ($product->ratings as $rating)
         <div class="col-md-6 col-sm-12">
           <div class="card w-100 h-100">

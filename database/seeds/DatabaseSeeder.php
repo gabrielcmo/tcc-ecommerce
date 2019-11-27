@@ -53,15 +53,23 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('categories')->insert([
-            'name' => 'Cama',
+            'name' => 'Banheiro'
         ]);
         
         DB::table('categories')->insert([
-            'name' => 'Mesa',
+            'name' => 'Cozinha'
         ]);
         
         DB::table('categories')->insert([
-            'name' => 'Banho',
+            'name' => 'Jardinagem'
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Quarto'
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'Sala'
         ]);
         
         DB::table('payment_methods')->insert([
@@ -69,7 +77,293 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'name' => 'Toalha de rosto',
+            'name' => 'Cesto de roupa',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 10,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'discount' => 0.2,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 1,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Chuveiro',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 10,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'discount' => 0.2,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 1,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Torneira',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'discount' => 0.2,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 1,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Lixo',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 1,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Armário de banheiro',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 1,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Saboneteira',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 1,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Suporte de toalha',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 1,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Pia',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 1,
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Jogo de copos',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'discount' => 0.4,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 2,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Kit de panelas',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'discount' => 0.4,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 2,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Torradeira',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'discount' => 0.4,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 2,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Tábua de corte',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 2,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Kit de taças',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 2,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Coifa',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 2,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Cooktop',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 2,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Geladeira',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 2,
+        ]);
+
+        DB::table('products')->insert([
+            'name' => 'Regador',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'discount' => 0.5,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 3,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Vaso',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'discount' => 0.5,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 3,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Kit horta',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 3,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Serrote',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 3,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Luvas',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 3,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Kit de jardinagem',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 3,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Pulverizador',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 3,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Vassoura',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
             'qtd_last' => 4,
             'weight' => 12.0,
@@ -81,6 +375,44 @@ class DatabaseSeeder extends Seeder
             'category_id' => 3,
         ]);
 
+        DB::table('products')->insert([
+            'name' => 'Ar condicionado',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'discount' => 0.1,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 4,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'TV 32"',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'discount' => 0.1,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 4,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Cobertor',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 4,
+        ]);
         DB::table('products')->insert([
             'name' => 'Edredom',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
@@ -91,9 +423,8 @@ class DatabaseSeeder extends Seeder
             'height' => 20.0,
             'diameter' => 80.0,
             'price' => 4.99,
-            'category_id' => 3,
+            'category_id' => 4,
         ]);
-
         DB::table('products')->insert([
             'name' => 'Travesseiro',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
@@ -104,11 +435,10 @@ class DatabaseSeeder extends Seeder
             'height' => 20.0,
             'diameter' => 80.0,
             'price' => 4.99,
-            'category_id' => 3,
+            'category_id' => 4,
         ]);
-
         DB::table('products')->insert([
-            'name' => 'Toalha de rosto',
+            'name' => 'Cama',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
             'qtd_last' => 4,
             'weight' => 12.0,
@@ -117,11 +447,10 @@ class DatabaseSeeder extends Seeder
             'height' => 20.0,
             'diameter' => 80.0,
             'price' => 4.99,
-            'category_id' => 3,
+            'category_id' => 4,
         ]);
-
         DB::table('products')->insert([
-            'name' => 'Tapete',
+            'name' => 'Guarda roupa',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
             'qtd_last' => 4,
             'weight' => 12.0,
@@ -130,11 +459,10 @@ class DatabaseSeeder extends Seeder
             'height' => 20.0,
             'diameter' => 80.0,
             'price' => 4.99,
-            'category_id' => 3,
+            'category_id' => 4,
         ]);
-
         DB::table('products')->insert([
-            'name' => 'Cortina',
+            'name' => 'Armário de quarto',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
             'qtd_last' => 4,
             'weight' => 12.0,
@@ -143,11 +471,11 @@ class DatabaseSeeder extends Seeder
             'height' => 20.0,
             'diameter' => 80.0,
             'price' => 4.99,
-            'category_id' => 3,
+            'category_id' => 4,
         ]);
 
         DB::table('products')->insert([
-            'name' => 'Roupão',
+            'name' => 'Espelho',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
             'qtd_last' => 4,
             'weight' => 12.0,
@@ -156,22 +484,8 @@ class DatabaseSeeder extends Seeder
             'height' => 20.0,
             'diameter' => 80.0,
             'price' => 4.99,
-            'category_id' => 3,
+            'category_id' => 5,
         ]);
-
-        DB::table('products')->insert([
-            'name' => 'Cobertor azul',
-            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
-            'qtd_last' => 4,
-            'weight' => 12.0,
-            'lenght' => 20.3,
-            'width' => 50.0,
-            'height' => 20.0,
-            'diameter' => 80.0,
-            'price' => 4.99,
-            'category_id' => 3,
-        ]);
-
         DB::table('products')->insert([
             'name' => 'Quadro',
             'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
@@ -182,28 +496,416 @@ class DatabaseSeeder extends Seeder
             'height' => 20.0,
             'diameter' => 80.0,
             'price' => 4.99,
-            'category_id' => 3,
+            'category_id' => 5,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Tapete',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'discount' => 0.3,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 5,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Estante de livros',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'discount' => 0.3,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 5,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Poltrona',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 5,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Mesa de apoio',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 5,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Mesa de centro',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 5,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Sofá',
+            'description' => 'Produto made in Taiwan, de ótima qualidade e resistência. É excelente por sua longevidade',
+            'qtd_last' => 4,
+            'weight' => 12.0,
+            'lenght' => 20.3,
+            'width' => 50.0,
+            'height' => 20.0,
+            'diameter' => 80.0,
+            'price' => 4.99,
+            'category_id' => 5,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'placeholder-2.jpg',
+            'filename' => 'banheiro/cesto_de_roupa.jpg',
+            'product_id' => 1,
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/cesto_de_roupa2.jpg',
             'product_id' => 1,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'placeholder-1.jpg',
+            'filename' => 'banheiro/chuveiro.jpg',
+            'product_id' => 2,
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/chuveiro2.jpg',
             'product_id' => 2,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'placeholder-3.jpg',
+            'filename' => 'banheiro/torneira.jpg',
+            'product_id' => 3,
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/torneira2.jpg',
             'product_id' => 3,
         ]);
 
         DB::table('product_images')->insert([
-            'filename' => 'placeholder-4.jpg',
+            'filename' => 'banheiro/lixo.jpg',
             'product_id' => 4,
         ]);
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/lixo2.jpg',
+            'product_id' => 4,
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/lixo3.jpg',
+            'product_id' => 4,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/armario_banheiro.jpg',
+            'product_id' => 5,
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/saboneteira.jpg',
+            'product_id' => 6
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/saboneteira2.jpg',
+            'product_id' => 6
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/suporte_de_toalha.jpg',
+            'product_id' => 7
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/pia.jpg',
+            'product_id' => 8
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'banheiro/pia2.jpg',
+            'product_id' => 8
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/jogo_de_copos.jpg',
+            'product_id' => 9
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/jogo_de_copos2.jpg',
+            'product_id' => 9
+        ]);
+        
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/kit_de_panelas.jpg',
+            'product_id' => 10
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/kit_de_panelas2.jpg',
+            'product_id' => 10
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/torradeira.jpg',
+            'product_id' => 11
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/torradeira2.jpg',
+            'product_id' => 11
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/tabua_de_corte.jpg',
+            'product_id' => 12
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/tabua_de_corte2.jpg',
+            'product_id' => 12
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/kit_de_tacas.jpg',
+            'product_id' => 13
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/kit_de_tacas2.jpg',
+            'product_id' => 13
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/coifa.jpg',
+            'product_id' => 14
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/coifa2.jpg',
+            'product_id' => 14
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/cooktop.jpg',
+            'product_id' => 15
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/cooktop2.jpg',
+            'product_id' => 15
+        ]);
+        
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/geladeira.jpg',
+            'product_id' => 16
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'cozinha/geladeira2.jpg',
+            'product_id' => 16
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/regador.jpg',
+            'product_id' => 17
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/regador2.jpg',
+            'product_id' => 17
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/vaso.jpg',
+            'product_id' => 18
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/vaso2.jpg',
+            'product_id' => 18
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/kit_horta.jpg',
+            'product_id' => 19
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/kit_horta2.jpg',
+            'product_id' => 19
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/serrote.jpg',
+            'product_id' => 20
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/luvas.jpg',
+            'product_id' => 21
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/luvas2.jpg',
+            'product_id' => 21
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/kit_de_jardinagem.jpg',
+            'product_id' => 22
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/pulverizador.jpg',
+            'product_id' => 23
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/pulverizador2.jpg',
+            'product_id' => 23
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/vassoura.jpg',
+            'product_id' => 24
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'jardinagem/vassoura2.jpg',
+            'product_id' => 24 
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/ar_condicionado.jpg',
+            'product_id' => 25
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/ar_condicionado2.jpg',
+            'product_id' => 25
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/tv.jpg',
+            'product_id' => 26
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/tv2.jpg',
+            'product_id' => 26
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/cobertor.jpg',
+            'product_id' => 27
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/edredom.jpg',
+            'product_id' => 28
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/edredom2.jpg',
+            'product_id' => 28
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/travesseiro.jpg',
+            'product_id' => 29
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/travesseiro2.jpg',
+            'product_id' => 29
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/cama.jpg',
+            'product_id' => 30
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/cama2.jpg',
+            'product_id' => 30
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/guarda_roupa.jpg',
+            'product_id' => 31
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/guarda_roupa2.jpg',
+            'product_id' => 31
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/armario_quarto.jpg',
+            'product_id' => 32
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'quarto/armario2_quarto.jpg',
+            'product_id' => 32
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'sala/espelho.jpg',
+            'product_id' => 33
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'sala/espelho2.jpg',
+            'product_id' => 33
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'sala/quadro.jpg',
+            'product_id' => 34
+        ]);
+        
+        DB::table('product_images')->insert([
+            'filename' => 'sala/tapete.jpg',
+            'product_id' => 35
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'sala/estante_de_livros.jpg',
+            'product_id' => 36
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'sala/estante_de_livros2.jpg',
+            'product_id' => 36
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'sala/poltrona.jpg',
+            'product_id' => 37 
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'sala/poltrona2.jpg',
+            'product_id' => 37
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'sala/mesa_de_apoio.jpg',
+            'product_id' => 38
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'sala/mesa_de_centro.jpg',
+            'product_id' => 39
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'sala/mesa_de_centro2.jpg',
+            'product_id' => 39
+        ]);
+
+        DB::table('product_images')->insert([
+            'filename' => 'sala/sofa.jpg',
+            'product_id' => 40
+        ]);
+        DB::table('product_images')->insert([
+            'filename' => 'sala/sofa2.jpg',
+            'product_id' => 40
+        ]);
+
+
 
         DB::table('order_statuses')->insert([
             'name' => 'Processando pagamento',
@@ -378,218 +1080,6 @@ class DatabaseSeeder extends Seeder
             'price' => 19.99
         ]);
         
-        DB::table('products')->insert([
-            'name' => 'Roupão',
-            'description' => 'Longo e sedoso para te aquecer/secar após o banho',
-            'qtd_last' => 60,
-            'lenght' => 50.0,
-            'weight' => 750.0,
-            'width' => 30.0,
-            'height' => 120.0,
-            'price' => 49.99,
-            'category_id' => 3,
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Cobertor Azul',
-            'description' => 'Te aquece nas suas noites mais frias',
-            'qtd_last' => 98,
-            'lenght' => 1.0,
-            'weight' => 560.0,
-            'width' => 135.0,
-            'height' => 200.0,
-            'price' => 79.98,
-            'category_id' => 1,
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Moldura',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.5,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Almofada NASA',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.5,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Estante',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.5,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Sofá',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.5,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Piso SU.PER',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.4,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Quadro ESC',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.4,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Televisão',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.4,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Fogão',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.4,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Pia AGUA',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.1,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Torneira',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.1,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Conjunto de panelas',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.1,
-            'category_Id' => 1
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Toalha MANIACA',
-            'description' => 'Uma moldura de qualidade para sua pintura',
-            'qtd_last' => 30,
-            'lenght' => 1.5,
-            'weight' => 500,
-            'width' => 150,
-            'height' => 210,
-            'price' => 50,
-            'discount' => 0.1,
-            'category_Id' => 1
-        ]);
-        
-        DB::table('products')->insert([
-            'name' => 'Quadro',
-            'description' => 'Pintura linda',
-            'qtd_last' => 98,
-            'lenght' => 1.0,
-            'weight' => 560.0,
-            'width' => 135.0,
-            'height' => 200.0,
-            'price' => 49.99,
-            'category_id' => 1,
-        ]);
-
-        DB::table('product_images')->insert([
-            'filename' => 'roupao1.png',
-            'product_id' => 9,
-        ]);
-
-        DB::table('product_images')->insert([
-            'filename' => 'roupao2.png',
-            'product_id' => 9,
-        ]);
-
-        DB::table('product_images')->insert([
-            'filename' => 'roupao3.png',
-            'product_id' => 9,
-        ]);
-
-        DB::table('product_images')->insert([
-            'filename' => 'cama.png',
-            'product_id' => 10,
-        ]);
-
         DB::table('ticket_types')->insert([
             'name' => 'Problemas com algum pedido'
         ]);

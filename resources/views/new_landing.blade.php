@@ -117,13 +117,6 @@
                       @if($product_with_discount->qtd_last == 0)
                       <span class="bg-warning btn">Esgotado</span>
                       @else
-                        {{-- <form id="comprarAgora-form{{$loop->iteration}}" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
-                          {{ csrf_field() }}
-                          <input type="hidden" name="product_id" value="{{ $product_with_discount->id }}">
-                        </form>
-                        <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementById('comprarAgora-form{{$loop->iteration}}').submit()">
-                            <span class="mdc-button__label">Comprar agora</span>
-                        </a> --}}
                         <a href="{{route('cart.fastAdd', ['product_id'=>$product_with_discount->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">add_shopping_cart</a>
                       @endif
                     </div>
@@ -146,15 +139,15 @@
           <div class="mdc-card mb-3">
             <div class="mdc-card__primary-action product-card-action" tabindex="0" data-id="{{$product->id}}">
               @if(isset($product->image[0]->filename))
-                <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
-                  style="background-image: url(&quot;{{asset("/img/products/".$product->image[0]->filename)}}&quot;);width:100%;">
+                <div class="img-fluid mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
+                  style="background-image: url(&quot;{{asset("/img/products/".$product->image[0]->filename)}}&quot;)">
                 </div>
               @else
-                <div class="mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
+                <div class="img-fluid mdc-card__media mdc-card__media--16-9 mdc-card__media--square"
                   style="background-image: url(&quot;{{asset("/img/logo_icone.png")}}&quot;)">
                 </div>
               @endif
-              <div class="p-2 ml-2" style="height: 140px">
+              <div class="p-2 ml-2" style="height: 177px">
                 <h6 class="mdc-typography mb-0 mdc-typography--headline6 font-weight-bold" style="font-size: 1rem">{{$product->name}}</h6>
                 @php 
                   $rating = $product->mediaNotaAvaliacao();
@@ -175,17 +168,26 @@
                     ({{ $rating }})
                   @endif
                 @endfor
-                <h4 class="font-weight-normal mb-0 mt-1">
-                  R$
-                  @php
-                    $formatted_price = number_format($product->price, 2, ',', '');   
-                    echo $formatted_price;
-                  @endphp
-                </h4>
+                @php
+                  $price = $product->price - ($product->price * $product->discount);
+                  $formatted_price = number_format($price, 2, ',', ''); 
+                  $formatted_price_without_discount = number_format($product->price, 2, ',', ''); 
+                @endphp
+                @if ($product->discount !== null)
+                  <h6 class="font-weight-normal mb-0 text-muted mt-2 d-flex align-items-center">
+                    <span style="text-decoration: line-through">R$ {{$formatted_price_without_discount}}</span> 
+                    <span class="badge badge-success w-25 h-50 ml-1"><i class="fas fa-arrow-down"></i> {{$product->discount * 100}}%</span>
+                  </h6>
+                  <h4 class="mt-1 mb-3">R$ {{$formatted_price}}</h4>   
+                @else
+                  <h4 class="font-weight-normal mb-0 mt-1">
+                    R$ {{$formatted_price}}
+                  </h4>    
+                @endif
                 @if ($product->price > 30)
-                  <span class="text-success">6x de R$  
+                  <span class="text-success">6x de R$ 
                     @php
-                      $parcel = $product->price / 6;
+                      $parcel = $price / 6;
                       $formatted_parcel = intval(strval($parcel * 100)) / 100;
                       echo $formatted_parcel;   
                     @endphp
@@ -193,18 +195,11 @@
                 @endif
               </div>
             </div>
-            <div class="mdc-card__actions" style="height: 64px">
+            <div class="mdc-card__actions">
               <div class="mdc-card__action-icons">
                 @if($product->qtd_last == 0)
                 <span class="bg-warning btn">Esgotado</span>
                 @else
-                {{-- <form id="comprarAgora-form{{$loop->iteration}}" action="{{ route('comprarAgora') }}" method="POST" class="d-none">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                  </form>
-                  <a class="btn btn-success mr-2" style="font-size:0.8em;" onclick="event.preventDefault(); document.getElementById('comprarAgora-form{{$loop->iteration}}').submit()">
-                      <span class="mdc-button__label">Comprar agora</span>
-                  </a> --}}
                   <a href="{{route('cart.fastAdd', ['product_id'=>$product->id])}}" class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon--unbounded cart-add-icon-button" title="Adicionar no carrinho" data-mdc-ripple-is-unbounded="true">add_shopping_cart</a>
                 @endif
               </div>
@@ -212,6 +207,7 @@
           </div>
         </div>
       @endforeach
+      {{$products->links()}}
     </div>
     <input type="text" id="searchInput" class="form-control form-control-lg d-none mt-4 position-fixed input-search-sm-devices" autocomplete="none">
     <div class="" aria-labelledby="searchInput">
