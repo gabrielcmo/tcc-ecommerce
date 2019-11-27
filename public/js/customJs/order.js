@@ -35,7 +35,7 @@ $(document).ready(function() {
           } else {
             $('#product' + element.product_id + '-row').append(
               '<td>' +
-                '<img src=' + domain + '/img/products/' + element.product_image + '" alt="' + element.product_name + ' imagem" width="80px" height="80px">' +
+                '<img src=' + domain + '/img/products/' + element.product_image + ' alt="' + element.product_name + ' imagem" width="80px" height="80px">' +
                 '<span class="font-weight-bolder ml-1">' + element.product_name + '</span>'
             + '</td>'); 
           }

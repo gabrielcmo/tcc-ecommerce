@@ -108,7 +108,7 @@
                           <img src="{{asset('/img/docs/registro.png')}}" style="width:100%;height:auto;" class="d-block" alt="Como se registrar">
                         </div>
                         <div class="carousel-item">
-                            <h2 class="mb-2">Como criar enviar uma mensagem para o suporte</h2>
+                            <h2 class="mb-2">Como enviar uma mensagem para o suporte</h2>
                           <img src="{{asset('/img/docs/ticket.png')}}" style="width:100%;height:auto;" class="d-block" alt="Como se registrar">
                         </div>
                       </div>

@@ -159,7 +159,7 @@
   <div class="mdc-top-app-bar--fixed-adjust">
     <div class="dropdown w-100 mb-5 d-none" id="searchFormCellphone">
       <form class="form-inline">
-        <input class="form-control dropdown-toggle" id="searchCellphone" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search" style="border-radius: 0;">
+        <input class="form-control dropdown-toggle w-100" id="searchCellphone" type="search" placeholder="Pesquise.. Ex: Travesseiro" autocomplete="off" aria-label="Search" style="border-radius: 0;">
       </form>
       <div aria-labelledby="search">
         <ul class="dropdown-menu w-100" id="resultCellphone"></ul>
