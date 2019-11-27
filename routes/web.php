@@ -41,7 +41,7 @@ Route::group(['middleware' => ['https']], function () {
     *   Suporte
     */
     Route::group(['prefix' => 'support'], function () {
-        Route::get('/index', function() {
+        Route::get('/index', function () {
             return view('support.index');
         })->name('support.index');
     });
@@ -69,7 +69,7 @@ Route::group(['middleware' => ['https']], function () {
     Route::get('/cupom/validate/{cupom_name}', 'CheckoutController@cupomValidate');
 
 
-   
+
 
     /*
     *   Calcular CEP
@@ -78,7 +78,7 @@ Route::group(['middleware' => ['https']], function () {
 
     Route::post('/buy/now', 'ProductController@buyNow')->name('comprarAgora');
 
-    Route::group(['middleware' => ['auth']], function (){
+    Route::group(['middleware' => ['auth']], function () {
         /*
         *   User views
         */
@@ -101,13 +101,12 @@ Route::group(['middleware' => ['https']], function () {
         /*
         *   Checkout
         */
-        Route::group(['middleware' => ['Checkout']], function (){
+        Route::group(['middleware' => ['Checkout']], function () {
             Route::get('/checkout/endereco', 'CheckoutController@adressCheckout')->name('address-check');
             Route::post('/checkout/address/data', 'CheckoutController@addressData')->name('address-data');
-            Route::group(['middleware' => ['CheckoutPayment']], function (){
+            Route::group(['middleware' => ['CheckoutPayment']], function () {
                 Route::get('/checkout/pagamento', 'CheckoutController@paymentCheckout')->name('payment-check');
                 Route::post('/checkout/payment/data', 'CheckoutController@paymentData');
-                Route::get('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
 
                 /*
                 *   PayPal
@@ -117,6 +116,7 @@ Route::group(['middleware' => ['https']], function () {
                 Route::get('/cancel-payment', 'PaymentController@cancel');
             });
         });
+        Route::get('/paypal/transaction/complete', 'CheckoutController@paymentSuccess');
 
         /*
         *   Order
@@ -130,7 +130,7 @@ Route::group(['middleware' => ['https']], function () {
         */
         Route::get('/tickets', 'TicketController@index')->name('tickets');
         Route::get('/ticket/create', 'TicketController@create')->name('ticket.create');
-        Route::post('/ticket/store','TicketController@store')->name('ticket.store');
+        Route::post('/ticket/store', 'TicketController@store')->name('ticket.store');
 
 
         /*
@@ -148,12 +148,12 @@ Route::group(['middleware' => ['https']], function () {
     /*
     *   Admin
     */
-    Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function (){
+    Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         /*
         *   Landing page admin 
         */
         Route::get('/', 'AdminController@index')->name('admin.index');
-        
+
         /*
         *   Produtos 
         */
@@ -165,10 +165,10 @@ Route::group(['middleware' => ['https']], function () {
         Route::post('/product/create/data', 'ProductController@store')->name('admin.product.store');
         Route::get('/product/{product_id}/desconto', 'AdminController@ofertaProdutoView');
         Route::post('/product/desconto', 'AdminController@ofertaProduto')->name('product.discount');
-        
+
         Route::get('/category/desconto', 'AdminController@ofertaCategoriaView')->name('category.discount.show');
         Route::post('/category/desconto/aplicar', 'AdminController@ofertaCategoria')->name('category.discount.apply');
-        
+
         Route::get('/cupom', 'AdminController@cupomView')->name('admin.cupons');
         Route::get('/cupom/create', 'AdminController@cupomCreate')->name('admin.cupom.create');
         Route::post('/cupom/store', 'AdminController@cupomStore')->name('admin.cupom.store');
@@ -192,7 +192,7 @@ Route::group(['middleware' => ['https']], function () {
 
 
 
-    Route::get('/test-components', function(){
+    Route::get('/test-components', function () {
         return view('test_components');
     });
 });
