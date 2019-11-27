@@ -4,6 +4,7 @@ namespace Doomus\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Doomus\Product;
+use Illuminate\Support\Facades\App;
 
 class SearchController extends Controller
 {
@@ -13,7 +14,12 @@ class SearchController extends Controller
      */
     public function find(Request $search)
     {
-        $domain = env('APP_URL');
+        if (App::environment() === 'production') {
+            $domain = "https://doomus.com.br/public";
+        } else {
+            $domain = "http://localhost:8000";
+        }
+
         if ($search->ajax()) {
             $query = $search->get('query');
             if ($query !== '') {
