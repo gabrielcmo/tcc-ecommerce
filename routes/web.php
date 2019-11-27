@@ -74,7 +74,7 @@ Route::group(['middleware' => ['https']], function () {
     /*
     *   Calcular CEP
     */
-    Route::get('/calc/frete/{cep}', 'CheckoutController@calcFrete')->name('calcFrete');
+    Route::get('/calc/frete', 'CheckoutController@calcFrete')->name('calcFrete');
 
     Route::post('/buy/now', 'ProductController@buyNow')->name('comprarAgora');
 
