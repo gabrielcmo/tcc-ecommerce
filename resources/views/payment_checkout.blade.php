@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Confirmar pagamento')
+
 @section('content')
 <div class="container">
     <div class="progress mt-4">
@@ -58,12 +60,19 @@
                 <tbody>
                     <tr>
                         <th>Subtotal</th>
-                        <td id="totalCart" class="text-right">R$ {{Cart::subtotal()}}</td>
+                        <td id="totalCart" class="text-right">R$
+                            @php
+                                echo number_format(Cart::subtotal(), 2, ',', '');
+                            @endphp
+                        </td>
                     </tr>
                     <tr id="dadosFrete">
                         <th id="prazoFrete">Frete <span class="">(prazo de {{session('prazoFrete')}} dias)</span></th>
-                        <td id="valorFrete" class="text-right" data-frete="{{session('valorFrete')}}">R$
-                            {{session('valorFrete')}}</td>
+                        <td id="valorFrete" class="text-right" data-frete="{{session('valorFrete')}}">R$ 
+                            @php
+                                echo number_format(session('valorFrete'), 2, ',', '');
+                            @endphp
+                        </td>
                     </tr>
                     @if(session('cupom') !== null)
                         <tr class="text-success" id="cupomTr" style="">
@@ -142,13 +151,20 @@
                                             value="{{ $item->qty }}" data-product="{{$loop->iteration}}">
                                         <a class="text-center" href="/carrinho/{{ $item->rowId }}/remove">Remover</a>
                                         <span
-                                            class="d-none {{"productValue$loop->iteration"}}">R${{$item->price}}</span>
+                                            class="d-none {{"productValue$loop->iteration"}}">R$
+                                            @php
+                                                echo number_format($item->price, 2, ',', '');
+                                            @endphp
+                                        </span>
                                         <span class="d-none {{"productRowId$loop->iteration"}}">{{$item->rowId}}</span>
                                         <span class="d-none {{"productId$loop->iteration"}}">{{$item->id}}</span>
                                     </td>
                                     <td class="{{"newProductValue$loop->iteration"}} w-25 align-middle eachProductValue"
                                         data-value={{$item->price*$item->qty}}>
-                                        R${{$item->price*$item->qty}}
+                                        R$ 
+                                        @php
+                                            echo number_format(($item->price*$item->qty), 2, ',', '');
+                                        @endphp
                                     </td>
                                 </tr>
                                 @endforeach

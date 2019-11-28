@@ -22,7 +22,7 @@ $(document).ready(function () {
     prazoFrete = sessionStorage.getItem('prazoFrete');
     cupomNome = sessionStorage.getItem('cupomNome');
     cupomDesconto = sessionStorage.getItem('cupomDesconto');
-    total_carrinho = $('#totalCart').data('total-carrinho');
+    total_carrinho = parseFloat($('#totalCart').data('total-carrinho'));
 
     if (valorFrete != "null" && prazoFrete != "null") {
         $('#dadosFrete').removeClass('d-none');
@@ -57,7 +57,7 @@ $(document).ready(function () {
     if (valorFrete == "null" && cupomDesconto == "null") {
         $('#totalOpcao').text('Total');
 
-        $('#totalCart').text('R$ ' + total_carrinho);
+        $('#totalCart').text('R$ ' + total_carrinho.toFixed(2).toString().replace('.', ','));
     }
     if (valorFrete != "null" && cupomDesconto == "null") {
         $('#totalOpcao').text('Total (c/ frete)');
@@ -69,7 +69,7 @@ $(document).ready(function () {
         $('#totalOpcao').text('Total (c/ desconto)');
         let descontoValor = (1 - cupomDesconto) * total_carrinho;
         let valor_com_cupom = total_carrinho - descontoValor;
-        $('#totalCart').text('R$ ' + valor_com_cupom);
+        $('#totalCart').text('R$ ' + valor_com_cupom.toFixed(2).toString().replace('.', ','));
     }
     if (valorFrete != "null" && cupomDesconto != "null") {
         $('#totalOpcao').text('Total (c/ frete e desconto)');
@@ -364,7 +364,7 @@ $(document).ready(function () {
                     $('.cupomTr').removeClass('d-none');
                     $('#cupomText').text("(" + response.cupom_name + ")");
                     $('#descontoPorcentagem').text("- " + (response.cart_discount * 100) + "%");
-                    $('#descontoValor').text("(R$ " + (response.cart_total - response.new_cart_total).toFixed(2) + ")");
+                    $('#descontoValor').text("(R$ " + (response.cart_total - response.new_cart_total).toFixed(2).toString().replace('.', ',') + ")");
 
                     sessionStorage.setItem('cupomDesconto', response.cart_discount);
                     sessionStorage.setItem('cupomNome', response.cupom_name);

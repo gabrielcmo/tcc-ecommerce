@@ -1,8 +1,6 @@
 @extends('layouts.layout')
 
-@section('title')
-Checkout
-@endsection
+@section('title', 'Confirmar endereço de entrega')
 
 @section('content')
 <div class="container">
@@ -69,7 +67,9 @@ Checkout
             <div class="d-flex d-inline mb-4">
                 <h4>Endereço de entrega</h4>
                 @if (Auth::user()->endereco !== null)
-                    &nbsp;&nbsp;&nbsp;&nbsp;<button id="useAddressSaved" class="mdc-button mdc-button--raised general-button">Usar endereço salvo</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<button id="useAddressSaved" class="mdc-button mdc-button--raised general-button">
+                        <span class="mdc-button__label">Usar endereço salvo</span>
+                    </button>
                 @endif
             </div>
             <form action="{{ route('address-data') }}" method="post" id="addressCheckoutForm">

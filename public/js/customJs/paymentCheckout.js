@@ -19,7 +19,7 @@ $(document).ready(function(){
       let productRowId = $('.productRowId'+product).text();
       let productId = $('.productId'+product).text()
   
-      let newValue = (productValue*qty).toFixed(2).replace('.', ',');
+      let newValue = (productValue*qty).toFixed(2).toString().replace('.', ',');
 
       var qtyTotal = 0;
       $('.inputQty').each(function (){
@@ -27,15 +27,15 @@ $(document).ready(function(){
       });
       $('#countCart').text(qtyTotal);
   
-      $('.newProductValue'+product).data('value', parseFloat(newValue.replace(',', '.')));
+      $('.newProductValue'+product).data('value', parseFloat(newValue.replace(',', '.')).toFixed(2));
       $('.newProductValue'+product).text('R$ ' + newValue);
   
       let total = 0;
       $('.eachProductValue').each(function () {
-        total += $(this).data('value');
+        total += parseFloat($(this).data('value'));
         
       });
-      $('#totalCart').text("R$ "+total.toFixed(2).replace('.',','));
+      $('#totalCart').text("R$ "+total.toFixed(2).toString().replace('.',','));
 
       
 
@@ -67,15 +67,15 @@ $(document).ready(function(){
   $('#itensModal').on('hidden.bs.modal', function(e){
     let total = 0;
     $('.eachProductValue').each(function () {
-      total += $(this).data('value');
+      total += parseFloat($(this).data('value'));
     });
 
     let desconto = sessionStorage.getItem('cupomDesconto');
 
-    desconto *= total;
-
-    total -= desconto;
-    total += parseFloat($('#valorFrete').data('frete'));
+    if (desconto != "null") {
+      total = total - (total*desconto);
+      total += parseFloat($('#valorFrete').data('frete'));
+    }
 
     $('#valorTotalCompra').text('R$ ' + total.toFixed(2).toString().replace('.', ','));
     
