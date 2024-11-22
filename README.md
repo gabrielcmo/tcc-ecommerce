@@ -1,4 +1,4 @@
-<h1 align='center'>E-commerce</h1>
+<h1 align='center'>Doomus - E-Commerce para produtos do lar</h1>
 
 ## Sobre o projeto
 
